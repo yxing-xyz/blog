@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell on 落日Ins</title>
+    <link>/tags/shell/</link>
+    <description>Recent content in Shell on 落日Ins</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 04 May 2020 11:39:59 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Proxy</title>
+      <link>/post/configure/proxy/</link>
+      <pubDate>Mon, 04 May 2020 11:39:59 +0800</pubDate>
+      
+      <guid>/post/configure/proxy/</guid>
+      <description>CMD set http_proxy=http://127.0.0.1:1081 set https_proxy=http://127.0.0.1:1081 PowerShell # NOTE: registry keys for IE 8, may vary for other versions $regPath = &amp;#39;HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings&amp;#39; function Clear-Proxy { Set-ItemProperty -Path $regPath -Name ProxyEnable -Value 0 Set-ItemProperty -Path $regPath -Name ProxyServer -Value &amp;#39;&amp;#39; Set-ItemProperty -Path $regPath -Name ProxyOverride -Value &amp;#39;&amp;#39; [Environment]::SetEnvironmentVariable(&amp;#39;http_proxy&amp;#39;, $null, &amp;#39;User&amp;#39;) [Environment]::SetEnvironmentVariable(&amp;#39;https_proxy&amp;#39;, $null, &amp;#39;User&amp;#39;) } function Set-Proxy { $proxy = &amp;#39;http://127.0.0.1:1081&amp;#39; Set-ItemProperty -Path $regPath -Name ProxyEnable -Value 1 Set-ItemProperty -Path $regPath -Name ProxyServer -Value $proxy Set-ItemProperty -Path $regPath -Name ProxyOverride -Value &amp;#39;&amp;lt;local&amp;gt;&amp;#39; [Environment]::SetEnvironmentVariable(&amp;#39;http_proxy&amp;#39;, $proxy, &amp;#39;User&amp;#39;) [Environment]::SetEnvironmentVariable(&amp;#39;https_proxy&amp;#39;, $proxy, &amp;#39;User&amp;#39;) } </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algorithm on 落日Ins</title>
+    <link>/tags/algorithm/</link>
+    <description>Recent content in Algorithm on 落日Ins</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Nov 2017 11:28:03 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Bitwise Operation</title>
+      <link>/post/programming/bitwise_operator/</link>
+      <pubDate>Thu, 23 Nov 2017 11:28:03 +0800</pubDate>
+      
+      <guid>/post/programming/bitwise_operator/</guid>
+      <description>基础    符号 描述 运算规则     &amp;amp; 按位与 全为 1 为 1，否则为 0   | 按位或 全为 0 为 0，否则为 1   ~ 按位取反 0 变 1，1 变 0   &amp;lt;&amp;lt; 按位左移 各二进制位全部左移若干位，高位丢弃，低位补齐 0   &amp;gt;&amp;gt; 按位右移 正数补 0，负数补 1   ^ 按位异或 相同 0,相异 1    注意:
+ 在这 6 种操作符，只有~取反是单目操作符，其它 5 种都是双目操作符 位操作只能用于整形数据，对 float 和 double 类型进行位操作会被编译器报错 注意运算符优先级，除了~其余都运算符等级都比较低。  技巧 1.</description>
+    </item>
+    
+  </channel>
+</rss>

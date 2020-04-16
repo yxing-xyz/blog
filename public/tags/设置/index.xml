@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设置 on 落日Ins</title>
+    <link>/tags/%E8%AE%BE%E7%BD%AE/</link>
+    <description>Recent content in 设置 on 落日Ins</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 09 Nov 2017 19:54:44 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/%E8%AE%BE%E7%BD%AE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>键位映射</title>
+      <link>/post/linux_keyboard_mapping/</link>
+      <pubDate>Thu, 09 Nov 2017 19:54:44 +0800</pubDate>
+      
+      <guid>/post/linux_keyboard_mapping/</guid>
+      <description>Windows 下载 MapKeyboard 这个软件，自己随便修改，然后注销或者重启就好了
+Linux Linux 因为有 tty 终端和 DESKTOP(桌面)两种运行模式所以分开来说
+TTY 1.修改键位表
+cd /usr/share/kbd/keymaps/i386/qwerty # 解压键盘map.gz gzip -d us.map.gz # 编辑文件修改： vim us.map # Caps改为Ctrl keycode 58 = Control keycode 86 = less greater bar keycode 97 = Control Keycode 100 = Caps_Lock # 重新压缩成.gz gzip us.map 2.从新加载
+loadkeys us 3.写入配置文件
+# 如果是systemd init系统的,修改/etc/vconsole.conf增加以下内容重启 KEYMAP=us DESKTOP 发行版中有 setxkbmap 命令 1、修改/usr/share/X11/xkb/symbols/pc
+pc文件
+在 xkb_symbols &amp;ldquo;pc105&amp;quot;最后面增加以下内容，然后重启即可
+ replace key &amp;lt;CAPS&amp;gt; { [ Control_L ] }; modifier_map Control { &amp;lt;CAPS&amp;gt; }; replace key &amp;lt;RALT&amp;gt; { [ Caps_Lock ] }; modifier_map Lock { &amp;lt;RALT&amp;gt; }; 2、在~/.</description>
+    </item>
+    
+  </channel>
+</rss>

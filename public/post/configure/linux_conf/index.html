@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Linux Configuration - 落日Ins</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Linux Configuration">
+	<meta property="og:title" content="Linux Configuration" />
+<meta property="og:description" content="Linux Configuration" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/configure/linux_conf/" />
+<meta property="article:published_time" content="2018-09-01T09:51:36+08:00" />
+<meta property="article:modified_time" content="2018-09-01T09:51:36+08:00" />
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="落日Ins" rel="home">
+				<div class="logo__title">落日Ins</div>
+				<div class="logo__tagline">临渊羡鱼不如退而结网</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About Me</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Linux Configuration</h1>
+			<p class="post__lead">Linux Configuration</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-09-01T09:51:36&#43;08:00">September 01, 2018</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/linux/" rel="category">Linux</a>
+	</span>
+</div></div>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#arch-安装">Arch 安装</a></li>
+    <li><a href="#arch-初始化">Arch 初始化</a></li>
+    <li><a href="#ubuntu-初始化">Ubuntu 初始化</a></li>
+    <li><a href="#用户初始化">用户初始化</a></li>
+    <li><a href="#arch-配置文件">Arch 配置文件</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<h2 id="arch-安装">Arch 安装</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># set -euxo pipefail</span>
+set -euo pipefail
+
+<span style="color:#75715e"># 获取archlinux源</span>
+<span style="color:#75715e"># wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/</span>
+<span style="color:#75715e"># wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/?country=CN</span>
+
+<span style="color:#75715e">####################### U盘镜像系统</span>
+<span style="color:#75715e"># 下载工具</span>
+pacman -S wget curl axel aria2 --needed --noconfirm
+<span style="color:#75715e"># 更改源</span>
+cp -rf ./etc/pacman.d /etc/
+cp -rf ./etc/pacman.conf /etc/
+<span style="color:#75715e"># 更新源</span>
+pacman -Ssy
+<span style="color:#75715e"># 安装archlinux基本包</span>
+pacstrap -i /mnt base base-devel
+<span style="color:#75715e"># 保存新系统分区表到/mnt/etc/fstab</span>
+genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
+
+<span style="color:#75715e">######################## 切换到新系统</span>
+<span style="color:#75715e"># 切换</span>
+arch-chroot /mnt /bin/bash
+
+<span style="color:#75715e"># 添加用户</span>
+useradd -g wheel yx
+printf <span style="color:#e6db74">&#34;yx\nyx\n&#34;</span> | passwd yx &gt; /dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span>
+
+<span style="color:#75715e"># 下载工具</span>
+pacman -S wget curl axel aria2 --needed --noconfirm
+<span style="color:#75715e"># 更改源</span>
+cp -rf ./etc/pacman.d /etc/
+cp -rf ./etc/pacman.conf /etc/
+
+<span style="color:#75715e"># 生成本地化信息</span>
+<span style="color:#75715e"># 下载语言包</span>
+echo <span style="color:#e6db74">&#34;zh_CN.UTF-8 UTF-8
+</span><span style="color:#e6db74">en_US.UTF-8 UTF-8
+</span><span style="color:#e6db74">&#34;</span> &gt;&gt;/etc/locale.gen
+locale-gen
+<span style="color:#75715e"># echo &#34;LANG=zh_CN.UTF-8&#34; &gt;&gt;/etc/locale.conf</span>
+localectl set-locale LANG<span style="color:#f92672">=</span>zh_CN.utf8
+
+<span style="color:#75715e"># 时区</span>
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+<span style="color:#75715e"># 默认为 UTC 时间，如需设置为本地时间，请执行：</span>
+<span style="color:#75715e"># hwclock --systohc --localtime</span>
+hwclock --systohc
+mkinitcpio -p linux
+
+<span style="color:#75715e"># mbr grub引导</span>
+<span style="color:#75715e"># 使用eth0网卡</span>
+sed -i <span style="color:#e6db74">&#39;s/^GRUB_CMDLINE_LINUX_DEFAULT.*/GRUB_CMDLINE_LINUX_DEFAULT=&#34;quiet net.ifnames=0 biosdevname=0&#34;/g&#39;</span> /etc/default/grub
+pacman -S grub os-prober --needed --noconfirm
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+
+<span style="color:#75715e"># 自启动网卡</span>
+<span style="color:#75715e"># ip link</span>
+<span style="color:#75715e"># echo &#34;请输入网卡名:&#34;</span>
+<span style="color:#75715e"># read ip_link</span>
+<span style="color:#75715e"># systemctl enable dhcpcd@&#34;$ip_link&#34;.service</span>
+systemctl enable dhcpcd
+
+<span style="color:#75715e"># 导入CPG key</span>
+pacman -S archlinux-keyring --needed --noconfirm
+pacman -S archlinuxcn-keyring --needed --noconfirm
+
+<span style="color:#75715e"># 安装 yay</span>
+pacman -Syu yay --needed --noconfirm
+yay --aururl <span style="color:#e6db74">&#34;https://aur.tuna.tsinghua.edu.cn&#34;</span> --save
+su yx -c <span style="color:#e6db74">&#39;yay --aururl &#34;https://aur.tuna.tsinghua.edu.cn&#34; --save&#39;</span>
+
+<span style="color:#75715e"># 降级软件</span>
+pacman -S downgrade --needed --noconfirm
+<span style="color:#75715e"># Arch安装脚本</span>
+pacman -S arch-install-scripts --needed --noconfirm
+
+<span style="color:#75715e"># 安装显卡驱动</span>
+echo -n <span style="color:#e6db74">&#34;请选择显卡类型（1.Intel, 2.Nvidia, 3.ATI, 4.AMD, 5.通用):&#34;</span>
+read video
+<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$video<span style="color:#e6db74">&#34;</span> in
+1<span style="color:#f92672">)</span> pacman -S xf86-video-intel --needed --noconfirm ;;
+2<span style="color:#f92672">)</span> pacman -S xf86-video-nouveau --needed --noconfirm ;;
+3<span style="color:#f92672">)</span> pacman -S xf86-video-ati --needed --noconfirm ;;
+4<span style="color:#f92672">)</span> pacman -S xf86-video-amdgpu --needed --noconfirm ;;
+5<span style="color:#f92672">)</span> pacman -S xf86-video-vesa --needed --noconfirm ;;
+<span style="color:#66d9ef">esac</span>
+
+<span style="color:#75715e"># 安装图形界面</span>
+pacman -S xorg-server xorg-xinit --needed --noconfirm
+
+<span style="color:#75715e"># KDE</span>
+<span style="color:#75715e">#pacman -S plasma-meta konsole dolphin sddm --needed --noconfirm</span>
+<span style="color:#75715e">#systemctl enable sddm</span>
+
+<span style="color:#75715e"># cinnamon桌面</span>
+pacman -S cinnamon cinnamon-translations --needed --noconfirm
+
+
+<span style="color:#75715e"># 重启</span>
+exit
+umount -R /mnt
+reboot
+</code></pre></div><h2 id="arch-初始化">Arch 初始化</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
+</span><span style="color:#75715e"></span>set -euo pipefail
+
+<span style="color:#75715e">################ 研发 ##############</span>
+<span style="color:#75715e"># 常用开发工具</span>
+pacman -S yasm gcc cmake nginx php php-apache composer jdk8 gradle maven nodejs npm yarn git tig svn python python-pip --needed --noconfirm --force
+<span style="color:#75715e"># 编辑</span>
+pacman -S emacs vim visual-studio-code-bin intellij-idea-ultimate-edition --needed --noconfirm --force
+<span style="color:#75715e"># nodejs应用进程管理器</span>
+pacman -S pm2 --needed --noconfirm --force
+<span style="color:#75715e"># 打印进程调用</span>
+pacman -S strace --needed --noconfirm --force
+<span style="color:#75715e"># 数据库命令行</span>
+yay -S mycli pgcli-git litecli --needed --noconfirm --force
+<span style="color:#75715e"># 手册</span>
+yay -S cheat-git tldr --needed --noconfirm --force
+<span style="color:#75715e"># 代码行数统计</span>
+pacman -S loc --needed --noconfirm --force
+<span style="color:#75715e"># shell脚本检查</span>
+pacman -S shellcheck --needed --noconfirm --force
+<span style="color:#75715e"># SSR</span>
+yay -S shadowsocksr --needed --noconfirm --force
+
+<span style="color:#75715e">############# 虚拟机相关 ##############</span>
+<span style="color:#75715e"># 远程桌面: rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/yx/projects/PQTelWVMP/PQTelVMPDA/app</span>
+pacman -S rdesktop --needed --noconfirm --force
+
+
+<span style="color:#75715e">############## 资源监控 ###############</span>
+<span style="color:#75715e"># 硬件信息lshw lscpu lsblk lspci 模块 lsmod 模块信息modinfo</span>
+pacman -S lshw hardinfo --needed --noconfirm --force
+<span style="color:#75715e"># 系统信息</span>
+pacman -S neofetch --needed --noconfirm --force
+<span style="color:#75715e"># 实时查看网络、cpu、内存、磁盘等多功能实时监控, sysstat多单功能瞬时查看</span>
+pacman -S nmon dstat sysstat --needed --noconfirm --force
+<span style="color:#75715e"># 资源监控</span>
+pacman -S glances htop --needed --noconfirm --force
+<span style="color:#75715e"># 实时cpu监控</span>
+pacman -S s-tui --needed --noconfirm --force
+<span style="color:#75715e"># 进程磁盘读写监控iotop  磁盘和cpu负载iostat</span>
+pacman -S iotop --needed --noconfirm --force
+<span style="color:#75715e"># 查看磁盘使用</span>
+pacman -S ncdu --needed --noconfirm --force
+<span style="color:#75715e"># 网卡网速监控</span>
+pacman -S bmon bwm-ng nload iftop --needed --noconfirm --force
+<span style="color:#75715e"># 进程统计网络带宽</span>
+pacman -S nethogs --needed --noconfirm --force
+
+
+
+<span style="color:#75715e">##################  网络工具 ##############</span>
+<span style="color:#75715e"># ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中</span>
+pacman -S net-tools dnsutils inetutils iproute2 --needed --noconfirm
+<span style="color:#75715e"># 端口扫描namp、端口netcat、端口数据发送端口转发socat、http测试 nmap -Pn -v -A www.baidu.com  -p 0-10000</span>
+pacman -S nmap openbsd-netcat socat httpie --needed --noconfirm --force
+<span style="color:#75715e"># 测试本机发送tcp/udp最大带宽 时延 丢包, 路由测试工具mtr</span>
+pacman -S iperf mtr --needed --noconfirm --force
+<span style="color:#75715e"># 抓包</span>
+pacman -S iptraf-ng wireshark-qt wireshark-gtk ngrep --needed --noconfirm --force
+<span style="color:#75715e"># 内网穿透</span>
+pacman -S frp localtunnel ngrok --needed --noconfirm --force
+
+
+
+<span style="color:#75715e">################### 终端神器 #####################</span>
+<span style="color:#75715e"># shell</span>
+pacman -S zsh --needed --noconfirm --force
+<span style="color:#75715e"># 终端复用</span>
+pacman -S tmux --needed --noconfirm --force
+<span style="color:#75715e"># 终端文件管理ranger</span>
+pacman -S ranger vifm nnn mc --needed --noconfirm --force <span style="color:#75715e"># 终端文件管理</span>
+pacman -S atool --needed --noconfirm --force              <span style="color:#75715e"># 用于预览各种压缩文件</span>
+pacman -S highlight --needed --noconfirm --force          <span style="color:#75715e"># 用于在预览代码，支持多色彩高亮显示代码</span>
+pacman -S w3m --needed --noconfirm --force                <span style="color:#75715e"># lynx, w3m 或 elinks：这三个东西都是命令行下的网页浏览器，都用于htm</span>
+pacman -S poppler --needed --noconfirm --force            <span style="color:#75715e"># PDF阅读</span>
+pacman -S mediainfo --needed --noconfirm --force          <span style="color:#75715e"># mediainfo 或 perl-image-exiftool ： audio/video</span>
+<span style="color:#75715e"># 命令模糊搜索 fzf</span>
+pacman -S fzf --needed --noconfirm --force
+<span style="color:#75715e"># 目录文件搜索 fd</span>
+pacman -S fd --needed --noconfirm --force
+<span style="color:#75715e"># 文件内容搜索 ag ripgrep ack</span>
+pacman -S the_silver_searcher ripgrep ack --needed --noconfirm --force
+<span style="color:#75715e"># 彩色cat、彩色日志、彩色diff</span>
+pacman -S bat ccze diff-so-fancy colordiff --noconfirm --needed --force
+<span style="color:#75715e"># 终端表格、文本三神器</span>
+pacman -S awk sed grep --needed --noconfirm --force
+
+<span style="color:#75715e"># SSH</span>
+pacman -S mosh --needed --noconfirm --force
+<span style="color:#75715e"># 文件传输 rsync</span>
+pacman -S rsync   --needed --noconfirm --force
+
+<span style="color:#75715e"># 查看进度</span>
+pacman -S progress --needed --noconfirm --force
+<span style="color:#75715e"># 目录树形结构</span>
+pacman -S tree --needed --noconfirm --force
+<span style="color:#75715e"># 回收站</span>
+pacman -S trash-cli --needed --noconfirm --force
+
+<span style="color:#75715e"># 文件读写测试</span>
+pacman -S fio --needed --noconfirm --force
+
+<span style="color:#75715e"># 监听文件变更运行命令</span>
+pacman -S entr --needed --noconfirm --force
+<span style="color:#75715e"># 试运行</span>
+yay -S python-maybe --needed --noconfirm --force
+
+<span style="color:#75715e"># 终端音乐</span>
+pacman -S cmus --needed --noconfirm --force
+<span style="color:#75715e"># 终端二维码 echo &#34;http://123.com&#34; | qrencode -o - -t UTF8</span>
+pacman -S qrencode --needed --noconfirm --force
+<span style="color:#75715e"># youtube、youku下载工具、BT下载工具</span>
+pacman -S transmission-cli you-get youtube-dl --needed --noconfirm --force
+
+<span style="color:#75715e"># 制作ISO镜像</span>
+pacman -S xorriso mkisolinux --needed --noconfirm --force <span style="color:#75715e"># xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V &#34;CentOS&#34; -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/</span>
+<span style="color:#75715e"># 解压软件</span>
+pacman -S p7zip file-roller unrar rar zip unzip-natspec --needed --noconfirm
+<span style="color:#75715e"># 支持NTFS文件系统</span>
+pacman -S ntfs-3g dosfstools --needed --noconfirm
+<span style="color:#75715e"># 挂载远程ssh目录</span>
+pacman -S sshfs --needed --noconfirm --force
+
+
+<span style="color:#75715e"># HTTP代理</span>
+pacman -S squid --needed --noconfirm --force
+<span style="color:#75715e"># http共享</span>
+sudo npm install -g serve
+
+<span style="color:#75715e"># 邮件伪造</span>
+pacman -S swaks --needed --noconfirm --force
+<span style="color:#75715e"># 暴力破解工具</span>
+pacman -S hydra hashcat fcrackzip --needed --noconfirm --force
+
+<span style="color:#75715e"># cpu限速</span>
+pacman -S cpulimit --needed --noconfirm --force
+<span style="color:#75715e"># 网络限速</span>
+yay -S wondershaper-git --needed --noconfirm --force
+
+<span style="color:#75715e"># 翻译</span>
+pacman -S translate-shell  --needed --noconfirm --force
+<span style="color:#75715e"># 翻译</span>
+sudo npm install -g fanyi  <span style="color:#75715e"># 依赖 festival festvox-kallpc16k</span>
+
+<span style="color:#75715e"># 图片处理</span>
+pacman -S  imagemagick --needed --noconfirm --force
+<span style="color:#75715e"># 优化svg</span>
+sudo npm install -g svgo
+
+<span style="color:#75715e"># 终端GIF,终端录屏</span>
+pacman -S asciinema --needed --noconfirm --force
+<span style="color:#75715e"># 终端GIF</span>
+yay -S ttygif ttyrec --needed --noconfirm --force
+
+<span style="color:#75715e"># 黑客帝国</span>
+pacman -S cmatrix --needed --noconfirm --force
+<span style="color:#75715e"># 假装很忙</span>
+yay -S genact hollywood --needed --noconfirm --force
+<span style="color:#75715e"># 电路图</span>
+yay -S bash-pipes --needed --noconfirm --force
+
+<span style="color:#75715e"># 文本转图表</span>
+pacman -S graphviz --needed --noconfirm --force
+<span style="color:#75715e"># 文档转换</span>
+pacman -S pandoc --needed --noconfirm --force
+<span style="color:#75715e"># 处理 Excel 或 CSV ，csvkit 提供了 in2csv，csvcut，csvjoin，csvgrep 等方便易用的工具</span>
+yay -S csvkit --needed --noconfirm --force
+<span style="color:#75715e"># json文件处理以及格式化显示</span>
+pacman -S jq --needed --noconfirm --force
+<span style="color:#75715e"># 终端艺术字体</span>
+pacman -S figlet --needed --noconfirm --force
+
+<span style="color:#75715e"># 计算工具</span>
+pacman -S datamash --needed --noconfirm --force
+
+<span style="color:#75715e"># 开源CAD</span>
+pacman -S kicad --needed --noconfirm --force
+
+
+
+<span style="color:#75715e">############### GUI  ###########</span>
+<span style="color:#75715e"># 舒服法</span>
+pacman -S fcitx-sogoupinyin --needed --noconfirm
+<span style="color:#75715e"># 安装浏览器</span>
+pacman -S chromium firefox firefox-i18n-zh-cn --needed --noconfirm
+<span style="color:#75715e"># 字体</span>
+pacman -S ttf-dejavu wqy-zenhei wqy-microhei powerline2 awesome-terminal-fonts nerd-fonts-complete adobe-source-han-sans-cn-fonts  otf-font-awesome ttf-font-awesome --needed --noconfirm
+<span style="color:#75715e"># 字体</span>
+yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-consolas-with-yahei-powerline-git --needed --noconfirm --force
+<span style="color:#75715e"># Telegram</span>
+pacman -S telegram-desktop --needed --noconfirm --force
+<span style="color:#75715e"># 影音播放</span>
+pacman -S vlc kodi ffmpeg mplayer smplayer --needed --noconfirm --force
+<span style="color:#75715e"># 下载</span>
+pacman -S qbittorrent amule --needed --noconfirm --force
+<span style="color:#75715e"># FTP</span>
+pacman -S filezilla --needed --noconfirm --force
+<span style="color:#75715e"># 截图</span>
+pacman -S maim --needed --noconfirm --force      <span style="color:#75715e">#截图</span>
+<span style="color:#75715e"># 图像预览</span>
+pacman -S feh --noconfirm --force --needed
+<span style="color:#75715e"># 图像编辑</span>
+pacman -S krita gimp --needed --noconfirm --force         <span style="color:#75715e">#图像编辑</span>
+pacman -S inkscape --needed --noconfirm --force           <span style="color:#75715e">#矢量图形编辑软件</span>
+pacman -S rawtherapee --needed --noconfirm --force        <span style="color:#75715e">#跨平台图片处理</span>
+<span style="color:#75715e"># 绘图</span>
+pacman -S mypaint --needed --noconfirm --force            <span style="color:#75715e">#绘画涂鸦软件</span>
+pacman -S blender --needed --noconfirm --force            <span style="color:#75715e">#3D工具</span>
+<span style="color:#75715e"># 文档查看</span>
+pacman -S evince foxitreader --needed --noconfirm --force <span style="color:#75715e"># PDF</span>
+pacman -S kchmviewer --needed --noconfirm --force         <span style="color:#75715e"># CHM</span>
+pacman -S calibre --needed --noconfirm --force            <span style="color:#75715e"># 图书转换器</span>
+</code></pre></div><h2 id="ubuntu-初始化">Ubuntu 初始化</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
+</span><span style="color:#75715e"></span><span style="color:#75715e"># 换源</span>
+sed -i <span style="color:#e6db74">&#39;s#^[^\#].*\.edu.cn#deb http://mirrors.163.com#g&#39;</span> /etc/apt/sources.list
+apt update
+apt upgrade
+apt autoremove
+
+apt install ubuntu-make
+add-apt-repository ppa:ubuntu-desktop/ubuntu-make
+
+apt install -y gnome-tweaks
+apt install -y gnome-tweak-tool gnome-shell-extension-dashtodock
+
+apt install -y fonts-wqy-microhei fonts-wqy-zenhei xfonts-wqy
+apt install -y git zsh tmux chromium-browser emacs vim
+
+apt install -y php python3 python gcc gdb g++ golang nodejs npm
+apt install -y net-tools curl
+
+<span style="color:#75715e">############ VSCode ###############</span>
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; /tmp/packages.microsoft.gpg
+sudo install -o root -g root -m <span style="color:#ae81ff">644</span> /tmp/packages.microsoft.gpg /usr/share/keyrings/
+sudo sh -c <span style="color:#e6db74">&#39;echo &#34;deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main&#34; &gt; /etc/apt/sources.list.d/vscode.list&#39;</span>
+sudo apt -y install apt-transport-https
+sudo apt -y update
+sudo apt -y install code <span style="color:#75715e"># or code-insiders</span>
+sudo xdg-mime default code.desktop text/plain
+sudo update-alternatives --set editor /usr/bin/code
+
+<span style="color:#75715e"># RUSTUP</span>
+curl --proto <span style="color:#e6db74">&#39;=https&#39;</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh
+<span style="color:#75715e">############ Other ################</span>
+<span style="color:#75715e"># brook</span>
+snap install brook
+</code></pre></div><h2 id="用户初始化">用户初始化</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/env sh
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e"># 改变SHELL</span>
+<span style="color:#75715e"># su yx -c &#34;echo &#39;yx&#39; | chsh -s /bin/zsh&#34;</span>
+chsh -s /bin/zsh
+
+go env -w GOPROXY<span style="color:#f92672">=</span>https://goproxy.cn,direct
+
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+npm config set registry https://registry.npm.taobao.org
+
+echo <span style="color:#e6db74">&#34;[source.crates-io]
+</span><span style="color:#e6db74">registry = \&#34;https://github.com/rust-lang/crates.io-index\&#34;
+</span><span style="color:#e6db74">replace-with = &#39;ustc&#39;
+</span><span style="color:#e6db74">[source.ustc]
+</span><span style="color:#e6db74">registry = \&#34;git://mirrors.ustc.edu.cn/crates.io-index\&#34;&#34;</span> &gt; $HOME/.cargo/config
+</code></pre></div><h2 id="arch-配置文件">Arch 配置文件</h2>
+<ul>
+<li>etc
+<ul>
+<li>pacman.d
+<ul>
+<li><a href="/archlinux/etc/pacman.d/mirrorlist" target="_blank">mirrorlist</a></li>
+</ul>
+</li>
+<li><a href="/archlinux/etc/locale.conf" target="_blank">locale.conf</a></li>
+<li><a href="/archlinux/etc/locale.gen" target="_blank">locale.gen</a></li>
+<li><a href="/archlinux/etc/makepkg.conf" target="_blank">makepkg.conf</a></li>
+<li><a href="/archlinux/etc/pacman.conf" target="_blank">pacman.conf</a></li>
+<li><a href="/archlinux/etc/vconsole.conf" target="_blank">vconsole.conf</a></li>
+</ul>
+</li>
+<li>usr
+<ul>
+<li>share
+<ul>
+<li>X11
+<ul>
+<li>xkb
+<ul>
+<li>symbols
+<ul>
+<li><a href="/archlinux/usr/share/X11/xkb/symbols/pc" target="_blank">pc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/configure/" rel="tag">Configure</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="落日Ins avatar" src="/img/avatar.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 落日Ins</span>
+	</div>
+	<div class="authorbox__description">
+		比世人的目光还要可怕的，实际上是你自己那颗在意世人目光的心。——山本文绪
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/devops/docker/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">Docker</p>
+		</a>
+	</div>
+	<div class="pager__item pager__item--next">
+		<a class="pager__link" href="/post/programming/js_utils/" rel="next">
+			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<p class="pager__title">JavaScript Utils</p>
+		</a>
+	</div>
+</nav>
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索..." value="" name="q" aria-label="搜索...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/win/win_utils/">Windows Utils</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/programming/data_type/">Data Type</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/configure/win_conf/">Windows Configuration</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/configure/proxy/">Proxy</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/programming/js_prototype/">JavaScript Prototype</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/algorithm/">Algorithm</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/devops/">DevOps</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/programming/">Programming</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows/">Windows</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithm/" title="Algorithm">Algorithm</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/centos/" title="Centos">Centos</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/configure/" title="Configure">Configure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell/" title="Shell">Shell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/syntax/" title="Syntax">Syntax</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/utils/" title="Utils">Utils</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Telegram" rel="noopener noreferrer" href="https://t.me/xyyx_xyz" target="_blank">
+				<svg class="widget-social__link-icon icon icon-telegram" width="24" height="24" viewBox="0 0 132 110"><path fill="#ddd" d="M50 103c-4 0-3-1-5-5L34 60l88-52"/><path fill="#aaa" d="M50 103c3 0 4-1 6-3l16-16-20-12"/><path fill="#fff" d="M52 72l48 36c6 3 10 2 11-5l20-93c2-8-3-11-8-9L7 45c-8 4-8 8-1 10l29 9 69-43c3-2 6-1 4 1"/></svg>
+				<span>Telegram</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/xyyx-xyz" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:yxing.xyz@gmail.com">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>yxing.xyz@gmail.com</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 落日Ins.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>主題</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>
