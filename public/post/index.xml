@@ -6,10 +6,19 @@
     <description>Recent content in Posts on 落日Ins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 May 2020 17:00:05 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 06 May 2020 22:17:49 +0800</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Character Set Conversion</title>
+      <link>/post/algorithm/character_set_conversion/</link>
+      <pubDate>Wed, 06 May 2020 22:17:49 +0800</pubDate>
+      
+      <guid>/post/algorithm/character_set_conversion/</guid>
+      <description>Unicode to UTF8 /************************************************************************** * * 将一个字符的Unicode(UCS-2和UCS-4)编码转换成UTF-8编码. * * 参数: * unic 字符的Unicode编码值 * pOutput 指向输出的用于存储UTF8编码值的缓冲区的指针 * outsize pOutput缓冲的大小 * * 返回值: * 返回转换后的字符的UTF8编码所占的字节数, 如果出错则返回 0 . * * 注意: * 1. UTF8没有字节序问题, 但是Unicode有字节序要求; * 字节序分为大端(Big Endian)和小端(Little Endian)两种; * 在Intel处理器中采用小端法表示, 在此采用小端法表示. (低地址存低位) * 2. 请保证 pOutput 缓冲区有最少有 6 字节的空间大小! *************************************************************************** */ int enc_unicode_to_utf8_one(unsigned long unic, unsigned char *pOutput,int outSize) { assert(pOutput != NULL); assert(outSize &amp;gt;= 6); if (unic &amp;lt;= 0x0000007F) { // * U-00000000 - U-0000007F: 0xxxxxxx  *pOutput = (unic &amp;amp; 0x7F); return 1; } else if (unic &amp;gt;= 0x00000080 &amp;amp;&amp;amp; unic &amp;lt;= 0x000007FF) { // * U-00000080 - U-000007FF: 110xxxxx 10xxxxxx  *(pOutput + 1) = (unic &amp;amp; 0x3F) | 0x80; *pOutput = ((unic &amp;gt;&amp;gt; 6) &amp;amp; 0x1F) | 0xC0; return 2; } else if (unic &amp;gt;= 0x00000800 &amp;amp;&amp;amp; unic &amp;lt;= 0x0000FFFF) { // * U-00000800 - U-0000FFFF: 1110xxxx 10xxxxxx 10xxxxxx  *(pOutput + 2) = (unic &amp;amp; 0x3F) | 0x80; *(pOutput + 1) = ((unic &amp;gt;&amp;gt; 6) &amp;amp; 0x3F) | 0x80; *pOutput = ((unic &amp;gt;&amp;gt; 12) &amp;amp; 0x0F) | 0xE0; return 3; } else if (unic &amp;gt;= 0x00010000 &amp;amp;&amp;amp; unic &amp;lt;= 0x001FFFFF) { // * U-00010000 - U-001FFFFF: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx  *(pOutput + 3) = (unic &amp;amp; 0x3F) | 0x80; *(pOutput + 2) = ((unic &amp;gt;&amp;gt; 6) &amp;amp; 0x3F) | 0x80; *(pOutput + 1) = ((unic &amp;gt;&amp;gt; 12) &amp;amp; 0x3F) | 0x80; *pOutput = ((unic &amp;gt;&amp;gt; 18) &amp;amp; 0x07) | 0xF0; return 4; } else if (unic &amp;gt;= 0x00200000 &amp;amp;&amp;amp; unic &amp;lt;= 0x03FFFFFF) { // * U-00200000 - U-03FFFFFF: 111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx  *(pOutput + 4) = (unic &amp;amp; 0x3F) | 0x80; *(pOutput + 3) = ((unic &amp;gt;&amp;gt; 6) &amp;amp; 0x3F) | 0x80; *(pOutput + 2) = ((unic &amp;gt;&amp;gt; 12) &amp;amp; 0x3F) | 0x80; *(pOutput + 1) = ((unic &amp;gt;&amp;gt; 18) &amp;amp; 0x3F) | 0x80; *pOutput = ((unic &amp;gt;&amp;gt; 24) &amp;amp; 0x03) | 0xF8; return 5; } else if (unic &amp;gt;= 0x04000000 &amp;amp;&amp;amp; unic &amp;lt;= 0x7FFFFFFF) { // * U-04000000 - U-7FFFFFFF: 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx  *(pOutput + 5) = (unic &amp;amp; 0x3F) | 0x80; *(pOutput + 4) = ((unic &amp;gt;&amp;gt; 6) &amp;amp; 0x3F) | 0x80; *(pOutput + 3) = ((unic &amp;gt;&amp;gt; 12) &amp;amp; 0x3F) | 0x80; *(pOutput + 2) = ((unic &amp;gt;&amp;gt; 18) &amp;amp; 0x3F) | 0x80; *(pOutput + 1) = ((unic &amp;gt;&amp;gt; 24) &amp;amp; 0x3F) | 0x80; *pOutput = ((unic &amp;gt;&amp;gt; 30) &amp;amp; 0x01) | 0xFC; return 6; } return 0; } UTF8 to Unicode #define UTFLEN(x) utf8_look_for_table[(x)] unsigned char utf8_look_for_table[] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 1, 1}; /**************************************************************************** * 将一个字符的UTF8编码转换成Unicode(UCS-2和UCS-4)编码.</description>
+    </item>
     
     <item>
       <title>Windows Utils</title>
@@ -18,15 +27,6 @@
       
       <guid>/post/win/win_utils/</guid>
       <description>Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force </description>
-    </item>
-    
-    <item>
-      <title>Data Type</title>
-      <link>/post/programming/data_type/</link>
-      <pubDate>Tue, 05 May 2020 15:20:41 +0800</pubDate>
-      
-      <guid>/post/programming/data_type/</guid>
-      <description>C  整形: short int long 数值类型: 浮点类型: float double 基本数据类型: 字符类型: char 空类型(void) 指针类型 构造数据类型: 数组、结构体(struct)、共同体(union)、枚举(enum) GO 数值类型: uintptr (u)int (u)int8 (u)int16 (u)int32 (u)int64 float32 float64 complex64 complex128 byte 别名 uint8 rune 别名 int32 字符串: string 布尔类型： bool 派生类型: 初始值不为nil: array、struct 初始值nil: pointer、function、interface、slice、map、channel JavaScript Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function) Python Number(数字): int、float、bool、complex(复数) String(字符串) List(列表) Tuple(元组) Set(集合) Dictionary(字典) Java 基本数据类型：byte、short、int、long、char、double、boolean 引用类型：类类型、接口类型、数组、null PHP 标量：整数、浮点数、布尔、字符串 复合：数组、对象 特殊：资源、null </description>
     </item>
     
     <item>
@@ -86,11 +86,20 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
     </item>
     
     <item>
+      <title>Data Type</title>
+      <link>/post/programming/data_type/</link>
+      <pubDate>Mon, 18 Jun 2018 15:20:41 +0800</pubDate>
+      
+      <guid>/post/programming/data_type/</guid>
+      <description>C  整形: short int long 数值类型: 浮点类型: float double 基本数据类型: 字符类型: char 空类型(void) 指针类型 构造数据类型: 数组、结构体(struct)、共同体(union)、枚举(enum) GO 数值类型: uintptr (u)int (u)int8 (u)int16 (u)int32 (u)int64 float32 float64 complex64 complex128 byte 别名 uint8 rune 别名 int32 字符串: string 布尔类型： bool 派生类型: 初始值不为nil: array、struct 初始值nil: pointer、function、interface、slice、map、channel JavaScript Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function) Python Number(数字): int、float、bool、complex(复数) String(字符串) List(列表) Tuple(元组) Set(集合) Dictionary(字典) Java 基本数据类型：byte、short、int、long、char、double、boolean 引用类型：类类型、接口类型、数组、null PHP 标量：整数、浮点数、布尔、字符串 复合：数组、对象 特殊：资源、null </description>
+    </item>
+    
+    <item>
       <title>Bitwise Operation</title>
-      <link>/post/programming/bitwise_operator/</link>
+      <link>/post/algorithm/bitwise_operator/</link>
       <pubDate>Thu, 23 Nov 2017 11:28:03 +0800</pubDate>
       
-      <guid>/post/programming/bitwise_operator/</guid>
+      <guid>/post/algorithm/bitwise_operator/</guid>
       <description>基础    符号 描述 运算规则     &amp;amp; 按位与 全为 1 为 1，否则为 0   | 按位或 全为 0 为 0，否则为 1   ~ 按位取反 0 变 1，1 变 0   &amp;lt;&amp;lt; 按位左移 各二进制位全部左移若干位，高位丢弃，低位补齐 0   &amp;gt;&amp;gt; 按位右移 正数补 0，负数补 1   ^ 按位异或 相同 0,相异 1    注意:
  在这 6 种操作符，只有~取反是单目操作符，其它 5 种都是双目操作符 位操作只能用于整形数据，对 float 和 double 类型进行位操作会被编译器报错 注意运算符优先级，除了~其余都运算符等级都比较低。  技巧 1.</description>
     </item>

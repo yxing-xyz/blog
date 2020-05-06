@@ -1,6 +1,5 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
-date: {{ .Date }}
 description: ""
 lead: "" # 导读
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
@@ -13,6 +12,7 @@ pager: true
 toc: true
 mathjax: true
 comments: false
+date: {{ .Date }}
 draft: true
 ---
 

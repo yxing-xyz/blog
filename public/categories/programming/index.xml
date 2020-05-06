@@ -6,19 +6,10 @@
     <description>Recent content in Programming on 落日Ins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 May 2020 15:20:41 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 16 Oct 2019 20:39:00 +0800</lastBuildDate>
     
 	<atom:link href="/categories/programming/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Data Type</title>
-      <link>/post/programming/data_type/</link>
-      <pubDate>Tue, 05 May 2020 15:20:41 +0800</pubDate>
-      
-      <guid>/post/programming/data_type/</guid>
-      <description>C  整形: short int long 数值类型: 浮点类型: float double 基本数据类型: 字符类型: char 空类型(void) 指针类型 构造数据类型: 数组、结构体(struct)、共同体(union)、枚举(enum) GO 数值类型: uintptr (u)int (u)int8 (u)int16 (u)int32 (u)int64 float32 float64 complex64 complex128 byte 别名 uint8 rune 别名 int32 字符串: string 布尔类型： bool 派生类型: 初始值不为nil: array、struct 初始值nil: pointer、function、interface、slice、map、channel JavaScript Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function) Python Number(数字): int、float、bool、complex(复数) String(字符串) List(列表) Tuple(元组) Set(集合) Dictionary(字典) Java 基本数据类型：byte、short、int、long、char、double、boolean 引用类型：类类型、接口类型、数组、null PHP 标量：整数、浮点数、布尔、字符串 复合：数组、对象 特殊：资源、null </description>
-    </item>
     
     <item>
       <title>JavaScript Prototype</title>
@@ -37,6 +28,15 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
       
       <guid>/post/programming/js_utils/</guid>
       <description>/*global toString:true*/ // utils is a library of generic helper functions non-specific to axios  const toString = Object.prototype.toString; /** * Determine if a value is an Array * * @param {Object} val The value to test * @returns {boolean} True if value is an Array, otherwise false */ function isArray(val) { return toString.call(val) === &amp;#34;[object Array]&amp;#34;; } /** * Determine if a value is an ArrayBuffer * * @param {Object} val The value to test * @returns {boolean} True if value is an ArrayBuffer, otherwise false */ function isArrayBuffer(val) { return toString.</description>
+    </item>
+    
+    <item>
+      <title>Data Type</title>
+      <link>/post/programming/data_type/</link>
+      <pubDate>Mon, 18 Jun 2018 15:20:41 +0800</pubDate>
+      
+      <guid>/post/programming/data_type/</guid>
+      <description>C  整形: short int long 数值类型: 浮点类型: float double 基本数据类型: 字符类型: char 空类型(void) 指针类型 构造数据类型: 数组、结构体(struct)、共同体(union)、枚举(enum) GO 数值类型: uintptr (u)int (u)int8 (u)int16 (u)int32 (u)int64 float32 float64 complex64 complex128 byte 别名 uint8 rune 别名 int32 字符串: string 布尔类型： bool 派生类型: 初始值不为nil: array、struct 初始值nil: pointer、function、interface、slice、map、channel JavaScript Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function) Python Number(数字): int、float、bool、complex(复数) String(字符串) List(列表) Tuple(元组) Set(集合) Dictionary(字典) Java 基本数据类型：byte、short、int、long、char、double、boolean 引用类型：类类型、接口类型、数组、null PHP 标量：整数、浮点数、布尔、字符串 复合：数组、对象 特殊：资源、null </description>
     </item>
     
     <item>
