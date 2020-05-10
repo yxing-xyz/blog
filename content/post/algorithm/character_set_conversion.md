@@ -19,8 +19,20 @@ draft: false
 
 ## Unicode to UTF8
 
+```
+   |  Unicode符号范围      |  UTF-8编码方式
+ n |  (十六进制)           | (二进制)
+---+-----------------------+------------------------------------------------------
+ 1 | 0000 0000 - 0000 007F |                                              0xxxxxxx
+ 2 | 0000 0080 - 0000 07FF |                                     110xxxxx 10xxxxxx
+ 3 | 0000 0800 - 0000 FFFF |                            1110xxxx 10xxxxxx 10xxxxxx
+ 4 | 0001 0000 - 0010 FFFF |                   11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+ 5 | 0020 0000 - 03FF FFFF |          111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+ 6 | 0400 0000 - 7FFF FFFF | 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+```
+
 ```c
-/**************************************************************************
+/**************************************************************
  *
  * 将一个字符的Unicode(UCS-2和UCS-4)编码转换成UTF-8编码.
  *
@@ -37,8 +49,9 @@ draft: false
  *        字节序分为大端(Big Endian)和小端(Little Endian)两种;
  *        在Intel处理器中采用小端法表示, 在此采用小端法表示. (低地址存低位)
  *     2. 请保证 pOutput 缓冲区有最少有 6 字节的空间大小!
- *************************************************************************** */
-int enc_unicode_to_utf8_one(unsigned long unic, unsigned char *pOutput,int outSize)
+ ************************************************************** */
+int enc_unicode_to_utf8_one(unsigned long unic,
+                            unsigned char *pOutput,int outSize)
 {
     assert(pOutput != NULL);
     assert(outSize >= 6);
@@ -51,14 +64,16 @@ int enc_unicode_to_utf8_one(unsigned long unic, unsigned char *pOutput,int outSi
     }
     else if (unic >= 0x00000080 && unic <= 0x000007FF)
     {
-        // * U-00000080 - U-000007FF:  110xxxxx 10xxxxxx
+        // U-00000080 - U-000007FF
+        // 110xxxxx 10xxxxxx
         *(pOutput + 1) = (unic & 0x3F) | 0x80;
         *pOutput = ((unic >> 6) & 0x1F) | 0xC0;
         return 2;
     }
     else if (unic >= 0x00000800 && unic <= 0x0000FFFF)
     {
-        // * U-00000800 - U-0000FFFF:  1110xxxx 10xxxxxx 10xxxxxx
+        // U-00000800 - U-0000FFFF
+        // 1110xxxx 10xxxxxx 10xxxxxx
         *(pOutput + 2) = (unic & 0x3F) | 0x80;
         *(pOutput + 1) = ((unic >> 6) & 0x3F) | 0x80;
         *pOutput = ((unic >> 12) & 0x0F) | 0xE0;
@@ -66,7 +81,8 @@ int enc_unicode_to_utf8_one(unsigned long unic, unsigned char *pOutput,int outSi
     }
     else if (unic >= 0x00010000 && unic <= 0x001FFFFF)
     {
-        // * U-00010000 - U-001FFFFF:  11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+        // U-00010000 - U-001FFFFF
+        // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
         *(pOutput + 3) = (unic & 0x3F) | 0x80;
         *(pOutput + 2) = ((unic >> 6) & 0x3F) | 0x80;
         *(pOutput + 1) = ((unic >> 12) & 0x3F) | 0x80;
@@ -75,7 +91,8 @@ int enc_unicode_to_utf8_one(unsigned long unic, unsigned char *pOutput,int outSi
     }
     else if (unic >= 0x00200000 && unic <= 0x03FFFFFF)
     {
-        // * U-00200000 - U-03FFFFFF:  111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+        // U-00200000 - U-03FFFFFF
+        // 111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
         *(pOutput + 4) = (unic & 0x3F) | 0x80;
         *(pOutput + 3) = ((unic >> 6) & 0x3F) | 0x80;
         *(pOutput + 2) = ((unic >> 12) & 0x3F) | 0x80;
@@ -85,7 +102,8 @@ int enc_unicode_to_utf8_one(unsigned long unic, unsigned char *pOutput,int outSi
     }
     else if (unic >= 0x04000000 && unic <= 0x7FFFFFFF)
     {
-        // * U-04000000 - U-7FFFFFFF:  1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
+        // U-04000000 - U-7FFFFFFF
+        // 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx
         *(pOutput + 5) = (unic & 0x3F) | 0x80;
         *(pOutput + 4) = ((unic >> 6) & 0x3F) | 0x80;
         *(pOutput + 3) = ((unic >> 12) & 0x3F) | 0x80;
@@ -150,9 +168,8 @@ int enc_utf8_to_unicode_one(const unsigned char *pInput, unsigned long *Unic)
 
     switch (utfbytes)
     {
-    case 0:
+    case 1:
         *pOutput = *pInput;
-        utfbytes += 1;
         break;
     case 2:
         b1 = *pInput;
@@ -176,7 +193,8 @@ int enc_utf8_to_unicode_one(const unsigned char *pInput, unsigned long *Unic)
         b2 = *(pInput + 1);
         b3 = *(pInput + 2);
         b4 = *(pInput + 3);
-        if (((b2 & 0xC0) != 0x80) || ((b3 & 0xC0) != 0x80) || ((b4 & 0xC0) != 0x80))
+        if (((b2 & 0xC0) != 0x80) || ((b3 & 0xC0) != 0x80) ||
+            ((b4 & 0xC0) != 0x80))
             return 0;
         *pOutput = (b3 << 6) + (b4 & 0x3F);
         *(pOutput + 1) = (b2 << 4) + ((b3 >> 2) & 0x0F);
@@ -188,7 +206,8 @@ int enc_utf8_to_unicode_one(const unsigned char *pInput, unsigned long *Unic)
         b3 = *(pInput + 2);
         b4 = *(pInput + 3);
         b5 = *(pInput + 4);
-        if (((b2 & 0xC0) != 0x80) || ((b3 & 0xC0) != 0x80) || ((b4 & 0xC0) != 0x80) || ((b5 & 0xC0) != 0x80))
+        if (((b2 & 0xC0) != 0x80) || ((b3 & 0xC0) != 0x80) || 
+            ((b4 & 0xC0) != 0x80) || ((b5 & 0xC0) != 0x80))
             return 0;
         *pOutput = (b4 << 6) + (b5 & 0x3F);
         *(pOutput + 1) = (b3 << 4) + ((b4 >> 2) & 0x0F);
@@ -202,7 +221,9 @@ int enc_utf8_to_unicode_one(const unsigned char *pInput, unsigned long *Unic)
         b4 = *(pInput + 3);
         b5 = *(pInput + 4);
         b6 = *(pInput + 5);
-        if (((b2 & 0xC0) != 0x80) || ((b3 & 0xC0) != 0x80) || ((b4 & 0xC0) != 0x80) || ((b5 & 0xC0) != 0x80) || ((b6 & 0xC0) != 0x80))
+        if (((b2 & 0xC0) != 0x80) || ((b3 & 0xC0) != 0x80) || 
+            ((b4 & 0xC0) != 0x80) || ((b5 & 0xC0) != 0x80) ||
+            ((b6 & 0xC0) != 0x80))
             return 0;
         *pOutput = (b5 << 6) + (b6 & 0x3F);
         *(pOutput + 1) = (b5 << 4) + ((b6 >> 2) & 0x0F);

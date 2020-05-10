@@ -21,7 +21,7 @@ draft: false
 ```
 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。
 
-2. 定位到 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService
+2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService
 
 3. 在右侧找到DWORD（32位）值，命名为Start。
 
@@ -35,4 +35,15 @@ draft: false
 ```ps1
 Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false
 # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force
+```
+
+## New-Item
+**ItemType**
+1. File
+2. Directory
+3. SymbolLink
+4. HardLink
+5. Junction
+```ps1
+New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir
 ```

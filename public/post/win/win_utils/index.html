@@ -72,6 +72,7 @@
   <ul>
     <li><a href="#close-security-center">Close security center</a></li>
     <li><a href="#deleting-folders-with-powershell">Deleting folders with PowerShell</a></li>
+    <li><a href="#symbolic-link">Symbolic Link</a></li>
   </ul>
 </nav>
 	</div>
@@ -80,7 +81,7 @@
 			<h2 id="close-security-center">Close security center</h2>
 <pre><code>1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。
 
-2. 定位到 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService
+2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService
 
 3. 在右侧找到DWORD（32位）值，命名为Start。
 
@@ -90,6 +91,8 @@
 </code></pre><h2 id="deleting-folders-with-powershell">Deleting folders with PowerShell</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">Remove-Item 文件夹路径 -Recurse -Force -Confirm<span style="color:#960050;background-color:#1e0010">:</span>$false
 <span style="color:#75715e"># Get-ChildItem $directoryPath -Recurse | Remove-Item -Force</span>
+</code></pre></div><h2 id="symbolic-link">Symbolic Link</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir
 </code></pre></div>
 		</div>
 		<footer class="post__footer">
