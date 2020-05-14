@@ -6,10 +6,21 @@
     <description>Recent content in Posts on 落日Ins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 06 May 2020 22:17:49 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 14 May 2020 20:06:39 +0800</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C_macro_definition</title>
+      <link>/post/programming/c_macro_definition/</link>
+      <pubDate>Thu, 14 May 2020 20:06:39 +0800</pubDate>
+      
+      <guid>/post/programming/c_macro_definition/</guid>
+      <description>Get structure member offset bytes You only need to include &amp;lt;stddef.h&amp;gt; to use offset or write the following code
+#define offsetof(TYPE, MEMBER) ((size_t) &amp;amp;((TYPE *)0)-&amp;gt;MEMBER) &amp;lt;stdbool.h&amp;gt; You can use Booleans as long as you include &amp;lt;stdbool.h&amp;gt;
+#ifndef _STDBOOL #define _STDBOOL  #define __bool_true_false_are_defined 1  #ifndef __cplusplus  #define bool _Bool #define false 0 #define true 1  #endif /* __cplusplus */ #endif /* _STDBOOL */</description>
+    </item>
     
     <item>
       <title>Character Set Conversion</title>
@@ -26,7 +37,8 @@
       <pubDate>Tue, 05 May 2020 17:00:05 +0800</pubDate>
       
       <guid>/post/win/win_utils/</guid>
-      <description>Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force Symbolic Link New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir </description>
+      <description>Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
+ File Directory SymbolLink HardLink Junction  New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir </description>
     </item>
     
     <item>

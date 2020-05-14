@@ -72,7 +72,8 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force Symbolic Link New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir 
+		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
+ File Directory SymbolLink HardLink Junction  New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir 
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -110,11 +111,11 @@
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/programming/c_macro_definition/">C_macro_definition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/algorithm/character_set_conversion/">Character Set Conversion</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/win/win_utils/">Windows Utils</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/configure/win_conf/">Windows Configuration</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/configure/proxy/">Proxy</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/programming/js_prototype/">JavaScript Prototype</a></li>
 		</ul>
 	</div>
 </div>
@@ -144,6 +145,7 @@
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithm/" title="Algorithm">Algorithm</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c/" title="C">C</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/centos/" title="Centos">Centos</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/configure/" title="Configure">Configure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps</a>

@@ -6,18 +6,20 @@
     <description>Recent content in C on 落日Ins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 04 May 2020 12:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 14 May 2020 20:06:39 +0800</lastBuildDate>
     
 	<atom:link href="/tags/c/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Operator Priority</title>
-      <link>/post/c_language_operator_priority/</link>
-      <pubDate>Fri, 13 Oct 2017 15:13:01 +0800</pubDate>
+      <title>C_macro_definition</title>
+      <link>/post/programming/c_macro_definition/</link>
+      <pubDate>Thu, 14 May 2020 20:06:39 +0800</pubDate>
       
-      <guid>/post/c_language_operator_priority/</guid>
-      <description></description>
+      <guid>/post/programming/c_macro_definition/</guid>
+      <description>Get structure member offset bytes You only need to include &amp;lt;stddef.h&amp;gt; to use offset or write the following code
+#define offsetof(TYPE, MEMBER) ((size_t) &amp;amp;((TYPE *)0)-&amp;gt;MEMBER) &amp;lt;stdbool.h&amp;gt; You can use Booleans as long as you include &amp;lt;stdbool.h&amp;gt;
+#ifndef _STDBOOL #define _STDBOOL  #define __bool_true_false_are_defined 1  #ifndef __cplusplus  #define bool _Bool #define false 0 #define true 1  #endif /* __cplusplus */ #endif /* _STDBOOL */</description>
     </item>
     
   </channel>

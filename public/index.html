@@ -59,6 +59,24 @@
 	<article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
+			<a href="/post/programming/c_macro_definition/" rel="bookmark">
+			C_macro_definition
+			</a>
+		</h3>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-05-14T20:06:39&#43;08:00">May 14, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/programming/" rel="category">Programming</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Get structure member offset bytes You only need to include &lt;stddef.h&gt; to use offset or write the following code
+#define offsetof(TYPE, MEMBER) ((size_t) &amp;((TYPE *)0)-&gt;MEMBER) &lt;stdbool.h&gt; You can use Booleans as long as you include &lt;stdbool.h&gt;
+#ifndef _STDBOOL #define _STDBOOL  #define __bool_true_false_are_defined 1  #ifndef __cplusplus  #define bool _Bool #define false 0 #define true 1  #endif /* __cplusplus */ #endif /* _STDBOOL */
+	</div>
+</article><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
 			<a href="/post/algorithm/character_set_conversion/" rel="bookmark">
 			Character Set Conversion
 			</a>
@@ -88,7 +106,8 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force Symbolic Link New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir 
+		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
+ File Directory SymbolLink HardLink Junction  New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir 
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -221,24 +240,6 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 	<div class="content list__excerpt post__content clearfix">
 		C  整形: short int long 数值类型: 浮点类型: float double 基本数据类型: 字符类型: char 空类型(void) 指针类型 构造数据类型: 数组、结构体(struct)、共同体(union)、枚举(enum) GO 数值类型: uintptr (u)int (u)int8 (u)int16 (u)int32 (u)int64 float32 float64 complex64 complex128 byte 别名 uint8 rune 别名 int32 字符串: string 布尔类型： bool 派生类型: 初始值不为nil: array、struct 初始值nil: pointer、function、interface、slice、map、channel JavaScript Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function) Python Number(数字): int、float、bool、complex(复数) String(字符串) List(列表) Tuple(元组) Set(集合) Dictionary(字典) Java 基本数据类型：byte、short、int、long、char、double、boolean 引用类型：类类型、接口类型、数组、null PHP 标量：整数、浮点数、布尔、字符串 复合：数组、对象 特殊：资源、null 
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/algorithm/bitwise_operator/" rel="bookmark">
-			Bitwise Operation
-			</a>
-		</h3>
-		<p class="list__lead post__lead"> If you can understand and use bit operators flexibly, sometimes it will improve the performance of the program and make the code more concise</p>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2017-11-23T11:28:03&#43;08:00">November 23, 2017</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/algorithm/" rel="category">Algorithm</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		基础    符号 描述 运算规则     &amp; 按位与 全为 1 为 1，否则为 0   | 按位或 全为 0 为 0，否则为 1   ~ 按位取反 0 变 1，1 变 0   &lt;&lt; 按位左移 各二进制位全部左移若干位，高位丢弃，低位补齐 0   &gt;&gt; 按位右移 正数补 0，负数补 1   ^ 按位异或 相同 0,相异 1    注意:
- 在这 6 种操作符，只有~取反是单目操作符，其它 5 种都是双目操作符 位操作只能用于整形数据，对 float 和 double 类型进行位操作会被编译器报错 注意运算符优先级，除了~其余都运算符等级都比较低。  技巧 1.
-	</div>
 </article>
 </main>
 
@@ -261,11 +262,11 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/programming/c_macro_definition/">C_macro_definition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/algorithm/character_set_conversion/">Character Set Conversion</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/win/win_utils/">Windows Utils</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/configure/win_conf/">Windows Configuration</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/configure/proxy/">Proxy</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/programming/js_prototype/">JavaScript Prototype</a></li>
 		</ul>
 	</div>
 </div>
@@ -295,6 +296,7 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 	<h4 class="widget__title">标签</h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithm/" title="Algorithm">Algorithm</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c/" title="C">C</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/centos/" title="Centos">Centos</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/configure/" title="Configure">Configure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps</a>
