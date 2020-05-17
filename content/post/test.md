@@ -85,3 +85,7 @@ function love(you) {
 [我是电子猫](http://www.cnblogs.com/e-cat/)
 
 ![图片](/img/avatar.jpg "图片")
+
+
+<!-- latex -->
+![](<http://latex.codecogs.com/gif.latex?\frac{1}{1+sin(x)}>)

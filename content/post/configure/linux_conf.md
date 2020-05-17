@@ -236,7 +236,6 @@ pacman -S fio --needed --noconfirm --force
 pacman -S entr --needed --noconfirm --force
 # 试运行
 yay -S python-maybe --needed --noconfirm --force
-
 # 终端音乐
 pacman -S cmus --needed --noconfirm --force
 # 终端二维码 echo "http://123.com" | qrencode -o - -t UTF8
@@ -311,7 +310,7 @@ pacman -S kicad --needed --noconfirm --force
 
 
 ############### GUI  ###########
-# 舒服法
+# 输入法
 pacman -S fcitx-sogoupinyin --needed --noconfirm
 # 安装浏览器
 pacman -S chromium firefox firefox-i18n-zh-cn --needed --noconfirm
@@ -331,6 +330,8 @@ pacman -S filezilla --needed --noconfirm --force
 pacman -S maim --needed --noconfirm --force      #截图
 # 图像预览
 pacman -S feh --noconfirm --force --needed
+# 截图转Latex语法
+yay -S mathpix-snipping-tool --needed --noconfirm --force
 # 图像编辑
 pacman -S krita gimp --needed --noconfirm --force         #图像编辑
 pacman -S inkscape --needed --noconfirm --force           #矢量图形编辑软件
