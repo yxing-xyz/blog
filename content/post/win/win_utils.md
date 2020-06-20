@@ -21,7 +21,7 @@ draft: false
 ```
 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。
 
-2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService
+2. 定位到计算机HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services目录中的SecurityHealthService,wscsvc两个目录
 
 3. 在右侧找到DWORD（32位）值，命名为Start。
 
