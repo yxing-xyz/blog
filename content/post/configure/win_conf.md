@@ -52,7 +52,38 @@ scoop install FiraCode
 scoop install vscode qt-creator
 scoop install mobaxterm
 ```
-
+## Winget
+```
+aria2
+cmake
+curl 
+dig
+firacode
+gcc
+gdb
+git
+go
+chrome
+mobaxterm
+netcat
+nmap
+nodejs
+sumatrapdf
+vlc
+vscode
+winmtr
+wireshark
+yasm
+lockhunter
+recuda
+lua
+listary
+qemu
+rustup
+qbittorrent
+TortoiseSVN
+ccleaner
+```
 ## Win 配置文件
 
 - <a href="/windows/Microsoft.PowerShell_profile.ps1" target="_blank">Microsoft.PowerShell_profile.ps1</a>
