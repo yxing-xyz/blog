@@ -38,6 +38,11 @@
   </url>
   
   <url>
+    <loc>/</loc>
+    <lastmod>2020-05-14T20:06:39+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/algorithm/character_set_conversion/</loc>
     <lastmod>2020-05-06T22:17:49+08:00</lastmod>
   </url>
@@ -84,11 +89,6 @@
   
   <url>
     <loc>/about/</loc>
-    <lastmod>2020-04-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
     <lastmod>2020-04-20T00:00:00+00:00</lastmod>
   </url>
   

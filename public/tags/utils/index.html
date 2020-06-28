@@ -72,7 +72,7 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
+		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。2. 定位到计算机HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services目录中的SecurityHealthService,wscsvc两个目录3. 在右侧找到DWORD（32位）值，命名为Start。4. 修改数值数据为4。5. 重启文件资源管理器，或注销再登录/重启系统。Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
  File Directory SymbolLink HardLink Junction  New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir 
 	</div>
 </article><article class="list__item post">

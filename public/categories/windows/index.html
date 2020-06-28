@@ -72,7 +72,7 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SecurityHealthService 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
+		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。2. 定位到计算机HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services目录中的SecurityHealthService,wscsvc两个目录3. 在右侧找到DWORD（32位）值，命名为Start。4. 修改数值数据为4。5. 重启文件资源管理器，或注销再登录/重启系统。Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
  File Directory SymbolLink HardLink Junction  New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir 
 	</div>
 </article><article class="list__item post">
@@ -91,7 +91,7 @@
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		Scoop 安装 最好开启代理然后再去执行脚本安装
-IF ($PSVersionTable.PSVersion.Major -lt 3 -or $PSVersionTable.CLRVersion.Major -lt 4) { return &#34;PowerShell版本高于3且.NET Franmework高于4&#34; } # env # $env:SCOOP=&#39;D:\scoop&#39; # [Environment]::SetEnvironmentVariable(&#39;SCOOP&#39;, $env:SCOOP_GLOBAL, &#39;Machine&#39;) Set-ExecutionPolicy RemoteSigned -Scope CurrentUser Invoke-Expression (New-Object System.Net.WebClient).DownloadString(&#39;https://get.scoop.sh&#39;) # conf scoop install git 7zip aria2 scoop config aria2-max-connection-per-server 16 scoop config aria2-split 16 scoop config aria2-min-split-size 1M # bucket scoop bucket add main scoop bucket add extras scoop bucket add nerd-fonts scoop install googlechrome firefox vlc scoop install curl dig netcat winmtr nmap wireshark scoop install gcc cmake go nodejs rustup scoop install hugo scoop install FiraCode scoop install vscode qt-creator scoop install mobaxterm Win 配置文件  Microsoft.
+IF ($PSVersionTable.PSVersion.Major -lt 3 -or $PSVersionTable.CLRVersion.Major -lt 4) { return &#34;PowerShell版本高于3且.NET Franmework高于4&#34; } # env # $env:SCOOP=&#39;D:\scoop&#39; # [Environment]::SetEnvironmentVariable(&#39;SCOOP&#39;, $env:SCOOP_GLOBAL, &#39;Machine&#39;) Set-ExecutionPolicy RemoteSigned -Scope CurrentUser Invoke-Expression (New-Object System.Net.WebClient).DownloadString(&#39;https://get.scoop.sh&#39;) # conf scoop install git 7zip aria2 scoop config aria2-max-connection-per-server 16 scoop config aria2-split 16 scoop config aria2-min-split-size 1M # bucket scoop bucket add main scoop bucket add extras scoop bucket add nerd-fonts scoop install googlechrome firefox vlc scoop install curl dig netcat winmtr nmap wireshark scoop install gcc cmake go nodejs rustup scoop install hugo scoop install FiraCode scoop install vscode qt-creator scoop install mobaxterm Winget aria2cmakecurl digfiracodegccgdbgitgochromemobaxtermnetcatnmapnodejssumatrapdfvlcvscodewinmtrwiresharkyasmlockhunterrecudalualistaryqemurustupqbittorrentTortoiseSVNccleanerWin 配置文件  Microsoft.
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -128,9 +128,9 @@ IF ($PSVersionTable.PSVersion.Major -lt 3 -or $PSVersionTable.CLRVersion.Major -
 		Windows Download mapkeyboard, modify it by yourself, and then log out or restart it
 Linux Linux has TTY terminal and desktop operation modes
 TTY 1.修改键位表
-cd /usr/share/kbd/keymaps/i386/qwerty # 解压键盘map.gz gzip -d us.map.gz # 编辑文件修改： vim us.map # Caps改为Ctrl keycode 58 = Control keycode 86 = less greater bar keycode 97 = Control Keycode 100 = Caps_Lock # 重新压缩成.gz gzip us.map 2.从新加载
-loadkeys us 3.写入配置文件
-# 如果是systemd init系统的,修改/etc/vconsole.conf增加以下内容重启 KEYMAP=us DESKTOP 发行版中有 setxkbmap 命令 1、修改/usr/share/X11/xkb/symbols/pc
+cd /usr/share/kbd/keymaps/i386/qwerty# 解压键盘map.gzgzip -d us.map.gz# 编辑文件修改：vim us.map# Caps改为Ctrlkeycode 58 = Controlkeycode 86 = less greater barkeycode 97 = ControlKeycode 100 = Caps_Lock# 重新压缩成.gzgzip us.map2.从新加载
+loadkeys us3.写入配置文件
+# 如果是systemd init系统的,修改/etc/vconsole.conf增加以下内容重启KEYMAP=usDESKTOP 发行版中有 setxkbmap 命令 1、修改/usr/share/X11/xkb/symbols/pc
 	</div>
 </article>
 </main>
