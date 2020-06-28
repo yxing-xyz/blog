@@ -5,11 +5,7 @@ authorbox: false
 sidebar: false
 menu: main
 ---
-
-我的博客
-
-
-它记录我的计算机生涯:
+亦余心之所向兮，虽九死其尤未悔。
 
 * [Github](https://github.com/xyyx-xyz)
 * [Gitee](https://gitee.com/xyyx_xyz)
