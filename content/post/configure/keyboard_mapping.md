@@ -42,17 +42,11 @@ Keycode  100 = Caps_Lock
 gzip us.map
 ```
 
-2.从新加载
-
+2.重新加载
+仅限systemd引导的发行版,其余的如System V或者openrc引导的发行版请自行查询加载键盘代码
 ```
-loadkeys us
-```
-
-3.写入配置文件
-
-```
-# 如果是systemd init系统的,修改/etc/vconsole.conf增加以下内容重启
-KEYMAP=us
+原理就是写入/etc/vconsole.conf文件内容KEYMAP=us
+localectl set-keymap us 
 ```
 
 ### DESKTOP
