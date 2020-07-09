@@ -147,7 +147,7 @@ yay -S mycli pgcli-git litecli --needed --noconfirm --force
 # 手册
 yay -S cheat-git tldr --needed --noconfirm --force
 # 代码行数统计
-pacman -S loc --needed --noconfirm --force
+pacman -S cloc --needed --noconfirm --force
 # shell脚本检查
 pacman -S shellcheck --needed --noconfirm --force
 # SSR
