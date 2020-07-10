@@ -321,7 +321,7 @@ yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-cons
 # Telegram
 pacman -S telegram-desktop --needed --noconfirm --force
 # 影音播放
-pacman -S vlc kodi ffmpeg mplayer smplayer --needed --noconfirm --force
+pacman -S vlc  mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
 # 下载
 pacman -S qbittorrent amule --needed --noconfirm --force
 # FTP
