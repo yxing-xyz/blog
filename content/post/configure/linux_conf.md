@@ -37,7 +37,7 @@ cp -rf ./etc/pacman.conf /etc/
 # 更新源
 pacman -Ssy
 # 安装archlinux基本包
-pacstrap -i /mnt base base-devel
+pacstrap -i /mnt base base-devel linux linux-firmware
 # 保存新系统分区表到/mnt/etc/fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
@@ -74,9 +74,7 @@ mkinitcpio -p linux
 # mbr grub引导
 # 使用eth0网卡
 sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet net.ifnames=0 biosdevname=0"/g' /etc/default/grub
-pacman -S grub os-prober --needed --noconfirm
-grub-install /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/ESP/grub/grub.cfg
 
 # 自启动网卡
 # ip link
@@ -85,7 +83,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # systemctl enable dhcpcd@"$ip_link".service
 systemctl enable dhcpcd
 
-# 导入CPG key
+# 导入CPG key/
 pacman -S archlinux-keyring --needed --noconfirm
 pacman -S archlinuxcn-keyring --needed --noconfirm
 
@@ -100,7 +98,7 @@ pacman -S downgrade --needed --noconfirm
 pacman -S arch-install-scripts --needed --noconfirm
 
 # 安装显卡驱动
-echo -n "请选择显卡类型（1.Intel, 2.Nvidia, 3.ATI, 4.AMD, 5.通用):"
+echo -n "请选择显卡类型（1.Intel, 2.Nvidia, 3.ATI, 4.AMD, 5通用):"
 read video
 case "$video" in
 1) pacman -S xf86-video-intel --needed --noconfirm ;;
@@ -110,15 +108,11 @@ case "$video" in
 5) pacman -S xf86-video-vesa --needed --noconfirm ;;
 esac
 
-# 安装图形界面
-pacman -S xorg-server xorg-xinit --needed --noconfirm
+# 安装图形界面 picom 桌面窗口特效 x11剪切板
+pacman -S xorg-server xorg-xinit xllip picom --needed --noconfirm
 
-# KDE
-#pacman -S plasma-meta konsole dolphin sddm --needed --noconfirm
-#systemctl enable sddm
-
-# cinnamon桌面
-pacman -S cinnamon cinnamon-translations --needed --noconfirm
+# awesome
+pacman -S  awesome --needed --noconfirm
 
 
 # 重启
@@ -133,7 +127,7 @@ reboot
 #!/usr/bin/env bash
 set -euo pipefail
 
-################ 研发 ##############
+################################
 # 常用开发工具
 pacman -S yasm gcc cmake nginx php php-apache composer jdk8 gradle maven nodejs npm yarn git tig svn python python-pip --needed --noconfirm --force
 # 编辑
@@ -150,8 +144,6 @@ yay -S cheat-git tldr --needed --noconfirm --force
 pacman -S cloc --needed --noconfirm --force
 # shell脚本检查
 pacman -S shellcheck --needed --noconfirm --force
-# SSR
-yay -S shadowsocksr --needed --noconfirm --force
 
 ############# 虚拟机相关 ##############
 # 远程桌面: rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/yx/projects/PQTelWVMP/PQTelVMPDA/app
@@ -210,8 +202,8 @@ pacman -S mediainfo --needed --noconfirm --force          # mediainfo 或 perl-i
 pacman -S fzf --needed --noconfirm --force
 # 目录文件搜索 fd
 pacman -S fd --needed --noconfirm --force
-# 文件内容搜索 ag ripgrep ack
-pacman -S the_silver_searcher ripgrep ack --needed --noconfirm --force
+# 文件内容搜索 rg ag ack
+pacman -S ripgrep the_silver_searcher ack --needed --noconfirm --force
 # 彩色cat、彩色日志、彩色diff
 pacman -S bat ccze diff-so-fancy colordiff --noconfirm --needed --force
 # 终端表格、文本三神器
@@ -310,12 +302,25 @@ pacman -S kicad --needed --noconfirm --force
 
 
 ############### GUI  ###########
+###########
+# awesome
+###########
+pacman -S rofi --needed --noconfirm --force                 
+# 截图
+pacman -S flamescrot maim --needed --noconfirm --force      
+# 图像预览
+pacman -S feh --noconfirm --force --needed
+
+
+# proxy
+pacman -S qv2ray v2ray  proxychains --needed --noconfirm --force
 # 输入法
-pacman -S fcitx-sogoupinyin --needed --noconfirm
+pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 # 安装浏览器
 pacman -S chromium firefox firefox-i18n-zh-cn --needed --noconfirm
-# 字体
-pacman -S ttf-dejavu wqy-zenhei wqy-microhei powerline2 awesome-terminal-fonts nerd-fonts-complete adobe-source-han-sans-cn-fonts  otf-font-awesome ttf-font-awesome --needed --noconfirm
+# 字体 
+# pacman -S nerd-fonts-fira-code
+pacman -S  wqy-zenhei wqy-microhei nerd-fonts-complete adobe-source-han-sans-cn-fonts --needed --noconfirm
 # 字体
 yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-consolas-with-yahei-powerline-git --needed --noconfirm --force
 # Telegram
@@ -326,10 +331,6 @@ pacman -S vlc  mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
 pacman -S qbittorrent amule --needed --noconfirm --force
 # FTP
 pacman -S filezilla --needed --noconfirm --force
-# 截图
-pacman -S maim --needed --noconfirm --force      #截图
-# 图像预览
-pacman -S feh --noconfirm --force --needed
 # 截图转Latex语法
 yay -S mathpix-snipping-tool --needed --noconfirm --force
 # 图像编辑
@@ -344,81 +345,3 @@ pacman -S evince foxitreader --needed --noconfirm --force # PDF
 pacman -S kchmviewer --needed --noconfirm --force         # CHM
 pacman -S calibre --needed --noconfirm --force            # 图书转换器
 ```
-
-## Ubuntu 初始化
-
-```bash
-#!/usr/bin/env bash
-# 换源
-sed -i 's#^[^\#].*\.edu.cn#deb http://mirrors.163.com#g' /etc/apt/sources.list
-apt update
-apt upgrade
-apt autoremove
-
-apt install ubuntu-make
-add-apt-repository ppa:ubuntu-desktop/ubuntu-make
-
-apt install -y gnome-tweaks
-apt install -y gnome-tweak-tool gnome-shell-extension-dashtodock
-
-apt install -y fonts-wqy-microhei fonts-wqy-zenhei xfonts-wqy
-apt install -y git zsh tmux chromium-browser emacs vim
-
-apt install -y php python3 python gcc gdb g++ golang nodejs npm
-apt install -y net-tools curl
-
-############ VSCode ###############
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /tmp/packages.microsoft.gpg
-sudo install -o root -g root -m 644 /tmp/packages.microsoft.gpg /usr/share/keyrings/
-sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-sudo apt -y install apt-transport-https
-sudo apt -y update
-sudo apt -y install code # or code-insiders
-sudo xdg-mime default code.desktop text/plain
-sudo update-alternatives --set editor /usr/bin/code
-
-# RUSTUP
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-############ Other ################
-# brook
-snap install brook
-```
-
-## 用户初始化
-
-```bash
-#!/bin/env sh
-
-# 改变SHELL
-# su yx -c "echo 'yx' | chsh -s /bin/zsh"
-chsh -s /bin/zsh
-
-go env -w GOPROXY=https://goproxy.cn,direct
-
-pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
-
-npm config set registry https://registry.npm.taobao.org
-
-echo "[source.crates-io]
-registry = \"https://github.com/rust-lang/crates.io-index\"
-replace-with = 'ustc'
-[source.ustc]
-registry = \"git://mirrors.ustc.edu.cn/crates.io-index\"" > $HOME/.cargo/config
-```
-
-## Arch 配置文件
-
-- etc
-  - pacman.d
-    - <a href="/archlinux/etc/pacman.d/mirrorlist" target="_blank">mirrorlist</a>
-  - <a href="/archlinux/etc/locale.conf" target="_blank">locale.conf</a>
-  - <a href="/archlinux/etc/locale.gen" target="_blank">locale.gen</a>
-  - <a href="/archlinux/etc/makepkg.conf" target="_blank">makepkg.conf</a>
-  - <a href="/archlinux/etc/pacman.conf" target="_blank">pacman.conf</a>
-  - <a href="/archlinux/etc/vconsole.conf" target="_blank">vconsole.conf</a>
-- usr
-  - share
-    - X11
-      - xkb
-        - symbols
-          - <a href="/archlinux/usr/share/X11/xkb/symbols/pc" target="_blank">pc</a>
