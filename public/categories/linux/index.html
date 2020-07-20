@@ -89,7 +89,7 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Arch 安装 #!/usr/bin/env bash  # set -euxo pipefail set -euo pipefail # 获取archlinux源 # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/ # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/?country=CN ####################### U盘镜像系统 # 下载工具 pacman -S wget curl axel aria2 --needed --noconfirm # 更改源 cp -rf ./etc/pacman.d /etc/ cp -rf ./etc/pacman.conf /etc/ # 更新源 pacman -Ssy # 安装archlinux基本包 pacstrap -i /mnt base base-devel # 保存新系统分区表到/mnt/etc/fstab genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab ######################## 切换到新系统 # 切换 arch-chroot /mnt /bin/bash # 添加用户 useradd -g wheel yx printf &#34;yx\nyx\n&#34; | passwd yx &gt; /dev/null 2&gt;&amp;1 # 下载工具 pacman -S wget curl axel aria2 --needed --noconfirm # 更改源 cp -rf .
+		Arch 安装 #!/usr/bin/env bash  # set -euxo pipefail set -euo pipefail # 获取archlinux源 # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/ # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/?country=CN ####################### U盘镜像系统 # 下载工具 pacman -S wget curl axel aria2 --needed --noconfirm # 更改源 cp -rf ./etc/pacman.d /etc/ cp -rf ./etc/pacman.conf /etc/ # 更新源 pacman -Ssy # 安装archlinux基本包 pacstrap -i /mnt base base-devel linux linux-firmware # 保存新系统分区表到/mnt/etc/fstab genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab ######################## 切换到新系统 # 切换 arch-chroot /mnt /bin/bash # 添加用户 useradd -g wheel yx printf &#34;yx\nyx\n&#34; | passwd yx &gt; /dev/null 2&gt;&amp;1 # 下载工具 pacman -S wget curl axel aria2 --needed --noconfirm # 更改源 cp -rf .
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -109,9 +109,8 @@
 		Windows Download mapkeyboard, modify it by yourself, and then log out or restart it
 Linux Linux has TTY terminal and desktop operation modes
 TTY 1.修改键位表
-cd /usr/share/kbd/keymaps/i386/qwerty# 解压键盘map.gzgzip -d us.map.gz# 编辑文件修改：vim us.map# Caps改为Ctrlkeycode 58 = Controlkeycode 86 = less greater barkeycode 97 = ControlKeycode 100 = Caps_Lock# 重新压缩成.gzgzip us.map2.从新加载
-loadkeys us3.写入配置文件
-# 如果是systemd init系统的,修改/etc/vconsole.conf增加以下内容重启KEYMAP=usDESKTOP 发行版中有 setxkbmap 命令 1、修改/usr/share/X11/xkb/symbols/pc
+cd /usr/share/kbd/keymaps/i386/qwerty # 解压键盘map.gz gzip -d us.map.gz # 编辑文件修改： vim us.map # Caps改为Ctrl keycode 58 = Control keycode 86 = less greater bar keycode 97 = Control Keycode 100 = Caps_Lock # 重新压缩成.gz gzip us.map 2.重新加载 仅限systemd引导的发行版,其余的如System V或者openrc引导的发行版请自行查询加载键盘代码
+原理就是写入/etc/vconsole.conf文件内容KEYMAP=us localectl set-keymap us X11 在/usr/share/X11/xkb/symbols有个pc文件可以修改映射，网上说可以使用用localectl设置keymap也是us，可惜x11没用这个所以还是直接修改pc文件吧
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -128,7 +127,7 @@ loadkeys us3.写入配置文件
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Centos 常用包 yum -y install gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng \ libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib \ zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel \ ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel \ krb5 krb5-devel libidn libidn-devel open openssl openssl-devel \ openldap openldap-devel nss_ldap openldap-clients openldap-servers \ libmcrypt libmcrypt-devel mhash mhash-devel automake cmake emacs vimnn RPM 常用命令 # 安装 rpm -ivh --force ./*.rpm # 查询 rpm -qa | grep git # 删除 rpm -e --nodeps git Centos 导出 RPM 包 # 方法一:# 要使用--downloadonly选项，需要先安装yum-plugin-downloadonly，不安装该包的话，# 会报下面的错误信息：Command line error: no such option: --downloadonlyyum install --downloaddir=/tmp/package/ --downloadonly tcpdump# 方法二:# 使用yumdownloader 需要先安装yum-utils。repotrack tcpdumpyumdownloader tcpdump
+		Centos 常用包 yum -y install gcc gcc-c++ autoconf libjpeg libjpeg-devel libpng \ libpng-devel freetype freetype-devel libxml2 libxml2-devel zlib \ zlib-devel glibc glibc-devel glib2 glib2-devel bzip2 bzip2-devel \ ncurses ncurses-devel curl curl-devel e2fsprogs e2fsprogs-devel \ krb5 krb5-devel libidn libidn-devel open openssl openssl-devel \ openldap openldap-devel nss_ldap openldap-clients openldap-servers \ libmcrypt libmcrypt-devel mhash mhash-devel automake cmake emacs vimnn RPM 常用命令 # 安装 rpm -ivh --force ./*.rpm # 查询 rpm -qa | grep git # 删除 rpm -e --nodeps git Centos 导出 RPM 包 # 方法一: # 要使用--downloadonly选项，需要先安装yum-plugin-downloadonly，不安装该包的话， # 会报下面的错误信息：Command line error: no such option: --downloadonly yum install --downloaddir=/tmp/package/ --downloadonly tcpdump # 方法二: # 使用yumdownloader 需要先安装yum-utils。 repotrack tcpdump yumdownloader tcpdump 
 	</div>
 </article>
 </main>

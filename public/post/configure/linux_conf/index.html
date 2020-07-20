@@ -72,9 +72,6 @@
   <ul>
     <li><a href="#arch-安装">Arch 安装</a></li>
     <li><a href="#arch-初始化">Arch 初始化</a></li>
-    <li><a href="#ubuntu-初始化">Ubuntu 初始化</a></li>
-    <li><a href="#用户初始化">用户初始化</a></li>
-    <li><a href="#arch-配置文件">Arch 配置文件</a></li>
   </ul>
 </nav>
 	</div>
@@ -99,7 +96,7 @@ cp -rf ./etc/pacman.conf /etc/
 <span style="color:#75715e"># 更新源</span>
 pacman -Ssy
 <span style="color:#75715e"># 安装archlinux基本包</span>
-pacstrap -i /mnt base base-devel
+pacstrap -i /mnt base base-devel linux linux-firmware
 <span style="color:#75715e"># 保存新系统分区表到/mnt/etc/fstab</span>
 genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
 
@@ -136,9 +133,7 @@ mkinitcpio -p linux
 <span style="color:#75715e"># mbr grub引导</span>
 <span style="color:#75715e"># 使用eth0网卡</span>
 sed -i <span style="color:#e6db74">&#39;s/^GRUB_CMDLINE_LINUX_DEFAULT.*/GRUB_CMDLINE_LINUX_DEFAULT=&#34;quiet net.ifnames=0 biosdevname=0&#34;/g&#39;</span> /etc/default/grub
-pacman -S grub os-prober --needed --noconfirm
-grub-install /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/ESP/grub/grub.cfg
 
 <span style="color:#75715e"># 自启动网卡</span>
 <span style="color:#75715e"># ip link</span>
@@ -147,7 +142,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 <span style="color:#75715e"># systemctl enable dhcpcd@&#34;$ip_link&#34;.service</span>
 systemctl enable dhcpcd
 
-<span style="color:#75715e"># 导入CPG key</span>
+<span style="color:#75715e"># 导入CPG key/</span>
 pacman -S archlinux-keyring --needed --noconfirm
 pacman -S archlinuxcn-keyring --needed --noconfirm
 
@@ -162,7 +157,7 @@ pacman -S downgrade --needed --noconfirm
 pacman -S arch-install-scripts --needed --noconfirm
 
 <span style="color:#75715e"># 安装显卡驱动</span>
-echo -n <span style="color:#e6db74">&#34;请选择显卡类型（1.Intel, 2.Nvidia, 3.ATI, 4.AMD, 5.通用):&#34;</span>
+echo -n <span style="color:#e6db74">&#34;请选择显卡类型（1.Intel, 2.Nvidia, 3.ATI, 4.AMD, 5通用):&#34;</span>
 read video
 <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$video<span style="color:#e6db74">&#34;</span> in
 1<span style="color:#f92672">)</span> pacman -S xf86-video-intel --needed --noconfirm ;;
@@ -172,15 +167,11 @@ read video
 5<span style="color:#f92672">)</span> pacman -S xf86-video-vesa --needed --noconfirm ;;
 <span style="color:#66d9ef">esac</span>
 
-<span style="color:#75715e"># 安装图形界面</span>
-pacman -S xorg-server xorg-xinit --needed --noconfirm
+<span style="color:#75715e"># 安装图形界面                     剪切板 窗口特效  合并X11配置</span>
+pacman -S xorg-server xorg-xinit xllip picom xorg-xrdb --needed --noconfirm
 
-<span style="color:#75715e"># KDE</span>
-<span style="color:#75715e">#pacman -S plasma-meta konsole dolphin sddm --needed --noconfirm</span>
-<span style="color:#75715e">#systemctl enable sddm</span>
-
-<span style="color:#75715e"># cinnamon桌面</span>
-pacman -S cinnamon cinnamon-translations --needed --noconfirm
+<span style="color:#75715e"># awesome</span>
+pacman -S  awesome --needed --noconfirm
 
 
 <span style="color:#75715e"># 重启</span>
@@ -191,7 +182,7 @@ reboot
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
 </span><span style="color:#75715e"></span>set -euo pipefail
 
-<span style="color:#75715e">################ 研发 ##############</span>
+<span style="color:#75715e">################################</span>
 <span style="color:#75715e"># 常用开发工具</span>
 pacman -S yasm gcc cmake nginx php php-apache composer jdk8 gradle maven nodejs npm yarn git tig svn python python-pip --needed --noconfirm --force
 <span style="color:#75715e"># 编辑</span>
@@ -205,11 +196,9 @@ yay -S mycli pgcli-git litecli --needed --noconfirm --force
 <span style="color:#75715e"># 手册</span>
 yay -S cheat-git tldr --needed --noconfirm --force
 <span style="color:#75715e"># 代码行数统计</span>
-pacman -S loc --needed --noconfirm --force
+pacman -S cloc --needed --noconfirm --force
 <span style="color:#75715e"># shell脚本检查</span>
 pacman -S shellcheck --needed --noconfirm --force
-<span style="color:#75715e"># SSR</span>
-yay -S shadowsocksr --needed --noconfirm --force
 
 <span style="color:#75715e">############# 虚拟机相关 ##############</span>
 <span style="color:#75715e"># 远程桌面: rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/yx/projects/PQTelWVMP/PQTelVMPDA/app</span>
@@ -268,8 +257,8 @@ pacman -S mediainfo --needed --noconfirm --force          <span style="color:#75
 pacman -S fzf --needed --noconfirm --force
 <span style="color:#75715e"># 目录文件搜索 fd</span>
 pacman -S fd --needed --noconfirm --force
-<span style="color:#75715e"># 文件内容搜索 ag ripgrep ack</span>
-pacman -S the_silver_searcher ripgrep ack --needed --noconfirm --force
+<span style="color:#75715e"># 文件内容搜索 rg ag ack</span>
+pacman -S ripgrep the_silver_searcher ack --needed --noconfirm --force
 <span style="color:#75715e"># 彩色cat、彩色日志、彩色diff</span>
 pacman -S bat ccze diff-so-fancy colordiff --noconfirm --needed --force
 <span style="color:#75715e"># 终端表格、文本三神器</span>
@@ -368,26 +357,35 @@ pacman -S kicad --needed --noconfirm --force
 
 
 <span style="color:#75715e">############### GUI  ###########</span>
+<span style="color:#75715e">###########</span>
+<span style="color:#75715e"># awesome</span>
+<span style="color:#75715e">###########</span>
+pacman -S rofi --needed --noconfirm --force                 
+<span style="color:#75715e"># 截图</span>
+pacman -S flamescrot maim --needed --noconfirm --force      
+<span style="color:#75715e"># 图像预览</span>
+pacman -S feh --noconfirm --force --needed
+
+
+<span style="color:#75715e"># proxy</span>
+pacman -S qv2ray v2ray  proxychains --needed --noconfirm --force
 <span style="color:#75715e"># 输入法</span>
-pacman -S fcitx-sogoupinyin --needed --noconfirm
+pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 <span style="color:#75715e"># 安装浏览器</span>
 pacman -S chromium firefox firefox-i18n-zh-cn --needed --noconfirm
-<span style="color:#75715e"># 字体</span>
-pacman -S ttf-dejavu wqy-zenhei wqy-microhei powerline2 awesome-terminal-fonts nerd-fonts-complete adobe-source-han-sans-cn-fonts  otf-font-awesome ttf-font-awesome --needed --noconfirm
+<span style="color:#75715e"># 字体</span> 
+<span style="color:#75715e"># pacman -S nerd-fonts-fira-code</span>
+pacman -S nerd-fonts-complete adobe-source-han-sans-cn-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
 <span style="color:#75715e"># 字体</span>
 yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-consolas-with-yahei-powerline-git --needed --noconfirm --force
 <span style="color:#75715e"># Telegram</span>
 pacman -S telegram-desktop --needed --noconfirm --force
 <span style="color:#75715e"># 影音播放</span>
-pacman -S vlc kodi ffmpeg mplayer smplayer --needed --noconfirm --force
+pacman -S vlc  mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
 <span style="color:#75715e"># 下载</span>
 pacman -S qbittorrent amule --needed --noconfirm --force
 <span style="color:#75715e"># FTP</span>
 pacman -S filezilla --needed --noconfirm --force
-<span style="color:#75715e"># 截图</span>
-pacman -S maim --needed --noconfirm --force      <span style="color:#75715e">#截图</span>
-<span style="color:#75715e"># 图像预览</span>
-pacman -S feh --noconfirm --force --needed
 <span style="color:#75715e"># 截图转Latex语法</span>
 yay -S mathpix-snipping-tool --needed --noconfirm --force
 <span style="color:#75715e"># 图像编辑</span>
@@ -401,98 +399,7 @@ pacman -S blender --needed --noconfirm --force            <span style="color:#75
 pacman -S evince foxitreader --needed --noconfirm --force <span style="color:#75715e"># PDF</span>
 pacman -S kchmviewer --needed --noconfirm --force         <span style="color:#75715e"># CHM</span>
 pacman -S calibre --needed --noconfirm --force            <span style="color:#75715e"># 图书转换器</span>
-</code></pre></div><h2 id="ubuntu-初始化">Ubuntu 初始化</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
-</span><span style="color:#75715e"></span><span style="color:#75715e"># 换源</span>
-sed -i <span style="color:#e6db74">&#39;s#^[^\#].*\.edu.cn#deb http://mirrors.163.com#g&#39;</span> /etc/apt/sources.list
-apt update
-apt upgrade
-apt autoremove
-
-apt install ubuntu-make
-add-apt-repository ppa:ubuntu-desktop/ubuntu-make
-
-apt install -y gnome-tweaks
-apt install -y gnome-tweak-tool gnome-shell-extension-dashtodock
-
-apt install -y fonts-wqy-microhei fonts-wqy-zenhei xfonts-wqy
-apt install -y git zsh tmux chromium-browser emacs vim
-
-apt install -y php python3 python gcc gdb g++ golang nodejs npm
-apt install -y net-tools curl
-
-<span style="color:#75715e">############ VSCode ###############</span>
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor &gt; /tmp/packages.microsoft.gpg
-sudo install -o root -g root -m <span style="color:#ae81ff">644</span> /tmp/packages.microsoft.gpg /usr/share/keyrings/
-sudo sh -c <span style="color:#e6db74">&#39;echo &#34;deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main&#34; &gt; /etc/apt/sources.list.d/vscode.list&#39;</span>
-sudo apt -y install apt-transport-https
-sudo apt -y update
-sudo apt -y install code <span style="color:#75715e"># or code-insiders</span>
-sudo xdg-mime default code.desktop text/plain
-sudo update-alternatives --set editor /usr/bin/code
-
-<span style="color:#75715e"># RUSTUP</span>
-curl --proto <span style="color:#e6db74">&#39;=https&#39;</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh
-<span style="color:#75715e">############ Other ################</span>
-<span style="color:#75715e"># brook</span>
-snap install brook
-</code></pre></div><h2 id="用户初始化">用户初始化</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/bin/env sh
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e"># 改变SHELL</span>
-<span style="color:#75715e"># su yx -c &#34;echo &#39;yx&#39; | chsh -s /bin/zsh&#34;</span>
-chsh -s /bin/zsh
-
-go env -w GOPROXY<span style="color:#f92672">=</span>https://goproxy.cn,direct
-
-pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
-
-npm config set registry https://registry.npm.taobao.org
-
-echo <span style="color:#e6db74">&#34;[source.crates-io]
-</span><span style="color:#e6db74">registry = \&#34;https://github.com/rust-lang/crates.io-index\&#34;
-</span><span style="color:#e6db74">replace-with = &#39;ustc&#39;
-</span><span style="color:#e6db74">[source.ustc]
-</span><span style="color:#e6db74">registry = \&#34;git://mirrors.ustc.edu.cn/crates.io-index\&#34;&#34;</span> &gt; $HOME/.cargo/config
-</code></pre></div><h2 id="arch-配置文件">Arch 配置文件</h2>
-<ul>
-<li>etc
-<ul>
-<li>pacman.d
-<ul>
-<li><a href="/archlinux/etc/pacman.d/mirrorlist" target="_blank">mirrorlist</a></li>
-</ul>
-</li>
-<li><a href="/archlinux/etc/locale.conf" target="_blank">locale.conf</a></li>
-<li><a href="/archlinux/etc/locale.gen" target="_blank">locale.gen</a></li>
-<li><a href="/archlinux/etc/makepkg.conf" target="_blank">makepkg.conf</a></li>
-<li><a href="/archlinux/etc/pacman.conf" target="_blank">pacman.conf</a></li>
-<li><a href="/archlinux/etc/vconsole.conf" target="_blank">vconsole.conf</a></li>
-</ul>
-</li>
-<li>usr
-<ul>
-<li>share
-<ul>
-<li>X11
-<ul>
-<li>xkb
-<ul>
-<li>symbols
-<ul>
-<li><a href="/archlinux/usr/share/X11/xkb/symbols/pc" target="_blank">pc</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
+</code></pre></div>
 		</div>
 		<footer class="post__footer">
 			

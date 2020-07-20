@@ -89,7 +89,7 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Unicode to UTF8  | Unicode符号范围 | UTF-8编码方式n | (十六进制) | (二进制)---+-----------------------+------------------------------------------------------1 | 0000 0000 - 0000 007F | 0xxxxxxx2 | 0000 0080 - 0000 07FF | 110xxxxx 10xxxxxx3 | 0000 0800 - 0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx4 | 0001 0000 - 0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx5 | 0020 0000 - 03FF FFFF | 111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx6 | 0400 0000 - 7FFF FFFF | 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx/************************************************************** * * 将一个字符的Unicode(UCS-2和UCS-4)编码转换成UTF-8编码.
+		Unicode to UTF8  | Unicode符号范围 | UTF-8编码方式 n | (十六进制) | (二进制) ---+-----------------------+------------------------------------------------------ 1 | 0000 0000 - 0000 007F | 0xxxxxxx 2 | 0000 0080 - 0000 07FF | 110xxxxx 10xxxxxx 3 | 0000 0800 - 0000 FFFF | 1110xxxx 10xxxxxx 10xxxxxx 4 | 0001 0000 - 0010 FFFF | 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx 5 | 0020 0000 - 03FF FFFF | 111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 6 | 0400 0000 - 7FFF FFFF | 1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx /************************************************************** * * 将一个字符的Unicode(UCS-2和UCS-4)编码转换成UTF-8编码.
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -106,7 +106,7 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。2. 定位到计算机HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services目录中的SecurityHealthService,wscsvc两个目录3. 在右侧找到DWORD（32位）值，命名为Start。4. 修改数值数据为4。5. 重启文件资源管理器，或注销再登录/重启系统。Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
+		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到计算机HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services目录中的SecurityHealthService,wscsvc两个目录 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
  File Directory SymbolLink HardLink Junction  New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir 
 	</div>
 </article><article class="list__item post">
@@ -125,7 +125,7 @@
 	</header>
 	<div class="content list__excerpt post__content clearfix">
 		Scoop 安装 最好开启代理然后再去执行脚本安装
-IF ($PSVersionTable.PSVersion.Major -lt 3 -or $PSVersionTable.CLRVersion.Major -lt 4) { return &#34;PowerShell版本高于3且.NET Franmework高于4&#34; } # env # $env:SCOOP=&#39;D:\scoop&#39; # [Environment]::SetEnvironmentVariable(&#39;SCOOP&#39;, $env:SCOOP_GLOBAL, &#39;Machine&#39;) Set-ExecutionPolicy RemoteSigned -Scope CurrentUser Invoke-Expression (New-Object System.Net.WebClient).DownloadString(&#39;https://get.scoop.sh&#39;) # conf scoop install git 7zip aria2 scoop config aria2-max-connection-per-server 16 scoop config aria2-split 16 scoop config aria2-min-split-size 1M # bucket scoop bucket add main scoop bucket add extras scoop bucket add nerd-fonts scoop install googlechrome firefox vlc scoop install curl dig netcat winmtr nmap wireshark scoop install gcc cmake go nodejs rustup scoop install hugo scoop install FiraCode scoop install vscode qt-creator scoop install mobaxterm Winget aria2cmakecurl digfiracodegccgdbgitgochromemobaxtermnetcatnmapnodejssumatrapdfvlcvscodewinmtrwiresharkyasmlockhunterrecudalualistaryqemurustupqbittorrentTortoiseSVNccleanerWin 配置文件  Microsoft.
+IF ($PSVersionTable.PSVersion.Major -lt 3 -or $PSVersionTable.CLRVersion.Major -lt 4) { return &#34;PowerShell版本高于3且.NET Franmework高于4&#34; } # env # $env:SCOOP=&#39;D:\scoop&#39; # [Environment]::SetEnvironmentVariable(&#39;SCOOP&#39;, $env:SCOOP_GLOBAL, &#39;Machine&#39;) Set-ExecutionPolicy RemoteSigned -Scope CurrentUser Invoke-Expression (New-Object System.Net.WebClient).DownloadString(&#39;https://get.scoop.sh&#39;) # conf scoop install git 7zip aria2 scoop config aria2-max-connection-per-server 16 scoop config aria2-split 16 scoop config aria2-min-split-size 1M # bucket scoop bucket add main scoop bucket add extras scoop bucket add nerd-fonts scoop install googlechrome firefox vlc scoop install curl dig netcat winmtr nmap wireshark scoop install gcc cmake go nodejs rustup scoop install hugo scoop install FiraCode scoop install vscode qt-creator scoop install mobaxterm Winget aria2 cmake curl dig firacode gcc gdb git go chrome mobaxterm netcat nmap nodejs sumatrapdf vlc vscode winmtr wireshark yasm lockhunter recuda lua listary qemu rustup qbittorrent TortoiseSVN ccleaner Win 配置文件  Microsoft.
 	</div>
 </article><article class="list__item post">
 	<header class="list__header">
@@ -199,7 +199,7 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Arch 安装 #!/usr/bin/env bash  # set -euxo pipefail set -euo pipefail # 获取archlinux源 # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/ # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/?country=CN ####################### U盘镜像系统 # 下载工具 pacman -S wget curl axel aria2 --needed --noconfirm # 更改源 cp -rf ./etc/pacman.d /etc/ cp -rf ./etc/pacman.conf /etc/ # 更新源 pacman -Ssy # 安装archlinux基本包 pacstrap -i /mnt base base-devel # 保存新系统分区表到/mnt/etc/fstab genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab ######################## 切换到新系统 # 切换 arch-chroot /mnt /bin/bash # 添加用户 useradd -g wheel yx printf &#34;yx\nyx\n&#34; | passwd yx &gt; /dev/null 2&gt;&amp;1 # 下载工具 pacman -S wget curl axel aria2 --needed --noconfirm # 更改源 cp -rf .
+		Arch 安装 #!/usr/bin/env bash  # set -euxo pipefail set -euo pipefail # 获取archlinux源 # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/ # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/?country=CN ####################### U盘镜像系统 # 下载工具 pacman -S wget curl axel aria2 --needed --noconfirm # 更改源 cp -rf ./etc/pacman.d /etc/ cp -rf ./etc/pacman.conf /etc/ # 更新源 pacman -Ssy # 安装archlinux基本包 pacstrap -i /mnt base base-devel linux linux-firmware # 保存新系统分区表到/mnt/etc/fstab genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab ######################## 切换到新系统 # 切换 arch-chroot /mnt /bin/bash # 添加用户 useradd -g wheel yx printf &#34;yx\nyx\n&#34; | passwd yx &gt; /dev/null 2&gt;&amp;1 # 下载工具 pacman -S wget curl axel aria2 --needed --noconfirm # 更改源 cp -rf .
 	</div>
 </article><article class="list__item post">
 	<figure class="list__thumbnail">
@@ -238,7 +238,7 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		C  整形: short int long数值类型:浮点类型: float double基本数据类型:字符类型: char空类型(void)指针类型构造数据类型: 数组、结构体(struct)、共同体(union)、枚举(enum)GO 数值类型: uintptr (u)int (u)int8 (u)int16 (u)int32 (u)int64float32 float64 complex64 complex128byte 别名 uint8rune 别名 int32字符串: string布尔类型： bool派生类型:初始值不为nil: array、struct初始值nil: pointer、function、interface、slice、map、channelJavaScript Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function)Python Number(数字): int、float、bool、complex(复数)String(字符串)List(列表)Tuple(元组)Set(集合)Dictionary(字典)Java 基本数据类型：byte、short、int、long、char、double、boolean引用类型：类类型、接口类型、数组、nullPHP 标量：整数、浮点数、布尔、字符串复合：数组、对象特殊：资源、null
+		C  整形: short int long 数值类型: 浮点类型: float double 基本数据类型: 字符类型: char 空类型(void) 指针类型 构造数据类型: 数组、结构体(struct)、共同体(union)、枚举(enum) GO 数值类型: uintptr (u)int (u)int8 (u)int16 (u)int32 (u)int64 float32 float64 complex64 complex128 byte 别名 uint8 rune 别名 int32 字符串: string 布尔类型： bool 派生类型: 初始值不为nil: array、struct 初始值nil: pointer、function、interface、slice、map、channel JavaScript Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function) Python Number(数字): int、float、bool、complex(复数) String(字符串) List(列表) Tuple(元组) Set(集合) Dictionary(字典) Java 基本数据类型：byte、short、int、long、char、double、boolean 引用类型：类类型、接口类型、数组、null PHP 标量：整数、浮点数、布尔、字符串 复合：数组、对象 特殊：资源、null 
 	</div>
 </article>
 </main>

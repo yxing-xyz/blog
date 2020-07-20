@@ -74,7 +74,7 @@
     <li><a href="#linux">Linux</a>
       <ul>
         <li><a href="#tty">TTY</a></li>
-        <li><a href="#desktop">DESKTOP</a></li>
+        <li><a href="#x11">X11</a></li>
       </ul>
     </li>
   </ul>
@@ -100,86 +100,13 @@ keycode  97 = Control
 Keycode  100 = Caps_Lock
 # 重新压缩成.gz
 gzip us.map
-</code></pre><p>2.从新加载</p>
-<pre><code>loadkeys us
-</code></pre><p>3.写入配置文件</p>
-<pre><code># 如果是systemd init系统的,修改/etc/vconsole.conf增加以下内容重启
-KEYMAP=us
-</code></pre><h3 id="desktop">DESKTOP</h3>
-<h4 id="发行版中有-setxkbmap-命令">发行版中有 setxkbmap 命令</h4>
-<p>1、修改/usr/share/X11/xkb/symbols/pc</p>
-<p><a href="/archlinux/usr/share/X11/xkb/symbols/pc" title="pc文件">pc文件</a></p>
-<p>在 xkb_symbols &ldquo;pc105&quot;最后面增加以下内容，然后重启即可</p>
-<pre><code>    replace key &lt;CAPS&gt; { [ Control_L ] };
-    modifier_map Control { &lt;CAPS&gt; };
-    replace key &lt;RALT&gt; { [ Caps_Lock ] };
-    modifier_map Lock { &lt;RALT&gt; };
-</code></pre><p>2、在~/.xinitrc exec 启动桌面之前或者.xprofile 写入</p>
-<pre><code>sudo setxkbmap  -option ctrl:swapcaps
-</code></pre><h4 id="发行版中有-xmodmap-命令">发行版中有 xmodmap 命令</h4>
-<p>1.在用户目录~中创建.Xmodmap 文件写入以下内容</p>
-<pre><code>   remove Lock = Caps_Lock
-   remove Control = Control_L
-   remove mod1 = Alt_R
+</code></pre><p>2.重新加载
+仅限systemd引导的发行版,其余的如System V或者openrc引导的发行版请自行查询加载键盘代码</p>
+<pre><code>原理就是写入/etc/vconsole.conf文件内容KEYMAP=us
+localectl set-keymap us 
+</code></pre><h3 id="x11">X11</h3>
+<p>在/usr/share/X11/xkb/symbols有个pc文件可以修改映射，网上说可以使用用localectl设置keymap也是us，可惜x11没用这个所以还是直接修改pc文件吧</p>
 
-   keysym Caps_Lock = Control_L
-   keysym Alt_R = Caps_Lock
-
-   add Lock = Caps_Lock
-   add Control = Control_L
-   add mod1 = Alt_R
-</code></pre><ol start="2">
-<li>在用户目录~中添加.xprofile 或者.xinitrc 写入以下内容</li>
-</ol>
-<pre><code>/bin/bash -c &quot;sleep 10; /usr/bin/xmodmap /home/用户名/.Xmodmap&quot;
-# sleep 10是等待x窗口完全启动，不然的话命令不生效
-</code></pre><h4 id="gnome-中的-dconf">GNOME 中的 DCONF</h4>
-<p>dconf 也能修改，这里不做过多的介绍</p>
-<table>
-<thead>
-<tr>
-<th align="right">Option</th>
-<th align="right">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="right">ctrl:nocaps</td>
-<td align="right">Caps Lock as ctrl</td>
-</tr>
-<tr>
-<td align="right">ctrl:lctrl meta</td>
-<td align="right">Left Ctrl as Meta</td>
-</tr>
-<tr>
-<td align="right">ctrl:swapcaps</td>
-<td align="right">Swap Ctrl and Caps Lock</td>
-</tr>
-<tr>
-<td align="right">ctrl:ac ctrl</td>
-<td align="right">At Left of &lsquo;A&rsquo;</td>
-</tr>
-<tr>
-<td align="right">ctrl:aa ctrl</td>
-<td align="right">At bottom left</td>
-</tr>
-<tr>
-<td align="right">ctrl:rctrl ralt</td>
-<td align="right">Right Ctrl as Right Alt</td>
-</tr>
-<tr>
-<td align="right">ctrl:menu rctrl</td>
-<td align="right">Menu as Right Ctrl</td>
-</tr>
-<tr>
-<td align="right">ctrl: ctrl ralt</td>
-<td align="right">Right Alt as Right Ctrl</td>
-</tr>
-</tbody>
-</table>
-<pre><code>dconf write /org/gnome/desktop/input-sources/xkb-options \
-&quot;['esperanto:qwerty','ctrl:swapcaps']&quot;
-</code></pre>
 		</div>
 		<footer class="post__footer">
 			

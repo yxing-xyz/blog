@@ -108,8 +108,8 @@ case "$video" in
 5) pacman -S xf86-video-vesa --needed --noconfirm ;;
 esac
 
-# 安装图形界面 picom 桌面窗口特效 x11剪切板
-pacman -S xorg-server xorg-xinit xllip picom --needed --noconfirm
+# 安装图形界面                     剪切板 窗口特效  合并X11配置
+pacman -S xorg-server xorg-xinit xllip picom xorg-xrdb --needed --noconfirm
 
 # awesome
 pacman -S  awesome --needed --noconfirm
@@ -320,7 +320,7 @@ pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 pacman -S chromium firefox firefox-i18n-zh-cn --needed --noconfirm
 # 字体 
 # pacman -S nerd-fonts-fira-code
-pacman -S  wqy-zenhei wqy-microhei nerd-fonts-complete adobe-source-han-sans-cn-fonts --needed --noconfirm
+pacman -S nerd-fonts-complete adobe-source-han-sans-cn-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
 # 字体
 yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-consolas-with-yahei-powerline-git --needed --noconfirm --force
 # Telegram
