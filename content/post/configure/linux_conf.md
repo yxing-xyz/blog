@@ -318,7 +318,7 @@ pacman -S qv2ray v2ray  proxychains --needed --noconfirm --force
 # 输入法
 pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 # 安装浏览器
-pacman -S chromium firefox firefox-i18n-zh-cn --needed --noconfirm
+pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
 # 字体 
 # pacman -S nerd-fonts-fira-code
 pacman -S nerd-fonts-complete adobe-source-han-sans-cn-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
