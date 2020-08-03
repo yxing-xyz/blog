@@ -146,8 +146,9 @@ pacman -S cloc --needed --noconfirm --force
 pacman -S shellcheck --needed --noconfirm --force
 
 ############# 虚拟机相关 ##############
-# 远程桌面: rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/yx/projects/PQTelWVMP/PQTelVMPDA/app
-pacman -S rdesktop --needed --noconfirm --force
+# x0vncserver -display :0 -passwordfile ~/.vnc/passwd
+# rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/x
+pacman -S tigervnc rdesktop --needed --noconfirm --force
 
 
 ############## 资源监控 ###############
