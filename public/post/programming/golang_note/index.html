@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Golang Note - 落日Ins</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="Golang knowledge points">
+	<meta property="og:title" content="Golang Note" />
+<meta property="og:description" content="Golang knowledge points" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/programming/golang_note/" />
+<meta property="article:published_time" content="2020-08-05T23:08:00+08:00" />
+<meta property="article:modified_time" content="2020-08-05T23:08:00+08:00" />
+
+	
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+	<link rel="stylesheet" href="/css/style.css">
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container">
+		<div class="logo">
+			<a class="logo__link" href="/" title="落日Ins" rel="home">
+				<div class="logo__title">落日Ins</div>
+				<div class="logo__tagline">临渊羡鱼不如退而结网</div>
+			</a>
+		</div>
+		
+<nav class="menu">
+	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
+		<span class="menu__btn-title" tabindex="-1">菜单</span>
+	</button>
+	<ul class="menu__list">
+		<li class="menu__item">
+			<a class="menu__link" href="/about/">
+				
+				<span class="menu__text">About Me</span>
+				
+			</a>
+		</li>
+	</ul>
+</nav>
+
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Golang Note</h1>
+			<p class="post__lead">Golang knowledge points</p>
+			<div class="post__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-08-05T23:08:00&#43;08:00">August 05, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/programming/" rel="category">Programming</a>
+	</span>
+</div></div>
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title">目录</div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#golang-知识点">Golang 知识点</a></li>
+  </ul>
+</nav>
+	</div>
+</div>
+<div class="content post__content clearfix">
+			<h2 id="golang-知识点">Golang 知识点</h2>
+<ul>
+<li>
+<p><strong>全局变量只能用 var 定义可以省略类型,不能用短命名法</strong></p>
+</li>
+<li>
+<p><strong>全局变量类似 C 语言宏定义没有开辟空间不能取址只能数字型(除了 uintptr)、string、bool</strong></p>
+</li>
+<li>
+<p><strong>type 新类型 类型这种方式可以挂方法,type 别名 = 也类似宏定义,不能在包外挂方法,这是和type类型的区别, 可以通过类型转换新类型和旧类型</strong></p>
+</li>
+<li>
+<p><strong>两个接口拥有相同的方法列表，方法次序可以不同，那么他们就是等价可以相互赋值，接口 A 是接口 B 的子级，B 可以赋值给 A</strong></p>
+</li>
+<li>
+<p><strong>类型实现接口如果方法接受者是指针,那么接口变量只能是存储这个类型的指针</strong></p>
+</li>
+<li>
+<p><strong>main 函数不能带参数，不能有返回值，且必须在 main 包中</strong></p>
+</li>
+<li>
+<p><strong>if语句块会遮挡外部定义的变量如命名返回值,导致bug所以变量尽量定义到外面</strong></p>
+</li>
+<li>
+<p><strong>结构体实现接口函数就实现了接口</strong></p>
+</li>
+<li>
+<p><strong>包中可以包含多个 init 函数，先执行导入包的 init 函数，然后 main 包 init，然后 main 函数</strong></p>
+</li>
+<li>
+<p><strong>for 循环不支持逗号隔开赋值，只支持平行赋值</strong></p>
+</li>
+<li>
+<p><strong>for range和闭包和协程很容易出错因为使用副本和指向地址没改变</strong></p>
+</li>
+<li>
+<p><strong>switch 的 case 条件中能出现多个结果选项，case 只有明确 fallthrough 才自动执行下一个且不经过 case 的判断，fallthrough 不能在代码中间，如果 switch 不为空则 case 只能比较相等，如果 switch 为空则 case 能写条件判断</strong></p>
+</li>
+<li>
+<p><strong>数字、字符串、布尔、数组、结构体是值类型，声明默认是值类型的初始值如 0、空字符串、nil</strong></p>
+</li>
+<li>
+<p><strong>slice、map、func、interface、point、chan 是引用类型，声明默认为 nil, 所以他们默认可以和 nil 比较，切忌 slice、map、func 不能比较编译不过，结构体和数组存储这些类型的也比较不了，赋值给空接口比较会 panic。</strong></p>
+</li>
+<li>
+<p><strong>比较类型要类型同样的才能继续比较值（我猜测引用类型比较类型相同然后比较指针值），否则编译不过，或者空接口放这些类型比较有的会抛 panic, slice、map、func 不能比较编译不过</strong></p>
+</li>
+<li>
+<p><strong>slice、map、chan 必须经过 make 初始化才能用，否则 nil 初始值就想当于 NULL 指针段内存错误</strong></p>
+</li>
+<li>
+<p><strong>当切片达到 cap 继续 append 会扩大 cap，小于 1024 会按照 2 倍，超过会 1.25 倍递增扩容</strong></p>
+</li>
+<li>
+<p><strong>append 新增超过 cap 返回扩容的新切片，否则返回旧切片， copy 切片两个切片长度最小为 n 复制右切片 n 长度的值到左边切片， 删除切片中头尾部直接重新切片赋值，中间用 append 或者 copy 来做</strong></p>
+</li>
+<li>
+<p><strong>函数返回值如果只有一个可以只写类型，如果多个必须括号包裹起来，如果返回值中有一命名返回值，其余参数必须全部命名</strong></p>
+</li>
+<li>
+<p><strong>给 nil chan 发送接收都会导致阻塞，可以用来阻塞 main 协程</strong></p>
+</li>
+<li>
+<p><strong>无缓冲的 chan 是同步，有缓冲事异步</strong></p>
+</li>
+<li>
+<p><strong>cap 函数适用数组、切片、通道</strong></p>
+</li>
+<li>
+<p><strong>select随机选取通道执行一次用来处理通道io，除了defalt其他都不要要读写chan, 多次外面加for</strong></p>
+</li>
+<li>
+<p><strong>delete函数用来删除map键值</strong></p>
+</li>
+<li>
+<p><strong>函数和成员和方法名大小写决定包外可见行类似public和private</strong></p>
+</li>
+<li>
+<p><strong>panic只能本协程栈层层返回,所以为了不让程序崩溃所有协程最好defer recover恢复panic, 多次panic只有最后一个panic被recover</strong></p>
+</li>
+<li>
+<p><strong>同一个目录中文件包名只能有一个</strong></p>
+</li>
+<li>
+<p><strong>defer是先进后出,后进先出执行在return之前</strong></p>
+</li>
+<li>
+<p><strong>除了nil任何值返回给接口那么这个接口不再是nil,即使是一个只声明未赋值或者未make初始化的引用类型,主要是go做了很多细节处理,和c不同</strong></p>
+</li>
+<li>
+<p><strong>switch type和.(类型)判断的变量只能是接口</strong></p>
+</li>
+<li>
+<p><strong>iota只能和const使用,每次const中间遇到iota都让他取当前const中的索引值从0开始</strong></p>
+</li>
+</ul>
+
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/syntax/" rel="tag">Syntax</a>
+		</li>
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/golang/" rel="tag">Golang</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
+</main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="落日Ins avatar" src="/img/avatar.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name">关于 落日Ins</span>
+	</div>
+	<div class="authorbox__description">
+		比世人的目光还要可怕的，实际上是你自己那颗在意世人目光的心。——山本文绪
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/programming/c_macro_definition/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<p class="pager__title">C macro definition</p>
+		</a>
+	</div>
+</nav>
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="搜索..." value="" name="q" aria-label="搜索...">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">近期文章</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/programming/golang_note/">Golang Note</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/programming/c_macro_definition/">C macro definition</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/algorithm/character_set_conversion/">Character Set Conversion</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/win/win_utils/">Windows Utils</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/configure/win_conf/">Windows Configuration</a></li>
+		</ul>
+	</div>
+</div>
+<div class="widget-categories widget">
+	<h4 class="widget__title">分类</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/algorithm/">Algorithm</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/devops/">DevOps</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/linux/">Linux</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/programming/">Programming</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/windows/">Windows</a>
+			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%AF%AD%E6%B3%95/">语法</a>
+			</li>
+		</ul>
+	</div>
+</div>
+<div class="widget-taglist widget">
+	<h4 class="widget__title">标签</h4>
+	<div class="widget__content">
+		<a class="widget-taglist__link widget__link btn" href="/tags/algorithm/" title="Algorithm">Algorithm</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/c/" title="C">C</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/centos/" title="Centos">Centos</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/configure/" title="Configure">Configure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="Golang">Golang</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="MarkDown">MarkDown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/shell/" title="Shell">Shell</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/syntax/" title="Syntax">Syntax</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/utils/" title="Utils">Utils</a>
+	</div>
+</div>
+<div class="widget-social widget">
+	<h4 class="widget-social__title widget__title">社交</h4>
+	<div class="widget-social__content widget__content">
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Telegram" rel="noopener noreferrer" href="https://t.me/xyyx_xyz" target="_blank">
+				<svg class="widget-social__link-icon icon icon-telegram" width="24" height="24" viewBox="0 0 132 110"><path fill="#ddd" d="M50 103c-4 0-3-1-5-5L34 60l88-52"/><path fill="#aaa" d="M50 103c3 0 4-1 6-3l16-16-20-12"/><path fill="#fff" d="M52 72l48 36c6 3 10 2 11-5l20-93c2-8-3-11-8-9L7 45c-8 4-8 8-1 10l29 9 69-43c3-2 6-1 4 1"/></svg>
+				<span>Telegram</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="GitHub" rel="noopener noreferrer" href="https://github.com/xyyx-xyz" target="_blank">
+				<svg class="widget-social__link-icon icon icon-github" width="24" height="24" viewBox="0 0 384 374"><path d="m192 0c-106.1 0-192 85.8-192 191.7 0 84.7 55 156.6 131.3 181.9 9.6 1.8 13.1-4.2 13.1-9.2 0-4.6-.2-16.6-.3-32.6-53.4 11.6-64.7-25.7-64.7-25.7-8.7-22.1-21.3-28-21.3-28-17.4-11.9 1.3-11.6 1.3-11.6 19.3 1.4 29.4 19.8 29.4 19.8 17.1 29.3 44.9 20.8 55.9 15.9 1.7-12.4 6.7-20.8 12.2-25.6-42.6-4.8-87.5-21.3-87.5-94.8 0-20.9 7.5-38 19.8-51.4-2-4.9-8.6-24.3 1.9-50.7 0 0 16.1-5.2 52.8 19.7 15.3-4.2 31.7-6.4 48.1-6.5 16.3.1 32.7 2.2 48.1 6.5 36.7-24.8 52.8-19.7 52.8-19.7 10.5 26.4 3.9 45.9 1.9 50.7 12.3 13.4 19.7 30.5 19.7 51.4 0 73.7-44.9 89.9-87.7 94.6 6.9 5.9 13 17.6 13 35.5 0 25.6-.2 46.3-.2 52.6 0 5.1 3.5 11.1 13.2 9.2 76.2-25.5 131.2-97.3 131.2-182 0-105.9-86-191.7-192-191.7z"/></svg>
+				<span>GitHub</span>
+			</a>
+		</div>
+		<div class="widget-social__item widget__item">
+			<a class="widget-social__link widget__link btn" title="Email" href="mailto:yxing.xyz@gmail.com">
+				<svg class="widget-social__link-icon icon icon-mail" width="24" height="24" viewBox="0 0 416 288"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg>
+				<span>yxing.xyz@gmail.com</span>
+			</a>
+		</div>
+
+		
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2020 落日Ins.
+			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>主題</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
+</body>
+</html>

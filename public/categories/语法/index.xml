@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>语法 on 落日Ins</title>
+    <link>/categories/%E8%AF%AD%E6%B3%95/</link>
+    <description>Recent content in 语法 on 落日Ins</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 Apr 1970 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/%E8%AF%AD%E6%B3%95/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MarkDown语法测试</title>
+      <link>/post/test/</link>
+      <pubDate>Wed, 22 Apr 1970 00:00:00 +0000</pubDate>
+      
+      <guid>/post/test/</guid>
+      <description>标题 # 一级标题 ## 二级标题 ### 三级标题 #### 四级标题 ##### 五级标题 ###### 六级标题 段落格式 *斜体文本* _斜体文本_ **粗体文本** __粗体文本__ ***粗斜体文本*** ___粗斜体文本___ 删除线
+斜体文本
+粗体文本
+粗斜体文本
+  引用了某人的一句话
+ 两层嵌套
+ 多层嵌套
+    吃饭  吃早饭     睡觉 打豆豆   文本 1 文本 2 文本 3     姓名 技能 排行     刘备 哭 大哥   关羽 打 二哥   张飞 骂 三弟    function love(you) { if (!</description>
+    </item>
+    
+  </channel>
+</rss>

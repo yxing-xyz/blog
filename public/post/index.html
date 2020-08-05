@@ -11,7 +11,7 @@
 <meta property="og:description" content="Shawn Yu&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/post/" />
-<meta property="og:updated_time" content="2020-05-14T20:06:39+08:00" />
+<meta property="og:updated_time" content="2020-08-05T23:08:00+08:00" />
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -58,6 +58,34 @@
 	<header class="main__header">
 		<h1 class="main__title">Posts</h1>
 	</header><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/programming/golang_note/" rel="bookmark">
+			Golang Note
+			</a>
+		</h3>
+		<p class="list__lead post__lead">Golang knowledge points</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-08-05T23:08:00&#43;08:00">August 05, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/programming/" rel="category">Programming</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Golang 知识点   全局变量只能用 var 定义可以省略类型,不能用短命名法
+  全局变量类似 C 语言宏定义没有开辟空间不能取址只能数字型(除了 uintptr)、string、bool
+  type 新类型 类型这种方式可以挂方法,type 别名 = 也类似宏定义,不能在包外挂方法,这是和type类型的区别, 可以通过类型转换新类型和旧类型
+  两个接口拥有相同的方法列表，方法次序可以不同，那么他们就是等价可以相互赋值，接口 A 是接口 B 的子级，B 可以赋值给 A
+  类型实现接口如果方法接受者是指针,那么接口变量只能是存储这个类型的指针
+  main 函数不能带参数，不能有返回值，且必须在 main 包中
+  if语句块会遮挡外部定义的变量如命名返回值,导致bug所以变量尽量定义到外面
+  结构体实现接口函数就实现了接口
+  包中可以包含多个 init 函数，先执行导入包的 init 函数，然后 main 包 init，然后 main 函数
+  for 循环不支持逗号隔开赋值，只支持平行赋值
+  for range和闭包和协程很容易出错因为使用副本和指向地址没改变
+  switch 的 case 条件中能出现多个结果选项，case 只有明确 fallthrough 才自动执行下一个且不经过 case 的判断，fallthrough 不能在代码中间，如果 switch 不为空则 case 只能比较相等，如果 switch 为空则 case 能写条件判断
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
 			<a href="/post/programming/c_macro_definition/" rel="bookmark">
@@ -224,23 +252,6 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 	<div class="content list__excerpt post__content clearfix">
 		安装 Centos # step 1: 安装必要的一些系统工具 sudo yum install -y yum-utils device-mapper-persistent-data lvm2 # Step 2: 添加软件源信息 sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo # Step 3: 更新并安装 Docker-CE sudo yum makecache fast sudo yum -y install docker-ce pip install docker-compose # Step 4: 启动 sudo systemctl start docker sudo systemctl enable docker Ubuntu # step 1: 安装必要的一些系统工具 sudo apt-get update sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common # step 2: 安装GPG证书 curl -fsSL http://mirrors.
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/programming/data_type/" rel="bookmark">
-			Data Type
-			</a>
-		</h3>
-		<p class="list__lead post__lead">The most basic of a programming language is data type</p>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-06-18T15:20:41&#43;08:00">June 18, 2018</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/programming/" rel="category">Programming</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		C  整形: short int long 数值类型: 浮点类型: float double 基本数据类型: 字符类型: char 空类型(void) 指针类型 构造数据类型: 数组、结构体(struct)、共同体(union)、枚举(enum) GO 数值类型: uintptr (u)int (u)int8 (u)int16 (u)int32 (u)int64 float32 float64 complex64 complex128 byte 别名 uint8 rune 别名 int32 字符串: string 布尔类型： bool 派生类型: 初始值不为nil: array、struct 初始值nil: pointer、function、interface、slice、map、channel JavaScript Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function) Python Number(数字): int、float、bool、complex(复数) String(字符串) List(列表) Tuple(元组) Set(集合) Dictionary(字典) Java 基本数据类型：byte、short、int、long、char、double、boolean 引用类型：类类型、接口类型、数组、null PHP 标量：整数、浮点数、布尔、字符串 复合：数组、对象 特殊：资源、null 
-	</div>
 </article>
 </main>
 
@@ -264,11 +275,11 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/programming/golang_note/">Golang Note</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/programming/c_macro_definition/">C macro definition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/algorithm/character_set_conversion/">Character Set Conversion</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/win/win_utils/">Windows Utils</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/configure/win_conf/">Windows Configuration</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/configure/proxy/">Proxy</a></li>
 		</ul>
 	</div>
 </div>
@@ -291,6 +302,9 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/windows/">Windows</a>
 			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%AF%AD%E6%B3%95/">语法</a>
+			</li>
 		</ul>
 	</div>
 </div>
@@ -302,7 +316,9 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 		<a class="widget-taglist__link widget__link btn" href="/tags/centos/" title="Centos">Centos</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/configure/" title="Configure">Configure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="Golang">Golang</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="MarkDown">MarkDown</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/shell/" title="Shell">Shell</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/syntax/" title="Syntax">Syntax</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/utils/" title="Utils">Utils</a>

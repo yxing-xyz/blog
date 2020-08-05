@@ -3,42 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2020-08-05T23:08:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/golang/</loc>
+    <lastmod>2020-08-05T23:08:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/programming/golang_note/</loc>
+    <lastmod>2020-08-05T23:08:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/</loc>
+    <lastmod>2020-08-05T23:08:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/programming/</loc>
+    <lastmod>2020-08-05T23:08:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/syntax/</loc>
+    <lastmod>2020-08-05T23:08:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-08-05T23:08:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2020-08-05T23:08:00+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/tags/c/</loc>
     <lastmod>2020-05-14T20:06:39+08:00</lastmod>
   </url>
   
   <url>
     <loc>/post/programming/c_macro_definition/</loc>
-    <lastmod>2020-05-14T20:06:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <lastmod>2020-05-14T20:06:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2020-05-14T20:06:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/categories/programming/</loc>
-    <lastmod>2020-05-14T20:06:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/syntax/</loc>
-    <lastmod>2020-05-14T20:06:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-05-14T20:06:39+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/</loc>
     <lastmod>2020-05-14T20:06:39+08:00</lastmod>
   </url>
   
@@ -165,6 +175,21 @@
   <url>
     <loc>/post/linux/centos/</loc>
     <lastmod>2017-07-09T17:32:04+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/markdown/</loc>
+    <lastmod>1970-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/test/</loc>
+    <lastmod>1970-04-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/categories/%E8%AF%AD%E6%B3%95/</loc>
+    <lastmod>1970-04-22T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>

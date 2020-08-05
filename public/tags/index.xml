@@ -6,10 +6,28 @@
     <description>Recent content in Tags on 落日Ins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 14 May 2020 20:06:39 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2020 23:08:00 +0800</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Golang</title>
+      <link>/tags/golang/</link>
+      <pubDate>Wed, 05 Aug 2020 23:08:00 +0800</pubDate>
+      
+      <guid>/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Syntax</title>
+      <link>/tags/syntax/</link>
+      <pubDate>Wed, 05 Aug 2020 23:08:00 +0800</pubDate>
+      
+      <guid>/tags/syntax/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>C</title>
@@ -17,15 +35,6 @@
       <pubDate>Thu, 14 May 2020 20:06:39 +0800</pubDate>
       
       <guid>/tags/c/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Syntax</title>
-      <link>/tags/syntax/</link>
-      <pubDate>Thu, 14 May 2020 20:06:39 +0800</pubDate>
-      
-      <guid>/tags/syntax/</guid>
       <description></description>
     </item>
     
@@ -89,6 +98,15 @@
       <pubDate>Sun, 09 Jul 2017 17:32:04 +0800</pubDate>
       
       <guid>/tags/centos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MarkDown</title>
+      <link>/tags/markdown/</link>
+      <pubDate>Wed, 22 Apr 1970 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/markdown/</guid>
       <description></description>
     </item>
     

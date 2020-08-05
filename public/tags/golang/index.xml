@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on 落日Ins</title>
+    <link>/tags/golang/</link>
+    <description>Recent content in Golang on 落日Ins</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Aug 2020 23:08:00 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Golang Note</title>
+      <link>/post/programming/golang_note/</link>
+      <pubDate>Wed, 05 Aug 2020 23:08:00 +0800</pubDate>
+      
+      <guid>/post/programming/golang_note/</guid>
+      <description>Golang 知识点   全局变量只能用 var 定义可以省略类型,不能用短命名法
+  全局变量类似 C 语言宏定义没有开辟空间不能取址只能数字型(除了 uintptr)、string、bool
+  type 新类型 类型这种方式可以挂方法,type 别名 = 也类似宏定义,不能在包外挂方法,这是和type类型的区别, 可以通过类型转换新类型和旧类型
+  两个接口拥有相同的方法列表，方法次序可以不同，那么他们就是等价可以相互赋值，接口 A 是接口 B 的子级，B 可以赋值给 A
+  类型实现接口如果方法接受者是指针,那么接口变量只能是存储这个类型的指针
+  main 函数不能带参数，不能有返回值，且必须在 main 包中
+  if语句块会遮挡外部定义的变量如命名返回值,导致bug所以变量尽量定义到外面
+  结构体实现接口函数就实现了接口
+  包中可以包含多个 init 函数，先执行导入包的 init 函数，然后 main 包 init，然后 main 函数
+  for 循环不支持逗号隔开赋值，只支持平行赋值
+  for range和闭包和协程很容易出错因为使用副本和指向地址没改变
+  switch 的 case 条件中能出现多个结果选项，case 只有明确 fallthrough 才自动执行下一个且不经过 case 的判断，fallthrough 不能在代码中间，如果 switch 不为空则 case 只能比较相等，如果 switch 为空则 case 能写条件判断</description>
+    </item>
+    
+    <item>
+      <title>Data Type</title>
+      <link>/post/programming/data_type/</link>
+      <pubDate>Mon, 18 Jun 2018 15:20:41 +0800</pubDate>
+      
+      <guid>/post/programming/data_type/</guid>
+      <description>C  整形: short int long 数值类型: 浮点类型: float double 基本数据类型: 字符类型: char 空类型(void) 指针类型 构造数据类型: 数组、结构体(struct)、共同体(union)、枚举(enum) GO 数值类型: uintptr (u)int (u)int8 (u)int16 (u)int32 (u)int64 float32 float64 complex64 complex128 byte 别名 uint8 rune 别名 int32 字符串: string 布尔类型： bool 派生类型: 初始值不为nil: array、struct 初始值nil: pointer、function、interface、slice、map、channel JavaScript Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function) Python Number(数字): int、float、bool、complex(复数) String(字符串) List(列表) Tuple(元组) Set(集合) Dictionary(字典) Java 基本数据类型：byte、short、int、long、char、double、boolean 引用类型：类类型、接口类型、数组、null PHP 标量：整数、浮点数、布尔、字符串 复合：数组、对象 特殊：资源、null </description>
+    </item>
+    
+  </channel>
+</rss>

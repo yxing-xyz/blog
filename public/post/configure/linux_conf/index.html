@@ -201,8 +201,9 @@ pacman -S cloc --needed --noconfirm --force
 pacman -S shellcheck --needed --noconfirm --force
 
 <span style="color:#75715e">############# 虚拟机相关 ##############</span>
-<span style="color:#75715e"># 远程桌面: rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/yx/projects/PQTelWVMP/PQTelVMPDA/app</span>
-pacman -S rdesktop --needed --noconfirm --force
+<span style="color:#75715e"># x0vncserver -display :0 -passwordfile ~/.vnc/passwd</span>
+<span style="color:#75715e"># rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/x</span>
+pacman -S tigervnc rdesktop --needed --noconfirm --force
 
 
 <span style="color:#75715e">############## 资源监控 ###############</span>
@@ -372,7 +373,7 @@ pacman -S qv2ray v2ray  proxychains --needed --noconfirm --force
 <span style="color:#75715e"># 输入法</span>
 pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 <span style="color:#75715e"># 安装浏览器</span>
-pacman -S chromium firefox firefox-i18n-zh-cn --needed --noconfirm
+pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
 <span style="color:#75715e"># 字体</span> 
 <span style="color:#75715e"># pacman -S nerd-fonts-fira-code</span>
 pacman -S nerd-fonts-complete adobe-source-han-sans-cn-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
@@ -458,11 +459,11 @@ pacman -S calibre --needed --noconfirm --force            <span style="color:#75
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/programming/golang_note/">Golang Note</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/programming/c_macro_definition/">C macro definition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/algorithm/character_set_conversion/">Character Set Conversion</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/win/win_utils/">Windows Utils</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/configure/win_conf/">Windows Configuration</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/configure/proxy/">Proxy</a></li>
 		</ul>
 	</div>
 </div>
@@ -485,6 +486,9 @@ pacman -S calibre --needed --noconfirm --force            <span style="color:#75
 			<li class="widget__item">
 				<a class="widget__link" href="/categories/windows/">Windows</a>
 			</li>
+			<li class="widget__item">
+				<a class="widget__link" href="/categories/%E8%AF%AD%E6%B3%95/">语法</a>
+			</li>
 		</ul>
 	</div>
 </div>
@@ -496,7 +500,9 @@ pacman -S calibre --needed --noconfirm --force            <span style="color:#75
 		<a class="widget-taglist__link widget__link btn" href="/tags/centos/" title="Centos">Centos</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/configure/" title="Configure">Configure</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="Golang">Golang</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="MarkDown">MarkDown</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/shell/" title="Shell">Shell</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/syntax/" title="Syntax">Syntax</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/utils/" title="Utils">Utils</a>

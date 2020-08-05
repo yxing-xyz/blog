@@ -6,6 +6,10 @@ categories:
   - "Programming"
 tags:
   - "Syntax"
+  - "C"
+  - "Golang"
+  - "JavaScript"
+
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
 lead: "The most basic of a programming language is data type" # 导读
 authorbox: true

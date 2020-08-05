@@ -4,9 +4,9 @@ title: "MarkDown语法测试"
 date: "1970-04-22"
 description: "MarkDown语法测试"
 categories:
-  # - "语法"
+   - "语法"
 tags:
-  # - "MarkDown"
+  - "MarkDown"
 # menu: main # 置顶位置Options: main, side, footer
 
 # Theme-Defined params
@@ -17,7 +17,7 @@ authorbox: true # Enable authorbox for specific page
 pager: true # Enable pager navigation (prev/next) for specific page
 toc: true # Enable Table of Contents for specific page
 mathjax: true # Enable MathJax for specific page
-draft: true
+draft: false
 ---
 
 ## 标题
@@ -86,6 +86,8 @@ function love(you) {
 
 ![图片](/img/avatar.jpg "图片")
 
-
+- aaaaaaaaaaa
+- bbbbbbbbbbb
+- ccccccccc
 <!-- latex -->
 ![](<http://latex.codecogs.com/gif.latex?\frac{1}{1+sin(x)}>)
