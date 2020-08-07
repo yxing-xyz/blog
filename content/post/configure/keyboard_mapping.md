@@ -19,6 +19,9 @@ draft: false
 
 ## Windows
 Download mapkeyboard, modify it by yourself, and then log out or restart it
+下载  mapkeyboard软件修改然后重启机器
+
+
 
 ## Linux
 Linux has TTY terminal and desktop operation modes

@@ -146,9 +146,11 @@ pacman -S cloc --needed --noconfirm --force
 pacman -S shellcheck --needed --noconfirm --force
 
 ############# 虚拟机相关 ##############
-# x0vncserver -display :0 -passwordfile ~/.vnc/passwd
 # rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/x
-pacman -S tigervnc rdesktop --needed --noconfirm --force
+# x0vncserver -display :0 -passwordfile ~/.vnc/passwd 
+# xfreerdp /bpp:32 /gfx +aero +fonts /d:192.168.44.118 /u:x /p:x /v:192.168.44.118
+#         启动vnc服务端 win远程桌面客户端
+pacman -S tigervnc freerdp --needed --noconfirm --force
 
 
 ############## 资源监控 ###############
