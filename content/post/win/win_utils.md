@@ -15,7 +15,19 @@ mathjax: true
 comments: false
 draft: false
 ---
-
+## CMD关闭防火墙
+要用超级管理权限执行
+```cmd
+::注释 关闭所有防火墙
+netsh advfirewall set allprofiles state off
+::注释 查看防火墙的状态
+netsh advfirewall show allprofiles
+```
+## CMD启动远程桌面
+要用超级管理员权限执行
+```cmd
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal" "Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f
+```
 ## Close security center
 
 ```

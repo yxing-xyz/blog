@@ -72,7 +72,9 @@
 </div></div>
 	</header>
 	<div class="content list__excerpt post__content clearfix">
-		Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到计算机HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services目录中的SecurityHealthService,wscsvc两个目录 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
+		CMD关闭防火墙 要用超级管理权限执行
+::注释 关闭所有防火墙 netsh advfirewall set allprofiles state off ::注释 查看防火墙的状态 netsh advfirewall show allprofiles CMD启动远程桌面 要用超级管理员权限执行
+REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&#34; &#34;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到计算机HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services目录中的SecurityHealthService,wscsvc两个目录 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
  File Directory SymbolLink HardLink Junction  New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir 
 	</div>
 </article><article class="list__item post">
