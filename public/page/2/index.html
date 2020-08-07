@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zh-cn">
 <head>
-	<meta name="generator" content="Hugo 0.74.1" />
+	<meta name="generator" content="Hugo 0.74.3" />
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
 <meta property="og:description" content="Shawn Yu&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
-<meta property="og:updated_time" content="2020-08-05T23:08:00+08:00" />
+<meta property="og:updated_time" content="2020-08-07T21:27:00+08:00" />
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -57,6 +57,28 @@
 			
 <main class="main list" role="main">
 	<article class="list__item post">
+	<figure class="list__thumbnail">
+		<a href="/post/devops/docker/">
+			<img src="/img/docker.png" alt="Docker" />
+		</a>
+	</figure>
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/devops/docker/" rel="bookmark">
+			Docker
+			</a>
+		</h3>
+		<p class="list__lead post__lead">Docker 是一个开放源代码软件，是一个开放平台，用于开发应用、交付（shipping）应用、运行应用。Docker容器 与虚拟机类似，但原理上，容器是将操作系统层虚拟化，虚拟机则是虚拟化硬件，因此容器更具有便携性、高效地利用服务器</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-06-21T14:55:46&#43;08:00">June 21, 2018</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/devops/" rel="category">DevOps</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		安装 Centos # step 1: 安装必要的一些系统工具 sudo yum install -y yum-utils device-mapper-persistent-data lvm2 # Step 2: 添加软件源信息 sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo # Step 3: 更新并安装 Docker-CE sudo yum makecache fast sudo yum -y install docker-ce pip install docker-compose # Step 4: 启动 sudo systemctl start docker sudo systemctl enable docker Ubuntu # step 1: 安装必要的一些系统工具 sudo apt-get update sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common # step 2: 安装GPG证书 curl -fsSL http://mirrors.
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
 			<a href="/post/programming/data_type/" rel="bookmark">
@@ -202,11 +224,11 @@ cd /usr/share/kbd/keymaps/i386/qwerty # 解压键盘map.gz gzip -d us.map.gz # �
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/linux/su_sudo/">The difference between su and sudo in Linux</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/programming/golang_note/">Golang Note</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/programming/c_macro_definition/">C macro definition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/algorithm/character_set_conversion/">Character Set Conversion</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/win/win_utils/">Windows Utils</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/configure/win_conf/">Windows Configuration</a></li>
 		</ul>
 	</div>
 </div>
@@ -245,6 +267,7 @@ cd /usr/share/kbd/keymaps/i386/qwerty # 解压键盘map.gz gzip -d us.map.gz # �
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="Golang">Golang</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="MarkDown">MarkDown</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/shell/" title="Shell">Shell</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/syntax/" title="Syntax">Syntax</a>

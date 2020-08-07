@@ -11,7 +11,7 @@
 <meta property="og:description" content="Shawn Yu&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/post/" />
-<meta property="og:updated_time" content="2020-08-05T23:08:00+08:00" />
+<meta property="og:updated_time" content="2020-08-07T21:27:00+08:00" />
 
 	
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -58,6 +58,31 @@
 	<header class="main__header">
 		<h1 class="main__title">Posts</h1>
 	</header><article class="list__item post">
+	<header class="list__header">
+		<h3 class="list__title post__title ">
+			<a href="/post/linux/su_sudo/" rel="bookmark">
+			The difference between su and sudo in Linux
+			</a>
+		</h3>
+		<p class="list__lead post__lead">The difference between su and sudo in Linux</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-08-07T21:27:00&#43;08:00">August 07, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/linux/" rel="category">Linux</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		su su 是一种切换身份的命令操作,我猜测是解析参数验证用户名密码执行身份的默认 bash,。
+-i 参数是使 shell 成登录 shell,这样就会切换工作目录到$HOME然后重新导入环境变量,换而言之没有这个选项将不会切换工作目录和环境变量,但是有少部分环境变量仍然覆盖如$HOME.
+su 是 su root 简写,
+su -是 su - root 的简写
+su su root su - su - root sudo sudo本身并没有超级用户 root 的权限,它是通过本身命令在文件系统中有 SUID 这个值导致谁执行他都有 root 权限,但是它会校验执行 sudo 的用户是否/etc/sudoers 文件中
+sudo最大的优点是使用用户的密码就能拥有root执行权限,最大的缺点就是可以用root执行权限修改掉root密码如sudo passwd root,所以拥有sudo的权限等于root用户了。所以我能想到的优点就是避免了使用root用户不小心删除别人的文件，因为必须第二次执行重新加sudo来执行，给了你思考的时间，让你不至于root一把唆如rm -rf /
+sudo等于su root然后执行命令
+sudo -i等于su root切换成root
+# 基本使用 sudo ls # 切换root等于su root sudo -i # 有点意思的用法 sudo su sudo su root sudo su - sudo su - root 
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h3 class="list__title post__title ">
 			<a href="/post/programming/golang_note/" rel="bookmark">
@@ -230,28 +255,6 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 	<div class="content list__excerpt post__content clearfix">
 		Arch 安装 #!/usr/bin/env bash  # set -euxo pipefail set -euo pipefail # 获取archlinux源 # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/ # wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/?country=CN ####################### U盘镜像系统 # 下载工具 pacman -S wget curl axel aria2 --needed --noconfirm # 更改源 cp -rf ./etc/pacman.d /etc/ cp -rf ./etc/pacman.conf /etc/ # 更新源 pacman -Ssy # 安装archlinux基本包 pacstrap -i /mnt base base-devel linux linux-firmware # 保存新系统分区表到/mnt/etc/fstab genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab ######################## 切换到新系统 # 切换 arch-chroot /mnt /bin/bash # 添加用户 useradd -g wheel yx printf &#34;yx\nyx\n&#34; | passwd yx &gt; /dev/null 2&gt;&amp;1 # 下载工具 pacman -S wget curl axel aria2 --needed --noconfirm # 更改源 cp -rf .
 	</div>
-</article><article class="list__item post">
-	<figure class="list__thumbnail">
-		<a href="/post/devops/docker/">
-			<img src="/img/docker.png" alt="Docker" />
-		</a>
-	</figure>
-	<header class="list__header">
-		<h3 class="list__title post__title ">
-			<a href="/post/devops/docker/" rel="bookmark">
-			Docker
-			</a>
-		</h3>
-		<p class="list__lead post__lead">Docker 是一个开放源代码软件，是一个开放平台，用于开发应用、交付（shipping）应用、运行应用。Docker容器 与虚拟机类似，但原理上，容器是将操作系统层虚拟化，虚拟机则是虚拟化硬件，因此容器更具有便携性、高效地利用服务器</p>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2018-06-21T14:55:46&#43;08:00">June 21, 2018</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/devops/" rel="category">DevOps</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		安装 Centos # step 1: 安装必要的一些系统工具 sudo yum install -y yum-utils device-mapper-persistent-data lvm2 # Step 2: 添加软件源信息 sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo # Step 3: 更新并安装 Docker-CE sudo yum makecache fast sudo yum -y install docker-ce pip install docker-compose # Step 4: 启动 sudo systemctl start docker sudo systemctl enable docker Ubuntu # step 1: 安装必要的一些系统工具 sudo apt-get update sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common # step 2: 安装GPG证书 curl -fsSL http://mirrors.
-	</div>
 </article>
 </main>
 
@@ -275,11 +278,11 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 	<h4 class="widget__title">近期文章</h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/linux/su_sudo/">The difference between su and sudo in Linux</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/programming/golang_note/">Golang Note</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/programming/c_macro_definition/">C macro definition</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/algorithm/character_set_conversion/">Character Set Conversion</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/win/win_utils/">Windows Utils</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/configure/win_conf/">Windows Configuration</a></li>
 		</ul>
 	</div>
 </div>
@@ -318,6 +321,7 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="Golang">Golang</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="MarkDown">MarkDown</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/shell/" title="Shell">Shell</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/syntax/" title="Syntax">Syntax</a>
