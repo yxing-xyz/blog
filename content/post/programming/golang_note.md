@@ -63,7 +63,7 @@ draft: false
 
 - **cap 函数适用数组、切片、通道**
 
-- **select随机选取通道执行一次用来处理通道io，除了defalt其他都不要要读写chan, 多次外面加for**
+- **select随机选取通道执行一次用来处理通道io，除了defalt其他都必须读写chan, 多次外面加for**
 
 - **delete函数用来删除map键值**
 
