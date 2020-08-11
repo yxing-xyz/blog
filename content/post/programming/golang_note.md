@@ -80,3 +80,69 @@ draft: false
 - **switch type和.(类型)判断的变量只能是接口**
 
 - **iota只能和const使用,每次const中间遇到iota都让他取当前const中的索引值从0开始**
+
+
+## 知识点语法
+### 切片的删除
+```go
+package main
+
+import "fmt"
+
+func main() {
+	RemoveFromStart()
+	fmt.Println()
+	fmt.Println()
+	RemoveFromTail()
+	fmt.Println()
+	fmt.Println()
+	RemoveFromMiddle()
+}
+
+func RemoveFromStart() {
+	fmt.Println("第一种方式.移动数据指针性能生成切片赋值给原变量. 性能最好,而且省内存,未动原内存不影响其他切片或者底层数组")
+	func() {
+		a := []int{0, 1, 2, 3, 4}
+		a = a[1:]
+		fmt.Println(a)
+	}()
+
+	fmt.Println("第二种方式.apend直接将底层的数据结构向开头移动生成新的切片赋值给原变量. 只拷贝操作，只是省内存,移动底层结构会影响其他切片和数组")
+	func() {
+		a := []int{0, 1, 2, 3, 4}
+		a = append(a[:0], a[1:]...) //appen能初始化切片不一定需要make初始化
+		fmt.Println(a)
+	}()
+
+	fmt.Println("第三种方式.copy同append只拷贝到开头，最后需要再切片一次保证底层的切片长度,然后赋值给原变量。优点同append")
+	func() {
+		a := []int{0, 1, 2, 3, 4}
+		a = append(a[:0], a[1:]...)
+		fmt.Println(a)
+	}()
+	fmt.Println("总结：第二第三种都能重新用新切片代替，避免移动了影响到其他切片或者底层数组")
+}
+
+func RemoveFromTail() {
+	fmt.Println("总结：原理和从开头删除一致，参数位置，参数不同罢了")
+}
+
+func RemoveFromMiddle() {
+	fmt.Println("第一种方式.apend直接将底层的数据结构向开头移动生成新的切片赋值给原变量. 只拷贝操作，只是省内存,移动底层结构会影响其他切片和数组")
+	func() {
+		a := []int{0, 1, 2, 3, 4}
+		a = append(a[:2], a[3:]...) //appen能初始化切片不一定需要make初始化
+		fmt.Println(a)
+	}()
+
+	fmt.Println("第二种方式.copy同append只拷贝移动后面部分，最后需要再切片一次保证底层的切片长度,然后赋值给原变量。优点同append")
+	func() {
+		a := []int{0, 1, 2, 3, 4}
+		a = a[0 : 2+copy(a[2:], a[3:])]
+		fmt.Println(a)
+	}()
+
+	fmt.Println("总结：第二第三种都能重新用新切片代替，避免移动了影响到其他切片或者底层数组")
+}
+
+```
