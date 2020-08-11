@@ -23,7 +23,7 @@ draft: false
 
 - **全局变量类似 C 语言宏定义没有开辟空间不能取址只能数字型(除了 uintptr)、string、bool**
 
-- **type 新类型 类型这种方式可以挂方法,type 别名 = 也类似宏定义,不能在包外挂方法,这是和type类型的区别, 可以通过类型转换新类型和旧类型**
+- **type 新类型 类型这种方式可以挂方法,type 别名 = 也类似宏定义,不能在包外挂方法,这是和 type 类型的区别, 可以通过类型转换新类型和旧类型**
 
 - **两个接口拥有相同的方法列表，方法次序可以不同，那么他们就是等价可以相互赋值，接口 A 是接口 B 的子级，B 可以赋值给 A**
 
@@ -31,7 +31,7 @@ draft: false
 
 - **main 函数不能带参数，不能有返回值，且必须在 main 包中**
 
-- **if语句块会遮挡外部定义的变量如命名返回值,导致bug所以变量尽量定义到外面**
+- **if 语句块会遮挡外部定义的变量如命名返回值,导致 bug 所以变量尽量定义到外面**
 
 - **结构体实现接口函数就实现了接口**
 
@@ -39,7 +39,7 @@ draft: false
 
 - **for 循环不支持逗号隔开赋值，只支持平行赋值**
 
-- **for range和闭包和协程很容易出错因为使用副本和指向地址没改变**
+- **for range 和闭包和协程很容易出错因为使用副本和指向地址没改变**
 
 - **switch 的 case 条件中能出现多个结果选项，case 只有明确 fallthrough 才自动执行下一个且不经过 case 的判断，fallthrough 不能在代码中间，如果 switch 不为空则 case 只能比较相等，如果 switch 为空则 case 能写条件判断**
 
@@ -63,28 +63,29 @@ draft: false
 
 - **cap 函数适用数组、切片、通道**
 
-- **select随机选取通道执行一次用来处理通道io，除了defalt其他都必须读写chan, 多次外面加for**
+- **select 随机选取通道执行一次用来处理通道 io，除了 defalt 其他都必须读写 chan, 多次外面加 for**
 
-- **delete函数用来删除map键值**
+- **delete 函数用来删除 map 键值**
 
-- **函数和成员和方法名大小写决定包外可见行类似public和private**
+- **函数和成员和方法名大小写决定包外可见行类似 public 和 private**
 
-- **panic只能本协程栈层层返回,所以为了不让程序崩溃所有协程最好defer recover恢复panic, 多次panic只有最后一个panic被recover**
+- **panic 只能本协程栈层层返回,所以为了不让程序崩溃所有协程最好 defer recover 恢复 panic, 多次 panic 只有最后一个 panic 被 recover**
 
 - **同一个目录中文件包名只能有一个**
 
-- **defer是先进后出,后进先出执行在return之前**
+- **defer 是先进后出,后进先出执行在 return 之前**
 
-- **除了nil任何值返回给接口那么这个接口不再是nil,即使是一个只声明未赋值或者未make初始化的引用类型,主要是go做了很多细节处理,和c不同**
+- **除了 nil 任何值返回给接口那么这个接口不再是 nil,即使是一个只声明未赋值或者未 make 初始化的引用类型,主要是 go 做了很多细节处理,和 c 不同**
 
-- **switch type和.(类型)判断的变量只能是接口**
+- **switch type 和.(类型)判断的变量只能是接口**
 
-- **iota只能和const使用,每次const中间遇到iota都让他取当前const中的索引值从0开始**
-
+- **iota 只能和 const 使用,每次 const 中间遇到 iota 都让他取当前 const 中的索引值从 0 开始**
 
 ## 知识点语法
+
 ### 切片的删除
-```go
+
+````go
 package main
 
 import "fmt"
@@ -145,4 +146,33 @@ func RemoveFromMiddle() {
 	fmt.Println("总结：第二第三种都能重新用新切片代替，避免移动了影响到其他切片或者底层数组")
 }
 
-```
+### Golang阻塞
+
+````go
+// 1.死循环
+	for {}
+
+// 2.空select
+	select{}
+
+// 3.空chan,nil chan
+	var c = make(chan int)
+	c<- // 空chan直到有输入,同步阻塞
+	var d chan int
+	d<- // nil chan 永远阻塞
+
+// 4.sync.Mutex
+	var m sync.Mutex
+	m.Lock()
+	m.Lock()
+
+// 4.sync.WaitGroup
+	var wg sync.WaitGroup
+	wg.Add(1)
+	wg.Wait()
+
+// 6.os.Signal
+	sig := make(chan os.Signal, 2)
+    signal.Notify(sig, syscall.SIGTERM, syscall.SIGINT)
+    <-sig
+````
