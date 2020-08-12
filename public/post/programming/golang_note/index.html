@@ -74,6 +74,7 @@
     <li><a href="#知识点语法">知识点语法</a>
       <ul>
         <li><a href="#切片的删除">切片的删除</a></li>
+        <li><a href="#golang阻塞">Golang阻塞</a></li>
       </ul>
     </li>
   </ul>
@@ -238,11 +239,8 @@
 
 	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;总结：第二第三种都能重新用新切片代替，避免移动了影响到其他切片或者底层数组&#34;</span>)
 }
-
-<span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#a6e22e">Golang阻塞</span>
-
-<span style="color:#e6db74">````</span><span style="color:#66d9ef">go</span>
-<span style="color:#75715e">// 1.死循环
+</code></pre></div><h3 id="golang阻塞">Golang阻塞</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 1.死循环
 </span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> {}
 
 <span style="color:#75715e">// 2.空select
@@ -259,11 +257,23 @@
 	<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Lock</span>()
 	<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">Lock</span>()
 
-<span style="color:#75715e">// 4.sync.WaitGroup
+<span style="color:#75715e">// 5.sync.WaitGroup
 </span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">wg</span> <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>
 	<span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#ae81ff">1</span>)
 	<span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
 
+<span style="color:#75715e">// 5.sync.cond条件变量
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">cond</span> = <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">NewCond</span>(new(<span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">Mutex</span>))
+	<span style="color:#66d9ef">go</span> <span style="color:#66d9ef">func</span>(){
+		<span style="color:#a6e22e">cond</span>.<span style="color:#a6e22e">L</span>.<span style="color:#a6e22e">Lock</span>() <span style="color:#75715e">//获取锁
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// 只有一个协程执行两者之间代码中,到了cond.wait释放了锁,其他协程都能抢占执行这部分中间代码
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">cond</span>.<span style="color:#a6e22e">Wait</span>() <span style="color:#75715e">//等待通知,里面继续抢互斥锁
+</span><span style="color:#75715e"></span>		<span style="color:#75715e">// 收到通知的程序执行代码,同样只有一个协程能执行这段代码,其他收到通知抢占进入执行
+</span><span style="color:#75715e"></span>		<span style="color:#a6e22e">cond</span>.<span style="color:#a6e22e">L</span>.<span style="color:#a6e22e">Unlock</span>() <span style="color:#75715e">//释放锁
+</span><span style="color:#75715e"></span>	}()
+	<span style="color:#a6e22e">cond</span>.<span style="color:#a6e22e">Signal</span>()    <span style="color:#75715e">// 唤醒一个cond继续执行
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">cond</span>.<span style="color:#a6e22e">Broadcast</span>() <span style="color:#75715e">// 唤醒所有的阻塞的cond	
+</span><span style="color:#75715e"></span>
 <span style="color:#75715e">// 6.os.Signal
 </span><span style="color:#75715e"></span>	<span style="color:#a6e22e">sig</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Signal</span>, <span style="color:#ae81ff">2</span>)
     <span style="color:#a6e22e">signal</span>.<span style="color:#a6e22e">Notify</span>(<span style="color:#a6e22e">sig</span>, <span style="color:#a6e22e">syscall</span>.<span style="color:#a6e22e">SIGTERM</span>, <span style="color:#a6e22e">syscall</span>.<span style="color:#a6e22e">SIGINT</span>)

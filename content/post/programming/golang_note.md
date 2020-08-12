@@ -85,7 +85,7 @@ draft: false
 
 ### 切片的删除
 
-````go
+```go
 package main
 
 import "fmt"
@@ -145,10 +145,11 @@ func RemoveFromMiddle() {
 
 	fmt.Println("总结：第二第三种都能重新用新切片代替，避免移动了影响到其他切片或者底层数组")
 }
+```
 
 ### Golang阻塞
 
-````go
+```go
 // 1.死循环
 	for {}
 
@@ -166,13 +167,25 @@ func RemoveFromMiddle() {
 	m.Lock()
 	m.Lock()
 
-// 4.sync.WaitGroup
+// 5.sync.WaitGroup
 	var wg sync.WaitGroup
 	wg.Add(1)
 	wg.Wait()
+
+// 5.sync.cond条件变量
+	var cond = sync.NewCond(new(sync.Mutex))
+	go func(){
+		cond.L.Lock() //获取锁
+		// 只有一个协程执行两者之间代码中,到了cond.wait释放了锁,其他协程都能抢占执行这部分中间代码
+		cond.Wait() //等待通知,里面继续抢互斥锁
+		// 收到通知的程序执行代码,同样只有一个协程能执行这段代码,其他收到通知抢占进入执行
+		cond.L.Unlock() //释放锁
+	}()
+	cond.Signal()    // 唤醒一个cond继续执行
+	cond.Broadcast() // 唤醒所有的阻塞的cond	
 
 // 6.os.Signal
 	sig := make(chan os.Signal, 2)
     signal.Notify(sig, syscall.SIGTERM, syscall.SIGINT)
     <-sig
-````
+```
