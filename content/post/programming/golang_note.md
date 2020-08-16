@@ -19,9 +19,48 @@ draft: false
 
 ## Golang 知识点
 
-- **全局变量只能用 var 定义可以省略类型,不能用短命名法**
+- **声明变量 var 可以不用初始化,var 声明初始化可以省略类型,简短声明左边必须有一个未声明变量且右边必须初始化**
 
-- **全局变量类似 C 语言宏定义没有开辟空间不能取址只能数字型(除了 uintptr)、string、bool**
+```go
+var a, b, c int
+var d = 1
+d, e := 2, "213"
+```
+
+- **全局变量只能用 var 定义可以省略类型,不能用短命名法**
+```go
+var A int = 1
+var B = 1 // 自动推断
+```
+
+- **常量不能重新赋值,不能调用函数因编译期确定,常量有无类型关联默认类型常量如常量字符串,常量 bool,常量数字,也可以带类型常量,带类型常量就不能赋值给别名类型赋值**
+
+```go
+const A = 1
+const C int = 2
+const B = test() // error, 常量是编译期确定
+func test() int{
+	return 1
+}
+func main() {
+	A = 12313 // error, 常量不能赋值
+
+	type MyInt int
+
+	var b MyInt = A // ok, 因为A是无类型关联int类型
+	var b MyInt = C // error报错因为,常量有类型,类型不一样不能赋值
+}
+
+```
+
+- **同一个包里面函数名,接口名,结构体名,全局变量,全局常量不能重名**
+```go
+func A(){} // error
+type A interface{} // error
+type A struct{} // error
+const A // error
+var A int // errro
+```
 
 - **type 新类型 类型这种方式可以挂方法,type 别名 = 也类似宏定义,不能在包外挂方法,这是和 type 类型的区别, 可以通过类型转换新类型和旧类型**
 
@@ -39,19 +78,19 @@ draft: false
 
 - **for 循环不支持逗号隔开赋值，只支持平行赋值**
 
-- **for range 和闭包和协程很容易出错因为使用副本和指向地址没改变**
+- **for range里面的闭包和协程很容易出错因为使用副本和指向地址没改变**
 
 - **switch 的 case 条件中能出现多个结果选项，case 只有明确 fallthrough 才自动执行下一个且不经过 case 的判断，fallthrough 不能在代码中间，如果 switch 不为空则 case 只能比较相等，如果 switch 为空则 case 能写条件判断**
 
-- **数字、字符串、布尔、数组、结构体是值类型，声明默认是值类型的初始值如 0、空字符串、nil**
+- **数字、字符串、布尔、数组、结构体是值类型不能和nil比较，声明默认是值类型的初始值如 0、空字符串、false, 数组和结构体内部存储类型的初始值**
 
-- **slice、map、func、interface、point、chan 是引用类型，声明默认为 nil, 所以他们默认可以和 nil 比较，切忌 slice、map、func 不能比较编译不过，结构体和数组存储这些类型的也比较不了，赋值给空接口比较会 panic。**
+- **Chan、Func、Interface、Map、Ptr、Slice是引用类型，声明默认为 nil, 所以可以和nil比较，切忌Func,Map,Slice不能比较编译不过，结构体和数组存储这些类型的也编译不过**
 
-- **比较类型要类型同样的才能继续比较值（我猜测引用类型比较类型相同然后比较指针值），否则编译不过，或者空接口放这些类型比较有的会抛 panic, slice、map、func 不能比较编译不过**
+- **类型不同比较编译不过,可以用接口忽略类型强行比较,类型不同返回false,切记如果两个接口中存储类型是Func,Map,Slice比较会panic,所以小心接口比较**
 
-- **slice、map、chan 必须经过 make 初始化才能用，否则 nil 初始值就想当于 NULL 指针段内存错误**
+- **Chan,Map,Slice必须经过 make 初始化才能用，否则 nil 初始值就想当于 NULL 指针段内存错误**
 
-- **当切片达到 cap 继续 append 会扩大 cap，小于 1024 会按照 2 倍，超过会 1.25 倍递增扩容**
+- **当切片达到cap容量时继续append 会扩大 cap，小于 1024 会按照 2 倍，超过会 1.25 倍递增扩容**
 
 - **append 新增超过 cap 返回扩容的新切片，否则返回旧切片， copy 切片两个切片长度最小为 n 复制右切片 n 长度的值到左边切片， 删除切片中头尾部直接重新切片赋值，中间用 append 或者 copy 来做**
 
@@ -63,21 +102,26 @@ draft: false
 
 - **cap 函数适用数组、切片、通道**
 
-- **select 随机选取通道执行一次用来处理通道 io，除了 defalt 其他都必须读写 chan, 多次外面加 for**
+- **select随机选取通道执行一次用来处理通道 io，除了 defalt 其他都必须读写 chan, 多次外面操作加for循环,空select阻塞协程**
 
-- **delete 函数用来删除 map 键值**
+- **delete函数用来删除 map 键值**
 
 - **函数和成员和方法名大小写决定包外可见行类似 public 和 private**
 
 - **panic 只能本协程栈层层返回,所以为了不让程序崩溃所有协程最好 defer recover 恢复 panic, 多次 panic 只有最后一个 panic 被 recover**
 
-- **同一个目录中文件包名只能有一个**
+- **同一个文件夹中包名只能有一个,不能出现多个**
 
-- **defer 是先进后出,后进先出执行在 return 之前**
+- **defer后进先出栈结构,执行在return 之前**
 
-- **除了 nil 任何值返回给接口那么这个接口不再是 nil,即使是一个只声明未赋值或者未 make 初始化的引用类型,主要是 go 做了很多细节处理,和 c 不同**
+- **除了nil任何值赋值给接口那么这个接口不再是nil,即使是一个nil初始值的引用类型.
 
-- **switch type 和.(类型)判断的变量只能是接口**
+```go
+var a []int // a是nil
+var c interface{} = a // c不是nil,存储了a
+```
+
+- **switch type 和.(类型)判断只能是接口变量才能编译通过**
 
 - **iota 只能和 const 使用,每次 const 中间遇到 iota 都让他取当前 const 中的索引值从 0 开始**
 
@@ -118,7 +162,7 @@ func RemoveFromStart() {
 	fmt.Println("第三种方式.copy同append只拷贝到开头，最后需要再切片一次保证底层的切片长度,然后赋值给原变量。优点同append")
 	func() {
 		a := []int{0, 1, 2, 3, 4}
-		a = append(a[:0], a[1:]...)
+		a = a[:copy(a, a[1:])]
 		fmt.Println(a)
 	}()
 	fmt.Println("总结：第二第三种都能重新用新切片代替，避免移动了影响到其他切片或者底层数组")
@@ -143,12 +187,11 @@ func RemoveFromMiddle() {
 		fmt.Println(a)
 	}()
 
-	fmt.Println("总结：第二第三种都能重新用新切片代替，避免移动了影响到其他切片或者底层数组")
+	fmt.Println("总结：必须移动后面的到中间去")
 }
 ```
 
-### Golang阻塞
-
+### Golang 阻塞
 ```go
 // 1.死循环
 	for {}
@@ -182,7 +225,7 @@ func RemoveFromMiddle() {
 		cond.L.Unlock() //释放锁
 	}()
 	cond.Signal()    // 唤醒一个cond继续执行
-	cond.Broadcast() // 唤醒所有的阻塞的cond	
+	cond.Broadcast() // 唤醒所有的阻塞的cond
 
 // 6.os.Signal
 	sig := make(chan os.Signal, 2)

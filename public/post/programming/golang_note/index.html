@@ -74,7 +74,7 @@
     <li><a href="#知识点语法">知识点语法</a>
       <ul>
         <li><a href="#切片的删除">切片的删除</a></li>
-        <li><a href="#golang阻塞">Golang阻塞</a></li>
+        <li><a href="#golang-阻塞">Golang 阻塞</a></li>
       </ul>
     </li>
   </ul>
@@ -84,12 +84,43 @@
 <div class="content post__content clearfix">
 			<h2 id="golang-知识点">Golang 知识点</h2>
 <ul>
-<li>
-<p><strong>全局变量只能用 var 定义可以省略类型,不能用短命名法</strong></p>
-</li>
-<li>
-<p><strong>全局变量类似 C 语言宏定义没有开辟空间不能取址只能数字型(除了 uintptr)、string、bool</strong></p>
-</li>
+<li><strong>声明变量 var 可以不用初始化,var 声明初始化可以省略类型,简短声明左边必须有一个未声明变量且右边必须初始化</strong></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">b</span>, <span style="color:#a6e22e">c</span> <span style="color:#66d9ef">int</span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">d</span> = <span style="color:#ae81ff">1</span>
+<span style="color:#a6e22e">d</span>, <span style="color:#a6e22e">e</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">2</span>, <span style="color:#e6db74">&#34;213&#34;</span>
+</code></pre></div><ul>
+<li><strong>全局变量只能用 var 定义可以省略类型,不能用短命名法</strong></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">A</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">B</span> = <span style="color:#ae81ff">1</span> <span style="color:#75715e">// 自动推断
+</span></code></pre></div><ul>
+<li><strong>常量不能重新赋值,不能调用函数因编译期确定,常量有无类型关联默认类型常量如常量字符串,常量 bool,常量数字,也可以带类型常量,带类型常量就不能赋值给别名类型赋值</strong></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">A</span> = <span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">C</span> <span style="color:#66d9ef">int</span> = <span style="color:#ae81ff">2</span>
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">B</span> = <span style="color:#a6e22e">test</span>() <span style="color:#75715e">// error, 常量是编译期确定
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">test</span>() <span style="color:#66d9ef">int</span>{
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>
+}
+<span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+	<span style="color:#a6e22e">A</span> = <span style="color:#ae81ff">12313</span> <span style="color:#75715e">// error, 常量不能赋值
+</span><span style="color:#75715e"></span>
+	<span style="color:#66d9ef">type</span> <span style="color:#a6e22e">MyInt</span> <span style="color:#66d9ef">int</span>
+
+	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#a6e22e">MyInt</span> = <span style="color:#a6e22e">A</span> <span style="color:#75715e">// ok, 因为A是无类型关联int类型
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">b</span> <span style="color:#a6e22e">MyInt</span> = <span style="color:#a6e22e">C</span> <span style="color:#75715e">// error报错因为,常量有类型,类型不一样不能赋值
+</span><span style="color:#75715e"></span>}
+
+</code></pre></div><ul>
+<li><strong>同一个包里面函数名,接口名,结构体名,全局变量,全局常量不能重名</strong></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">A</span>(){} <span style="color:#75715e">// error
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">A</span> <span style="color:#66d9ef">interface</span>{} <span style="color:#75715e">// error
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">A</span> <span style="color:#66d9ef">struct</span>{} <span style="color:#75715e">// error
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">A</span> <span style="color:#75715e">// error
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">A</span> <span style="color:#66d9ef">int</span> <span style="color:#75715e">// errro
+</span></code></pre></div><ul>
 <li>
 <p><strong>type 新类型 类型这种方式可以挂方法,type 别名 = 也类似宏定义,不能在包外挂方法,这是和 type 类型的区别, 可以通过类型转换新类型和旧类型</strong></p>
 </li>
@@ -115,25 +146,25 @@
 <p><strong>for 循环不支持逗号隔开赋值，只支持平行赋值</strong></p>
 </li>
 <li>
-<p><strong>for range 和闭包和协程很容易出错因为使用副本和指向地址没改变</strong></p>
+<p><strong>for range里面的闭包和协程很容易出错因为使用副本和指向地址没改变</strong></p>
 </li>
 <li>
 <p><strong>switch 的 case 条件中能出现多个结果选项，case 只有明确 fallthrough 才自动执行下一个且不经过 case 的判断，fallthrough 不能在代码中间，如果 switch 不为空则 case 只能比较相等，如果 switch 为空则 case 能写条件判断</strong></p>
 </li>
 <li>
-<p><strong>数字、字符串、布尔、数组、结构体是值类型，声明默认是值类型的初始值如 0、空字符串、nil</strong></p>
+<p><strong>数字、字符串、布尔、数组、结构体是值类型不能和nil比较，声明默认是值类型的初始值如 0、空字符串、false, 数组和结构体内部存储类型的初始值</strong></p>
 </li>
 <li>
-<p><strong>slice、map、func、interface、point、chan 是引用类型，声明默认为 nil, 所以他们默认可以和 nil 比较，切忌 slice、map、func 不能比较编译不过，结构体和数组存储这些类型的也比较不了，赋值给空接口比较会 panic。</strong></p>
+<p><strong>Chan、Func、Interface、Map、Ptr、Slice是引用类型，声明默认为 nil, 所以可以和nil比较，切忌Func,Map,Slice不能比较编译不过，结构体和数组存储这些类型的也编译不过</strong></p>
 </li>
 <li>
-<p><strong>比较类型要类型同样的才能继续比较值（我猜测引用类型比较类型相同然后比较指针值），否则编译不过，或者空接口放这些类型比较有的会抛 panic, slice、map、func 不能比较编译不过</strong></p>
+<p><strong>类型不同比较编译不过,可以用接口忽略类型强行比较,类型不同返回false,切记如果两个接口中存储类型是Func,Map,Slice比较会panic,所以小心接口比较</strong></p>
 </li>
 <li>
-<p><strong>slice、map、chan 必须经过 make 初始化才能用，否则 nil 初始值就想当于 NULL 指针段内存错误</strong></p>
+<p><strong>Chan,Map,Slice必须经过 make 初始化才能用，否则 nil 初始值就想当于 NULL 指针段内存错误</strong></p>
 </li>
 <li>
-<p><strong>当切片达到 cap 继续 append 会扩大 cap，小于 1024 会按照 2 倍，超过会 1.25 倍递增扩容</strong></p>
+<p><strong>当切片达到cap容量时继续append 会扩大 cap，小于 1024 会按照 2 倍，超过会 1.25 倍递增扩容</strong></p>
 </li>
 <li>
 <p><strong>append 新增超过 cap 返回扩容的新切片，否则返回旧切片， copy 切片两个切片长度最小为 n 复制右切片 n 长度的值到左边切片， 删除切片中头尾部直接重新切片赋值，中间用 append 或者 copy 来做</strong></p>
@@ -151,10 +182,10 @@
 <p><strong>cap 函数适用数组、切片、通道</strong></p>
 </li>
 <li>
-<p><strong>select 随机选取通道执行一次用来处理通道 io，除了 defalt 其他都必须读写 chan, 多次外面加 for</strong></p>
+<p><strong>select随机选取通道执行一次用来处理通道 io，除了 defalt 其他都必须读写 chan, 多次外面操作加for循环,空select阻塞协程</strong></p>
 </li>
 <li>
-<p><strong>delete 函数用来删除 map 键值</strong></p>
+<p><strong>delete函数用来删除 map 键值</strong></p>
 </li>
 <li>
 <p><strong>函数和成员和方法名大小写决定包外可见行类似 public 和 private</strong></p>
@@ -163,16 +194,20 @@
 <p><strong>panic 只能本协程栈层层返回,所以为了不让程序崩溃所有协程最好 defer recover 恢复 panic, 多次 panic 只有最后一个 panic 被 recover</strong></p>
 </li>
 <li>
-<p><strong>同一个目录中文件包名只能有一个</strong></p>
+<p><strong>同一个文件夹中包名只能有一个,不能出现多个</strong></p>
 </li>
 <li>
-<p><strong>defer 是先进后出,后进先出执行在 return 之前</strong></p>
+<p><strong>defer后进先出栈结构,执行在return 之前</strong></p>
 </li>
 <li>
-<p><strong>除了 nil 任何值返回给接口那么这个接口不再是 nil,即使是一个只声明未赋值或者未 make 初始化的引用类型,主要是 go 做了很多细节处理,和 c 不同</strong></p>
+<p>**除了nil任何值赋值给接口那么这个接口不再是nil,即使是一个nil初始值的引用类型.</p>
 </li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">a</span> []<span style="color:#66d9ef">int</span> <span style="color:#75715e">// a是nil
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">c</span> <span style="color:#66d9ef">interface</span>{} = <span style="color:#a6e22e">a</span> <span style="color:#75715e">// c不是nil,存储了a
+</span></code></pre></div><ul>
 <li>
-<p><strong>switch type 和.(类型)判断的变量只能是接口</strong></p>
+<p><strong>switch type 和.(类型)判断只能是接口变量才能编译通过</strong></p>
 </li>
 <li>
 <p><strong>iota 只能和 const 使用,每次 const 中间遇到 iota 都让他取当前 const 中的索引值从 0 开始</strong></p>
@@ -212,7 +247,7 @@
 	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;第三种方式.copy同append只拷贝到开头，最后需要再切片一次保证底层的切片长度,然后赋值给原变量。优点同append&#34;</span>)
 	<span style="color:#66d9ef">func</span>() {
 		<span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> []<span style="color:#66d9ef">int</span>{<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>}
-		<span style="color:#a6e22e">a</span> = append(<span style="color:#a6e22e">a</span>[:<span style="color:#ae81ff">0</span>], <span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">1</span>:]<span style="color:#f92672">...</span>)
+		<span style="color:#a6e22e">a</span> = <span style="color:#a6e22e">a</span>[:copy(<span style="color:#a6e22e">a</span>, <span style="color:#a6e22e">a</span>[<span style="color:#ae81ff">1</span>:])]
 		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>)
 	}()
 	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;总结：第二第三种都能重新用新切片代替，避免移动了影响到其他切片或者底层数组&#34;</span>)
@@ -237,9 +272,9 @@
 		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">a</span>)
 	}()
 
-	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;总结：第二第三种都能重新用新切片代替，避免移动了影响到其他切片或者底层数组&#34;</span>)
+	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;总结：必须移动后面的到中间去&#34;</span>)
 }
-</code></pre></div><h3 id="golang阻塞">Golang阻塞</h3>
+</code></pre></div><h3 id="golang-阻塞">Golang 阻塞</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#75715e">// 1.死循环
 </span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> {}
 
@@ -272,7 +307,7 @@
 </span><span style="color:#75715e"></span>		<span style="color:#a6e22e">cond</span>.<span style="color:#a6e22e">L</span>.<span style="color:#a6e22e">Unlock</span>() <span style="color:#75715e">//释放锁
 </span><span style="color:#75715e"></span>	}()
 	<span style="color:#a6e22e">cond</span>.<span style="color:#a6e22e">Signal</span>()    <span style="color:#75715e">// 唤醒一个cond继续执行
-</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">cond</span>.<span style="color:#a6e22e">Broadcast</span>() <span style="color:#75715e">// 唤醒所有的阻塞的cond	
+</span><span style="color:#75715e"></span>	<span style="color:#a6e22e">cond</span>.<span style="color:#a6e22e">Broadcast</span>() <span style="color:#75715e">// 唤醒所有的阻塞的cond
 </span><span style="color:#75715e"></span>
 <span style="color:#75715e">// 6.os.Signal
 </span><span style="color:#75715e"></span>	<span style="color:#a6e22e">sig</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Signal</span>, <span style="color:#ae81ff">2</span>)

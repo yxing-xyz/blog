@@ -41,18 +41,22 @@ draft: false
 ## GO
 
 ```
-数值类型:        uintptr (u)int (u)int8 (u)int16 (u)int32 (u)int64
-                float32 float64 complex64 complex128
-                byte 别名 uint8
-                rune 别名 int32
-
-字符串:          string
-
-布尔类型：        bool
+type byte uint8
+type rune int32
+基本类型:
+        数值类型:     
+                整数: Uintptr (U)Int (U)Int8 (U)Int16 (U)int32 (U)int64
+                浮点数: Float32 Float64 
+                复数： Complex64 Complex128
+        字符串类型: String
+        布尔类型: Bool
 
 派生类型:
-  初始值不为nil:  array、struct
-  初始值nil:      pointer、function、interface、slice、map、channel
+  值类型(初始值不为nil): Array、Struct
+  引用类型(初始值为nil): Chan、Func、Interface、Map、Ptr、Slice
+  
+特殊类型:
+  UnsafePointer
 ```
 
 ## JavaScript
