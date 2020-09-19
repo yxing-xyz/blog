@@ -70,8 +70,8 @@ Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Arra
 ```
 Number(数字): int、float、bool、complex(复数)
 String(字符串)
-List(列表)
 Tuple(元组)
+List(列表)
 Set(集合)
 Dictionary(字典)
 ```
