@@ -88,6 +88,7 @@
       <ul>
         <li><a href="#拉取操作系统镜像">拉取操作系统镜像</a></li>
         <li><a href="#镜像列表">镜像列表</a></li>
+        <li><a href="#创建网络">创建网络</a></li>
         <li><a href="#普通模式运行镜像">普通模式运行镜像</a></li>
         <li><a href="#容器和宿主机文件拷贝">容器和宿主机文件拷贝</a></li>
         <li><a href="#停止删除容器和镜像">停止、删除容器和镜像</a></li>
@@ -146,6 +147,9 @@ sudo systemctl restart docker
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker pull centos <span style="color:#75715e"># 镜像可以去docker hub中搜索自己需要的</span>
 </code></pre></div><h3 id="镜像列表">镜像列表</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker images
+</code></pre></div><h3 id="创建网络">创建网络</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker network ls  <span style="color:#75715e"># 查看现在的网络</span>
+docker network create -d bridge mybridge <span style="color:#75715e"># 创建自己的bridge</span>
 </code></pre></div><h3 id="普通模式运行镜像">普通模式运行镜像</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">docker run --rm -dit --name pqcloud-web <span style="color:#ae81ff">\ </span><span style="color:#75715e"># 创建容器名</span>
     -p 8090:8080 <span style="color:#ae81ff">\ </span><span style="color:#75715e"># 宿主机端口:容器内部端口</span>

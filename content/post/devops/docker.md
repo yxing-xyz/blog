@@ -84,6 +84,11 @@ docker pull centos # 镜像可以去docker hub中搜索自己需要的
 ```bash
 docker images
 ```
+### 创建网络
+```bash
+docker network ls  # 查看现在的网络
+docker network create -d bridge mybridge # 创建自己的bridge
+```
 
 ### 普通模式运行镜像
 

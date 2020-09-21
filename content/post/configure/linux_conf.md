@@ -213,7 +213,7 @@ pacman -S bat ccze diff-so-fancy colordiff --noconfirm --needed --force
 pacman -S awk sed grep --needed --noconfirm --force
 
 # SSH
-pacman -S mosh --needed --noconfirm --force
+pacman -S sshpass mosh --needed --noconfirm --force
 # 文件传输 rsync
 pacman -S rsync   --needed --noconfirm --force
 

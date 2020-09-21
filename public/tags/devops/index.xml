@@ -6,11 +6,7 @@
     <description>Recent content in DevOps on 落日Ins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 21 Jun 2018 14:55:46 +0800</lastBuildDate>
-    
-	<atom:link href="/tags/devops/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 21 Jun 2018 14:55:46 +0800</lastBuildDate><atom:link href="/tags/devops/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker</title>
       <link>/post/devops/docker/</link>
