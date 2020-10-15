@@ -310,7 +310,7 @@ pacman -S kicad --needed --noconfirm --force
 ###########
 pacman -S rofi --needed --noconfirm --force                 
 # 截图
-pacman -S flamescrot maim --needed --noconfirm --force      
+pacman -S scrot flamescrot maim --needed --noconfirm --force      
 # 图像预览
 pacman -S feh --noconfirm --force --needed
 
