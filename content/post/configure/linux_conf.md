@@ -174,8 +174,7 @@ pacman -S bmon bwm-ng nload iftop --needed --noconfirm --force
 pacman -S nethogs --needed --noconfirm --force
 
 
-
-##################  网络工具 ##############
+##################  IO工具 ##############
 # ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中
 pacman -S net-tools dnsutils inetutils iproute2 --needed --noconfirm
 # 端口扫描namp、端口netcat、端口数据发送端口转发socat、http测试 nmap -Pn -v -A www.baidu.com  -p 0-10000
@@ -186,7 +185,8 @@ pacman -S iperf mtr --needed --noconfirm --force
 pacman -S iptraf-ng wireshark-qt wireshark-gtk ngrep --needed --noconfirm --force
 # 内网穿透
 pacman -S frp localtunnel ngrok --needed --noconfirm --force
-
+# 文件读写测试
+pacman -S fio --needed --noconfirm --force
 
 
 ################### 终端神器 #####################
@@ -211,80 +211,40 @@ pacman -S ripgrep the_silver_searcher ack --needed --noconfirm --force
 pacman -S bat ccze diff-so-fancy colordiff --noconfirm --needed --force
 # 终端表格、文本三神器
 pacman -S awk sed grep --needed --noconfirm --force
-
-# SSH
+# TERM=screen-256color sshpass -p 'fm09j#Ojiogj32i' ssh -p 2222 -o ServerAliveInterval=60 admin@jumpserver.juewei.com
 pacman -S sshpass mosh --needed --noconfirm --force
-# 文件传输 rsync
-pacman -S rsync   --needed --noconfirm --force
-
 # 查看进度
 pacman -S progress --needed --noconfirm --force
 # 目录树形结构
-pacman -S tree --needed --noconfirm --force
+pacman -S exa tree --needed --noconfirm --force
 # 回收站
 pacman -S trash-cli --needed --noconfirm --force
-
-# 文件读写测试
-pacman -S fio --needed --noconfirm --force
-
-# 监听文件变更运行命令
-pacman -S entr --needed --noconfirm --force
-# 试运行
-yay -S python-maybe --needed --noconfirm --force
-# 终端音乐
-pacman -S cmus --needed --noconfirm --force
-# 终端二维码 echo "http://123.com" | qrencode -o - -t UTF8
-pacman -S qrencode --needed --noconfirm --force
-# youtube、youku下载工具、BT下载工具
-pacman -S transmission-cli you-get youtube-dl --needed --noconfirm --force
-
-# 制作ISO镜像
-pacman -S xorriso mkisolinux --needed --noconfirm --force # xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V "CentOS" -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/
 # 解压软件
 pacman -S p7zip file-roller unrar rar zip unzip-natspec --needed --noconfirm
 # 支持NTFS文件系统
 pacman -S ntfs-3g dosfstools --needed --noconfirm
 # 挂载远程ssh目录
 pacman -S sshfs --needed --noconfirm --force
-
-
+# 终端音乐
+pacman -S cmus --needed --noconfirm --force
+# 终端二维码 echo "http://baidu.com" | qrencode -o - -t UTF8
+pacman -S qrencode --needed --noconfirm --force
+# 局域网的ip二维码上下传文件
+yay -S qrcp-bin --needed --noconfirm --force
 # HTTP代理
 pacman -S squid --needed --noconfirm --force
 # http共享
 sudo npm install -g serve
-
-# 邮件伪造
-pacman -S swaks --needed --noconfirm --force
-# 暴力破解工具
-pacman -S hydra hashcat fcrackzip --needed --noconfirm --force
-
-# cpu限速
-pacman -S cpulimit --needed --noconfirm --force
-# 网络限速
-yay -S wondershaper-git --needed --noconfirm --force
-
+# youtube、youku下载工具、BT下载工具
+pacman -S transmission-cli you-get youtube-dl --needed --noconfirm --force
 # 翻译
 pacman -S translate-shell  --needed --noconfirm --force
-# 翻译
-sudo npm install -g fanyi  # 依赖 festival festvox-kallpc16k
+
 
 # 图片处理
 pacman -S  imagemagick --needed --noconfirm --force
-# 优化svg
-sudo npm install -g svgo
-
 # 终端GIF,终端录屏
 pacman -S asciinema --needed --noconfirm --force
-# 终端GIF
-yay -S ttygif ttyrec --needed --noconfirm --force
-
-# 黑客帝国
-pacman -S cmatrix --needed --noconfirm --force
-# 假装很忙
-yay -S genact hollywood --needed --noconfirm --force
-# 电路图
-yay -S bash-pipes --needed --noconfirm --force
-
 # 文本转图表
 pacman -S graphviz --needed --noconfirm --force
 # 文档转换
@@ -298,23 +258,31 @@ pacman -S figlet --needed --noconfirm --force
 
 # 计算工具
 pacman -S datamash --needed --noconfirm --force
+# 监听文件变更运行命令
+pacman -S entr --needed --noconfirm --force
+# 文件传输 rsync
+pacman -S rsync  --needed --noconfirm --force
 
-# 开源CAD
-pacman -S kicad --needed --noconfirm --force
 
-
+# cpu限速
+pacman -S cpulimit --needed --noconfirm --force
+# 网络限速
+yay -S wondershaper-git --needed --noconfirm --force
+# 邮件伪造
+pacman -S swaks --needed --noconfirm --force
+# 暴力破解工具
+pacman -S hydra hashcat fcrackzip --needed --noconfirm --force
+# 制作ISO镜像
+# xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V "CentOS" -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/
+pacman -S xorriso mkisolinux --needed --noconfirm --force 
 
 ############### GUI  ###########
-###########
-# awesome
-###########
+# 启动工具
 pacman -S rofi --needed --noconfirm --force                 
 # 截图
 pacman -S scrot flamescrot maim --needed --noconfirm --force      
 # 图像预览
 pacman -S feh --noconfirm --force --needed
-
-
 # proxy
 pacman -S qv2ray v2ray  proxychains --needed --noconfirm --force
 # 输入法
@@ -322,14 +290,13 @@ pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 # 安装浏览器
 pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
 # 字体 
-# pacman -S nerd-fonts-fira-code
 pacman -S nerd-fonts-complete adobe-source-han-sans-cn-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
 # 字体
 yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-consolas-with-yahei-powerline-git --needed --noconfirm --force
 # Telegram
 pacman -S telegram-desktop --needed --noconfirm --force
 # 影音播放
-pacman -S vlc  mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
+pacman -S vlc mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
 # 下载
 pacman -S qbittorrent amule --needed --noconfirm --force
 # FTP
@@ -347,4 +314,28 @@ pacman -S blender --needed --noconfirm --force            #3D工具
 pacman -S evince foxitreader --needed --noconfirm --force # PDF
 pacman -S kchmviewer --needed --noconfirm --force         # CHM
 pacman -S calibre --needed --noconfirm --force            # 图书转换器
+# 开源CAD
+pacman -S kicad --needed --noconfirm --force
+```
+
+## Linux Xorg
+```bash
+# 电池
+upower -i `upower -e | grep 'BAT'` # 查看电池信息
+acpi -v # 查看电池信息
+acpi -a # 充电状态
+acpi -t # 电池温度
+
+# 输入设备
+xinput # 查看输入设备列表
+xinput disable 15 # 禁用设备
+xinput enable  15 # 启动设备
+xinput list-props 15 # 查看设备属性
+xinput set-prop 15 298 -0.5 # 设置设备属性
+
+# 关闭显示器电源
+xset dpms force off
+
+# 设置键盘频率
+xset rate 200 30
 ```

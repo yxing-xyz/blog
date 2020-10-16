@@ -6,7 +6,25 @@
     <description>Recent content on 落日Ins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2020 21:27:00 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 16 Oct 2020 15:28:00 +0800</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Map electronic fence</title>
+      <link>/post/algorithm/map_electronic_fence/</link>
+      <pubDate>Fri, 16 Oct 2020 15:28:00 +0800</pubDate>
+      
+      <guid>/post/algorithm/map_electronic_fence/</guid>
+      <description>地图围栏算法 &amp;lt;?php $b = [ [ 120,30 ], [ 110,10 ], [ 130,10 ] ]; var_dump(isPointInPolygon($b, 120, 28)); var_dump(isPointInPolygon($b, 120, 29.999999999)); /** * 判断经纬度是否落在缩小50米的多边形里 */ function isPointInPolygon($polygon, $lng, $lat) { $count = count($polygon); if($count &amp;lt; 3) return false; // 不能构成多边形  $y = $lng; // 地址点经度  $x = $lat; // 地址点的纬度  $flag = false; // 射线奇在偶不在  for($i=0, $j=$count-1; $i&amp;lt;$count; $j = $i++) { $y_ = $polygon[$j][0]; //点a的经度  $x_ = $polygon[$j][1]; //点a的纬度  $_y = $polygon[$i][0]; //点b的经度  $_x = $polygon[$i][1]; //点b的纬度  if( $y == $y_ &amp;amp;&amp;amp; $x == $x_ || $y == $_y &amp;amp;&amp;amp; $x == $_x) { $flag = true; //位于围栏点上  break; } //不能两边取=号，因为垂直线段不进入if判断奇偶  if ($y_ &amp;lt; $y &amp;amp;&amp;amp; $y &amp;lt;= $_y || $_y &amp;lt; $y &amp;amp;&amp;amp; $y &amp;lt;= $y_) { $tmp_x = $_x + ($y - $_y) * ($x_ - $_x) / ($y_ - $_y); if($tmp_x == $x) { // 位于线段的点上，肯定在围栏里  $flag = true; break; } if($tmp_x &amp;gt; $x) { // 位于线段之下，还需要进一步判断  $flag = !</description>
+    </item>
+    
+    <item>
+      <title>Redis notes</title>
+      <link>/post/programming/redis_note/</link>
+      <pubDate>Fri, 16 Oct 2020 10:16:00 +0800</pubDate>
+      
+      <guid>/post/programming/redis_note/</guid>
+      <description>Redis notes # 连接 redis-cli -h host -p port -a &amp;#39;password&amp;#39; # 地图经纬度半径查询 GEORADIUS SHOP:COORDINATES 112.936512 28.210319 5000 m WITHCOORD WITHDIST COUNT 20 ASC # 模糊搜索KEY KEYS user_id_* # 模糊清楚KEY redis-cli -h &amp;#39;host&amp;#39; -p port -a &amp;#39;password&amp;#39; KEYS shop_fence_* | xargs redis-cli -h &amp;#39;host&amp;#39; -p port -a &amp;#39;stA#@upid&amp;amp;&amp;#39; DEL # 查看KEY有效期 TTL key_name </description>
+    </item>
+    
     <item>
       <title>The difference between su and sudo in Linux</title>
       <link>/post/linux/su_sudo/</link>

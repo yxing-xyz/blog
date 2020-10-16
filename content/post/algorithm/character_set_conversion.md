@@ -5,9 +5,9 @@ lead: "Character Set Conversion" # 导读
 
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
 categories:
-  - ""
+  - "Algorithm"
 tags:
-  - ""
+  - "Algorithm"
 authorbox: true
 pager: true
 toc: true

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-js" lang="zh-cn">
+<html class="no-js" lang="en-us">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,7 +41,7 @@
 		
 <nav class="menu">
 	<button class="menu__btn" aria-haspopup="true" aria-expanded="false" tabindex="0">
-		<span class="menu__btn-title" tabindex="-1">菜单</span>
+		<span class="menu__btn-title" tabindex="-1"></span>
 	</button>
 	<ul class="menu__list">
 		<li class="menu__item">
@@ -71,12 +71,13 @@
 </div></div>
 		</header>
 <div class="post__toc toc">
-	<div class="toc__title">目录</div>
+	<div class="toc__title"></div>
 	<div class="toc__menu">
 		<nav id="TableOfContents">
   <ul>
     <li><a href="#arch-安装">Arch 安装</a></li>
     <li><a href="#arch-初始化">Arch 初始化</a></li>
+    <li><a href="#linux-xorg">Linux Xorg</a></li>
   </ul>
 </nav>
 	</div>
@@ -234,8 +235,7 @@ pacman -S bmon bwm-ng nload iftop --needed --noconfirm --force
 pacman -S nethogs --needed --noconfirm --force
 
 
-
-<span style="color:#75715e">##################  网络工具 ##############</span>
+<span style="color:#75715e">##################  IO工具 ##############</span>
 <span style="color:#75715e"># ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中</span>
 pacman -S net-tools dnsutils inetutils iproute2 --needed --noconfirm
 <span style="color:#75715e"># 端口扫描namp、端口netcat、端口数据发送端口转发socat、http测试 nmap -Pn -v -A www.baidu.com  -p 0-10000</span>
@@ -246,7 +246,8 @@ pacman -S iperf mtr --needed --noconfirm --force
 pacman -S iptraf-ng wireshark-qt wireshark-gtk ngrep --needed --noconfirm --force
 <span style="color:#75715e"># 内网穿透</span>
 pacman -S frp localtunnel ngrok --needed --noconfirm --force
-
+<span style="color:#75715e"># 文件读写测试</span>
+pacman -S fio --needed --noconfirm --force
 
 
 <span style="color:#75715e">################### 终端神器 #####################</span>
@@ -271,80 +272,40 @@ pacman -S ripgrep the_silver_searcher ack --needed --noconfirm --force
 pacman -S bat ccze diff-so-fancy colordiff --noconfirm --needed --force
 <span style="color:#75715e"># 终端表格、文本三神器</span>
 pacman -S awk sed grep --needed --noconfirm --force
-
-<span style="color:#75715e"># SSH</span>
+<span style="color:#75715e"># TERM=screen-256color sshpass -p &#39;fm09j#Ojiogj32i&#39; ssh -p 2222 -o ServerAliveInterval=60 admin@jumpserver.juewei.com</span>
 pacman -S sshpass mosh --needed --noconfirm --force
-<span style="color:#75715e"># 文件传输 rsync</span>
-pacman -S rsync   --needed --noconfirm --force
-
 <span style="color:#75715e"># 查看进度</span>
 pacman -S progress --needed --noconfirm --force
 <span style="color:#75715e"># 目录树形结构</span>
-pacman -S tree --needed --noconfirm --force
+pacman -S exa tree --needed --noconfirm --force
 <span style="color:#75715e"># 回收站</span>
 pacman -S trash-cli --needed --noconfirm --force
-
-<span style="color:#75715e"># 文件读写测试</span>
-pacman -S fio --needed --noconfirm --force
-
-<span style="color:#75715e"># 监听文件变更运行命令</span>
-pacman -S entr --needed --noconfirm --force
-<span style="color:#75715e"># 试运行</span>
-yay -S python-maybe --needed --noconfirm --force
-<span style="color:#75715e"># 终端音乐</span>
-pacman -S cmus --needed --noconfirm --force
-<span style="color:#75715e"># 终端二维码 echo &#34;http://123.com&#34; | qrencode -o - -t UTF8</span>
-pacman -S qrencode --needed --noconfirm --force
-<span style="color:#75715e"># youtube、youku下载工具、BT下载工具</span>
-pacman -S transmission-cli you-get youtube-dl --needed --noconfirm --force
-
-<span style="color:#75715e"># 制作ISO镜像</span>
-pacman -S xorriso mkisolinux --needed --noconfirm --force <span style="color:#75715e"># xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V &#34;CentOS&#34; -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/</span>
 <span style="color:#75715e"># 解压软件</span>
 pacman -S p7zip file-roller unrar rar zip unzip-natspec --needed --noconfirm
 <span style="color:#75715e"># 支持NTFS文件系统</span>
 pacman -S ntfs-3g dosfstools --needed --noconfirm
 <span style="color:#75715e"># 挂载远程ssh目录</span>
 pacman -S sshfs --needed --noconfirm --force
-
-
+<span style="color:#75715e"># 终端音乐</span>
+pacman -S cmus --needed --noconfirm --force
+<span style="color:#75715e"># 终端二维码 echo &#34;http://baidu.com&#34; | qrencode -o - -t UTF8</span>
+pacman -S qrencode --needed --noconfirm --force
+<span style="color:#75715e"># 局域网的ip二维码上下传文件</span>
+yay -S qrcp-bin --needed --noconfirm --force
 <span style="color:#75715e"># HTTP代理</span>
 pacman -S squid --needed --noconfirm --force
 <span style="color:#75715e"># http共享</span>
 sudo npm install -g serve
-
-<span style="color:#75715e"># 邮件伪造</span>
-pacman -S swaks --needed --noconfirm --force
-<span style="color:#75715e"># 暴力破解工具</span>
-pacman -S hydra hashcat fcrackzip --needed --noconfirm --force
-
-<span style="color:#75715e"># cpu限速</span>
-pacman -S cpulimit --needed --noconfirm --force
-<span style="color:#75715e"># 网络限速</span>
-yay -S wondershaper-git --needed --noconfirm --force
-
+<span style="color:#75715e"># youtube、youku下载工具、BT下载工具</span>
+pacman -S transmission-cli you-get youtube-dl --needed --noconfirm --force
 <span style="color:#75715e"># 翻译</span>
 pacman -S translate-shell  --needed --noconfirm --force
-<span style="color:#75715e"># 翻译</span>
-sudo npm install -g fanyi  <span style="color:#75715e"># 依赖 festival festvox-kallpc16k</span>
+
 
 <span style="color:#75715e"># 图片处理</span>
 pacman -S  imagemagick --needed --noconfirm --force
-<span style="color:#75715e"># 优化svg</span>
-sudo npm install -g svgo
-
 <span style="color:#75715e"># 终端GIF,终端录屏</span>
 pacman -S asciinema --needed --noconfirm --force
-<span style="color:#75715e"># 终端GIF</span>
-yay -S ttygif ttyrec --needed --noconfirm --force
-
-<span style="color:#75715e"># 黑客帝国</span>
-pacman -S cmatrix --needed --noconfirm --force
-<span style="color:#75715e"># 假装很忙</span>
-yay -S genact hollywood --needed --noconfirm --force
-<span style="color:#75715e"># 电路图</span>
-yay -S bash-pipes --needed --noconfirm --force
-
 <span style="color:#75715e"># 文本转图表</span>
 pacman -S graphviz --needed --noconfirm --force
 <span style="color:#75715e"># 文档转换</span>
@@ -358,23 +319,31 @@ pacman -S figlet --needed --noconfirm --force
 
 <span style="color:#75715e"># 计算工具</span>
 pacman -S datamash --needed --noconfirm --force
+<span style="color:#75715e"># 监听文件变更运行命令</span>
+pacman -S entr --needed --noconfirm --force
+<span style="color:#75715e"># 文件传输 rsync</span>
+pacman -S rsync  --needed --noconfirm --force
 
-<span style="color:#75715e"># 开源CAD</span>
-pacman -S kicad --needed --noconfirm --force
 
-
+<span style="color:#75715e"># cpu限速</span>
+pacman -S cpulimit --needed --noconfirm --force
+<span style="color:#75715e"># 网络限速</span>
+yay -S wondershaper-git --needed --noconfirm --force
+<span style="color:#75715e"># 邮件伪造</span>
+pacman -S swaks --needed --noconfirm --force
+<span style="color:#75715e"># 暴力破解工具</span>
+pacman -S hydra hashcat fcrackzip --needed --noconfirm --force
+<span style="color:#75715e"># 制作ISO镜像</span>
+<span style="color:#75715e"># xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V &#34;CentOS&#34; -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/</span>
+pacman -S xorriso mkisolinux --needed --noconfirm --force 
 
 <span style="color:#75715e">############### GUI  ###########</span>
-<span style="color:#75715e">###########</span>
-<span style="color:#75715e"># awesome</span>
-<span style="color:#75715e">###########</span>
+<span style="color:#75715e"># 启动工具</span>
 pacman -S rofi --needed --noconfirm --force                 
 <span style="color:#75715e"># 截图</span>
 pacman -S scrot flamescrot maim --needed --noconfirm --force      
 <span style="color:#75715e"># 图像预览</span>
 pacman -S feh --noconfirm --force --needed
-
-
 <span style="color:#75715e"># proxy</span>
 pacman -S qv2ray v2ray  proxychains --needed --noconfirm --force
 <span style="color:#75715e"># 输入法</span>
@@ -382,14 +351,13 @@ pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 <span style="color:#75715e"># 安装浏览器</span>
 pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
 <span style="color:#75715e"># 字体 </span>
-<span style="color:#75715e"># pacman -S nerd-fonts-fira-code</span>
 pacman -S nerd-fonts-complete adobe-source-han-sans-cn-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
 <span style="color:#75715e"># 字体</span>
 yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-consolas-with-yahei-powerline-git --needed --noconfirm --force
 <span style="color:#75715e"># Telegram</span>
 pacman -S telegram-desktop --needed --noconfirm --force
 <span style="color:#75715e"># 影音播放</span>
-pacman -S vlc  mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
+pacman -S vlc mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
 <span style="color:#75715e"># 下载</span>
 pacman -S qbittorrent amule --needed --noconfirm --force
 <span style="color:#75715e"># FTP</span>
@@ -407,6 +375,27 @@ pacman -S blender --needed --noconfirm --force            <span style="color:#75
 pacman -S evince foxitreader --needed --noconfirm --force <span style="color:#75715e"># PDF</span>
 pacman -S kchmviewer --needed --noconfirm --force         <span style="color:#75715e"># CHM</span>
 pacman -S calibre --needed --noconfirm --force            <span style="color:#75715e"># 图书转换器</span>
+<span style="color:#75715e"># 开源CAD</span>
+pacman -S kicad --needed --noconfirm --force
+</code></pre></div><h2 id="linux-xorg">Linux Xorg</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 电池</span>
+upower -i <span style="color:#e6db74">`</span>upower -e | grep <span style="color:#e6db74">&#39;BAT&#39;</span><span style="color:#e6db74">`</span> <span style="color:#75715e"># 查看电池信息</span>
+acpi -v <span style="color:#75715e"># 查看电池信息</span>
+acpi -a <span style="color:#75715e"># 充电状态</span>
+acpi -t <span style="color:#75715e"># 电池温度</span>
+
+<span style="color:#75715e"># 输入设备</span>
+xinput <span style="color:#75715e"># 查看输入设备列表</span>
+xinput disable <span style="color:#ae81ff">15</span> <span style="color:#75715e"># 禁用设备</span>
+xinput enable  <span style="color:#ae81ff">15</span> <span style="color:#75715e"># 启动设备</span>
+xinput list-props <span style="color:#ae81ff">15</span> <span style="color:#75715e"># 查看设备属性</span>
+xinput set-prop <span style="color:#ae81ff">15</span> <span style="color:#ae81ff">298</span> -0.5 <span style="color:#75715e"># 设置设备属性</span>
+
+<span style="color:#75715e"># 关闭显示器电源</span>
+xset dpms force off
+
+<span style="color:#75715e"># 设置键盘频率</span>
+xset rate <span style="color:#ae81ff">200</span> <span style="color:#ae81ff">30</span>
 </code></pre></div>
 		</div>
 		<footer class="post__footer">
@@ -438,13 +427,13 @@ pacman -S calibre --needed --noconfirm --force            <span style="color:#75
 <nav class="pager flex">
 	<div class="pager__item pager__item--prev">
 		<a class="pager__link" href="/post/devops/docker/" rel="prev">
-			<span class="pager__subtitle">«&thinsp;上一篇</span>
+			<span class="pager__subtitle">«&thinsp;</span>
 			<p class="pager__title">Docker</p>
 		</a>
 	</div>
 	<div class="pager__item pager__item--next">
 		<a class="pager__link" href="/post/programming/js_utils/" rel="next">
-			<span class="pager__subtitle">下一篇&thinsp;»</span>
+			<span class="pager__subtitle">&thinsp;»</span>
 			<p class="pager__title">JavaScript Utils</p>
 		</a>
 	</div>
@@ -455,26 +444,26 @@ pacman -S calibre --needed --noconfirm --force            <span style="color:#75
 			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
-			<input class="widget-search__field" type="search" placeholder="搜索..." value="" name="q" aria-label="搜索...">
+			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
 		</label>
 		<input class="widget-search__submit" type="submit" value="Search">
 		<input type="hidden" name="sitesearch" value="/" />
 	</form>
 </div>
 <div class="widget-recent widget">
-	<h4 class="widget__title">近期文章</h4>
+	<h4 class="widget__title"></h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/algorithm/map_electronic_fence/">Map electronic fence</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/programming/redis_note/">Redis notes</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/linux/su_sudo/">The difference between su and sudo in Linux</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/programming/golang_note/">Golang Note</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/programming/c_macro_definition/">C macro definition</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/algorithm/character_set_conversion/">Character Set Conversion</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/win/win_utils/">Windows Utils</a></li>
 		</ul>
 	</div>
 </div>
 <div class="widget-categories widget">
-	<h4 class="widget__title">分类</h4>
+	<h4 class="widget__title"></h4>
 	<div class="widget__content">
 		<ul class="widget__list">
 			<li class="widget__item">
@@ -499,7 +488,7 @@ pacman -S calibre --needed --noconfirm --force            <span style="color:#75
 	</div>
 </div>
 <div class="widget-taglist widget">
-	<h4 class="widget__title">标签</h4>
+	<h4 class="widget__title"></h4>
 	<div class="widget__content">
 		<a class="widget-taglist__link widget__link btn" href="/tags/algorithm/" title="Algorithm">Algorithm</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/c/" title="C">C</a>
@@ -510,13 +499,14 @@ pacman -S calibre --needed --noconfirm --force            <span style="color:#75
 		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/linux/" title="Linux">Linux</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/markdown/" title="MarkDown">MarkDown</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/redis/" title="Redis">Redis</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/shell/" title="Shell">Shell</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/syntax/" title="Syntax">Syntax</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/utils/" title="Utils">Utils</a>
 	</div>
 </div>
 <div class="widget-social widget">
-	<h4 class="widget-social__title widget__title">社交</h4>
+	<h4 class="widget-social__title widget__title"></h4>
 	<div class="widget-social__content widget__content">
 		<div class="widget-social__item widget__item">
 			<a class="widget-social__link widget__link btn" title="Telegram" rel="noopener noreferrer" href="https://t.me/xyyx_xyz" target="_blank">
@@ -547,7 +537,7 @@ pacman -S calibre --needed --noconfirm --force            <span style="color:#75
 		
 		<div class="footer__copyright">
 			&copy; 2020 落日Ins.
-			<span class="footer__copyright-credits">基于 <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> 引擎和 <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a>主題</span>
+			<span class="footer__copyright-credits"></span>
 		</div>
 	</div>
 </footer>

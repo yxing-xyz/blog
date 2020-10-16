@@ -2,7 +2,7 @@
 baseurl = "/"
 title = "落日Ins"
 LanguageCode = "en-us"
-defaultContentLanguage = "zh-cn"
+defaultContentLanguage = "en-us"
 paginate = "10" # Number of posts per page
 theme = "mainroad"
 disqusShortname = "" # Enable comments by entering your Disqus shortname
