@@ -317,15 +317,16 @@ pacman -S calibre --needed --noconfirm --force            # 图书转换器
 # 开源CAD
 pacman -S kicad --needed --noconfirm --force
 ```
+## ArchLinux
+```bash
+# 构建包,在PKGBUILD目录下执行
+makepkg
+# 安装构建包
+pacman -U ./构建包名
+```
 
 ## Linux Xorg
 ```bash
-# 电池
-upower -i `upower -e | grep 'BAT'` # 查看电池信息
-acpi -v # 查看电池信息
-acpi -a # 充电状态
-acpi -t # 电池温度
-
 # 输入设备
 xinput # 查看输入设备列表
 xinput disable 15 # 禁用设备
@@ -336,6 +337,15 @@ xinput set-prop 15 298 -0.5 # 设置设备属性
 # 关闭显示器电源
 xset dpms force off
 
+# 电池
+upower -i `upower -e | grep 'BAT'` # 查看电池信息
+acpi -v # 查看电池信息
+acpi -a # 充电状态
+acpi -t # 电池温度
+
 # 设置键盘频率
 xset rate 200 30
+
+# 查看x窗口资源属性
+xprop
 ```
