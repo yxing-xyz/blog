@@ -16,118 +16,22 @@ comments: false
 draft: false
 ---
 
-## Arch 安装
-
+## Arch 软件包
 ```bash
 #!/usr/bin/env bash
-
 # set -euxo pipefail
 set -euo pipefail
-
-# 获取archlinux源
-# wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/
-# wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/?country=CN
-
-####################### U盘镜像系统
-# 下载工具
-pacman -S wget curl axel aria2 --needed --noconfirm
-# 更改源
-cp -rf ./etc/pacman.d /etc/
-cp -rf ./etc/pacman.conf /etc/
-# 更新源
-pacman -Ssy
-# 安装archlinux基本包
-pacstrap -i /mnt base base-devel linux linux-firmware
-# 保存新系统分区表到/mnt/etc/fstab
-genfstab -U -p /mnt >> /mnt/etc/fstab
-
-######################## 切换到新系统
-# 切换
-arch-chroot /mnt /bin/bash
-
-# 添加用户
-useradd -g wheel yx
-printf "yx\nyx\n" | passwd yx > /dev/null 2>&1
-
-# 下载工具
-pacman -S wget curl axel aria2 --needed --noconfirm
-# 更改源
-cp -rf ./etc/pacman.d /etc/
-cp -rf ./etc/pacman.conf /etc/
-
-# 生成本地化信息
-# 下载语言包
-echo "zh_CN.UTF-8 UTF-8
-en_US.UTF-8 UTF-8
-" >>/etc/locale.gen
-locale-gen
-# echo "LANG=zh_CN.UTF-8" >>/etc/locale.conf
-localectl set-locale LANG=zh_CN.utf8
-
-# 时区
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-# 默认为 UTC 时间，如需设置为本地时间，请执行：
-# hwclock --systohc --localtime
-hwclock --systohc
-mkinitcpio -p linux
-
-# mbr grub引导
-# 使用eth0网卡
-sed -i 's/^GRUB_CMDLINE_LINUX_DEFAULT.*/GRUB_CMDLINE_LINUX_DEFAULT="quiet net.ifnames=0 biosdevname=0"/g' /etc/default/grub
-grub-mkconfig -o /boot/ESP/grub/grub.cfg
-
-# 自启动网卡
-# ip link
-# echo "请输入网卡名:"
-# read ip_link
-# systemctl enable dhcpcd@"$ip_link".service
-systemctl enable dhcpcd
-
+################################
+# 安装图形界面                     剪切板 窗口特效 合并X11配置
+pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel--needed --noconfirm
+# awesome
+pacman -S awesome --needed --noconfirm
 # 导入CPG key/
 pacman -S archlinux-keyring --needed --noconfirm
 pacman -S archlinuxcn-keyring --needed --noconfirm
+# 安装 yay       降级
+pacman -Syu yay downgrade --needed --noconfirm
 
-# 安装 yay
-pacman -Syu yay --needed --noconfirm
-yay --aururl "https://aur.tuna.tsinghua.edu.cn" --save
-su yx -c 'yay --aururl "https://aur.tuna.tsinghua.edu.cn" --save'
-
-# 降级软件
-pacman -S downgrade --needed --noconfirm
-# Arch安装脚本
-pacman -S arch-install-scripts --needed --noconfirm
-
-# 安装显卡驱动
-echo -n "请选择显卡类型（1.Intel, 2.Nvidia, 3.ATI, 4.AMD, 5通用):"
-read video
-case "$video" in
-1) pacman -S xf86-video-intel --needed --noconfirm ;;
-2) pacman -S xf86-video-nouveau --needed --noconfirm ;;
-3) pacman -S xf86-video-ati --needed --noconfirm ;;
-4) pacman -S xf86-video-amdgpu --needed --noconfirm ;;
-5) pacman -S xf86-video-vesa --needed --noconfirm ;;
-esac
-
-# 安装图形界面                     剪切板 窗口特效  合并X11配置
-pacman -S xorg-server xorg-xinit xllip picom xorg-xrdb --needed --noconfirm
-
-# awesome
-pacman -S  awesome --needed --noconfirm
-
-
-# 重启
-exit
-umount -R /mnt
-reboot
-```
-
-## Arch 初始化
-
-```bash
-#!/usr/bin/env bash
-set -euo pipefail
-
-################################
 # 常用开发工具
 pacman -S yasm gcc cmake nginx php php-apache composer jdk8 gradle maven nodejs npm yarn git tig svn python python-pip --needed --noconfirm --force
 # 编辑
@@ -236,7 +140,7 @@ pacman -S squid --needed --noconfirm --force
 # http共享
 sudo npm install -g serve
 # youtube、youku下载工具、BT下载工具
-pacman -S transmission-cli you-get youtube-dl --needed --noconfirm --force
+pacman -S wget curl axel aria2 transmission-cli you-get youtube-dl --needed --noconfirm --force
 # 翻译
 pacman -S translate-shell  --needed --noconfirm --force
 
@@ -290,13 +194,13 @@ pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 # 安装浏览器
 pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
 # 字体 
-pacman -S nerd-fonts-complete adobe-source-han-sans-cn-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
+pacman -S nerd-fonts-complete adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
 # 字体
 yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-consolas-with-yahei-powerline-git --needed --noconfirm --force
 # Telegram
 pacman -S telegram-desktop --needed --noconfirm --force
 # 影音播放
-pacman -S vlc mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
+pacman -S vlc mpd mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
 # 下载
 pacman -S qbittorrent amule --needed --noconfirm --force
 # FTP
@@ -319,10 +223,40 @@ pacman -S kicad --needed --noconfirm --force
 ```
 ## ArchLinux
 ```bash
+# 安装archlinux基本包
+pacstrap -i /mnt base base-devel linux linux-firmware linux-headers
+# 保存新系统分区表到/mnt/etc/fstab
+genfstab -U -p /mnt >> /mnt/etc/fstab
+# arch-chroot切换
+arch-chroot /mnt /bin/bash
+
 # 构建包,在PKGBUILD目录下执行
 makepkg
 # 安装构建包
 pacman -U ./构建包名
+```
+
+## Linux
+```bash
+# 时区
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+# 设置系统时间同步到bios中
+hwclock --systohc --localtime # hwclock --systohc 
+# locale
+echo "zh_CN.UTF-8 UTF-8
+en_US.UTF-8 UTF-8
+" >>/etc/locale.gen
+locale-gen
+localectl set-locale LANG=zh_CN.UTF-8 # echo "LANG=zh_CN.UTF-8" >>/etc/locale.conf
+
+# grub
+grub-install --target=x86_64-efi --boot-directory=/boot/ESP/EFI/ --efi-directory=/boot/ESP --bootloader-id=grub
+grub-mkconfig -o /boot/ESP/EFI/grub/grub.cfg
+
+# 添加用户
+useradd -g wheel yx
+printf "x\nx\n" | passwd x > /dev/null 2>&1
+## grub
 ```
 
 ## Linux Xorg
