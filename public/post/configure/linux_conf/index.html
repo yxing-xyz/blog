@@ -75,121 +75,30 @@
 	<div class="toc__menu">
 		<nav id="TableOfContents">
   <ul>
-    <li><a href="#arch-安装">Arch 安装</a></li>
-    <li><a href="#arch-初始化">Arch 初始化</a></li>
+    <li><a href="#arch-软件包">Arch 软件包</a></li>
     <li><a href="#archlinux">ArchLinux</a></li>
+    <li><a href="#linux">Linux</a></li>
     <li><a href="#linux-xorg">Linux Xorg</a></li>
   </ul>
 </nav>
 	</div>
 </div>
 <div class="content post__content clearfix">
-			<h2 id="arch-安装">Arch 安装</h2>
+			<h2 id="arch-软件包">Arch 软件包</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e"># set -euxo pipefail</span>
+</span><span style="color:#75715e"></span><span style="color:#75715e"># set -euxo pipefail</span>
 set -euo pipefail
-
-<span style="color:#75715e"># 获取archlinux源</span>
-<span style="color:#75715e"># wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/</span>
-<span style="color:#75715e"># wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/?country=CN</span>
-
-<span style="color:#75715e">####################### U盘镜像系统</span>
-<span style="color:#75715e"># 下载工具</span>
-pacman -S wget curl axel aria2 --needed --noconfirm
-<span style="color:#75715e"># 更改源</span>
-cp -rf ./etc/pacman.d /etc/
-cp -rf ./etc/pacman.conf /etc/
-<span style="color:#75715e"># 更新源</span>
-pacman -Ssy
-<span style="color:#75715e"># 安装archlinux基本包</span>
-pacstrap -i /mnt base base-devel linux linux-firmware
-<span style="color:#75715e"># 保存新系统分区表到/mnt/etc/fstab</span>
-genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
-
-<span style="color:#75715e">######################## 切换到新系统</span>
-<span style="color:#75715e"># 切换</span>
-arch-chroot /mnt /bin/bash
-
-<span style="color:#75715e"># 添加用户</span>
-useradd -g wheel yx
-printf <span style="color:#e6db74">&#34;yx\nyx\n&#34;</span> | passwd yx &gt; /dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span>
-
-<span style="color:#75715e"># 下载工具</span>
-pacman -S wget curl axel aria2 --needed --noconfirm
-<span style="color:#75715e"># 更改源</span>
-cp -rf ./etc/pacman.d /etc/
-cp -rf ./etc/pacman.conf /etc/
-
-<span style="color:#75715e"># 生成本地化信息</span>
-<span style="color:#75715e"># 下载语言包</span>
-echo <span style="color:#e6db74">&#34;zh_CN.UTF-8 UTF-8
-</span><span style="color:#e6db74">en_US.UTF-8 UTF-8
-</span><span style="color:#e6db74">&#34;</span> &gt;&gt;/etc/locale.gen
-locale-gen
-<span style="color:#75715e"># echo &#34;LANG=zh_CN.UTF-8&#34; &gt;&gt;/etc/locale.conf</span>
-localectl set-locale LANG<span style="color:#f92672">=</span>zh_CN.utf8
-
-<span style="color:#75715e"># 时区</span>
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-<span style="color:#75715e"># 默认为 UTC 时间，如需设置为本地时间，请执行：</span>
-<span style="color:#75715e"># hwclock --systohc --localtime</span>
-hwclock --systohc
-mkinitcpio -p linux
-
-<span style="color:#75715e"># mbr grub引导</span>
-<span style="color:#75715e"># 使用eth0网卡</span>
-sed -i <span style="color:#e6db74">&#39;s/^GRUB_CMDLINE_LINUX_DEFAULT.*/GRUB_CMDLINE_LINUX_DEFAULT=&#34;quiet net.ifnames=0 biosdevname=0&#34;/g&#39;</span> /etc/default/grub
-grub-mkconfig -o /boot/ESP/grub/grub.cfg
-
-<span style="color:#75715e"># 自启动网卡</span>
-<span style="color:#75715e"># ip link</span>
-<span style="color:#75715e"># echo &#34;请输入网卡名:&#34;</span>
-<span style="color:#75715e"># read ip_link</span>
-<span style="color:#75715e"># systemctl enable dhcpcd@&#34;$ip_link&#34;.service</span>
-systemctl enable dhcpcd
-
+<span style="color:#75715e">################################</span>
+<span style="color:#75715e"># 安装图形界面                     剪切板 窗口特效 合并X11配置</span>
+pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel--needed --noconfirm
+<span style="color:#75715e"># awesome</span>
+pacman -S awesome --needed --noconfirm
 <span style="color:#75715e"># 导入CPG key/</span>
 pacman -S archlinux-keyring --needed --noconfirm
 pacman -S archlinuxcn-keyring --needed --noconfirm
+<span style="color:#75715e"># 安装 yay       降级</span>
+pacman -Syu yay downgrade --needed --noconfirm
 
-<span style="color:#75715e"># 安装 yay</span>
-pacman -Syu yay --needed --noconfirm
-yay --aururl <span style="color:#e6db74">&#34;https://aur.tuna.tsinghua.edu.cn&#34;</span> --save
-su yx -c <span style="color:#e6db74">&#39;yay --aururl &#34;https://aur.tuna.tsinghua.edu.cn&#34; --save&#39;</span>
-
-<span style="color:#75715e"># 降级软件</span>
-pacman -S downgrade --needed --noconfirm
-<span style="color:#75715e"># Arch安装脚本</span>
-pacman -S arch-install-scripts --needed --noconfirm
-
-<span style="color:#75715e"># 安装显卡驱动</span>
-echo -n <span style="color:#e6db74">&#34;请选择显卡类型（1.Intel, 2.Nvidia, 3.ATI, 4.AMD, 5通用):&#34;</span>
-read video
-<span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#34;</span>$video<span style="color:#e6db74">&#34;</span> in
-1<span style="color:#f92672">)</span> pacman -S xf86-video-intel --needed --noconfirm ;;
-2<span style="color:#f92672">)</span> pacman -S xf86-video-nouveau --needed --noconfirm ;;
-3<span style="color:#f92672">)</span> pacman -S xf86-video-ati --needed --noconfirm ;;
-4<span style="color:#f92672">)</span> pacman -S xf86-video-amdgpu --needed --noconfirm ;;
-5<span style="color:#f92672">)</span> pacman -S xf86-video-vesa --needed --noconfirm ;;
-<span style="color:#66d9ef">esac</span>
-
-<span style="color:#75715e"># 安装图形界面                     剪切板 窗口特效  合并X11配置</span>
-pacman -S xorg-server xorg-xinit xllip picom xorg-xrdb --needed --noconfirm
-
-<span style="color:#75715e"># awesome</span>
-pacman -S  awesome --needed --noconfirm
-
-
-<span style="color:#75715e"># 重启</span>
-exit
-umount -R /mnt
-reboot
-</code></pre></div><h2 id="arch-初始化">Arch 初始化</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e">#!/usr/bin/env bash
-</span><span style="color:#75715e"></span>set -euo pipefail
-
-<span style="color:#75715e">################################</span>
 <span style="color:#75715e"># 常用开发工具</span>
 pacman -S yasm gcc cmake nginx php php-apache composer jdk8 gradle maven nodejs npm yarn git tig svn python python-pip --needed --noconfirm --force
 <span style="color:#75715e"># 编辑</span>
@@ -298,7 +207,7 @@ pacman -S squid --needed --noconfirm --force
 <span style="color:#75715e"># http共享</span>
 sudo npm install -g serve
 <span style="color:#75715e"># youtube、youku下载工具、BT下载工具</span>
-pacman -S transmission-cli you-get youtube-dl --needed --noconfirm --force
+pacman -S wget curl axel aria2 transmission-cli you-get youtube-dl --needed --noconfirm --force
 <span style="color:#75715e"># 翻译</span>
 pacman -S translate-shell  --needed --noconfirm --force
 
@@ -352,13 +261,13 @@ pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 <span style="color:#75715e"># 安装浏览器</span>
 pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
 <span style="color:#75715e"># 字体 </span>
-pacman -S nerd-fonts-complete adobe-source-han-sans-cn-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
+pacman -S nerd-fonts-complete adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
 <span style="color:#75715e"># 字体</span>
 yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-consolas-with-yahei-powerline-git --needed --noconfirm --force
 <span style="color:#75715e"># Telegram</span>
 pacman -S telegram-desktop --needed --noconfirm --force
 <span style="color:#75715e"># 影音播放</span>
-pacman -S vlc mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
+pacman -S vlc mpd mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --force
 <span style="color:#75715e"># 下载</span>
 pacman -S qbittorrent amule --needed --noconfirm --force
 <span style="color:#75715e"># FTP</span>
@@ -379,10 +288,37 @@ pacman -S calibre --needed --noconfirm --force            <span style="color:#75
 <span style="color:#75715e"># 开源CAD</span>
 pacman -S kicad --needed --noconfirm --force
 </code></pre></div><h2 id="archlinux">ArchLinux</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 构建包,在PKGBUILD目录下执行</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 安装archlinux基本包</span>
+pacstrap -i /mnt base base-devel linux linux-firmware linux-headers
+<span style="color:#75715e"># 保存新系统分区表到/mnt/etc/fstab</span>
+genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
+<span style="color:#75715e"># arch-chroot切换</span>
+arch-chroot /mnt /bin/bash
+
+<span style="color:#75715e"># 构建包,在PKGBUILD目录下执行</span>
 makepkg
 <span style="color:#75715e"># 安装构建包</span>
 pacman -U ./构建包名
+</code></pre></div><h2 id="linux">Linux</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 时区</span>
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+<span style="color:#75715e"># 设置系统时间同步到bios中</span>
+hwclock --systohc --localtime <span style="color:#75715e"># hwclock --systohc </span>
+<span style="color:#75715e"># locale</span>
+echo <span style="color:#e6db74">&#34;zh_CN.UTF-8 UTF-8
+</span><span style="color:#e6db74">en_US.UTF-8 UTF-8
+</span><span style="color:#e6db74">&#34;</span> &gt;&gt;/etc/locale.gen
+locale-gen
+localectl set-locale LANG<span style="color:#f92672">=</span>zh_CN.UTF-8 <span style="color:#75715e"># echo &#34;LANG=zh_CN.UTF-8&#34; &gt;&gt;/etc/locale.conf</span>
+
+<span style="color:#75715e"># grub</span>
+grub-install --target<span style="color:#f92672">=</span>x86_64-efi --boot-directory<span style="color:#f92672">=</span>/boot/ESP/EFI/ --efi-directory<span style="color:#f92672">=</span>/boot/ESP --bootloader-id<span style="color:#f92672">=</span>grub
+grub-mkconfig -o /boot/ESP/EFI/grub/grub.cfg
+
+<span style="color:#75715e"># 添加用户</span>
+useradd -g wheel yx
+printf <span style="color:#e6db74">&#34;x\nx\n&#34;</span> | passwd x &gt; /dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span>
+<span style="color:#75715e">## grub</span>
 </code></pre></div><h2 id="linux-xorg">Linux Xorg</h2>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 输入设备</span>
 xinput <span style="color:#75715e"># 查看输入设备列表</span>
