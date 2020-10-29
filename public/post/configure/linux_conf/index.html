@@ -165,13 +165,16 @@ pacman -S fio --needed --noconfirm --force
 pacman -S zsh --needed --noconfirm --force
 <span style="color:#75715e"># 终端复用</span>
 pacman -S tmux --needed --noconfirm --force
-<span style="color:#75715e"># 终端文件管理ranger</span>
+<span style="color:#75715e"># 终端文件管理</span>
 pacman -S ranger vifm nnn mc --needed --noconfirm --force <span style="color:#75715e"># 终端文件管理</span>
 pacman -S atool --needed --noconfirm --force              <span style="color:#75715e"># 用于预览各种压缩文件</span>
 pacman -S highlight --needed --noconfirm --force          <span style="color:#75715e"># 用于在预览代码，支持多色彩高亮显示代码</span>
 pacman -S w3m --needed --noconfirm --force                <span style="color:#75715e"># lynx, w3m 或 elinks：这三个东西都是命令行下的网页浏览器，都用于htm</span>
-pacman -S poppler --needed --noconfirm --force            <span style="color:#75715e"># PDF阅读</span>
+pacman -S poppler poppler-data --needed --noconfirm --force            <span style="color:#75715e"># PDF阅读</span>
 pacman -S mediainfo --needed --noconfirm --force          <span style="color:#75715e"># mediainfo 或 perl-image-exiftool ： audio/video</span>
+<span style="color:#75715e"># nnn</span>
+sudo pacman -S nnn atool libarchive trash-cli sshfs rclone fuse2 xdg-utils
+
 <span style="color:#75715e"># 命令模糊搜索 fzf</span>
 pacman -S fzf --needed --noconfirm --force
 <span style="color:#75715e"># 目录文件搜索 fd</span>
@@ -191,7 +194,7 @@ pacman -S exa tree --needed --noconfirm --force
 <span style="color:#75715e"># 回收站</span>
 pacman -S trash-cli --needed --noconfirm --force
 <span style="color:#75715e"># 解压软件</span>
-pacman -S p7zip file-roller unrar rar zip unzip-natspec --needed --noconfirm
+pacman -S p7zip-natspec rar zip unzip-natspec --needed --noconfirm
 <span style="color:#75715e"># 支持NTFS文件系统</span>
 pacman -S ntfs-3g dosfstools --needed --noconfirm
 <span style="color:#75715e"># 挂载远程ssh目录</span>
@@ -262,8 +265,6 @@ pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
 <span style="color:#75715e"># 字体 </span>
 pacman -S nerd-fonts-complete adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
-<span style="color:#75715e"># 字体</span>
-yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-consolas-with-yahei-powerline-git --needed --noconfirm --force
 <span style="color:#75715e"># Telegram</span>
 pacman -S telegram-desktop --needed --noconfirm --force
 <span style="color:#75715e"># 影音播放</span>

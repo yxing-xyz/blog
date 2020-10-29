@@ -98,13 +98,16 @@ pacman -S fio --needed --noconfirm --force
 pacman -S zsh --needed --noconfirm --force
 # 终端复用
 pacman -S tmux --needed --noconfirm --force
-# 终端文件管理ranger
+# 终端文件管理
 pacman -S ranger vifm nnn mc --needed --noconfirm --force # 终端文件管理
 pacman -S atool --needed --noconfirm --force              # 用于预览各种压缩文件
 pacman -S highlight --needed --noconfirm --force          # 用于在预览代码，支持多色彩高亮显示代码
 pacman -S w3m --needed --noconfirm --force                # lynx, w3m 或 elinks：这三个东西都是命令行下的网页浏览器，都用于htm
-pacman -S poppler --needed --noconfirm --force            # PDF阅读
+pacman -S poppler poppler-data --needed --noconfirm --force            # PDF阅读
 pacman -S mediainfo --needed --noconfirm --force          # mediainfo 或 perl-image-exiftool ： audio/video
+# nnn
+sudo pacman -S nnn atool libarchive trash-cli sshfs rclone fuse2 xdg-utils
+
 # 命令模糊搜索 fzf
 pacman -S fzf --needed --noconfirm --force
 # 目录文件搜索 fd
@@ -124,7 +127,7 @@ pacman -S exa tree --needed --noconfirm --force
 # 回收站
 pacman -S trash-cli --needed --noconfirm --force
 # 解压软件
-pacman -S p7zip file-roller unrar rar zip unzip-natspec --needed --noconfirm
+pacman -S p7zip-natspec rar zip unzip-natspec --needed --noconfirm
 # 支持NTFS文件系统
 pacman -S ntfs-3g dosfstools --needed --noconfirm
 # 挂载远程ssh目录
@@ -195,8 +198,6 @@ pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
 pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
 # 字体 
 pacman -S nerd-fonts-complete adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
-# 字体
-yay -S consolas-font ttf-consolas-powerline ttf-consolas-with-powerline ttf-consolas-with-yahei-powerline-git --needed --noconfirm --force
 # Telegram
 pacman -S telegram-desktop --needed --noconfirm --force
 # 影音播放
