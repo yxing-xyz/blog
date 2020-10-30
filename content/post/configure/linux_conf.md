@@ -137,7 +137,7 @@ pacman -S cmus --needed --noconfirm --force
 # 终端二维码 echo "http://baidu.com" | qrencode -o - -t UTF8
 pacman -S qrencode --needed --noconfirm --force
 # 局域网的ip二维码上下传文件
-yay -S qrcp-bin --needed --noconfirm --force
+yay -S qrcp --needed --noconfirm --force
 # HTTP代理
 pacman -S squid --needed --noconfirm --force
 # http共享
@@ -194,10 +194,14 @@ pacman -S feh --noconfirm --force --needed
 pacman -S qv2ray v2ray  proxychains --needed --noconfirm --force
 # 输入法
 pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
+# 字体 
+pacman -S nerd-fonts-complete otf-font-awesome ttf-dejavu powerline-fonts noto-fonts-cjk --needed --noconfirm
+# wqy
+pacman -S `sudo pacman -Ssq 'wqy-*'` --needed --noconfirm
+# adobe
+pacman -S `sudo pacman -Ssq 'adobe-source-*'` --needed --noconfirm
 # 安装浏览器
 pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
-# 字体 
-pacman -S nerd-fonts-complete adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
 # Telegram
 pacman -S telegram-desktop --needed --noconfirm --force
 # 影音播放
