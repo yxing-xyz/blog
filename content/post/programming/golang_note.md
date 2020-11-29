@@ -232,3 +232,36 @@ func RemoveFromMiddle() {
     signal.Notify(sig, syscall.SIGTERM, syscall.SIGINT)
     <-sig
 ```
+
+### 定时器
+golang中定时器有三种实现方式，分别是time.sleep、time.after、time.Timer其中time.after和time.Timer需要对通道进行释放才能达到定时的效果
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    /*
+        用sleep实现定时器
+    */
+    fmt.Println(time.Now())
+    time.Sleep(time.Second)
+	fmt.Println(time.Now())
+	
+	// 重置定时器 timer.Reset(d Duration) 过了d时间然后出通道执行后打代码
+	// 停止定时器 timer.Stop()
+    /*
+        用timer实现定时器
+    */
+	timer := time.NewTimer(time.Second)
+
+    fmt.Println(<-timer.C)
+    /*
+        用after实现定时器
+    */
+    fmt.Println(<-time.After(time.Second))
+}
+```

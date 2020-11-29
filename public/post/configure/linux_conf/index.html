@@ -116,6 +116,9 @@ pacman -S cloc --needed --noconfirm --force
 <span style="color:#75715e"># shell脚本检查</span>
 pacman -S shellcheck --needed --noconfirm --force
 
+<span style="color:#75715e"># k8s</span>
+pacman -S k9s --needed --noconfirm --force
+
 <span style="color:#75715e">############# 虚拟机相关 ##############</span>
 <span style="color:#75715e"># rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/x</span>
 <span style="color:#75715e"># x0vncserver -display :0 -passwordfile ~/.vnc/passwd </span>
@@ -204,7 +207,7 @@ pacman -S cmus --needed --noconfirm --force
 <span style="color:#75715e"># 终端二维码 echo &#34;http://baidu.com&#34; | qrencode -o - -t UTF8</span>
 pacman -S qrencode --needed --noconfirm --force
 <span style="color:#75715e"># 局域网的ip二维码上下传文件</span>
-yay -S qrcp-bin --needed --noconfirm --force
+yay -S qrcp --needed --noconfirm --force
 <span style="color:#75715e"># HTTP代理</span>
 pacman -S squid --needed --noconfirm --force
 <span style="color:#75715e"># http共享</span>
@@ -261,10 +264,14 @@ pacman -S feh --noconfirm --force --needed
 pacman -S qv2ray v2ray  proxychains --needed --noconfirm --force
 <span style="color:#75715e"># 输入法</span>
 pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
+<span style="color:#75715e"># 字体 </span>
+pacman -S nerd-fonts-complete otf-font-awesome ttf-dejavu powerline-fonts noto-fonts-cjk --needed --noconfirm
+<span style="color:#75715e"># wqy</span>
+pacman -S <span style="color:#e6db74">`</span>sudo pacman -Ssq <span style="color:#e6db74">&#39;wqy-*&#39;</span><span style="color:#e6db74">`</span> --needed --noconfirm
+<span style="color:#75715e"># adobe</span>
+pacman -S <span style="color:#e6db74">`</span>sudo pacman -Ssq <span style="color:#e6db74">&#39;adobe-source-*&#39;</span><span style="color:#e6db74">`</span> --needed --noconfirm
 <span style="color:#75715e"># 安装浏览器</span>
 pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
-<span style="color:#75715e"># 字体 </span>
-pacman -S nerd-fonts-complete adobe-source-code-pro-fonts adobe-source-han-sans-cn-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-otc-fonts otf-font-awesome ttf-dejavu powerline-fonts --needed --noconfirm
 <span style="color:#75715e"># Telegram</span>
 pacman -S telegram-desktop --needed --noconfirm --force
 <span style="color:#75715e"># 影音播放</span>
