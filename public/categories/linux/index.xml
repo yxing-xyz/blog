@@ -6,7 +6,16 @@
     <description>Recent content in Linux on 落日Ins</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2020 21:27:00 +0800</lastBuildDate><atom:link href="/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Dec 2020 16:28:00 +0800</lastBuildDate><atom:link href="/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debian</title>
+      <link>/post/linux/debian/</link>
+      <pubDate>Tue, 08 Dec 2020 16:28:00 +0800</pubDate>
+      
+      <guid>/post/linux/debian/</guid>
+      <description>Debian常用包 echo &amp;gt; /etc/apt/sources.list echo &amp;#39;deb http://mirrors.cloud.aliyuncs.com/debian/ stretch main non-free contrib&amp;#39; &amp;gt;&amp;gt; /etc/apt/sources.list echo &amp;#39;deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch main non-free contrib&amp;#39; &amp;gt;&amp;gt; /etc/apt/sources.list echo &amp;#39;deb http://mirrors.cloud.aliyuncs.com/debian-security stretch/updates main&amp;#39; &amp;gt;&amp;gt; /etc/apt/sources.list echo &amp;#39;deb-src http://mirrors.cloud.aliyuncs.com/debian-security stretch/updates main&amp;#39; &amp;gt;&amp;gt; /etc/apt/sources.list echo &amp;#39;deb http://mirrors.cloud.aliyuncs.com/debian/ stretch-updates main non-free contrib&amp;#39; &amp;gt;&amp;gt; /etc/apt/sources.list echo &amp;#39;deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch-updates main non-free contrib&amp;#39; &amp;gt;&amp;gt; /etc/apt/sources.list echo &amp;#39;deb http://mirrors.cloud.aliyuncs.com/debian/ stretch-backports main non-free contrib&amp;#39; &amp;gt;&amp;gt; /etc/apt/sources.list echo &amp;#39;deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch-backports main non-free contrib&amp;#39; &amp;gt;&amp;gt; /etc/apt/sources.</description>
+    </item>
+    
     <item>
       <title>The difference between su and sudo in Linux</title>
       <link>/post/linux/su_sudo/</link>

@@ -4,14 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Utils - 落日Ins</title>
+	<title>Debian - 落日Ins</title>
 	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
-	<meta name="description" content="">
-		<meta property="og:title" content="Utils" />
-<meta property="og:description" content="Shawn Yu&#39;s Personal blog about everything" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="/tags/utils/" />
-<meta property="og:updated_time" content="2020-05-05T17:00:05+08:00" />
+	<meta name="description" content="Debian">
+		<meta property="og:title" content="Debian" />
+<meta property="og:description" content="Debian" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/linux/debian/" />
+<meta property="article:published_time" content="2020-12-08T16:28:00+08:00" />
+<meta property="article:modified_time" content="2020-12-08T16:28:00+08:00" />
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -20,7 +21,6 @@
 
 	<link rel="stylesheet" href="/css/style.css">
 	
-	<link rel="alternate" type="application/rss+xml" href="/tags/utils/index.xml" title="落日Ins">
 
 	<link rel="shortcut icon" href="/favicon.ico">
 		
@@ -59,53 +59,86 @@
 		<div class="wrapper flex">
 			<div class="primary">
 			
-<main class="main list" role="main">
-	<header class="main__header">
-		<h1 class="main__title">Utils</h1>
-	</header><article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/win/win_utils/" rel="bookmark">
-			Windows Utils
-			</a>
-		</h2>
-		<p class="list__lead post__lead">Windows Utils</p>
-		<div class="list__meta meta">
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">Debian</h1>
+			<p class="post__lead">Debian</p>
+			<div class="post__meta meta">
 <div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-05-05T17:00:05&#43;08:00">May 05, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/windows/" rel="category">Windows</a>
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-12-08T16:28:00&#43;08:00">December 08, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/linux/" rel="category">Linux</a>
 	</span>
 </div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		CMD关闭防火墙 要用超级管理权限执行
-::注释 关闭所有防火墙 netsh advfirewall set allprofiles state off ::注释 查看防火墙的状态 netsh advfirewall show allprofiles CMD启动远程桌面 要用超级管理员权限执行
-REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&#34; &#34;Server /v fDenyTSConnections /t REG_DWORD /d 00000000 /f Close security center 1. win+R打开运行小窗口，输入regedit，按回车键进入注册表编辑器。 2. 定位到计算机HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services目录中的SecurityHealthService,wscsvc两个目录 3. 在右侧找到DWORD（32位）值，命名为Start。 4. 修改数值数据为4。 5. 重启文件资源管理器，或注销再登录/重启系统。 Deleting folders with PowerShell Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false # Get-ChildItem $directoryPath -Recurse | Remove-Item -Force New-Item ItemType
- File Directory SymbolLink HardLink Junction  New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir 
+		</header>
+<div class="post__toc toc">
+	<div class="toc__title"></div>
+	<div class="toc__menu">
+		<nav id="TableOfContents">
+  <ul>
+    <li><a href="#debian常用包">Debian常用包</a></li>
+  </ul>
+</nav>
 	</div>
-</article><article class="list__item post">
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/programming/js_utils/" rel="bookmark">
-			JavaScript Utils
-			</a>
-		</h2>
-		<p class="list__lead post__lead">JavaScript Utils</p>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-08-27T17:28:00&#43;08:00">August 27, 2019</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/programming/" rel="category">Programming</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		/*global toString:true*/ // utils is a library of generic helper functions non-specific to axios  const toString = Object.prototype.toString; /** * Determine if a value is an Array * * @param {Object} val The value to test * @returns {boolean} True if value is an Array, otherwise false */ function isArray(val) { return toString.call(val) === &#34;[object Array]&#34;; } /** * Determine if a value is an ArrayBuffer * * @param {Object} val The value to test * @returns {boolean} True if value is an ArrayBuffer, otherwise false */ function isArrayBuffer(val) { return toString.
-	</div>
-</article>
+</div>
+<div class="content post__content clearfix">
+			<h2 id="debian常用包">Debian常用包</h2>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">echo &gt; /etc/apt/sources.list
+echo <span style="color:#e6db74">&#39;deb http://mirrors.cloud.aliyuncs.com/debian/ stretch main non-free contrib&#39;</span> &gt;&gt; /etc/apt/sources.list
+echo <span style="color:#e6db74">&#39;deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch main non-free contrib&#39;</span> &gt;&gt; /etc/apt/sources.list
+echo <span style="color:#e6db74">&#39;deb http://mirrors.cloud.aliyuncs.com/debian-security stretch/updates main&#39;</span> &gt;&gt; /etc/apt/sources.list
+echo <span style="color:#e6db74">&#39;deb-src http://mirrors.cloud.aliyuncs.com/debian-security stretch/updates main&#39;</span> &gt;&gt; /etc/apt/sources.list
+echo <span style="color:#e6db74">&#39;deb http://mirrors.cloud.aliyuncs.com/debian/ stretch-updates main non-free contrib&#39;</span> &gt;&gt; /etc/apt/sources.list
+echo <span style="color:#e6db74">&#39;deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch-updates main non-free contrib&#39;</span> &gt;&gt; /etc/apt/sources.list
+echo <span style="color:#e6db74">&#39;deb http://mirrors.cloud.aliyuncs.com/debian/ stretch-backports main non-free contrib&#39;</span> &gt;&gt; /etc/apt/sources.list
+echo <span style="color:#e6db74">&#39;deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch-backports main non-free contrib&#39;</span> &gt;&gt; /etc/apt/sources.list
+
+apt-get install -y htop
+apt-get install -y apache2-utils 
+apt-get install -y mtr-tiny 
+apt-get install -y net-tools 
+apt-get install -y dnsutils 
+apt-get install -y inetutils-ping
+
+</code></pre></div>
+		</div>
+		<footer class="post__footer">
+			
+<div class="post__tags tags clearfix">
+	<svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5 0 11V3C0 1.5.8.8.8.8S1.5 0 3 0h8c1.5 0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+	<ul class="tags__list">
+		<li class="tags__item">
+			<a class="tags__link btn" href="/tags/debian/" rel="tag">Debian</a>
+		</li>
+	</ul>
+</div>
+		</footer>
+	</article>
 </main>
+
+<div class="authorbox clearfix">
+	<figure class="authorbox__avatar">
+		<img alt="落日Ins avatar" src="/img/avatar.jpg" class="avatar" height="90" width="90">
+	</figure>
+	<div class="authorbox__header">
+		<span class="authorbox__name"></span>
+	</div>
+	<div class="authorbox__description">
+		比世人的目光还要可怕的，实际上是你自己那颗在意世人目光的心。——山本文绪
+	</div>
+</div>
+
+<nav class="pager flex">
+	<div class="pager__item pager__item--prev">
+		<a class="pager__link" href="/post/algorithm/map_electronic_fence/" rel="prev">
+			<span class="pager__subtitle">«&thinsp;</span>
+			<p class="pager__title">Map electronic fence</p>
+		</a>
+	</div>
+</nav>
 
 
 			</div>
-			
-<aside class="sidebar"><div class="widget-search widget">
+			<aside class="sidebar"><div class="widget-search widget">
 	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
 		<label>
 			<input class="widget-search__field" type="search" placeholder="" value="" name="q" aria-label="">
@@ -208,5 +241,7 @@ REG ADD HKLM\SYSTEM\CurrentControlSet\Control\Terminal&#34; &#34;Server /v fDeny
 </footer>
 	</div>
 <script async defer src="/js/menu.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script>
 </body>
 </html>

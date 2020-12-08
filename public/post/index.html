@@ -11,7 +11,7 @@
 <meta property="og:description" content="Shawn Yu&#39;s Personal blog about everything" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/post/" />
-<meta property="og:updated_time" content="2020-10-16T15:28:00+08:00" />
+<meta property="og:updated_time" content="2020-12-08T16:28:00+08:00" />
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -63,6 +63,23 @@
 	<header class="main__header">
 		<h1 class="main__title">Posts</h1>
 	</header><article class="list__item post">
+	<header class="list__header">
+		<h2 class="list__title post__title">
+			<a href="/post/linux/debian/" rel="bookmark">
+			Debian
+			</a>
+		</h2>
+		<p class="list__lead post__lead">Debian</p>
+		<div class="list__meta meta">
+<div class="meta__item-datetime meta__item">
+	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2020-12-08T16:28:00&#43;08:00">December 08, 2020</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/linux/" rel="category">Linux</a>
+	</span>
+</div></div>
+	</header>
+	<div class="content list__excerpt post__content clearfix">
+		Debian常用包 echo &gt; /etc/apt/sources.list echo &#39;deb http://mirrors.cloud.aliyuncs.com/debian/ stretch main non-free contrib&#39; &gt;&gt; /etc/apt/sources.list echo &#39;deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch main non-free contrib&#39; &gt;&gt; /etc/apt/sources.list echo &#39;deb http://mirrors.cloud.aliyuncs.com/debian-security stretch/updates main&#39; &gt;&gt; /etc/apt/sources.list echo &#39;deb-src http://mirrors.cloud.aliyuncs.com/debian-security stretch/updates main&#39; &gt;&gt; /etc/apt/sources.list echo &#39;deb http://mirrors.cloud.aliyuncs.com/debian/ stretch-updates main non-free contrib&#39; &gt;&gt; /etc/apt/sources.list echo &#39;deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch-updates main non-free contrib&#39; &gt;&gt; /etc/apt/sources.list echo &#39;deb http://mirrors.cloud.aliyuncs.com/debian/ stretch-backports main non-free contrib&#39; &gt;&gt; /etc/apt/sources.list echo &#39;deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch-backports main non-free contrib&#39; &gt;&gt; /etc/apt/sources.
+	</div>
+</article><article class="list__item post">
 	<header class="list__header">
 		<h2 class="list__title post__title">
 			<a href="/post/algorithm/map_electronic_fence/" rel="bookmark">
@@ -227,29 +244,6 @@ IF ($PSVersionTable.PSVersion.Major -lt 3 -or $PSVersionTable.CLRVersion.Major -
 	<div class="content list__excerpt post__content clearfix">
 		CMD set http_proxy=http://127.0.0.1:1081 set https_proxy=http://127.0.0.1:1081 PowerShell # NOTE: registry keys for IE 8, may vary for other versions $regPath = &#39;HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings&#39; function Clear-Proxy { Set-ItemProperty -Path $regPath -Name ProxyEnable -Value 0 Set-ItemProperty -Path $regPath -Name ProxyServer -Value &#39;&#39; Set-ItemProperty -Path $regPath -Name ProxyOverride -Value &#39;&#39; [Environment]::SetEnvironmentVariable(&#39;http_proxy&#39;, $null, &#39;User&#39;) [Environment]::SetEnvironmentVariable(&#39;https_proxy&#39;, $null, &#39;User&#39;) } function Set-Proxy { $proxy = &#39;http://127.0.0.1:1081&#39; Set-ItemProperty -Path $regPath -Name ProxyEnable -Value 1 Set-ItemProperty -Path $regPath -Name ProxyServer -Value $proxy Set-ItemProperty -Path $regPath -Name ProxyOverride -Value &#39;&lt;local&gt;&#39; [Environment]::SetEnvironmentVariable(&#39;http_proxy&#39;, $proxy, &#39;User&#39;) [Environment]::SetEnvironmentVariable(&#39;https_proxy&#39;, $proxy, &#39;User&#39;) } 
 	</div>
-</article><article class="list__item post">
-	<figure class="list__thumbnail">
-		<a href="/post/programming/js_prototype/">
-			<img src="/img/js_prototype.png" alt="JavaScript Prototype" />
-		</a>
-	</figure>
-	<header class="list__header">
-		<h2 class="list__title post__title">
-			<a href="/post/programming/js_prototype/" rel="bookmark">
-			JavaScript Prototype
-			</a>
-		</h2>
-		<p class="list__lead post__lead">JavaScript Prototyp</p>
-		<div class="list__meta meta">
-<div class="meta__item-datetime meta__item">
-	<svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class="meta__text" datetime="2019-10-16T20:39:00&#43;08:00">October 16, 2019</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2l1 2h8v11h-16v-13z"/></svg><span class="meta__text"><a class="meta__link" href="/categories/programming/" rel="category">Programming</a>
-	</span>
-</div></div>
-	</header>
-	<div class="content list__excerpt post__content clearfix">
-		继承 实现方法一 缺点：调用两次父类构造函数，性能开销
-function Person(name, age) { (this.name = name), (this.age = age); this.setAge = function () {}; } Person.prototype.setAge = function () { console.log(&#34;111&#34;); }; Person.test = () =&gt; { console.log(&#34;test&#34;); }; function Student(name, age, price) { Person.call(this, name, age); this.price = price; this.setScore = function () {}; } Student.prototype = new Person(); Student.prototype.constructor = Student; //组合继承也是需要修复构造函数指向的 Student.prototype.sayHello = function () {}; var s1 = new Student(&#34;Tom&#34;, 20, 15000); var p1 = new Person(&#34;Jack&#34;, 22); console.
-	</div>
 </article>
 </main>
 
@@ -273,11 +267,11 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 	<h4 class="widget__title"></h4>
 	<div class="widget__content">
 		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/linux/debian/">Debian</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/algorithm/map_electronic_fence/">Map electronic fence</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/programming/redis_note/">Redis notes</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/linux/su_sudo/">The difference between su and sudo in Linux</a></li>
 			<li class="widget__item"><a class="widget__link" href="/post/programming/golang_note/">Golang Note</a></li>
-			<li class="widget__item"><a class="widget__link" href="/post/programming/c_macro_definition/">C macro definition</a></li>
 		</ul>
 	</div>
 </div>
@@ -313,6 +307,7 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
 		<a class="widget-taglist__link widget__link btn" href="/tags/c/" title="C">C</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/centos/" title="Centos">Centos</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/configure/" title="Configure">Configure</a>
+		<a class="widget-taglist__link widget__link btn" href="/tags/debian/" title="Debian">Debian</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/devops/" title="DevOps">DevOps</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/golang/" title="Golang">Golang</a>
 		<a class="widget-taglist__link widget__link btn" href="/tags/javascript/" title="JavaScript">JavaScript</a>
