@@ -101,6 +101,12 @@
         <li><a href="#所有-docker-打印的日志收集存储到-elasticsearch">所有 docker 打印的日志收集存储到 Elasticsearch</a></li>
       </ul>
     </li>
+    <li><a href="#注意点">注意点</a>
+      <ul>
+        <li><a href="#copy和add的联系和区别">COPY和ADD的联系和区别</a></li>
+        <li><a href="#entrypoint和cmd的联系和区别">ENTRYPOINT和CMD的联系和区别</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 	</div>
@@ -195,7 +201,39 @@ docker stop <span style="color:#66d9ef">$(</span>docker ps -aq<span style="color
 </span><span style="color:#ae81ff"></span>    -e ELASTICSEARCH_PORT<span style="color:#f92672">=</span>端口 <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    -h 主机名 <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot
-</code></pre></div>
+</code></pre></div><h2 id="注意点">注意点</h2>
+<h3 id="copy和add的联系和区别">COPY和ADD的联系和区别</h3>
+<p>联系:</p>
+<ol>
+<li>两者都能将文件和目录拷贝到镜像中</li>
+</ol>
+<p>区别:</p>
+<ol>
+<li>
+<p>ADD自动解压压缩文件到镜像中</p>
+</li>
+<li>
+<p>ADD能重URL中拷贝到镜像中但是不推荐，因为会创建更多的镜像层</p>
+</li>
+</ol>
+<h3 id="entrypoint和cmd的联系和区别">ENTRYPOINT和CMD的联系和区别</h3>
+<p>区别:
+ENTRYPOINT的作用不同, 如果你希望你的docker镜像只执行一个具体程序,
+不希望用户在执行docker run的时候随意覆盖默认程序. 建议用ENTRYPOINT</p>
+<p>使用:</p>
+<p>在写Dockerfile时, ENTRYPOINT或者CMD命令会自动覆盖之前的ENTRYPOINT或者CMD命令.
+在docker镜像运行时, 用户也可以在命令指定具体命令, 覆盖在Dockerfile里的命令.
+和CMD类似, 默认的ENTRYPOINT也在docker run时, 也可以被覆盖. 在运行时, 用&ndash;entrypoint覆盖默认的ENTRYPOINT</p>
+<p>写法:
+ENTRYPOINT和CMD指令支持2种不同的写法: shell表示法和exec表示法.
+当使用shell表示法时, 命令行程序作为sh程序的子程序运行, docker用/bin/sh -c的语法调用.
+PID为1的进程并不是在Dockerfile里面定义的ping命令, 而是/bin/sh命令. 如果从外部发送任何POSIX信号到docker容器,
+由于/bin/sh命令不会转发消息给实际运行的ping命令, 则不能安全得关闭docker容器</p>
+<p>永远使用Exec表示法</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">CMD <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;executable&#34;</span>,<span style="color:#e6db74">&#34;param1&#34;</span>,<span style="color:#e6db74">&#34;param2&#34;</span><span style="color:#f92672">]</span> 
+</code></pre></div><p>组合使用:
+组合使用ENTRYPOINT和CMD, ENTRYPOINT指定默认的运行命令, CMD指定默认的运行参数</p>
+
 		</div>
 		<footer class="post__footer">
 			
