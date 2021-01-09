@@ -15,7 +15,42 @@ mathjax: true
 comments: false
 draft: false
 ---
+### ajax
+```bash
+# SIMPLE
+curl -i -X GET \
+   -H "Sec-Fetch-Mode:cors" \
+   -H "Sec-Fetch-Site:cross-site" \
+   -H "Sec-Fetch-Dest:empty" \
+   -H "Referer:https://www.baidu.com/" \
+   -H "Origin:https://www.baidu.com" \
+ 'https://test.juewei.com/a-service'
+# OPTIONS
+```
 
+```bash
+curl -i -X OPTIONS \
+   -H "Sec-Fetch-Mode:cors" \
+   -H "Sec-Fetch-Site:cross-site" \
+   -H "Sec-Fetch-Dest:empty" \
+   -H "Referer:https://www.baidu.com/" \
+   -H "Origin:https://www.baidu.com" \
+   -H "Access-Control-Request-Method:GET" \
+   -H "Access-Control-Request-Headers:x-b3-sampled" \
+ 'https://test.juewei.com/a-service'
+```
+
+```js
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://test.juewei.com/a-service');
+xhr.setRequestHeader("name", "yx");
+xhr.send(null);
+xhr.onload = function(e) {
+    var xhr = e.target;
+    console.log(xhr.responseText);
+}
+```
+### 工具类
 ````js
 /*global toString:true*/
 

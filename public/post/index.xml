@@ -127,7 +127,7 @@ function Person(name, age) { (this.name = name), (this.age = age); this.setAge =
       <pubDate>Tue, 27 Aug 2019 17:28:00 +0800</pubDate>
       
       <guid>/post/programming/js_utils/</guid>
-      <description>/*global toString:true*/ // utils is a library of generic helper functions non-specific to axios  const toString = Object.prototype.toString; /** * Determine if a value is an Array * * @param {Object} val The value to test * @returns {boolean} True if value is an Array, otherwise false */ function isArray(val) { return toString.call(val) === &amp;#34;[object Array]&amp;#34;; } /** * Determine if a value is an ArrayBuffer * * @param {Object} val The value to test * @returns {boolean} True if value is an ArrayBuffer, otherwise false */ function isArrayBuffer(val) { return toString.</description>
+      <description>ajax # SIMPLE curl -i -X GET \  -H &amp;#34;Sec-Fetch-Mode:cors&amp;#34; \  -H &amp;#34;Sec-Fetch-Site:cross-site&amp;#34; \  -H &amp;#34;Sec-Fetch-Dest:empty&amp;#34; \  -H &amp;#34;Referer:https://www.baidu.com/&amp;#34; \  -H &amp;#34;Origin:https://www.baidu.com&amp;#34; \  &amp;#39;https://test.juewei.com/a-service&amp;#39; # OPTIONS curl -i -X OPTIONS \  -H &amp;#34;Sec-Fetch-Mode:cors&amp;#34; \  -H &amp;#34;Sec-Fetch-Site:cross-site&amp;#34; \  -H &amp;#34;Sec-Fetch-Dest:empty&amp;#34; \  -H &amp;#34;Referer:https://www.baidu.com/&amp;#34; \  -H &amp;#34;Origin:https://www.baidu.com&amp;#34; \  -H &amp;#34;Access-Control-Request-Method:GET&amp;#34; \  -H &amp;#34;Access-Control-Request-Headers:x-b3-sampled&amp;#34; \  &amp;#39;https://test.juewei.com/a-service&amp;#39; var xhr = new XMLHttpRequest(); xhr.</description>
     </item>
     
     <item>

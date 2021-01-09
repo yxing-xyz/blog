@@ -73,11 +73,48 @@
 <div class="post__toc toc">
 	<div class="toc__title"></div>
 	<div class="toc__menu">
-		<nav id="TableOfContents"></nav>
+		<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#ajax">ajax</a></li>
+        <li><a href="#工具类">工具类</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 	</div>
 </div>
 <div class="content post__content clearfix">
-			<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">/*global toString:true*/</span>
+			<h3 id="ajax">ajax</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># SIMPLE</span>
+curl -i -X GET <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Sec-Fetch-Mode:cors&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Sec-Fetch-Site:cross-site&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Sec-Fetch-Dest:empty&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Referer:https://www.baidu.com/&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Origin:https://www.baidu.com&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#e6db74">&#39;https://test.juewei.com/a-service&#39;</span>
+<span style="color:#75715e"># OPTIONS</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">curl -i -X OPTIONS <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Sec-Fetch-Mode:cors&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Sec-Fetch-Site:cross-site&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Sec-Fetch-Dest:empty&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Referer:https://www.baidu.com/&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Origin:https://www.baidu.com&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Access-Control-Request-Method:GET&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>   -H <span style="color:#e6db74">&#34;Access-Control-Request-Headers:x-b3-sampled&#34;</span> <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span> <span style="color:#e6db74">&#39;https://test.juewei.com/a-service&#39;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">xhr</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">XMLHttpRequest</span>();
+<span style="color:#a6e22e">xhr</span>.<span style="color:#a6e22e">open</span>(<span style="color:#e6db74">&#39;GET&#39;</span>, <span style="color:#e6db74">&#39;https://test.juewei.com/a-service&#39;</span>);
+<span style="color:#a6e22e">xhr</span>.<span style="color:#a6e22e">setRequestHeader</span>(<span style="color:#e6db74">&#34;name&#34;</span>, <span style="color:#e6db74">&#34;yx&#34;</span>);
+<span style="color:#a6e22e">xhr</span>.<span style="color:#a6e22e">send</span>(<span style="color:#66d9ef">null</span>);
+<span style="color:#a6e22e">xhr</span>.<span style="color:#a6e22e">onload</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">xhr</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>;
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">xhr</span>.<span style="color:#a6e22e">responseText</span>);
+}
+</code></pre></div><h3 id="工具类">工具类</h3>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#75715e">/*global toString:true*/</span>
 
 <span style="color:#75715e">// utils is a library of generic helper functions non-specific to axios
 </span><span style="color:#75715e"></span>
@@ -581,7 +618,7 @@
 	<div class="container footer__container flex">
 		
 		<div class="footer__copyright">
-			&copy; 2020 落日Ins.
+			&copy; 2021 落日Ins.
 			<span class="footer__copyright-credits"></span>
 		</div>
 	</div>
