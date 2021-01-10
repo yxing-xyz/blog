@@ -91,7 +91,8 @@ pacman -S iperf mtr --needed --noconfirm --force
 # 抓包
 pacman -S iptraf-ng wireshark-qt wireshark-gtk ngrep --needed --noconfirm --force
 # 内网穿透
-pacman -S frp localtunnel ngrok --needed --noconfirm --force
+# sshuttle --dns -vr root@114.215.181.234 192.168.0.0/16 --ssh-cmd 'ssh -i /home/x/workspace/juewei/k8s/cert/品牌中心密钥对.key'
+pacman -S frp localtunnel sshuttle --needed --noconfirm --force
 # 文件读写测试
 pacman -S fio --needed --noconfirm --force
 
