@@ -51,3 +51,12 @@ function Set-Proxy
     [Environment]::SetEnvironmentVariable('https_proxy', $proxy, 'User')
 }
 ```
+
+## shell
+```bash
+# 谷歌启用代理
+# google-chrome-stable  --proxy-server="http://127.0.0.1:1081"
+export https_proxy='http://127.0.0.1:1081'
+export http_proxy='http://127.0.0.1:1081'
+```
+

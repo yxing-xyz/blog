@@ -329,7 +329,10 @@ useradd -g wheel yx
 printf <span style="color:#e6db74">&#34;x\nx\n&#34;</span> | passwd x &gt; /dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span>
 <span style="color:#75715e">## grub</span>
 </code></pre></div><h2 id="linux-xorg">Linux Xorg</h2>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 输入设备</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 查看设备的sysfs属性</span>
+udevadm info -q all -a /dev/input/event13
+
+<span style="color:#75715e"># 输入设备</span>
 xinput <span style="color:#75715e"># 查看输入设备列表</span>
 xinput disable <span style="color:#ae81ff">15</span> <span style="color:#75715e"># 禁用设备</span>
 xinput enable  <span style="color:#ae81ff">15</span> <span style="color:#75715e"># 启动设备</span>

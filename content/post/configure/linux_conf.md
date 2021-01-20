@@ -270,6 +270,9 @@ printf "x\nx\n" | passwd x > /dev/null 2>&1
 
 ## Linux Xorg
 ```bash
+# 查看设备的sysfs属性
+udevadm info -q all -a /dev/input/event13
+
 # 输入设备
 xinput # 查看输入设备列表
 xinput disable 15 # 禁用设备
