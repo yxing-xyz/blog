@@ -82,13 +82,11 @@ var A int // errro
 
 - **switch 的 case 条件中能出现多个结果选项，case 只有明确 fallthrough 才自动执行下一个且不经过 case 的判断，fallthrough 不能在代码中间，如果 switch 不为空则 case 只能比较相等，如果 switch 为空则 case 能写条件判断**
 
-- **数字、字符串、布尔、数组、结构体是值类型不能和nil比较，声明默认是值类型的初始值如 0、空字符串、false, 数组和结构体内部存储类型的初始值**
+- **比较是同类型才能比较,数字、字符串、布尔、数组、结构体是值类型不能和nil比较，声明默认是值类型的初始值如 0、空字符串、false, 数组和结构体内部存储类型的初始值, Chan、Func、Interface、Map、Ptr、Slice是引用类型，声明默认为 nil, 所以可以和nil比较**
 
-- **Chan、Func、Interface、Map、Ptr、Slice是引用类型，声明默认为 nil, 所以可以和nil比较，切忌Func,Map,Slice不能比较编译不过，结构体和数组存储这些类型的也编译不过**
+- **Func,Map,Slice不能和自身类型比较编译不过，结构体和数组存储这些类型的也编译不过, 用空接口强行比较运行会panic**
 
-- **类型不同比较编译不过,可以用接口忽略类型强行比较,类型不同返回false,切记如果两个接口中存储类型是Func,Map,Slice比较会panic,所以小心接口比较**
-
-- **Chan,Map,Slice必须经过 make 初始化才能用，否则 nil 初始值就想当于 NULL 指针段内存错误**
+- **容量型派生类型Chan,Map,Slice必须经过 make 初始化才能用，否则 nil 初始值就想当于 NULL 指针段内存错误**
 
 - **当切片达到cap容量时继续append 会扩大 cap，小于 1024 会按照 2 倍，超过会 1.25 倍递增扩容**
 
