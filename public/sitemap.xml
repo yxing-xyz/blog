@@ -1,230 +1,140 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>/categories/</loc>
     <lastmod>2020-12-08T16:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/debian/</loc>
     <lastmod>2020-12-08T16:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/linux/debian/</loc>
     <lastmod>2020-12-08T16:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/linux/</loc>
     <lastmod>2020-12-08T16:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/</loc>
     <lastmod>2020-12-08T16:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/</loc>
     <lastmod>2020-12-08T16:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/</loc>
     <lastmod>2020-12-08T16:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/algorithm/</loc>
     <lastmod>2020-10-16T15:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/algorithm/</loc>
     <lastmod>2020-10-16T15:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/algorithm/map_electronic_fence/</loc>
     <lastmod>2020-10-16T15:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/programming/</loc>
     <lastmod>2020-10-16T10:16:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/redis/</loc>
     <lastmod>2020-10-16T10:16:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/programming/redis_note/</loc>
     <lastmod>2020-10-16T10:16:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/syntax/</loc>
     <lastmod>2020-10-16T10:16:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/linux/</loc>
     <lastmod>2020-08-07T21:27:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/linux/su_sudo/</loc>
     <lastmod>2020-08-07T21:27:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/golang/</loc>
     <lastmod>2020-08-05T23:08:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/programming/golang_note/</loc>
     <lastmod>2020-08-05T23:08:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/c/</loc>
     <lastmod>2020-05-14T20:06:39+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/programming/c_macro_definition/</loc>
     <lastmod>2020-05-14T20:06:39+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/algorithm/character_set_conversion/</loc>
     <lastmod>2020-05-06T22:17:49+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/utils/</loc>
     <lastmod>2020-05-05T17:00:05+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/windows/</loc>
     <lastmod>2020-05-05T17:00:05+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/win/win_utils/</loc>
     <lastmod>2020-05-05T17:00:05+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/configure/</loc>
     <lastmod>2020-05-04T12:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/configure/win_conf/</loc>
     <lastmod>2020-05-04T12:00:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/configure/proxy/</loc>
     <lastmod>2020-05-04T11:39:59+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/shell/</loc>
     <lastmod>2020-05-04T11:39:59+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/about/</loc>
     <lastmod>2020-04-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/javascript/</loc>
     <lastmod>2019-10-16T20:39:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/programming/js_prototype/</loc>
     <lastmod>2019-10-16T20:39:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/programming/js_utils/</loc>
     <lastmod>2019-08-27T17:28:00+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/configure/linux_conf/</loc>
     <lastmod>2018-09-01T09:51:36+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/devops/</loc>
     <lastmod>2018-06-21T14:55:46+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/devops/</loc>
     <lastmod>2018-06-21T14:55:46+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/devops/docker/</loc>
     <lastmod>2018-06-21T14:55:46+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/programming/data_type/</loc>
     <lastmod>2018-06-18T15:20:41+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/algorithm/bitwise_operator/</loc>
     <lastmod>2017-11-23T11:28:03+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/configure/keyboard_mapping/</loc>
     <lastmod>2017-11-09T19:54:44+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/programming/operator_priority/</loc>
     <lastmod>2017-10-13T15:13:01+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/centos/</loc>
     <lastmod>2017-07-09T17:32:04+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/linux/centos/</loc>
     <lastmod>2017-07-09T17:32:04+08:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/tags/markdown/</loc>
     <lastmod>1970-04-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/post/test/</loc>
     <lastmod>1970-04-22T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>/categories/%E8%AF%AD%E6%B3%95/</loc>
     <lastmod>1970-04-22T00:00:00+00:00</lastmod>
   </url>
-  
 </urlset>

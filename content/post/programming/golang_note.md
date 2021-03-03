@@ -114,7 +114,7 @@ var A int // errro
 
 - **defer后进先出栈结构,执行在return 之前**
 
-- **除了nil任何值赋值给接口那么这个接口不再是nil,即使是一个nil初始值的引用类型.
+- **除了nil任何值赋值给接口那么这个接口不再是nil,即使是一个nil初始值的引用类型**
 
 ```go
 var a []int // a是nil
