@@ -263,3 +263,167 @@ func main() {
     fmt.Println(<-time.After(time.Second))
 }
 ```
+
+### 关闭channel
+#### 1个发送者1个接收者
+直接在发送端关闭
+```golang
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	notify := make(chan int)
+
+	datach := make(chan int, 100)
+
+	go func() {
+		<-notify
+		fmt.Println("2 秒后接受到信号开始发送")
+		for i := 0; i < 100; i++ {
+			datach <- i
+		}
+		fmt.Println("发送端关闭数据通道")
+		close(datach)
+	}()
+
+	time.Sleep(2 * time.Second)
+	fmt.Println("开始通知发送信息")
+	notify <- 1
+	time.Sleep(1 * time.Second)
+	fmt.Println("通知1秒后接收到数据通道数据 ")
+	for {
+		if i, ok := <-datach; ok {
+			fmt.Println(i)
+
+		} else {
+			fmt.Println("接收不到数据中止循环")
+			break
+		}
+	}
+
+	time.Sleep(5 * time.Second)
+}
+```
+#### 1个发送者N个接收者
+同上也是直接在发送端关闭, 1个发送者1个接收者是特例
+
+
+#### N个发送者1个接收者
+N个发送者读取信号通道，接收者for range读取通道，接收者发送控制信号如close通道
+```golang
+package main
+
+import (
+"fmt"
+"time"
+"math/rand"
+)
+
+type T int
+
+func main() {
+	dataCh := make(chan T, 1)
+	stopCh := make(chan T)
+	//notifyCh := make(chan T)
+	for i := 0; i < 10000; i++ {
+		go func(i int) {
+
+			for {
+				value := T(rand.Intn(10000))
+
+				select {
+				case <-stopCh:
+					fmt.Println("接收到停止发送的信号")
+					return
+				case dataCh <- value:
+
+				}
+			}
+		}(i)
+	}
+
+	time.Sleep(1 * time.Second)
+	fmt.Println("1秒后开始接收数据")
+	for {
+		if d, ok := <-dataCh; ok {
+			fmt.Println(d)
+			if d == 9999 {
+				fmt.Println("当在接收端接收到9999时告诉发送端不要发送了")
+				close(stopCh)
+				return
+			}
+		} else {
+			break
+		}
+
+	}
+}
+```
+#### M个发送者N个接收者
+通道有多个并发发送者，则不要关闭通道,让gc回收。file必须close因为是操作系统的资源，这里需要注意flag通道的关闭，重复关闭会导致panic，所以有三种方法:
+1. 互斥锁判断关闭
+2. sync.once
+3. 在所有close的地方recover
+在select前面判断还能再提高实时行关闭
+```golang
+package main
+
+import (
+	"log"
+	"math/rand"
+	"sync"
+)
+
+type T int
+
+func main() {
+	dataCh := make(chan T, 100)
+	flag := make(chan bool)
+	once := new (sync.Once)
+	wg := new(sync.WaitGroup)
+	wg.Add(50)
+	for i := 0; i < 30; i++ {
+		go func(i int) {
+			defer wg.Done()
+			for {
+				value := T(rand.Intn(10))
+				if value == 8 {
+					once.Do(func() {
+						close(flag)
+					})
+				}
+				select {
+				case <- flag:
+					return
+				case dataCh <- value:
+				}
+			}
+
+		}(i)
+	}
+	//消费者
+	for i := 0; i < 20; i++ {
+		go func(i int) {
+			defer wg.Done()
+			for {
+				select {
+				case <-flag:
+					return
+				case value := <-dataCh:
+					if value == 99 {
+						once.Do(func() {
+							close(flag)
+						})
+					}
+					log.Println("receiver value :", value)
+				}
+			}
+		}(i)
+	}
+	wg.Wait()
+}
+```
