@@ -17,7 +17,20 @@ draft: false
 ---
 
 ## Debian常用包
-
+将cloud.aliyuncs是阿里云ECS内部加速地址，换成aliyun就是互联网地址
+### debian 10 buster
+```bash 
+echo > /etc/apt/sources.list
+echo >> 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster main non-free contrib'
+echo >> 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster main non-free contrib'
+echo >> 'deb http://mirrors.cloud.aliyuncs.com/debian-security buster/updates main'
+echo >> 'deb-src http://mirrors.cloud.aliyuncs.com/debian-security buster/updates main'
+echo >> 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster-updates main non-free contrib'
+echo >> 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster-updates main non-free contrib'
+echo >> 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster-backports main non-free contrib'
+echo >> 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster-backports main non-free contrib'
+```
+### debian 9 
 ```bash
 echo > /etc/apt/sources.list
 echo 'deb http://mirrors.cloud.aliyuncs.com/debian/ stretch main non-free contrib' >> /etc/apt/sources.list

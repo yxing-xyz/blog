@@ -84,8 +84,8 @@ pacman -S nethogs --needed --noconfirm --force
 ##################  IO工具 ##############
 # ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中
 pacman -S net-tools dnsutils inetutils iproute2 --needed --noconfirm
-# 端口扫描namp、端口netcat、端口数据发送端口转发socat、http测试 nmap -Pn -v -A www.baidu.com  -p 0-10000
-pacman -S nmap openbsd-netcat socat httpie --needed --noconfirm --force
+# 查看ip连接 端口扫描namp、端口netcat、端口数据发送端口转发socat、http测试 nmap -Pn -v -A www.baidu.com  -p 0-10000
+pacman -S iptstate nmap openbsd-netcat socat httpie --needed --noconfirm --force
 # 测试本机发送tcp/udp最大带宽 时延 丢包, 路由测试工具mtr
 pacman -S iperf mtr --needed --noconfirm --force
 # 抓包
