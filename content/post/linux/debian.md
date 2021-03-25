@@ -51,3 +51,5 @@ apt-get install -y inetutils-ping
 
 ```
 
+## Docker里安装sshd
+> ["/bin/sh", "-c", "apt update && apt install -y openssh-server && sed -i 's/[# ]*UsePAM.*/UsePAM no/' /etc/ssh/sshd_config && sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config && service ssh restart && echo root:root | chpasswd"]
