@@ -124,7 +124,10 @@ var c interface{} = a // c不是nil,存储了a
 - **iota 只能和 const 使用,每次 const 中间遇到 iota 都让他取当前 const 中的索引值从 0 开始**
 
 ## 知识点语法
-
+### golan静态链接
+```bash
+go build -ldflags '-linkmode "external" -extldflags "-static"' .
+```
 ### 切片的删除
 
 ```go
