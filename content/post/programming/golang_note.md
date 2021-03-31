@@ -86,7 +86,7 @@ var A int // errro
 
 - **Func,Map,Slice不能和自身类型比较编译不过，结构体和数组存储这些类型的也编译不过, 用空接口强行比较运行会panic**
 
-- **容量型派生类型Chan,Map,Slice必须经过 make 初始化才能用，否则 nil 初始值就想当于 NULL 指针段内存错误**
+- **Chan、Func、Interface、Map、Ptr、Slice初始是nil, 所以Slice、Chan、Map经过 make 初始化才能用, Slice可以用apend初始化**
 
 - **当切片达到cap容量时继续append 会扩大 cap，小于 1024 会按照 2 倍，超过会 1.25 倍递增扩容**
 
