@@ -21,14 +21,14 @@ draft: false
 ### debian 10 buster
 ```bash 
 echo > /etc/apt/sources.list
-echo >> 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster main non-free contrib'
-echo >> 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster main non-free contrib'
-echo >> 'deb http://mirrors.cloud.aliyuncs.com/debian-security buster/updates main'
-echo >> 'deb-src http://mirrors.cloud.aliyuncs.com/debian-security buster/updates main'
-echo >> 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster-updates main non-free contrib'
-echo >> 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster-updates main non-free contrib'
-echo >> 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster-backports main non-free contrib'
-echo >> 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster-backports main non-free contrib'
+echo 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster main non-free contrib' >> /etc/apt/sources.list
+echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster main non-free contrib' >> /etc/apt/sources.list
+echo 'deb http://mirrors.cloud.aliyuncs.com/debian-security buster/updates main' >> /etc/apt/sources.list
+echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian-security buster/updates main' >> /etc/apt/sources.list
+echo 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster-updates main non-free contrib' >> /etc/apt/sources.list 
+echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster-updates main non-free contrib' >> /etc/apt/sources.list
+echo 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster-backports main non-free contrib' >> /etc/apt/sources.list 
+echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster-backports main non-free contrib' >> /etc/apt/sources.list
 ```
 ### debian 9 
 ```bash
