@@ -29,6 +29,15 @@ echo 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster-updates main non-free
 echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster-updates main non-free contrib' >> /etc/apt/sources.list
 echo 'deb http://mirrors.cloud.aliyuncs.com/debian/ buster-backports main non-free contrib' >> /etc/apt/sources.list 
 echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ buster-backports main non-free contrib' >> /etc/apt/sources.list
+
+apt-get update -y &&
+apt-get install -y procps &&
+apt-get install -y htop &&
+apt-get install -y apache2-utils  &&
+apt-get install -y mtr-tiny &&
+apt-get install -y net-tools &&
+apt-get install -y dnsutils &&
+apt-get install -y inetutils-ping
 ```
 ### debian 9 
 ```bash
@@ -42,11 +51,14 @@ echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch-updates main non
 echo 'deb http://mirrors.cloud.aliyuncs.com/debian/ stretch-backports main non-free contrib' >> /etc/apt/sources.list
 echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch-backports main non-free contrib' >> /etc/apt/sources.list
 
-apt-get install -y htop
-apt-get install -y apache2-utils 
-apt-get install -y mtr-tiny 
-apt-get install -y net-tools 
-apt-get install -y dnsutils 
+
+apt-get update -y &&
+apt-get install -y procps &&
+apt-get install -y htop &&
+apt-get install -y apache2-utils  &&
+apt-get install -y mtr-tiny &&
+apt-get install -y net-tools &&
+apt-get install -y dnsutils &&
 apt-get install -y inetutils-ping
 
 ```
