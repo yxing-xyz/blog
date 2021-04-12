@@ -1,11 +1,12 @@
 ---
-title: "Debian"
+title: "Linux Mirrors"
 date: 2020-12-08T16:28:00+08:00
-description: "Debian"
+description: "Linux Mirrors"
 categories:
   - "Linux"
 tags:
   - "Debian"
+  - "Ubuntu"
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
 lead: "Debian" # 导读
 authorbox: true
@@ -61,6 +62,19 @@ apt-get install -y net-tools &&
 apt-get install -y dnsutils &&
 apt-get install -y inetutils-ping
 
+```
+
+### Ubuntu 20.04
+```bash
+echo > /etc/apt/sources.list
+echo 'deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal main restricted universe multiverse' >> /etc/apt/sources.list
+# deb-src https://mirrors.cloud.aliyuncs.com/ubuntu/ focal main restricted universe multiverse
+echo 'deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-updates main restricted universe multiverse' >> /etc/apt/sources.list
+# deb-src https://mirrors.cloud.aliyuncs.com/ubuntu/ focal-updates main restricted universe multiverse
+echo 'deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-backports main restricted universe multiverse' >> /etc/apt/sources.list
+# deb-src https://mirrors.cloud.aliyuncs.com/ubuntu/ focal-backports main restricted universe multiverse
+echo 'deb http://mirrors.cloud.aliyuncs.com/ubuntu/ focal-security main restricted universe multiverse' >> /etc/apt/sources.list
+# deb-src https://mirrors.cloud.aliyuncs.com/ubuntu/ focal-security main restricted universe multiverse
 ```
 
 ## Docker里安装sshd
