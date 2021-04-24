@@ -294,4 +294,7 @@ xset rate 200 30
 
 # 查看x窗口资源属性
 xprop
+
+# 设置默认浏览器
+xdg-settings set default-web-browser google-chrome.desktop
 ```
