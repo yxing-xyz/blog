@@ -3,10 +3,10 @@ title: "Proxy"
 date: 2020-05-04T11:39:59+08:00
 description: "Proxy"
 categories:
+  - "Configure"
+tags:
   - "Windows"
   - "Linux"
-tags:
-  - "Shell"
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
 lead: "In computer networking, a proxy server is a server application or appliance that acts as an intermediary for requests from clients seeking resources from servers that provide those resources。" # 导读
 authorbox: true

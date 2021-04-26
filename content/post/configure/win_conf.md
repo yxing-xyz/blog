@@ -3,9 +3,9 @@ title: "Windows Configuration"
 date: 2020-05-04T12:00:00+08:00
 description: "Windows Configuration"
 categories:
-  - "Windows"
-tags:
   - "Configure"
+tags:
+  - "Windows"
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
 lead: "Windows Configuration" # 导读
 authorbox: true

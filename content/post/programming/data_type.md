@@ -59,14 +59,6 @@ type rune int32
   UnsafePointer
 ```
 
-## JavaScript
-
-```
-Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function)
-
-Number双精度浮点数
-```
-
 ## Lua
 ```
 number, string, boolean, nil, thread, table, userdata, function
@@ -74,7 +66,14 @@ number, string, boolean, nil, thread, table, userdata, function
 number: 双精度浮点数
 function: c或lua的函数
 userdata: c的数据结构
+```
 
+## JavaScript
+
+```
+Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function)
+
+Number双精度浮点数
 ```
 
 ## Python

@@ -3,9 +3,9 @@ title: "Linux Configuration"
 date: 2018-09-01T09:51:36+08:00
 description: "Linux Configuration"
 categories:
-  - "Linux"
-tags:
   - "Configure"
+tags:
+  - "Linux"
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
 lead: "Linux Configuration" # 导读
 authorbox: true

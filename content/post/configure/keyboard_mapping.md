@@ -3,10 +3,10 @@ title: "Keyboard Mapping"
 date: 2017-11-09T19:54:44+08:00
 description: "Everyone has their own keyboard mapping"
 categories:
+  - "Configure"
+tags:
   - "Linux"
   - "Windows"
-tags:
-  - "Configure"
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
 lead: "Everyone has their own keyboard mapping" # 导读
 authorbox: true
