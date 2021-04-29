@@ -28,6 +28,7 @@ set https_proxy=http://127.0.0.1:1080
 用vscode编辑profile，profile类似bash的bashrc
 
 ```ps1
+set-executionpolicy remotesigned
 code $PROFILE
 ```
 ```ps1
