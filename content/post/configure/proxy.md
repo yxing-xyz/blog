@@ -25,7 +25,11 @@ set https_proxy=http://127.0.0.1:1080
 ```
 
 ## PowerShell
+用vscode编辑profile，profile类似bash的bashrc
 
+```ps1
+code $((Split-Path $profile -Parent) + "profile.ps1")
+```
 ```ps1
 # NOTE: registry keys for IE 8, may vary for other versions
 $regPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings'
