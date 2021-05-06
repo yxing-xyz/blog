@@ -55,19 +55,6 @@ deb-src http://mirrors.cloud.aliyuncs.com/debian-security/ buster/updates main n
 ## newer versions of some applications which may provide useful features.
 EOF
 ```
-### debian 9 
-```bash
-echo > /etc/apt/sources.list
-echo 'deb http://mirrors.cloud.aliyuncs.com/debian/ stretch main non-free contrib' >> /etc/apt/sources.list
-echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch main non-free contrib' >> /etc/apt/sources.list
-echo 'deb http://mirrors.cloud.aliyuncs.com/debian-security stretch/updates main' >> /etc/apt/sources.list
-echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian-security stretch/updates main' >> /etc/apt/sources.list
-echo 'deb http://mirrors.cloud.aliyuncs.com/debian/ stretch-updates main non-free contrib' >> /etc/apt/sources.list
-echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch-updates main non-free contrib' >> /etc/apt/sources.list
-echo 'deb http://mirrors.cloud.aliyuncs.com/debian/ stretch-backports main non-free contrib' >> /etc/apt/sources.list
-echo 'deb-src http://mirrors.cloud.aliyuncs.com/debian/ stretch-backports main non-free contrib' >> /etc/apt/sources.list
-```
-
 ### Ubuntu 20.04
 ```bash
 echo > /etc/apt/sources.list
