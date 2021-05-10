@@ -129,7 +129,9 @@ apt-get install -y apache2-utils  &&
 apt-get install -y mtr-tiny &&
 apt-get install -y net-tools &&
 apt-get install -y dnsutils &&
-apt-get install -y inetutils-ping
+apt-get install -y inetutils-ping && 
+apt-get install -y nfs-kernel-server && 
+apt-get install -y bridge-utils
 ```
 ## Docker里安装sshd
 > ["/bin/sh", "-c", "apt update && apt install -y openssh-server && sed -i 's/[# ]*UsePAM.*/UsePAM no/' /etc/ssh/sshd_config && sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config && service ssh restart && echo root:root | chpasswd"]
