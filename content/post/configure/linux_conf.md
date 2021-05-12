@@ -41,7 +41,7 @@ pacman -S pm2 --needed --noconfirm --force
 # 打印进程调用
 pacman -S strace --needed --noconfirm --force
 # 数据库命令行
-yay -S mycli pgcli-git litecli --needed --noconfirm --force
+yay -S iredis mycli pgcli-git litecli --needed --noconfirm --force
 # 手册
 yay -S cheat-git tldr --needed --noconfirm --force
 # 代码行数统计
