@@ -131,6 +131,8 @@ apt-get install -y net-tools &&
 apt-get install -y dnsutils &&
 apt-get install -y inetutils-ping && 
 apt-get install -y nfs-kernel-server && 
+apt-get install -y less && 
+apt-get install -y iproute2 &&
 apt-get install -y bridge-utils
 ```
 ## Docker里安装sshd
