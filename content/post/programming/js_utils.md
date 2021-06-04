@@ -6,6 +6,7 @@ categories:
   - "Programming"
 tags:
   - "Utils"
+  - "JavaScript"
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
 lead: "JavaScript Utils" # 导读
 authorbox: true
