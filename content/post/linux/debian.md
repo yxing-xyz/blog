@@ -19,6 +19,9 @@ draft: false
 
 ## Debian Mirrors
 将cloud.aliyuncs是阿里云ECS内部加速地址，换成aliyun就是互联网地址
+```bash
+sed -i 's#\w*\.debian\.org#mirrors\.163\.com#g' /etc/apt/sources.list
+```
 ### debian 10 buster
 ```bash 
 echo > /etc/apt/sources.list
