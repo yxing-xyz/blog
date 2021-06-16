@@ -5,7 +5,7 @@ description: "JavaScript Utils"
 categories:
   - "Programming"
 tags:
-  - "Utils"
+  - "Util"
   - "JavaScript"
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
 lead: "JavaScript Utils" # 导读
@@ -16,31 +16,8 @@ mathjax: true
 comments: false
 draft: false
 ---
-### ajax
-```bash
-# SIMPLE
-curl -i -X GET \
-   -H "Sec-Fetch-Mode:cors" \
-   -H "Sec-Fetch-Site:cross-site" \
-   -H "Sec-Fetch-Dest:empty" \
-   -H "Referer:https://www.baidu.com/" \
-   -H "Origin:https://www.baidu.com" \
- 'https://test.juewei.com/a-service'
-# OPTIONS
-```
 
-```bash
-curl -i -X OPTIONS \
-   -H "Sec-Fetch-Mode:cors" \
-   -H "Sec-Fetch-Site:cross-site" \
-   -H "Sec-Fetch-Dest:empty" \
-   -H "Referer:https://www.baidu.com/" \
-   -H "Origin:https://www.baidu.com" \
-   -H "Access-Control-Request-Method:GET" \
-   -H "Access-Control-Request-Headers:x-b3-sampled" \
- 'https://test.juewei.com/a-service'
-```
-
+### XMLHttpRequest
 ```js
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'https://test.juewei.com/a-service');
@@ -51,6 +28,7 @@ xhr.onload = function(e) {
     console.log(xhr.responseText);
 }
 ```
+
 ### 工具类
 ````js
 /*global toString:true*/

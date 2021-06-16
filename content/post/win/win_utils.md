@@ -5,7 +5,7 @@ description: "Windows Utils"
 categories:
   - "Windows"
 tags:
-  - "Utils"
+  - "Util"
 # thumbnail: "/img/avatar.jpg" # Thumbnail image
 lead: "Windows Utils" # 导读
 authorbox: true

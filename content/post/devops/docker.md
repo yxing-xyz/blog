@@ -5,7 +5,7 @@ description: "Docker操作"
 categories:
   - "DevOps"
 tags:
-  - "DevOps"
+  - "Bash"
 thumbnail: "/img/docker.png" # Thumbnail image
 lead: "Docker 是一个开放源代码软件，是一个开放平台，用于开发应用、交付（shipping）应用、运行应用。Docker容器 与虚拟机类似，但原理上，容器是将操作系统层虚拟化，虚拟机则是虚拟化硬件，因此容器更具有便携性、高效地利用服务器" # 导读
 authorbox: true
