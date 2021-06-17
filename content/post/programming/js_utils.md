@@ -27,6 +27,25 @@ xhr.onload = function(e) {
     var xhr = e.target;
     console.log(xhr.responseText);
 }
+
+var i = 0;
+var a = setInterval(() => {
+  i++;
+  var xhr = new XMLHttpRequest();
+  // xhr.open("GET", "https://test.juewei.com/actuator/health" + '?i=' + i);
+  // xhr.open("GET", "https://jrs-test.juewei.com/configs.js"  + '?i=' + i);
+  // xhr.open("GET", "https://comment.juewei.com/configs.js");
+  xhr.open("GET", "https://comment-test.juewei.com/configs.js" + '?i=' + i);
+  xhr.send(null);
+  xhr.onload = function (e) {
+    var xhr = e.target;
+    console.log(xhr.status)
+    if (xhr.status == 502 ) {
+        clearInterval(a)
+    }
+    // console.log(xhr.responseText);
+  };
+}, 10);
 ```
 
 ### 工具类
