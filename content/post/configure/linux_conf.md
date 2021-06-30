@@ -61,8 +61,8 @@ pacman -S tigervnc freerdp --needed --noconfirm --force
 
 
 ############## 资源监控 ###############
-# 硬件信息lshw lscpu lsblk lspci 模块 lsmod 模块信息modinfo
-pacman -S lshw hardinfo --needed --noconfirm --force
+# 硬件信息lshw lscpu lsblk lspci 模块 lsmod 模块信息modinfo dmi信息解码 smartmontools磁盘信息
+pacman -S lshw hardinfo dmidecode --needed smartmontools --noconfirm --force
 # 系统信息
 pacman -S neofetch --needed --noconfirm --force
 # 实时查看网络、cpu、内存、磁盘等多功能实时监控, sysstat多单功能瞬时查看
