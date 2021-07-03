@@ -430,3 +430,60 @@ func main() {
 	wg.Wait()
 }
 ```
+
+### 文件读写
+```go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"os"
+	"time"
+)
+
+// import "github.com/gin-gonic/gin"
+
+func chekErr(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
+func main() {
+	// 第一种
+	fd, err := os.OpenFile("./a", os.O_CREATE|os.O_TRUNC|os.O_WRONLY, 0666)
+	chekErr(err)
+	n, err := fd.Write([]byte("file.Write\n"))
+	chekErr(err)
+	fmt.Printf("第一种写入字节: %d\n", n)
+
+	// 第二种: 也是调用file.Write，不过抽象了接口WriteString如果实现了这个接口，默认会调用这个方法否则调用Write
+	n, err = io.WriteString(fd, "io.WriteString\n")
+	chekErr(err)
+	fmt.Printf("第二种写入字节: %d\n", n)
+	time.Sleep(time.Millisecond * 10)
+
+	// 第三种: bufio.NewWriter包装file
+	w := bufio.NewWriter(fd)
+	n, err = w.WriteString("bufio.Writer\n")
+	chekErr(err)
+	fmt.Printf("第三种写入字节: %d\n", n)
+	w.Flush()
+
+	// sync函数只是将所有修改过的块缓冲区排入写队列，然后就返回，它并不等待实际写磁盘操作结束。
+
+	// fsync函数只对由文件描述符filedes指定的单一文件起作用，并且等待写磁盘操作结束，然后返回。fsync可用于数据库这样的应用程序，
+	// 这种应用程序需要确保将修改过的块立即写到磁盘上。
+
+	// fdatasync函数类似于fsync，但它只影响文件的数据部分。而除数据外，fsync还会同步更新文件的属性。
+
+	fd.Sync()
+	fd.Close()
+
+	// 第三种: ioutil是包装os调用os.WriteFile调用os.OpenFile固定参数O_WRONLY|O_CREATE|O_TRUNC会清空文件
+	err = ioutil.WriteFile("./b", []byte("ioutil.WriteFile\n"), 0666)
+	chekErr(err)
+}
+```
