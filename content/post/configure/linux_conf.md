@@ -75,8 +75,8 @@ pacman -S s-tui --needed --noconfirm --force
 pacman -S iotop --needed --noconfirm --force
 # 查看磁盘使用
 pacman -S ncdu --needed --noconfirm --force
-# 网卡网速监控
-pacman -S bmon bwm-ng nload iftop --needed --noconfirm --force
+# 网卡网速监控 conntrack-tools查看连接跟踪, ipvsadm查看ipvs
+pacman -S bmon bwm-ng nload iftop conntrack-tools ipvsadm --needed --noconfirm --force
 # 进程统计网络带宽
 pacman -S nethogs --needed --noconfirm --force
 
