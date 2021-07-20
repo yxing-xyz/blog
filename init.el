@@ -2,7 +2,7 @@
 ;; auther by yx
 ;; diable mouse
 (mouse-wheel-mode -1)
-(dolist (k '([mouse-1] [down-mouse-1] [drag-mouse-1] [double-mouse-1] [triple-mouse-1]  
+(dolist (k '([mouse-1] [down-mouse-1] [drag-mouse-1] [double-mouse-1] [triple-mouse-1]
              [mouse-2] [down-mouse-2] [drag-mouse-2] [double-mouse-2] [triple-mouse-2]
              [mouse-3] [down-mouse-3] [drag-mouse-3] [double-mouse-3] [triple-mouse-3]
              [mouse-4] [down-mouse-4] [drag-mouse-4] [double-mouse-4] [triple-mouse-4]
@@ -20,7 +20,7 @@
 
 ;; 关闭启动界面
 (setq inhibit-startup-screen t)
-;; set default marjor-mode 
+;; set default marjor-mode
 (setq-default major-mode 'text-mode)
 
 
@@ -68,3 +68,27 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; 日期递增复制到剪切板
+(defun incf-date()
+  (let ((y 2019) (D 1) (d 1) (sql ""))
+    (catch 'break
+      (while (<= y 2020)
+        (while (<= D 12)
+          (while (<= d 31)
+            (setq sql (concat sql (format "\nDROP TABLE IF EXISTS order_base_%d%02d%02d;" y D d)))
+            ;; (message "%d" d)
+            (setq d (+ d 1))
+            )
+          (setq d 1)
+          (setq D (+ D 1))
+          (if (and (= y  2020) (= D 7))
+              (throw 'break nil)
+            )
+          )
+        (setq d 1)
+        (setq D 1)
+        (setq y (+ y 1))
+        )
+      )
+    (kill-new sql)))
