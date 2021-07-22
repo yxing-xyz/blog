@@ -1,7 +1,8 @@
 ---
 title: "Data Type"
 date: 2018-06-18T15:20:41+08:00
-description: "The most basic of a programming language is data type"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Programming"
 tags:
@@ -9,15 +10,8 @@ tags:
   - "C"
   - "Golang"
   - "JavaScript"
-
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "The most basic of a programming language is data type" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## C
@@ -38,7 +32,7 @@ draft: false
 构造数据类型: 数组、结构体(struct)、共同体(union)、枚举(enum)
 
 算术运算符: + - * / % ++ --
-关系运算符: == != > < >= <= 
+关系运算符: == != > < >= <=
 逻辑运算符: && || !
 位运算符: & | ^ << >>
 赋值运算符: = += -= *= /= %= &= |= ^= <<= >>=
@@ -55,9 +49,9 @@ draft: false
 type byte uint8
 type rune int32
 基本类型:
-        数值类型:     
+        数值类型:
                 整数: Uintptr (U)Int (U)Int8 (U)Int16 (U)int32 (U)int64
-                浮点数: Float32 Float64 
+                浮点数: Float32 Float64
                 复数： Complex64 Complex128
         字符串类型: String
         布尔类型: Bool
@@ -65,12 +59,12 @@ type rune int32
 派生类型:
   值类型(初始值不为nil): Array、Struct
   引用类型(初始值为nil): Chan、Func、Interface、Map、Ptr、Slice
-  
+
 特殊类型:
   UnsafePointer
 
 算术运算符: + - * / % ++ --
-关系运算符: == != > < >= <= 
+关系运算符: == != > < >= <=
 逻辑运算符: && || !
 位运算符: & | ^ << >>
 赋值运算符: = += -= *= /= %= &= |= ^= <<= >>=

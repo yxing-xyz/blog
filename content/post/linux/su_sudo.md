@@ -1,19 +1,14 @@
 ---
 title: "The difference between su and sudo in Linux"
 date: 2020-08-07T21:27:00+08:00
-description: "The difference between su and sudo in Linux"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Linux"
 tags:
   - "Linux"
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "The difference between su and sudo in Linux" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## su
@@ -49,7 +44,7 @@ sudo -i等于su root切换成root
 sudo ls
 
 # 切换root等于su root
-sudo -i 
+sudo -i
 
 # 有点意思的用法
 sudo su

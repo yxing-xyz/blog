@@ -1,19 +1,14 @@
 ---
 title: "Windows Utils"
 date: 2020-05-05T17:00:05+08:00
-description: "Windows Utils"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Windows"
 tags:
   - "Util"
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "Windows Utils" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 ## CMD关闭防火墙
 要用超级管理权限执行

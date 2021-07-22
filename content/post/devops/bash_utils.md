@@ -1,20 +1,15 @@
 ---
 title: "Bash Utils"
 date: 2021-06-16T20:00:00+08:00
-description: "Bash Utils"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "DevOps"
 tags:
   - "Bash"
   - "Util"
-thumbnail: "/img/docker.png" # Thumbnail image
-lead: "Bash Utils" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 

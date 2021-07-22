@@ -1,19 +1,14 @@
 ---
 title: "Windows Configuration"
 date: 2020-05-04T12:00:00+08:00
-description: "Windows Configuration"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Configure"
 tags:
   - "Windows"
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "Windows Configuration" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ### Scoop 安装
@@ -56,7 +51,7 @@ scoop install mobaxterm
 ```
 aria2
 cmake
-curl 
+curl
 dig
 firacode
 gcc

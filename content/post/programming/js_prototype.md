@@ -1,19 +1,14 @@
 ---
 title: "JavaScript Prototype"
 date: 2019-10-16T20:39:00+08:00
-description: "JavaScript Prototype"
-lead: "JavaScript Prototyp" # 导读
-thumbnail: "/img/js_prototype.png" # Thumbnail image
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Programming "
 tags:
   - "JavaScript"
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## 继承

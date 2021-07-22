@@ -1,20 +1,15 @@
 ---
 title: "Keyboard Mapping"
 date: 2017-11-09T19:54:44+08:00
-description: "Everyone has their own keyboard mapping"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Configure"
 tags:
   - "Linux"
   - "Windows"
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "Everyone has their own keyboard mapping" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## Windows
@@ -49,9 +44,8 @@ gzip us.map
 仅限systemd引导的发行版,其余的如System V或者openrc引导的发行版请自行查询加载键盘代码
 ```
 原理就是写入/etc/vconsole.conf文件内容KEYMAP=us
-localectl set-keymap us 
+localectl set-keymap us
 ```
 
 ### X11
 在/usr/share/X11/xkb/symbols有个pc文件可以修改映射，网上说可以使用用localectl设置keymap也是us，可惜x11没用这个所以还是直接修改pc文件吧
-

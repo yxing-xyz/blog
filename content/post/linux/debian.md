@@ -1,20 +1,15 @@
 ---
 title: "Linux Mirrors"
 date: 2020-12-08T16:28:00+08:00
-description: "Linux Mirrors"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Linux"
 tags:
   - "Debian"
   - "Ubuntu"
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "Debian" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## Debian Mirrors
@@ -23,7 +18,7 @@ draft: false
 sed -i 's#\w*\.debian\.org#mirrors\.163\.com#g' /etc/apt/sources.list
 ```
 ### debian 10 buster
-```bash 
+```bash
 echo > /etc/apt/sources.list
 cat <<EOF | tee > /etc/apt/sources.list
 ## Note, this file is written by cloud-init on first boot of an instance
@@ -132,9 +127,9 @@ apt-get install -y apache2-utils  &&
 apt-get install -y mtr-tiny &&
 apt-get install -y net-tools &&
 apt-get install -y dnsutils &&
-apt-get install -y inetutils-ping && 
-apt-get install -y nfs-kernel-server && 
-apt-get install -y less && 
+apt-get install -y inetutils-ping &&
+apt-get install -y nfs-kernel-server &&
+apt-get install -y less &&
 apt-get install -y iproute2 &&
 apt-get install -y bridge-utils
 ```

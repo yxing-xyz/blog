@@ -1,20 +1,14 @@
 ---
 title: "Character Set Conversion"
-description: "Character Set Conversion"
-lead: "Character Set Conversion" # 导读
-
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
+date: 2020-05-06T22:17:49+08:00
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Algorithm"
 tags:
   - "Algorithm"
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-date: 2020-05-06T22:17:49+08:00
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## Unicode to UTF8
@@ -206,7 +200,7 @@ int enc_utf8_to_unicode_one(const unsigned char *pInput, unsigned long *Unic)
         b3 = *(pInput + 2);
         b4 = *(pInput + 3);
         b5 = *(pInput + 4);
-        if (((b2 & 0xC0) != 0x80) || ((b3 & 0xC0) != 0x80) || 
+        if (((b2 & 0xC0) != 0x80) || ((b3 & 0xC0) != 0x80) ||
             ((b4 & 0xC0) != 0x80) || ((b5 & 0xC0) != 0x80))
             return 0;
         *pOutput = (b4 << 6) + (b5 & 0x3F);
@@ -221,7 +215,7 @@ int enc_utf8_to_unicode_one(const unsigned char *pInput, unsigned long *Unic)
         b4 = *(pInput + 3);
         b5 = *(pInput + 4);
         b6 = *(pInput + 5);
-        if (((b2 & 0xC0) != 0x80) || ((b3 & 0xC0) != 0x80) || 
+        if (((b2 & 0xC0) != 0x80) || ((b3 & 0xC0) != 0x80) ||
             ((b4 & 0xC0) != 0x80) || ((b5 & 0xC0) != 0x80) ||
             ((b6 & 0xC0) != 0x80))
             return 0;

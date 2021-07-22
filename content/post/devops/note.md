@@ -1,22 +1,17 @@
 ---
 title: "运维笔记"
 date: 2021-07-10T12:32:00+08:00
-description: "运维笔记"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "DevOps"
 tags:
   - "note"
-thumbnail: ""
-lead: "运维笔记" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
-## 基本
+## 基础
 > PHP必须要开启opcache，不然会挂在磁盘并发请求打挂系统，cpu利用率也上不去
 
 > redis万不得以不要存放永久数据，最好设置ttl
@@ -46,7 +41,7 @@ draft: false
                                      |
                                     ngw(SNAT)
                                      |
-                                    internet    
+                                    internet
 11. 阿里云日志的daemonset-crd方式，如果两个k8s集群共用一个logstore，需要重新添加新的机器组，
-因为重复使用crd会覆盖掉机器组，应用日志采用sidecar-crd方法不会有性能瓶颈           
+因为重复使用crd会覆盖掉机器组，应用日志采用sidecar-crd方法不会有性能瓶颈
 ```

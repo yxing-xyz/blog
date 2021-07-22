@@ -1,23 +1,14 @@
 ---
-# Common-Defined params
 title: "MarkDown语法测试"
-date: "1970-04-22"
-description: "MarkDown语法测试"
+date: "2020-04-22"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
    - "Programming"
 tags:
   - "MarkDown"
-# menu: main # 置顶位置Options: main, side, footer
-
-# Theme-Defined params
-thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "测试导读" # 导读
-comments: false # Enable Disqus comments for specific page
-authorbox: true # Enable authorbox for specific page
-pager: true # Enable pager navigation (prev/next) for specific page
-toc: true # Enable Table of Contents for specific page
-mathjax: true # Enable MathJax for specific page
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## 标题

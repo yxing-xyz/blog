@@ -1,19 +1,14 @@
 ---
 title: "Centos"
 date: 2017-07-09T17:32:04+08:00
-description: "Centos"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Linux"
 tags:
   - "Centos"
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "Centos" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## Centos 常用包

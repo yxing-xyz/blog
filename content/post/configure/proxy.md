@@ -1,20 +1,15 @@
 ---
 title: "Proxy"
 date: 2020-05-04T11:39:59+08:00
-description: "Proxy"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Configure"
 tags:
   - "Windows"
   - "Linux"
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "In computer networking, a proxy server is a server application or appliance that acts as an intermediary for requests from clients seeking resources from servers that provide those resources。" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## CMD
@@ -64,4 +59,3 @@ function Set-Proxy
 export https_proxy='http://127.0.0.1:1081'
 export http_proxy='http://127.0.0.1:1081'
 ```
-

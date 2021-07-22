@@ -1,20 +1,15 @@
 ---
 title: "C macro definition"
-description: ""
-lead: "" # 导读
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
+date: 2020-05-14T20:06:39+08:00
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Programming"
 tags:
   - "C"
   - "Syntax"
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-date: 2020-05-14T20:06:39+08:00
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## Get structure member offset bytes

@@ -1,20 +1,15 @@
 ---
 title: "Golang Note"
 date: 2020-08-05T23:08:00+08:00
-description: "Golang knowledge points"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Programming"
 tags:
   - "Syntax"
   - "Golang"
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "Golang knowledge points" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## Golang 知识点
@@ -251,7 +246,7 @@ func main() {
     fmt.Println(time.Now())
     time.Sleep(time.Second)
 	fmt.Println(time.Now())
-	
+
 	// 重置定时器 timer.Reset(d Duration) 过了d时间然后出通道执行后打代码
 	// 停止定时器 timer.Stop()
     /*

@@ -1,20 +1,14 @@
 ---
 title: "Map electronic fence"
-description: "Map electronic fence"
-lead: "Map electronic fence" # 导读
-
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
+date: 2020-10-16T15:28:00+08:00
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Algorithm"
 tags:
   - "Algorithm"
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-date: 2020-10-16T15:28:00+08:00
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## 地图围栏算法

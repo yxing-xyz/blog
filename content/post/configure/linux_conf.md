@@ -1,19 +1,14 @@
 ---
 title: "Linux Configuration"
 date: 2018-09-01T09:51:36+08:00
-description: "Linux Configuration"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Configure"
 tags:
   - "Linux"
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: "Linux Configuration" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## Arch 软件包
@@ -54,7 +49,7 @@ pacman -S k9s --needed --noconfirm --force
 
 ############# 虚拟机相关 ##############
 # rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/x
-# x0vncserver -display :0 -passwordfile ~/.vnc/passwd 
+# x0vncserver -display :0 -passwordfile ~/.vnc/passwd
 # xfreerdp /bpp:32 /gfx +aero +fonts /d:192.168.44.118 /u:x /p:x /v:192.168.44.118
 #         启动vnc服务端 win远程桌面客户端
 pacman -S tigervnc freerdp --needed --noconfirm --force
@@ -185,20 +180,20 @@ pacman -S swaks --needed --noconfirm --force
 pacman -S hydra hashcat fcrackzip --needed --noconfirm --force
 # 制作ISO镜像
 # xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V "CentOS" -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/
-pacman -S xorriso mkisolinux --needed --noconfirm --force 
+pacman -S xorriso mkisolinux --needed --noconfirm --force
 
 ############### GUI  ###########
 # 启动工具
-pacman -S rofi --needed --noconfirm --force                 
+pacman -S rofi --needed --noconfirm --force
 # 截图
-pacman -S scrot flamescrot maim --needed --noconfirm --force      
+pacman -S scrot flamescrot maim --needed --noconfirm --force
 # 图像预览
 pacman -S feh --noconfirm --force --needed
 # proxy
 pacman -S qv2ray v2ray  proxychains --needed --noconfirm --force
 # 输入法
 pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
-# 字体 
+# 字体
 pacman -S nerd-fonts-complete otf-font-awesome ttf-dejavu powerline-fonts noto-fonts-cjk --needed --noconfirm
 # wqy
 pacman -S `sudo pacman -Ssq 'wqy-*'` --needed --noconfirm
@@ -250,7 +245,7 @@ pacman -U ./构建包名
 # 时区
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # 设置系统时间同步到bios中
-hwclock --systohc --localtime # hwclock --systohc 
+hwclock --systohc --localtime # hwclock --systohc
 # locale
 echo "zh_CN.UTF-8 UTF-8
 en_US.UTF-8 UTF-8

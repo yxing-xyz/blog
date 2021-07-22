@@ -1,19 +1,14 @@
 ---
 title: "Bitwise Operation"
 date: 2017-11-23T11:28:03+08:00
-description: "Bitwise Operation"
+lastmod: 2021-07-22T14:28:00+08:00
+draft: false
 categories:
   - "Algorithm"
 tags:
   - "Algorithm"
-# thumbnail: "/img/avatar.jpg" # Thumbnail image
-lead: " If you can understand and use bit operators flexibly, sometimes it will improve the performance of the program and make the code more concise" # 导读
-authorbox: true
-pager: true
-toc: true
-mathjax: true
-comments: false
-draft: false
+author: "何年重遇天涯"
+contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 ## 基础
