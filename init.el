@@ -91,4 +91,5 @@
         (setq y (+ y 1))
         )
       )
+    ;; (write-region sql nil "/home/x/Downloads/tmp.sql")
     (kill-new sql)))

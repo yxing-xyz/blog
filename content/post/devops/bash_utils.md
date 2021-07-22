@@ -40,3 +40,14 @@ mysqldump是单线程备份,最蛋疼的是默认参数会锁表影响业务,其
 ```bash
 mysqldump -h ${HOST} -u ${USER} -P 3306 -p${PASSWD}\$\@\$H --skip-opt --quick --default-character-set=utf8 --triggers ${DBNAME} | gzip > ./backup.gz
 ```
+
+
+## git
+### 批量删除远程tag
+```bash
+git show-ref --tag | awk '{print ":" $2}' | xargs git push origin
+```
+### 批量删除本地tag
+```bash
+git tag -l | xargs git tag -d
+```
