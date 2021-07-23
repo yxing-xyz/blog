@@ -68,7 +68,7 @@
 
 ;; Enable proxy
 ;; (proxy-http-enable)
-(proxy-socks-enable)
+;; (proxy-socks-enable)
 
 ;; Display on the specified monitor
 ;; (when (and (> (length (display-monitor-attributes-list)) 1)
