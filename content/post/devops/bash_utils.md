@@ -26,6 +26,10 @@ url='https://test.juewei.com/actuator/health'; code=200; while [ $code -eq 200 ]
 ```bash
 split -b 104857600 -d -a 6 nohup.out ./2021-07-12_
 ```
+清空日志
+```bash
+sudo find . -name "*.log" -type f  | awk '{print "echo > "$0}' | bash
+```
 
 ## MySQL备份
 mysqldump是单线程备份,最蛋疼的是默认参数会锁表影响业务,其次参数顺序需要注意,不然默认不会生效.
