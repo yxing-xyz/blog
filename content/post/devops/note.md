@@ -12,6 +12,7 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ---
 
 ## 基础
+> du和df空间不一致: 1. rm删除文件inode节点被进程打开内核不会释放空间. 2. mount挂载非空目录隐藏了原磁盘导致du并没有统计这部分空间
 > PHP必须要开启opcache，不然会挂在磁盘并发请求打挂系统，cpu利用率也上不去
 
 > redis万不得以不要存放永久数据，最好设置ttl
