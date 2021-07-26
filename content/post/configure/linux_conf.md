@@ -45,7 +45,7 @@ pacman -S cloc --needed --noconfirm --force
 pacman -S shellcheck --needed --noconfirm --force
 
 # k8s
-pacman -S k9s --needed --noconfirm --force
+pacman -S k9s helm --needed --noconfirm --force
 
 ############# 虚拟机相关 ##############
 # rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/x
@@ -66,19 +66,15 @@ pacman -S nmon dstat sysstat --needed --noconfirm --force
 pacman -S glances htop --needed --noconfirm --force
 # 实时cpu监控
 pacman -S s-tui --needed --noconfirm --force
-# 进程磁盘读写监控iotop  磁盘和cpu负载iostat
-pacman -S iotop --needed --noconfirm --force
-# 查看磁盘使用
-pacman -S ncdu --needed --noconfirm --force
+
+
+##################  net工具 ##############
+# ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中
+pacman -S net-tools dnsutils inetutils iproute2 --needed --noconfirm
 # 网卡网速监控 conntrack-tools查看连接跟踪, ipvsadm查看ipvs
 pacman -S bmon bwm-ng nload iftop conntrack-tools ipvsadm --needed --noconfirm --force
 # 进程统计网络带宽
 pacman -S nethogs --needed --noconfirm --force
-
-
-##################  IO工具 ##############
-# ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中
-pacman -S net-tools dnsutils inetutils iproute2 --needed --noconfirm
 # 查看ip连接 端口扫描namp、端口netcat、端口数据发送端口转发socat、http测试 nmap -Pn -v -A www.baidu.com  -p 0-10000
 pacman -S iptstate nmap openbsd-netcat socat httpie --needed --noconfirm --force
 # 测试本机发送tcp/udp最大带宽 时延 丢包, 路由测试工具mtr
@@ -88,9 +84,16 @@ pacman -S iptraf-ng wireshark-qt wireshark-gtk ngrep --needed --noconfirm --forc
 # 内网穿透
 # sshuttle --dns -vr root@114.215.181.234 192.168.0.0/16 --ssh-cmd 'ssh -i /home/x/workspace/juewei/k8s/cert/品牌中心密钥对.key'
 pacman -S frp localtunnel sshuttle --needed --noconfirm --force
+
+################## 磁盘和文件系统工具 ###############
+# 进程磁盘读写监控iotop  磁盘和cpu负载iostat
+pacman -S iotop --needed --noconfirm --force
+# 查看磁盘使用
+pacman -S ncdu --needed --noconfirm --force
+# 文件系统扩容 resize2fs fsck检查文件系统错误
+pacman -S e2fsprogs --needed --noconfirm --force
 # 文件读写测试
 pacman -S fio --needed --noconfirm --force
-
 
 ################### 终端神器 #####################
 # shell
