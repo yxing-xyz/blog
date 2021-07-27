@@ -195,7 +195,7 @@ pacman -S feh --noconfirm --force --needed
 # proxy
 pacman -S qv2ray v2ray  proxychains --needed --noconfirm --force
 # 输入法
-pacman -S fcitx-qt5 fcitx-configtool --needed --noconfirm
+pacman -S librime ibus-rime --needed --noconfirm
 # 字体
 pacman -S nerd-fonts-complete otf-font-awesome ttf-dejavu powerline-fonts noto-fonts-cjk --needed --noconfirm
 # wqy
