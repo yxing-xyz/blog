@@ -28,7 +28,8 @@ split -b 104857600 -d -a 6 nohup.out ./2021-07-12_
 ```
 清空日志
 ```bash
-sudo find . -name "*.log" -type f  | awk '{print "echo > "$0}' | bash
+sudo find . -name "*.log" -type f -size 1M | awk '{print "echo > "$0}' | bash
+sudo find . -name "*.log" -type f -size 1M | xargs truncate -s 0
 ```
 
 ## MySQL备份
