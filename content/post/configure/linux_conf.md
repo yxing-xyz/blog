@@ -45,7 +45,7 @@ pacman -S cloc --needed --noconfirm --force
 pacman -S shellcheck --needed --noconfirm --force
 
 # k8s
-pacman -S k9s helm --needed --noconfirm --force
+pacman -S k9s helm tekton-cli --needed --noconfirm --force
 
 ############# 虚拟机相关 ##############
 # rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/x
