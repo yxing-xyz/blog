@@ -27,6 +27,8 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 
 > k8s默认不会主动将已运行pod平衡分布机器，有一个descheduler可以三分钟运行一次平衡pod数量
 
+> k8s统计显示的内存是包括实际用的top里的RES和系统buffer/cache占用的内存
+
 ## 阿里云
 ```txt
 1. 负载均衡四层后端负载访问负载均衡是访问不通
