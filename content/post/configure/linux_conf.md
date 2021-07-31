@@ -70,7 +70,7 @@ pacman -S s-tui --needed --noconfirm --force
 
 ##################  net工具 ##############
 # ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中
-pacman -S net-tools dnsutils inetutils iproute2 --needed --noconfirm
+pacman -S net-tools dnsutils inetutils iproute2 bridge-utils --needed --noconfirm
 # 网卡网速监控 conntrack-tools查看连接跟踪, ipvsadm查看ipvs
 pacman -S bmon bwm-ng nload iftop conntrack-tools ipvsadm --needed --noconfirm --force
 # 进程统计网络带宽
@@ -227,6 +227,10 @@ pacman -S kchmviewer --needed --noconfirm --force         # CHM
 pacman -S calibre --needed --noconfirm --force            # 图书转换器
 # 开源CAD
 pacman -S kicad --needed --noconfirm --force
+# 蓝牙
+pacman -S bluez bluez-utils pulseaudio-bluetooth --needed --noconfirm --force
+systemctl start bluetooth.service
+systemctl enable bluetooth.service
 ```
 ## ArchLinux
 ```bash
