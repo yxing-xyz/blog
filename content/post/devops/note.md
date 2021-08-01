@@ -40,11 +40,13 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 7. 有一些默认不支持nas和oss挂载存储如zentao和mysql
 8. 自定义网段不支持阿里云网关nat出口
 9. k8s默认会将loadbalancer的ip做负载均衡，所以如果在集群内部四层访问负载均衡是不会触发第一点的。
-10. 调阿里云的网络要注意安全组 ecs-a - vsitch（路由表） - 安全组 - ecs-b
+10. svc负载聚会如果加service.beta.kubernetes.io/alibaba-cloud-loadbalancer-remove-unscheduled-backend: 'on'会cordon移除slb后端节点
+11. slb负载策略wrr(加权轮询),rr(轮训),wlc(加权最小连接数),ch(一致性hash，只有四层有)
+12. 调阿里云的网络要注意安全组 ecs-a - vsitch（路由表） - 安全组 - ecs-b
                                      |
                                     ngw(SNAT)
                                      |
                                     internet
-11. 阿里云日志的daemonset-crd方式，如果两个k8s集群共用一个logstore，需要重新添加新的机器组，
+13. 阿里云日志的daemonset-crd方式，如果两个k8s集群共用一个logstore，需要重新添加新的机器组，
 因为重复使用crd会覆盖掉机器组，应用日志采用sidecar-crd方法不会有性能瓶颈
 ```

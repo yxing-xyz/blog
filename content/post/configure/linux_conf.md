@@ -84,7 +84,11 @@ pacman -S iptraf-ng wireshark-qt wireshark-gtk ngrep --needed --noconfirm --forc
 # 内网穿透
 # sshuttle --dns -vr root@114.215.181.234 192.168.0.0/16 --ssh-cmd 'ssh -i /home/x/workspace/juewei/k8s/cert/品牌中心密钥对.key'
 pacman -S frp localtunnel sshuttle --needed --noconfirm --force
-
+# wifi
+pacman -S networkmanager --needed --noconfirm --force
+nmcli  dev wifi list
+nmcli device wifi connect "x" password "qwer1234"
+nmcli connection import type openvpn file file.ovpn
 ################## 磁盘和文件系统工具 ###############
 # 进程磁盘读写监控iotop  磁盘和cpu负载iostat
 pacman -S iotop --needed --noconfirm --force
