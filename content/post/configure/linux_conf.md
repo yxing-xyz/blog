@@ -15,7 +15,9 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ```bash
 #!/usr/bin/env bash
 # set -euxo pipefail
-set -euo pipefail
+set -o errexit
+set -o nounset
+set -o pipefail
 ################################
 # 安装图形界面                     剪切板 窗口特效 合并X11配置
 pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel--needed --noconfirm
