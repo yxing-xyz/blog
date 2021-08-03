@@ -23,6 +23,9 @@ set -o pipefail
 pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel--needed --noconfirm
 # awesome
 pacman -S awesome --needed --noconfirm
+# 清除密码 gnome-keyring-daemon -r -d
+pacman -S gnome-keyring
+
 # 导入CPG key/
 pacman -S archlinux-keyring --needed --noconfirm
 pacman -S archlinuxcn-keyring --needed --noconfirm
