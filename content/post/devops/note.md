@@ -29,6 +29,7 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 
 > k8s统计显示的内存是包括实际用的top里的RES和系统buffer/cache占用的内存
 
+> k8s的drain节点是先结束pod然后新建pod,所以如果pod是高可用的分布在不同节点drain没问题,如果节点少,且有资源的pod全位于同一个node上那么drain会中断业务,建议先cordon,然后restart相关资源直到node没有业务pod后才移除node
 ## 阿里云
 ```txt
 1. 负载均衡四层后端负载访问负载均衡是访问不通
