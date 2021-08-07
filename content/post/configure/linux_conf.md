@@ -33,7 +33,7 @@ pacman -S archlinuxcn-keyring --needed --noconfirm
 pacman -Syu yay downgrade --needed --noconfirm
 
 # 常用开发工具
-pacman -S yasm gcc cmake nginx php php-apache composer jdk8 gradle maven nodejs npm yarn git tig svn python python-pip --needed --noconfirm --force
+pacman -S yasm gcc cmake nginx php php-apache composer jdk8 gradle maven nodejs npm yarn git tig svn python python-pip go go-tools --needed --noconfirm --force
 # 编辑
 pacman -S emacs vim visual-studio-code-bin intellij-idea-ultimate-edition --needed --noconfirm --force
 # nodejs应用进程管理器
