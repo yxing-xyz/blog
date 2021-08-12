@@ -30,6 +30,8 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 > k8s统计显示的内存是包括实际用的top里的RES和系统buffer/cache占用的内存
 
 > k8s的drain节点是先结束pod然后新建pod,所以如果pod是高可用的分布在不同节点drain没问题,如果节点少,且有资源的pod全位于同一个node上那么drain会中断业务,建议先cordon,然后restart相关资源直到node没有业务pod后才移除node
+
+>  pod停止流程![avatar](/img/pod-stop.png)
 ## 阿里云
 ```txt
 1. 负载均衡四层后端负载访问负载均衡是访问不通
@@ -43,11 +45,11 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 9. k8s默认会将loadbalancer的ip做负载均衡，所以如果在集群内部四层访问负载均衡是不会触发第一点的。
 10. svc负载聚会如果加service.beta.kubernetes.io/alibaba-cloud-loadbalancer-remove-unscheduled-backend: 'on'会cordon移除slb后端节点
 11. slb负载策略wrr(加权轮询),rr(轮训),wlc(加权最小连接数),ch(一致性hash，只有四层有)
-12. 调阿里云的网络要注意安全组 ecs-a - vsitch（路由表） - 安全组 - ecs-b
-                                     |
-                                    ngw(SNAT)
-                                     |
-                                    internet
+12. 调阿里云的网络要注意安全组 ecs-a - 安全组出口 -  vsitch（路由表）- 安全组入口 - ecs-b
+                                                    |
+                                                  ngw(SNAT)
+                                                    |
+                                                  internet
 13. 阿里云日志的daemonset-crd方式，如果两个k8s集群共用一个logstore，需要重新添加新的机器组，因为重复使用crd会覆盖掉机器组，应用日志采用sidecar-crd方法不会有性能瓶颈
 14. 联系方式: 消息中心, 云监控, k8s集群
 ```

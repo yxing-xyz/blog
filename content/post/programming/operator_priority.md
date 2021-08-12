@@ -11,4 +11,4 @@ author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
-![avatar](/content_img/c_language_operator_priority.jpg)
+![avatar](/img/c_language_operator_priority.jpg)
