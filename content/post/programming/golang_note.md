@@ -28,6 +28,7 @@ var A int = 1
 var B = 1 // 自动推断
 ```
 
+
 - **常量不能重新赋值,不能调用函数因编译期确定,常量有无类型关联默认类型常量如常量字符串,常量 bool,常量数字,也可以带类型常量,带类型常量就不能赋值给别名类型赋值**
 
 ```go
@@ -45,8 +46,8 @@ func main() {
 	var b MyInt = A // ok, 因为A是无类型关联int类型
 	var b MyInt = C // error报错因为,常量有类型,类型不一样不能赋值
 }
-
 ```
+- **iota只能和const使用,iota每次都使值从0开始**
 
 - **同一个包里面函数名,接口名,结构体名,全局变量,全局常量不能重名**
 ```go
@@ -57,64 +58,59 @@ const A // error
 var A int // errro
 ```
 
-- **type 新类型 类型这种方式可以挂方法,type 别名 = 也类似宏定义,不能在包外挂方法,这是和 type 类型的区别, 可以通过类型转换新类型和旧类型**
-
-- **两个接口拥有相同的方法列表，方法次序可以不同，那么他们就是等价可以相互赋值，接口 A 是接口 B 的子级，B 可以赋值给 A**
-
-- **类型实现接口如果方法接受者是指针,那么接口变量只能是存储这个类型的指针**
-
-- **main 函数不能带参数，不能有返回值，且必须在 main 包中**
-
-- **if 语句块会遮挡外部定义的变量如命名返回值,导致 bug 所以变量尽量定义到外面**
-
-- **函数返回值如果只有一个可以只写类型，如果多个类型必须括号包裹起来，如果返回值中有一命名返回值，其余参数必须全部命名**
-
-- **结构体实现接口函数就实现了接口**
-
 - **包中可以包含多个 init 函数，先执行导入包的 init 函数，然后 main 包 init，然后 main 函数**
+
+- **main函数不能带参数，不能有返回值，且必须在 main 包中**
+
+- **同一个文件夹中包名只能有一个,不能出现多个**
+
+- **函数和成员和方法名大小写决定包外可见行类似 public 和 private**
+
+- **函数返回值如果只有一个类型,可以只写类型，如果多个类型必须括号包裹起来，如果返回值中有一命名返回值，其余参数必须全部命名**
+
+- **chan, map, slice需要make初始化才能用, slice可以用apend初始化**
+
+- **delete函数用来删除map键值**
+
+- **当切片达到cap容量时继续append 会扩大 cap，小于 1024 会按照 2 倍，超过会 1.25 倍递增扩容**
+
+- **append超过cap返回扩容的新切片，否则返回旧切片**
+
+- **cap 函数适用数组、切片、通道**
+
+- **给 nil chan 发送接收都会导致阻塞，可以用来阻塞 main 协程**
+
+- **select随机选取通道执行一次用来处理通道 io，除了defalt其他都必须读写 chan,空select阻塞协程**
+
+- **if语句块会遮挡外部定义的变量如命名返回值,导致 bug 所以变量尽量定义到外面**
+
+- **switch的case条件中能出现多个结果选项**
+
+- **fallthrough不能在代码中间只有明确fallthrough才自动执行下一个且不经过case的判断**
+
+- **如果switch不为空则case只能比较相等，如果 switch为空则case能写条件判断**
 
 - **for 循环不支持逗号隔开赋值，只支持平行赋值**
 
 - **for range里面的闭包和协程很容易出错因为使用副本和指向地址没改变**
 
-- **switch 的 case 条件中能出现多个结果选项，case 只有明确 fallthrough 才自动执行下一个且不经过 case 的判断，fallthrough 不能在代码中间，如果 switch 不为空则 case 只能比较相等，如果 switch 为空则 case 能写条件判断**
+- **type 新类型 类型这种方式可以挂方法,type 别名 = 也类似宏定义,不能在包外挂方法,这是和 type 类型的区别, 可以通过类型转换新类型和旧类型**
 
-- **chan, map, slice需要make初始化才能用, slice可以用apend初始化**
+- **两个接口拥有相同的方法列表，方法次序可以不同，那么他们就是等价可以相互赋值，接口 A 是接口 B 的子级，B 可以赋值给 A**
 
-- **当切片达到cap容量时继续append 会扩大 cap，小于 1024 会按照 2 倍，超过会 1.25 倍递增扩容**
-
-- **append 新增超过 cap 返回扩容的新切片，否则返回旧切片， copy 切片两个切片长度最小为 n 复制右切片 n 长度的值到左边切片， 删除切片中头尾部直接重新切片赋值，中间用 append 或者 copy 来做**
-
-
-
-- **给 nil chan 发送接收都会导致阻塞，可以用来阻塞 main 协程**
-
-- **无缓冲的 chan 是同步，有缓冲事异步**
-
-- **cap 函数适用数组、切片、通道**
-
-- **select随机选取通道执行一次用来处理通道 io，除了 defalt 其他都必须读写 chan, 多次外面操作加for循环,空select阻塞协程**
-
-- **delete函数用来删除 map 键值**
-
-- **函数和成员和方法名大小写决定包外可见行类似 public 和 private**
-
-- **panic 只能本协程栈层层返回,所以为了不让程序崩溃所有协程最好 defer recover 恢复 panic, 多次 panic 只有最后一个 panic 被 recover**
-
-- **同一个文件夹中包名只能有一个,不能出现多个**
-
-- **defer后进先出栈结构,执行在return 之前**
+- **类型实现接口函数就实现了接口, 类型实现接口如果方法接受者是指针,那么接口变量只能是存储这个类型的指针**
 
 - **除了nil任何值赋值给接口那么这个接口不再是nil,即使是一个nil初始值的引用类型**
-
 ```go
 var a []int // a是nil
-var c interface{} = a // c不是nil,存储了a
+var c interface{} = a // c不是nil,引用了a
 ```
 
-- **switch type 和.(类型)判断只能是接口变量才能编译通过**
+- **switch type 和.(类型)判断只能是接口变量才能编译通过,因为只有接口实际隐藏了变量的其他类型只保留接口方法调用相等于泛化了**
 
-- **iota 只能和 const 使用,每次 const 中间遇到 iota 都让他取当前 const 中的索引值从 0 开始**
+- **panic 只能本协程栈层层返回,所以为了不让程序崩溃, web协程最好 defer recover 恢复 panic, 多次panic只有最后一个panic被recover**
+
+- **defer后进先出栈结构,执行在return 之前**
 
 ## 重点语法
 
@@ -254,28 +250,34 @@ func main() {
     /*
         用sleep实现定时器
     */
+
     fmt.Println(time.Now())
     time.Sleep(time.Second)
-	fmt.Println(time.Now())
+    fmt.Println(time.Now())
 
-	// 重置定时器 timer.Reset(d Duration) 过了d时间然后出通道执行后打代码
-	// 停止定时器 timer.Stop()
-    /*
-        用timer实现定时器
-    */
-	timer := time.NewTimer(time.Second)
 
     fmt.Println(<-timer.C)
     /*
         用after实现定时器
     */
     fmt.Println(<-time.After(time.Second))
+
+
+    // 重置定时器 timer.Reset(d Duration) 过了d时间然后出通道执行后打代码
+    // 停止定时器 timer.Stop()
+    /*
+        用timer实现定时器
+    */
+    timer := time.NewTimer(time.Second)
 }
 ```
 
 ### 关闭channel
-#### 1个发送者1个接收者
-直接在发送端关闭
+接受端和发送端都可以关闭通道,一般来说都是在发送端关闭,因为接收端能读取到通道已经关闭的状态.因为只需要注意:
+1. 通道重复关闭会panic
+2. 通道关闭后,从通道读取会返回false状态
+#### 1个发送者N个接收者,
+N取值1..N, 直接在发送端关闭即可.
 ```golang
 package main
 
@@ -317,125 +319,7 @@ func main() {
 	time.Sleep(5 * time.Second)
 }
 ```
-#### 1个发送者N个接收者
-同上也是直接在发送端关闭, 1个发送者1个接收者是特例
 
-
-#### N个发送者1个接收者
-N个发送者读取信号通道，接收者for range读取通道，接收者发送控制信号如close通道
-```golang
-package main
-
-import (
-"fmt"
-"time"
-"math/rand"
-)
-
-type T int
-
-func main() {
-	dataCh := make(chan T, 1)
-	stopCh := make(chan T)
-	//notifyCh := make(chan T)
-	for i := 0; i < 10000; i++ {
-		go func(i int) {
-
-			for {
-				value := T(rand.Intn(10000))
-
-				select {
-				case <-stopCh:
-					fmt.Println("接收到停止发送的信号")
-					return
-				case dataCh <- value:
-
-				}
-			}
-		}(i)
-	}
-
-	time.Sleep(1 * time.Second)
-	fmt.Println("1秒后开始接收数据")
-	for {
-		if d, ok := <-dataCh; ok {
-			fmt.Println(d)
-			if d == 9999 {
-				fmt.Println("当在接收端接收到9999时告诉发送端不要发送了")
-				close(stopCh)
-				return
-			}
-		} else {
-			break
-		}
-
-	}
-}
-```
-#### M个发送者N个接收者
-通道有多个并发发送者，则不要关闭通道,让gc回收。file必须close因为是操作系统的资源，这里需要注意flag通道的关闭，重复关闭会导致panic，所以有三种方法:
-1. 互斥锁判断关闭
-2. sync.once
-3. 在所有close的地方recover
-在select前面判断还能再提高实时行关闭
-```golang
-package main
-
-import (
-	"log"
-	"math/rand"
-	"sync"
-)
-
-type T int
-
-func main() {
-	dataCh := make(chan T, 100)
-	flag := make(chan bool)
-	once := new (sync.Once)
-	wg := new(sync.WaitGroup)
-	wg.Add(50)
-	for i := 0; i < 30; i++ {
-		go func(i int) {
-			defer wg.Done()
-			for {
-				value := T(rand.Intn(10))
-				if value == 8 {
-					once.Do(func() {
-						close(flag)
-					})
-				}
-				select {
-				case <- flag:
-					return
-				case dataCh <- value:
-				}
-			}
-
-		}(i)
-	}
-	//消费者
-	for i := 0; i < 20; i++ {
-		go func(i int) {
-			defer wg.Done()
-			for {
-				select {
-				case <-flag:
-					return
-				case value := <-dataCh:
-					if value == 99 {
-						once.Do(func() {
-							close(flag)
-						})
-					}
-					log.Println("receiver value :", value)
-				}
-			}
-		}(i)
-	}
-	wg.Wait()
-}
-```
 
 ### 文件读写
 ```go
