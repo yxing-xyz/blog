@@ -349,13 +349,18 @@ func main() {
 	chekErr(err)
 	fmt.Printf("第一种写入字节: %d\n", n)
 
-	// 第二种: 也是调用file.Write，不过抽象了接口WriteString如果实现了这个接口，默认会调用这个方法否则调用Write
+    // 第二种: ioutil是包装os调用os.WriteFile调用os.OpenFile固定参数O_WRONLY|O_CREATE|O_TRUNC会清空文件,然后调用File的方法
+	err = ioutil.WriteFile("./b", []byte("ioutil.WriteFile\n"), 0666)
+	chekErr(err)
+
+	// 第三种: 也是调用file.Write，File实现了接口WriteString,调用这个接口方法
 	n, err = io.WriteString(fd, "io.WriteString\n")
 	chekErr(err)
 	fmt.Printf("第二种写入字节: %d\n", n)
 	time.Sleep(time.Millisecond * 10)
 
-	// 第三种: bufio.NewWriter包装file
+
+	// 第四种: bufio.NewWriter包装file
 	w := bufio.NewWriter(fd)
 	n, err = w.WriteString("bufio.Writer\n")
 	chekErr(err)
@@ -372,8 +377,6 @@ func main() {
 	fd.Sync()
 	fd.Close()
 
-	// 第三种: ioutil是包装os调用os.WriteFile调用os.OpenFile固定参数O_WRONLY|O_CREATE|O_TRUNC会清空文件
-	err = ioutil.WriteFile("./b", []byte("ioutil.WriteFile\n"), 0666)
-	chekErr(err)
+	
 }
 ```
