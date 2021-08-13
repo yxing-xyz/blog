@@ -129,7 +129,7 @@ pacman -S ripgrep the_silver_searcher ack --needed --noconfirm --force
 pacman -S bat ccze diff-so-fancy colordiff --noconfirm --needed --force
 # 终端表格、文本三神器
 pacman -S awk sed grep --needed --noconfirm --force
-# TERM=screen-256color sshpass -p 'fm09j#Ojiogj32i' ssh -p 2222 -o ServerAliveInterval=60 admin@jumpserver.juewei.com
+# TERM=screen-256color sshpass -p 'fm09j#Ojiogj32i' ssh -p 2222 -o ServerAliveInterval=60 root@127.0.0.1
 pacman -S sshpass mosh --needed --noconfirm --force
 # 查看进度
 pacman -S progress --needed --noconfirm --force
