@@ -23,23 +23,23 @@ xhr.onload = function(e) {
     console.log(xhr.responseText);
 }
 
-var i = 0;
-var a = setInterval(() => {
-  i++;
-  var xhr = new XMLHttpRequest();
-  // xhr.open("GET", "https://test.juewei.com/actuator/health" + '?i=' + i);
-  // xhr.open("GET", "https://jrs-test.juewei.com/configs.js"  + '?i=' + i);
-  // xhr.open("GET", "https://comment.juewei.com/configs.js");
-  xhr.open("GET", "https://comment-test.juewei.com/configs.js" + '?i=' + i);
-  xhr.send(null);
-  xhr.onload = function (e) {
-    var xhr = e.target;
-    console.log(xhr.status)
-    if (xhr.status == 502 ) {
-        clearInterval(a)
-    }
-    // console.log(xhr.responseText);
-  };
+// 测试后端优雅重启
+setInterval(() => {
+    var xhr = new XMLHttpRequest()
+    xhr.open("GET", "https://dev.juewei.com/order/actuator/health");
+    // xhr.open("GET", "https://jrs-test.juewei.com/configs.js")
+    // xhr.setRequestHeader("appEnv", "canary")
+                                ;            
+    xhr.send(null);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var result = xhr.responseText;
+            var json = eval("(" + result + ")");
+            if (json.status != 'UP') {
+                confirm(result)
+            }
+        };
+    };
 }, 10);
 ```
 
