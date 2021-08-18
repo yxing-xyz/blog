@@ -94,6 +94,10 @@ userdata: c的数据结构
 Number、String、Boolean、Null、Undefined、Symbol 引用类型(Object、Array、function)
 
 Number双精度浮点数
+
+6种为false的情况: 0 NaN '' false null undefined
+
+空数组和空对象是true
 ```
 
 ## Python
