@@ -12,3 +12,13 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ---
 
 ![avatar](/img/c_language_operator_priority.jpg)
+
+
+## ++i和i++特殊例子
+```c
+int a, i= 0
+a = ++i // a = 1, i = 1
+
+int b, j = 0
+b = i++ // b = 0, j = 1
+```
