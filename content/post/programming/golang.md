@@ -126,8 +126,16 @@ var c interface{} = a // c不是nil,引用了a
 - **不是单纯比较变量寄存器的值, 这点和c语言和java不一样,c和java以字符串举例都是一个寄存器变量对应一个复合结构,比较只会比较寄存器的值是否相同, 这样就会导致同样的字符串却不想等,所以c需要用strcmp而java需要用equal方法, golang的==做了很多操作,更加偏上层和脚本语言.**
 
 - **不同类型的比较会编译不过去, 注意不同名称接口如果内部方法一模一样是同类型, 用接口接收比较会先比较类型,然后比较类型的值,如果类型不可比较类型会panic**
-### golan静态链接
+### golang的CGO和动静态链接
+
+CGO_ENABLED是控制是否开启C和GO混合编译,如果=0就是关闭,自然全是go代码自然是静态链接
+
+CGO_ENABLED=1,开启C和GO混合编译自然有静态链接和动态链接之分
+
+如果代码有C代码比如(net, os/user)等几个包的cgo代码, 就算C代码不依赖任何库, 默认会动态链接c库,如果加入`-ldflags '-extldflags "-static"'`会进行静态链接C库,
+经测试如果静态链接C的库有的库会报错,可能某些方法只存在C的动态库中
 ```bash
+# 静态链接
 go build -ldflags '-linkmode "external" -extldflags "-static"' .
 ```
 ### 切片的删除
