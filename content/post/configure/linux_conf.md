@@ -76,8 +76,8 @@ pacman -S s-tui --needed --noconfirm --force
 ##################  net工具 ##############
 # ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中
 pacman -S net-tools dnsutils inetutils iproute2 bridge-utils --needed --noconfirm
-# 网卡网速监控 conntrack-tools查看连接跟踪, ipvsadm查看ipvs
-pacman -S bmon bwm-ng nload iftop conntrack-tools ipvsadm --needed --noconfirm --force
+# 网卡网速监控 conntrack-tools查看连接跟踪, ipvsadm查看ipvs aircrack-ng 网卡混合监听和破解wifi密码
+pacman -S bmon bwm-ng nload iftop conntrack-tools ipvsadm aircrack-ng --needed --noconfirm --force
 # 进程统计网络带宽
 pacman -S nethogs --needed --noconfirm --force
 # 查看ip连接 端口扫描namp、端口netcat、端口数据发送端口转发socat、http测试 nmap -Pn -v -A www.baidu.com  -p 0-10000
