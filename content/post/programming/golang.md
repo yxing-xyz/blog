@@ -136,8 +136,12 @@ CGO_ENABLED=1,开启C和GO混合编译自然有静态链接和动态链接之分
 如果代码有C代码比如(net, os/user)等几个包的cgo代码, 就算C代码不依赖任何库, 默认会动态链接c库,如果加入`-ldflags '-extldflags "-static"'`会进行静态链接C库,
 经测试如果静态链接C的库有的库会报错,可能某些方法只存在C的动态库中
 ```bash
-# 静态链接
+# 静态链接C库
 go build -ldflags '-linkmode "external" -extldflags "-static"' .
+# 关闭CGO，纯go语言构建
+CGO_ENABLED=0 go build .
+# 官方镜像构建go程序
+sudo nerdctl run -it --rm --env GOPROXY=https://mirrors.cloud.tencent.com/go/ -v /home/x/go/:/go/ -v /home/x/workspace/go/go-demo:/home/app -w /home/app golang:1.17.0-buster bash
 ```
 ### 切片的删除
 
