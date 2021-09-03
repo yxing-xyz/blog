@@ -309,3 +309,11 @@ xprop
 # 设置默认浏览器
 xdg-settings set default-web-browser google-chrome.desktop
 ```
+
+## zsh
+```bash
+# 设置oh-my-zsh不读取文件变化信息
+git config --add oh-my-zsh.hide-dirty 1
+# 设置oh-my-zsh不读取任何git信息
+git config --add oh-my-zsh.hide-status 1
+```
