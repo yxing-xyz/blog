@@ -64,7 +64,27 @@ var A int // errro
 
 - **同一个文件夹中包名只能有一个,不能出现多个**
 
-- **函数和成员和方法名大小写决定包外可见行类似 public 和 private**
+- **type定义的结构体或者新类型只能在其所在包中接收方法，包外不可以接收方法**
+
+- **常量、变量、类型、接口、结构体、函数、等名称大小写决定包外可见行类似 public 和 private**
+
+- **结构体的方法优先级高于匿名结构体或者匿名接口的方法，可以模拟继承**
+```go
+type I interface {
+	func A()
+	func B()
+}
+
+type son struct {}
+func(r *son) A() {}
+func(r *son) B() {}
+	
+type parent struct {
+	I
+}
+
+func(r *parent) A() {}
+```
 
 - **函数返回值如果只有一个类型,可以只写类型，如果多个类型必须括号包裹起来，如果返回值中有一命名返回值，其余参数必须全部命名**
 
@@ -80,8 +100,7 @@ var A int // errro
 
 - **给 nil chan 发送接收都会导致阻塞，可以用来阻塞 main 协程**
 
-- **select随机选取通道执行一次用来处理通道 io，除了defalt其他都必须读写 chan,空select阻塞协程, select
-每次在进入该语句时，会按源码的顺序对每一个 case 子句进行求值：这个求值只针对发送或接收操作的额外表达式,time.After每次返回一个chan Time导致内存泄漏**
+- **select随机选取通道执行一次用来处理通道 io，除了defalt其他都必须读写 chan,空select阻塞协程, select每次在进入该语句时，会按源码的顺序对每一个 case 子句进行求值：这个求值只针对发送或接收操作的额外表达式,time.After每次返回一个chan Time导致内存泄漏**
 
 - **if语句块会遮挡外部定义的变量如命名返回值,导致 bug 所以变量尽量定义到外面**
 
