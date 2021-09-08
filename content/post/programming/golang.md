@@ -88,7 +88,7 @@ func(r *parent) A() {}
 
 - **函数返回值如果只有一个类型,可以只写类型，如果多个类型必须括号包裹起来，如果返回值中有一命名返回值，其余参数必须全部命名**
 
-- **chan, map, slice需要make初始化才能用, slice可以用apend初始化**
+- **chan, map, slice变量为nil需要make分配空间才能用, slice可以用apend初始化空间, slice和map能用字面量声明来快速分配空间**
 
 - **delete函数用来删除map键值**
 
@@ -193,7 +193,7 @@ func RemoveFromStart() {
 	fmt.Println("第二种方式.apend直接将底层的数据结构向开头移动生成新的切片赋值给原变量. 只拷贝操作，只是省内存,移动底层结构会影响其他切片和数组")
 	func() {
 		a := []int{0, 1, 2, 3, 4}
-		a = append(a[:0], a[1:]...) //appen能初始化切片不一定需要make初始化
+		a = append(a[:0], a[1:]...) //append能初始化切片不一定需要make初始化
 		fmt.Println(a)
 	}()
 
