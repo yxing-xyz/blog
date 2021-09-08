@@ -86,3 +86,10 @@ ccleaner
 ```ps1
 mv Microsoft.PowerShell_profile.ps1 $PROFILE -FORCE
 ```
+
+
+## win重置网络
+```cmd
+ipconfig /release
+ipconfig /renew
+```
