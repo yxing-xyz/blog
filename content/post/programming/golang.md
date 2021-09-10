@@ -415,3 +415,48 @@ func main() {
 
 }
 ```
+
+### GO编译动态库
+go调用c库是常规操作，可以反过来让c调go的动态库
+动态库代码
+```go
+package main // 这个文件一定要在main包下面
+
+import "C" // 这个 import 也是必须的，有了这个才能生成 .h 文件
+// 下面这一行不是注释，是导出为SO库的标准写法，注意 export前面不能有空格！！！
+//export hello
+func hello(value string) *C.char { // 如果函数有返回值，则要将返回值转换为C语言对应的类型
+	return C.CString("hello" + value)
+}
+func main() {
+	// 此处一定要有main函数，有main函数才能让cgo编译器去把包编译成C的库
+}
+```
+构建动静态库命令
+```bash
+# 动态库
+go build -buildmode=c-shared -o hello.so .
+# 静态库
+go build -buildmode=c-archive -o hello.so .
+```
+C代码
+```c
+#include <stdio.h>
+#include <string.h>
+#include "hello.h" // 此处为上一步生成的.h文件
+
+int main(){
+    char c1[] = "did";
+    GoString s1 = {c1,strlen(c1)};// 构建go类型
+    char *c = hello(s1);
+    printf("r:%s",c);
+    return 0;
+}
+```
+C链接动态库并运行
+```bash
+# 动态库
+gcc -o main main.c hello.so
+# 静态库(go的静态库需要连接pthread)
+gcc -o main main.c hello.a -lpthread
+```
