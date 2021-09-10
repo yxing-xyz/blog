@@ -43,7 +43,7 @@ pacman -S strace --needed --noconfirm --force
 # 数据库命令行
 yay -S iredis mycli pgcli-git litecli --needed --noconfirm --force
 # 手册
-yay -S cheat-git tldr --needed --noconfirm --force
+yay -S cheat-git tldr man-pages --needed --noconfirm --force
 # 代码行数统计
 pacman -S cloc --needed --noconfirm --force
 # shell脚本检查
