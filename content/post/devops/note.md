@@ -54,4 +54,5 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
                                                   internet
 13. 阿里云日志的daemonset-crd方式，如果两个k8s集群共用一个logstore，需要重新添加新的机器组，因为重复使用crd会覆盖掉机器组，应用日志采用sidecar-crd方法不会有性能瓶颈
 14. 联系方式: 消息中心, 云监控, k8s集群
+15. 阿里云的CDN不会将浏览器传递的URL+传递到OSS中，导致如果文件名有+会找不到
 ```
