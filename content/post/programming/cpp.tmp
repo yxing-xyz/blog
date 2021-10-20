@@ -7,6 +7,14 @@
 
 > const最左边限制指针指向区域的内存不可变,否则限制指针变量不可变。
 
+> gcc构建默认级别不会优化, 会保证多线程读写内存地址不会从寄存器或者cpu cache读取,会时刻刷入内存读取内存,当-O2的时候会关闭这种特性所以需要volatile修饰指针变量关闭优化或者手动加入以下宏,会刷入内存
+```c
+#define barrier() __asm__ __volatile__("" \
+                                       :  \
+                                       :  \
+                                       : "memory")
+```
+
 > #define和typedef的区别, 1.两个类型的位置相反. 2. 定义指针变量T pc1,pc2的时候#define是简单的字符串替换而typedef没有问题. 3.与const搭配都能实现限制指针和指针引用空间不可变,只是typedef会把左边const右移靠近变量而define只是简单替换.
 
 > JIT技术是通过mmap函数和参数PROT_EXEC //映射区域可被执行；PROT_READ //映射区域可被读取；PROT_WRITE //映射区域可被写入, 实现动态插入函数.
