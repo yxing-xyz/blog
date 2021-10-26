@@ -12,3 +12,8 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ---
 
 ![avatar](/img/iptables.png)
+
+# 查看NAT
+```bash
+sudo conntrack -L -j
+```
