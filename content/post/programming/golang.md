@@ -88,6 +88,11 @@ func(r *parent) A() {}
 
 - **函数返回值如果只有一个类型,可以只写类型，如果多个类型必须括号包裹起来，如果返回值中有一命名返回值，其余参数必须全部命名**
 
+- **golang的time.parse使用的utc时区，可以指定时区格式化, time.Format默认使用的本地时区**
+```go
+time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
+```
+
 - **chan, map, slice变量为nil需要make分配空间才能用, slice可以用apend初始化空间, slice和map能用字面量声明来快速分配空间**
 
 - **delete函数用来删除map键值**
