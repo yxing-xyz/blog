@@ -35,6 +35,8 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 
 > k8s的nginx-ingress是订阅了endpoints然后nginx重新加载后端ip地址, 因为k8s重启更新资源并不保证同步nginx的监听,只保证node更新ipvs端点.所以前端是nginx-ingress,后端的服务最好在prestop里sleep一定时间,保证nginx同步更新端点后再结束pod, 如果是svc的ip调用不需要,因为k8s保证了同步更新
 
+> istio的tls认证放在一个istio网关上， virutalservice和gateway放在同一个命名空间下。 如果跨网关使用同样的证书，或者跨命名空间使用同样的证书是不生效的
+
 > 走公网插入mysql的性能耗时大概网络20ms, 通过线程池并发提供句柄给上层应用使用能提高吞吐量.
 ## 阿里云
 ```txt
