@@ -105,7 +105,15 @@ time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
 
 - **给 nil chan 发送接收都会导致阻塞，可以用来阻塞 main 协程**
 
-- **select随机选取通道执行一次用来处理通道 io，除了defalt其他都必须读写 chan,空select阻塞协程, select每次在进入该语句时，会按源码的顺序对每一个 case 子句进行求值：这个求值只针对发送或接收操作的额外表达式,time.After每次返回一个chan Time导致内存泄漏**
+- **select随机选取通道执行一次用来处理通道 io，除了defalt其他都必须读写 chan,空select阻塞协程, for循环select在进入该语句时，会按源码的顺序对每一个 case 子句进行求值：这个求值只针对发送或接收操作的额外表达式,time.After每次返回一个chan Time导致内存泄漏**
+```go
+	for {
+		select {
+		case <-ch: // 会跳出select导致然后for循环又进入select重新计算time.After生成一个新的通道从而内存泄漏
+		case <-time.After(time. * 3):
+		}
+	}
+```
 
 - **if语句块会遮挡外部定义的变量如命名返回值,导致 bug 所以变量尽量定义到外面**
 
