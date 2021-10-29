@@ -17,7 +17,7 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 
 > redis万不得以不要存放永久数据，最好设置ttl
 
-> java、php和数据连接池之类需要调整合适的线程、进程数，因为同步阻塞模型需要很多线程来接受请求和数据库连接池数量可以让请求不要停留业务服务器而是停留数据库服务器，提高并发，而Nginx之类worker设置cpu核心数就可以了，因为nginx异步模型会全力工作，只需要减少进程数保证一核心一个work进程避免内核调度进程切换耗费资源
+> java、php和数据连接池之类需要调整合适的线程、进程数，因为同步阻塞模型需要很多线程来接受请求和数据库连接池数量可以让请求不要停留业务服务器而是停留数据库服务器，提高并发，而Nginx之类worker设置cpu核心数就可以了，因为nginx异步模型会全力工作，只需要减少进程数保证一核心一个work进程避免内核调度进程切换耗费资源,说明内核和用户上下文切换很耗费资源，（golang牛逼）。
 
 > ipvs在udp使用的时候会有一个超时可以用ipvsadm -L --tiemout查看，默认300s， 这个会导致coredns重启300s内会有卡吨现象，因为ipvs未转换vip成实际ip
 
