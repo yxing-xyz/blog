@@ -1,7 +1,7 @@
 ---
-title: "支付平台笔记"
+title: "SSL/TLS"
 date: 2021-09-18T16:21:00+08:00
-lastmod: 2021-09-18T16:21:00+08:00
+lastmod: 2021-11-01T11:11:00+08:00
 draft: false
 categories:
   - "Programming"
@@ -10,6 +10,13 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+## 流程
+[SSL/TLS流程](https://blog.csdn.net/ustccw/article/details/76691248)
+
+## nginx证书和apache证书
+apache和nginx的配置都是私钥key一个文件
+
+apache是三个文件将中间链证书独立一个文件，而nginx是中间链证书和域名证书同一个文件
 
 ## 支付
 1. PEM格式最好需要动保持原状包括换行符和插入不可见字符。经实际测试pem内容可以插入不可见字符如空格和tab符，但是行首必须是-----BEGIN和-----END
