@@ -1,5 +1,11 @@
 # MySQL
 
+## 预编译批量插入
+当预编译批量插入的时候数据量太大MySQL服务器会报错, 还是直接拼values的sql吧
+```bash
+Error 1390: Prepared statement contains too many placeholders
+```
+
 ## 查询所有数据库占用空间
 
 ```sql
