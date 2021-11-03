@@ -13,12 +13,16 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 
 ## 基础
 > du和df空间不一致: 1. rm删除文件inode节点被进程打开内核不会释放空间. 2. mount挂载非空目录隐藏了原磁盘导致du并没有统计这部分空间
+
 > PHP必须要开启opcache，不然会挂在磁盘并发请求打挂系统，cpu利用率也上不去
 
 > redis万不得以不要存放永久数据，最好设置ttl
 
 > java、php和数据连接池之类需要调整合适的线程、进程数，因为同步阻塞模型需要很多线程来接受请求和数据库连接池数量可以让请求不要停留业务服务器而是停留数据库服务器，提高并发，而Nginx之类worker设置cpu核心数就可以了，因为nginx异步模型会全力工作，只需要减少进程数保证一核心一个work进程避免内核调度进程切换耗费资源,说明内核和用户上下文切换很耗费资源，（golang牛逼）。
 
+> 走公网插入mysql的性能耗时大概网络20ms, 通过线程池并发提供句柄给上层应用使用能提高吞吐量.
+
+# k8s
 > ipvs在udp使用的时候会有一个超时可以用ipvsadm -L --tiemout查看，默认300s， 这个会导致coredns重启300s内会有卡吨现象，因为ipvs未转换vip成实际ip
 
 > k8s是根据request进行伸缩和创建pod，所以request设置太大存在资源浪费，太小容易导致扩容太多个。所以可以关闭伸缩，查看cpu和内存，然后调整request，limit，最后开启伸缩调整伸缩数量
@@ -37,7 +41,7 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 
 > istio的tls认证放在一个istio网关上， virutalservice和gateway放在同一个命名空间下。 如果跨网关使用同样的证书，或者跨命名空间使用同样的证书是不生效的
 
-> 走公网插入mysql的性能耗时大概网络20ms, 通过线程池并发提供句柄给上层应用使用能提高吞吐量.
+> 自定义kube-sheduler的时候如果开启高可用默认情况会竞争kube-system命名空间的lease资源名kube-sheduler, 但是这个资源被default-sheduler锁定了导致启动不了所以需要换资源名或者命名空间
 ## 阿里云
 ```txt
 1. 负载均衡四层后端负载访问负载均衡是访问不通
