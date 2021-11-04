@@ -24,6 +24,11 @@ sudo hwclock -w
 ```bash
 url='https://test.juewei.com/actuator/health'; code=200; while [ $code -eq 200 ]; do code=`curl -I -m 30 -o /dev/null -s -w %{http_code}"\n" $url`; sleep 0.1; done
 ```
+## openssl
+### 查看https的证书信息
+```bash
+openssl s_client -servername prod.juewei.com -connect www.baidu.com:443  | openssl x509 -noout -dates
+```
 
 
 ## 日志
