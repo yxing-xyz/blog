@@ -30,6 +30,15 @@ url='https://test.juewei.com/actuator/health'; code=200; while [ $code -eq 200 ]
 openssl s_client -servername prod.juewei.com -connect www.baidu.com:443  | openssl x509 -noout -dates
 ```
 
+### 更换TLS证书
+```bash
+# 找特定的证书
+grep -s baidu.com.crt ./*.conf
+# 替换证书文件名
+ls ./*.conf | xargs sed -i 's/a.crt/b.crt/' ./*.conf
+# nginx检测下,然后重启
+nginx -t
+```
 
 ## 日志
 分割日志文件
