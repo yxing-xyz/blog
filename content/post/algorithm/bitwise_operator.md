@@ -101,3 +101,11 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
    a = (a >> half | a << half);
    PrintfBinary(a);
 ```
+### 四舍五入
+cent单位分， money单位元
+这里可以位与运算实现floor
+```go
+func round(cent int) int64 {
+	 return int64(math.Floor(float64(cent)/100 + 0.5))
+}
+```

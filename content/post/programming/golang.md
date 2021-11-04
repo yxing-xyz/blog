@@ -95,6 +95,8 @@ time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
 
 - **chan, map, slice变量为nil需要make分配空间才能用, slice可以用apend初始化空间, slice和map能用字面量声明来快速分配空间**
 
+- **for range遍历slice是判断切片的len长度这里需要小心，cap容量可以大，len最好为0通过append追加**
+
 - **delete函数用来删除map键值**
 
 - **当切片达到cap容量时继续append 会扩大 cap，小于 1024 会按照 2 倍，超过会 1.25 倍递增扩容**
@@ -133,8 +135,7 @@ time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
 
 - **类型实现接口接收者是指针,那么只有该变量的指针能赋值给接口类型变量，结构体是否实现接口需要综合成员的匿名结构体或者接口来看是否满足接口的所有方法**
 
-- **Go语言中规定，只有类型（Type）和指向他们的指针（*Type）才是可能会出现在接收器声明里的两种接收器，为了避免歧义，明确规定，新类型是指针，接口是不能出现在接收器**
-
+- **Go语言中规定，只有类型（Type）和指向他们的指针（\*Type）才是可能会出现在接收器声明里的两种接收器，为了避免歧义，明确规定，新类型是指针，接口是不能出现在接收器**
 
 - **除了nil任何值赋值给接口那么这个接口不再是nil,即使是一个nil初始值的引用类型**
 ```go
@@ -203,7 +204,6 @@ func main() {
 6. 打印调度信息,归还内存等定时任务.
 
 ### golang的CGO和动静态链接
-
 CGO_ENABLED是控制是否开启C和GO混合编译,如果=0就是关闭,自然全是go代码自然是静态链接
 
 CGO_ENABLED=1,开启C和GO混合编译自然有静态链接和动态链接之分
@@ -218,6 +218,64 @@ CGO_ENABLED=0 go build .
 # 官方镜像构建go程序
 sudo nerdctl run -it --rm --env GOPROXY=https://mirrors.cloud.tencent.com/go/ -v /home/x/go/:/go/ -v /home/x/workspace/go/go-demo:/home/app -w /home/app golang:1.17.0-buster bash
 ```
+```ps1
+### CMD
+# set GOARCH=amd64
+# set GOOS=linux
+# set CGO_ENABLE=0
+
+### ps1
+# $env:GOOS="linux"
+# $env:GOARCH="amd64"
+# $env:CGO_ENABLE="0"
+```
+
+
+### GO编译动态库
+go调用c库是常规操作，可以反过来让c调go的动态库
+动态库代码
+```go
+package main // 这个文件一定要在main包下面
+
+import "C" // 这个 import 也是必须的，有了这个才能生成 .h 文件
+// 下面这一行不是注释，是导出为SO库的标准写法，注意 export前面不能有空格！！！
+//export hello
+func hello(value string) *C.char { // 如果函数有返回值，则要将返回值转换为C语言对应的类型
+	return C.CString("hello" + value)
+}
+func main() {
+	// 此处一定要有main函数，有main函数才能让cgo编译器去把包编译成C的库
+}
+```
+构建动静态库命令
+```bash
+# 动态库
+go build -buildmode=c-shared -o hello.so .
+# 静态库
+go build -buildmode=c-archive -o hello.so .
+```
+C代码
+```c
+#include <stdio.h>
+#include <string.h>
+#include "hello.h" // 此处为上一步生成的.h文件
+
+int main(){
+    char c1[] = "did";
+    GoString s1 = {c1,strlen(c1)};// 构建go类型
+    char *c = hello(s1);
+    printf("r:%s",c);
+    return 0;
+}
+```
+C链接动态库并运行
+```bash
+# 动态库
+gcc -o main main.c hello.so
+# 静态库(go的静态库需要连接pthread)
+gcc -o main main.c hello.a -lpthread
+```
+
 ### 切片的删除
 
 ```go
@@ -467,49 +525,4 @@ func main() {
 
 
 }
-```
-
-### GO编译动态库
-go调用c库是常规操作，可以反过来让c调go的动态库
-动态库代码
-```go
-package main // 这个文件一定要在main包下面
-
-import "C" // 这个 import 也是必须的，有了这个才能生成 .h 文件
-// 下面这一行不是注释，是导出为SO库的标准写法，注意 export前面不能有空格！！！
-//export hello
-func hello(value string) *C.char { // 如果函数有返回值，则要将返回值转换为C语言对应的类型
-	return C.CString("hello" + value)
-}
-func main() {
-	// 此处一定要有main函数，有main函数才能让cgo编译器去把包编译成C的库
-}
-```
-构建动静态库命令
-```bash
-# 动态库
-go build -buildmode=c-shared -o hello.so .
-# 静态库
-go build -buildmode=c-archive -o hello.so .
-```
-C代码
-```c
-#include <stdio.h>
-#include <string.h>
-#include "hello.h" // 此处为上一步生成的.h文件
-
-int main(){
-    char c1[] = "did";
-    GoString s1 = {c1,strlen(c1)};// 构建go类型
-    char *c = hello(s1);
-    printf("r:%s",c);
-    return 0;
-}
-```
-C链接动态库并运行
-```bash
-# 动态库
-gcc -o main main.c hello.so
-# 静态库(go的静态库需要连接pthread)
-gcc -o main main.c hello.a -lpthread
 ```
