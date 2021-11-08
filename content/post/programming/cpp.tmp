@@ -7,12 +7,21 @@
 
 > const最左边限制指针指向区域的内存不可变,否则限制指针变量不可变。
 
-> gcc构建默认级别不会优化, 会保证多线程读写内存地址不会从寄存器或者cpu cache读取,会时刻刷入内存读取内存,当-O2的时候会关闭这种特性所以需要volatile修饰指针变量关闭优化或者手动加入以下宏,会刷入内存
+> gcc构建默认级别不会优化代码比如编译器级别指令重排序,当-O2的时候会优化指令进行重排序(乱序执行),或者变量值固定在寄存器,不会刷入cache(cpu缓存一致性)和主存.
+CPU cache的一致性由硬件层面(MESI Protocol)解决,软件比如GCC可以默认不同核的L1 L2cache的值是一致,取决什么时候刷入内存,也就说并发编程的时候对变量的读取和写入都是时候,只要不被编译器使用寄存器优化掉
+另外需要注意的是，在所有的平台上，信号量会保持 Release 和 Require 的语义，也就是说，所有写入共享内存的在 sem_post() 执行后可见，而读取在 sem_wait() 后可见。
+GCC -O2优化的时候volatile的作用的是变量地址操作之前值读写入cpu cache或者主存, 不会禁止编译器指令重新排序以下这个编译器指令可以禁止编译器重排指令
 ```c
-#define barrier() __asm__ __volatile__("" \
-                                       :  \
-                                       :  \
-                                       : "memory")
+	asm volatile("" ::: "memory");
+```
+以下这个指令是在CPU级别指定级别禁止指令重排序
+```c
+// Store Barrier   确保 Barrier 前后的 store 操作不会发生乱序;
+#define STORE_BARRIER() __asm__ __volatile__("sfence")
+// Load Barrier    确保 Barrier 前后的 load 操作不会发生乱序;
+#define LOAD_BARRIER() __asm__ __volatile__("lfence")
+// Full Barrier    确保 Barrier 前后的内存操作不会发生乱序;
+#define FULL_BARRIER() __asm__ __volatile__("mfence")
 ```
 
 > #define和typedef的区别, 1.两个类型的位置相反. 2. 定义指针变量T pc1,pc2的时候#define是简单的字符串替换而typedef没有问题. 3.与const搭配都能实现限制指针和指针引用空间不可变,只是typedef会把左边const右移靠近变量而define只是简单替换.
