@@ -184,8 +184,10 @@ func main() {
 	time.Sleep(time.Second * 2)
 	fmt.Println(y)
 }
-// 最后打印的永远是0, 默认运行等于GCC -O2级别的优化, 不会开启内存屏障.
-// 解决办法: 可以用atomic模拟volatile或者mutex,底层都是刷入内存和从内存中读取.
+// 最后打印的永远是0, 默认运行等于GCC -O2级别的优化, 会寄存器级别优化，值会停留在寄存器平不会刷入cpu cache
+// 解决办法: C/CPP的volatile是告诉编译器不要对这个变量的变化实时写入cache,
+// 但是因为L1上还有store buffer所以内存屏障的问题,需要使用封装了汇编指令的函数刷入cpu cache(mutex)
+// golang的方法也是同理, 使用happens-before的几条原则比如互斥锁和通道, 原理我猜测是通道或者互斥锁加入了读写屏障
 ```
 ### GPM模型
 - **GPM模型，关于M的数量分析。Go 语言通过 Syscall 和 Rawsyscall 等使用汇编语言编写的方法封装了操作系统提供的所有系统调
