@@ -63,4 +63,5 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 13. 阿里云日志的daemonset-crd方式，如果两个k8s集群共用一个logstore，需要重新添加新的机器组，因为重复使用crd会覆盖掉机器组，应用日志采用sidecar-crd方法不会有性能瓶颈
 14. 联系方式: 消息中心, 云监控, k8s集群
 15. 阿里云的CDN不会将浏览器传递的URL+传递到OSS中，导致如果文件名有+会找不到
+16. 托管版k8s复用负载均衡的时候界面不能出现或者注解不能复用某个负载均衡是因为该负载均衡的标签被标记了阿里的ccm就不会更新负载均衡
 ```
