@@ -217,7 +217,7 @@ CGO_ENABLED=1,开启C和GO混合编译自然有静态链接和动态链接之分
 go build -ldflags '-linkmode "external" -extldflags "-static"' .
 # 关闭CGO，纯go语言构建
 CGO_ENABLED=0 go build .
-# 官方镜像构建go程序
+# 官方镜像构建go程序, 也可以用go mod vendor先导入依赖
 sudo nerdctl run -it --rm --env GOPROXY=https://mirrors.cloud.tencent.com/go/ -v /home/x/go/:/go/ -v /home/x/workspace/go/go-demo:/home/app -w /home/app golang:1.17.0-buster bash
 ```
 ```ps1
