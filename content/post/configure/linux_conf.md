@@ -281,9 +281,12 @@ printf "x\nx\n" | passwd x > /dev/null 2>&1
 ```
 ## 录屏
 ```bash
-ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0 output.mp4
+ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 output.mp4
 # 录制音频和视频
-ffmpeg -video_size 1920x1080 -framerate 25 -f x11grab -i :0.0 -f alsa -ac 2 -i hw:0 output.mkv
+ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -f alsa -ac 2 -i hw:0 output.mp4
+# 无损录制
+ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -c:v libx264  -qp 0 -preset ultrafast output.mkv
+
 ```
 ## Linux Xorg
 ```bash
