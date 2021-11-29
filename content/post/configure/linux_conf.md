@@ -77,7 +77,7 @@ pacman -S s-tui --needed --noconfirm --overwrite '*'
 ##################  net工具 ##############
 # ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中
 pacman -S net-tools dnsutils inetutils iproute2 bridge-utils --needed --noconfirm
-# 网卡网速监控 conntrack-tools查看连接跟踪, ipvsadm查看ipvs aircrack-ng 网卡混合监听和破解wifi密码
+# 网卡网速监控 conntrack-tools:  conntrack -L -j查看连接跟踪, ipvsadm查看ipvs aircrack-ng 网卡混合监听和破解wifi密码
 pacman -S bmon bwm-ng nload iftop conntrack-tools ipvsadm aircrack-ng --needed --noconfirm --overwrite '*'
 # 进程统计网络带宽
 pacman -S nethogs --needed --noconfirm --overwrite '*'
