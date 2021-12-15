@@ -35,13 +35,15 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 
 > k8s的drain节点是先结束pod然后新建pod,所以如果pod是高可用的分布在不同节点drain没问题,如果节点少,且有资源的pod全位于同一个node上那么drain会中断业务,建议先cordon,然后restart相关资源直到node没有业务pod后才移除node
 
->  pod停止流程![avatar](/img/pod-stop.png)
+> pod停止流程![avatar](/img/pod-stop.png)
 
 > k8s的nginx-ingress是订阅了endpoints然后nginx重新加载后端ip地址, 因为k8s重启更新资源并不保证同步nginx的监听,只保证node更新ipvs端点.所以前端是nginx-ingress,后端的服务最好在prestop里sleep一定时间,保证nginx同步更新端点后再结束pod, 如果是svc的ip调用不需要,因为k8s保证了同步更新
 
 > istio的tls认证放在一个istio网关上， virutalservice和gateway放在同一个命名空间下。 如果跨网关使用同样的证书，或者跨命名空间使用同样的证书是不生效的
 
 > 自定义kube-sheduler的时候如果开启高可用默认情况会竞争kube-system命名空间的lease资源名kube-sheduler, 但是这个资源被default-sheduler锁定了导致启动不了所以需要换资源名或者命名空间
+
+> ingress不能跨命名空间, 可以在ingress的命名空间里自定义endpoint来实现跨命名空间
 ## 阿里云
 ```txt
 1. 负载均衡四层后端负载访问负载均衡是访问不通
