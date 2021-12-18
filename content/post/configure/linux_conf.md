@@ -92,9 +92,9 @@ pacman -S iptraf-ng wireshark-qt wireshark-gtk ngrep --needed --noconfirm --over
 pacman -S frp localtunnel sshuttle --needed --noconfirm --overwrite '*'
 # 网络管理服务, 界面和插件
 pacman -S networkmanager network-manager-applet networkmanager-openvpn networkmanager-strongswan --needed --noconfirm --overwrite '*'
-nmcli  dev wifi list
+nmcli dev wifi list
 nmcli device wifi connect "x" password "qwer1234"
-nmcli connection import type openvpn file file.ovpn
+nmcli connection import type openvpn file openvpn.ovpn
 ################## 磁盘和文件系统工具 ###############
 # 进程磁盘读写监控iotop  磁盘和cpu负载iostat
 pacman -S iotop --needed --noconfirm --overwrite '*'
