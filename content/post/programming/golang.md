@@ -145,6 +145,8 @@ var c interface{} = a // c不是nil,引用了a
 
 - **switch type 和.(类型)判断只能是接口变量才能编译通过,因为只有接口实际隐藏了变量的其他类型只保留接口方法调用相等于泛化了**
 
+- **os.OpenFile如果不设置flag(不是文件的权限), 那么就不能读写文件进去也不会报错**
+
 - **panic 只能本协程栈层层返回,所以为了不让程序崩溃, web协程最好 defer recover 恢复 panic, 多次panic只有最后一个panic被recover**
 
 - **defer后进先出栈结构,执行在return 之前**
