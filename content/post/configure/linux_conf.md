@@ -200,6 +200,8 @@ pacman -S xorriso mkisolinux --needed --noconfirm --overwrite '*'
 pacman -S rofi --needed --noconfirm --overwrite '*'
 # 截图
 pacman -S scrot flameshot maim --needed --noconfirm --overwrite '*'
+# 显示键盘按键
+pacman -S screenkey --needed --noconfirm --overwrite '*'
 # 图像预览
 pacman -S feh --noconfirm --overwrite '*' --needed
 # proxy
