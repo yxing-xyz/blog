@@ -34,7 +34,7 @@ pacman -S archlinuxcn-keyring --needed --noconfirm --overwrite '*'
 pacman -Syu yay downgrade --needed --noconfirm --overwrite '*'
 
 # 常用开发工具
-pacman -S yasm gcc cmake nginx php php-apache composer jdk8 gradle maven nodejs npm yarn git tig svn python python-pip go go-tools --needed --noconfirm --overwrite '*'
+pacman -S yasm gcc cmake nginx nodejs npm yarn git tig svn python python-pip go go-tools rust rust-src --needed --noconfirm --overwrite '*'
 # 编辑
 pacman -S emacs vim visual-studio-code-bin intellij-idea-ultimate-edition --needed --noconfirm --overwrite '*'
 # nodejs应用进程管理器
