@@ -17,3 +17,9 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ```bash
 sudo conntrack -L -j
 ```
+
+
+# MTU
+```bash
+tracepath baidu.com
+```
