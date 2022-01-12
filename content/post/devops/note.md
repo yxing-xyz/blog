@@ -67,4 +67,5 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 15. 阿里云的CDN不会将浏览器传递的URL+传递到OSS中，导致如果文件名有+会找不到
 16. 托管版k8s复用负载均衡的时候界面不能出现或者注解不能复用某个负载均衡是因为该负载均衡的标签被标记了阿里的ccm就不会更新负载均衡
 17. 阿里云ack的k8s集群会将SLB的IP会被IPVS解析转发到后端Node节点上也就是SVCIP的作用, 流量不会到负载均衡, 也就不会触发负载均衡四层协议后端不能同时做客户端和服务端的bug
+18. 阿里云ECS禁用了25端口, 建议用80做SSL端口邮件推送
 ```
