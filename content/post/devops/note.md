@@ -22,7 +22,9 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 
 > 走公网插入mysql的性能耗时大概网络20ms, 通过线程池并发提供句柄给上层应用使用能提高吞吐量.
 
-> nginx默认会重定向在pathinfo后面追加/符号
+> nginx默认目录会重定向pathinfo后面追加/符号
+
+> nginx配置absolute_redirect off会使用Localtion相对路径
 
 # k8s
 > ipvs在udp使用的时候会有一个超时可以用ipvsadm -L --tiemout查看，默认300s， 这个会导致coredns重启300s内会有卡吨现象，因为ipvs未转换vip成实际ip
