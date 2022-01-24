@@ -48,6 +48,24 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 > 自定义kube-sheduler的时候如果开启高可用默认情况会竞争kube-system命名空间的lease资源名kube-sheduler, 但是这个资源被default-sheduler锁定了导致启动不了所以需要换资源名或者命名空间
 
 > ingress不能跨命名空间, 可以在ingress的命名空间里自定义endpoint来实现跨命名空间
+
+#  重启pod
+都是修改yaml达到重启的目的比如set image, 只是功能上需要做阻塞(解决全部重启雪崩效应), replace是阻塞替换, restart是非阻塞需要加status
+## 1. patch或者replace
+
+```bash
+kubectl patch deployment web -p \
+  "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"date\":\"`date +'%s'`\"}}}}}"
+
+kubectl get pod web-kw86d -o yaml | kubectl replace --force -f -
+```
+## 2. rollout
+```bash
+# 重启
+kubectl rollout restart deployment web
+# 等待重启完毕
+kubectl rollout status deployment/web
+```
 ## 阿里云
 ```txt
 1. 负载均衡四层后端负载访问负载均衡是访问不通
