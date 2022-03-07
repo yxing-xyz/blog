@@ -40,6 +40,19 @@ ls ./*.conf | xargs sed -i 's/a.crt/b.crt/' ./*.conf
 nginx -t
 ```
 
+## redis
+```bash
+wget http://download.redis.io/releases/redis-6.0.1.tar.gz
+tar xzf redis-6.0.1.tar.gz
+cd redis-6.0.1
+make BUILD_TLS=yes USE_SYSTEMD=yes -j4
+make install
+mkdir -p /etc/redis
+cp ./redis.conf /etc/redis/
+cp ./utils/systemd-redis_server.service  /etc/systemd/system/redis.service
+# 编辑service指定配置文件启动
+```
+
 ## 日志
 分割日志文件
 ```bash
