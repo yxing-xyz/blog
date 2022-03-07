@@ -42,7 +42,12 @@ setInterval(() => {
 }, 10);
 ```
 
-
+### 内网域名加载外网资源
+```txt
+公网网页加载内网资源会被高版本chrome阻止, 解决方案
+1. chrome://flags/#block-insecure-private-network-requests配置chrome选项为disable 
+2. 访问者资源加响应头  Access-Control-Allow-Private-Network
+```
 ### 重定向
 * 301 Moved Permanently
 > 301 状态码表明目标资源被永久的移动到了一个新的 URI，任何未来对这个资源的引用都应该使用新的 URI。
