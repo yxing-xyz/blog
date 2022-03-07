@@ -18,7 +18,11 @@ or write the following code
 ```c
 #define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
 ```
-
+## Get structure size
+```c
+#define ALIGN(size, boundary) (((size) + ((boundary)-1)) & ~((boundary)-1))
+#define ALIGN_DEFAULT(size) ALIGN(size, 8)
+```
 ## <stdbool.h>
 You can use Booleans as long as you include <stdbool.h>
 ```c
