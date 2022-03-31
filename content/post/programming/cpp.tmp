@@ -90,66 +90,97 @@ template using MapString = std::map<T, char>; //定义模板别名，注意typed
 ```c++
 #include <iostream>
 using namespace std;
- 
-class A {
+
+class A
+{
 public:
     int x;
     A(int x) : x(x)
     {
-        cout << "Constructor" << endl;
+        cout << "Constructor: " << this << endl;
     }
-    A(A& a) : x(a.x)
+    A(A &a) : x(a.x)
     {
-        cout << "Copy Constructor" << endl;
+        cout << "Copy Constructor: " << this << endl;
     }
-    A& operator=(A& a)
+    A &operator=(A &a)
     {
-        x = a.x;
-        cout << "Copy Assignment operator" << endl;
+        x = 123;
+        a.x = 456;
+        cout << "Copy Assignment operator: " << this << endl;
         return *this;
     }
-    A(A&& a) : x(a.x)
+    A(A &&a) : x(a.x)
     {
-        cout << "Move Constructor" << endl;
+        cout << "Move Constructor: " << this << endl;
     }
-    A& operator=(A&& a)
+    A &operator=(A &&a)
     {
         x = a.x;
-        cout << "Move Assignment operator" << endl;
+        cout << "Move Assignment operator: " << this << endl;
         return *this;
     }
 };
- 
+
 A GetA()
 {
-    return A(1);
+    A aa(0xF);
+    cout << &aa << endl;
+    return aa;
 }
- 
-A&& MoveA(A& a)
+
+A &&MoveA(A &a)
 {
     return std::move(a);
 }
- 
-int main()
+
+
+int main(int argc, char **argv)
 {
-    cout << "-------------------------1-------------------------" << endl;
-    A a(1);
-    cout << "-------------------------2-------------------------" << endl;
-    A b = a;
-    cout << "-------------------------3-------------------------" << endl;
-    A c(a);
-    cout << "-------------------------4-------------------------" << endl;
-    b = a;
-    cout << "-------------------------5-------------------------" << endl;
-    A d = A(1);
-    cout << "-------------------------6-------------------------" << endl;
-    A e = std::move(a);
-    cout << "-------------------------7-------------------------" << endl;
-    A f = GetA();
-    cout << "-------------------------8-------------------------" << endl;
-    A&& g = MoveA(f);
-    cout << "-------------------------9-------------------------" << endl;
-    d = A(1);
+  // gcc下需要开启set(CMAKE_CXX_FLAGS   "-fno-elide-constructors")关闭优化, 编译器默认会优化导致，移动构造函数被优化掉
+  cout << "-------------------------1.默认构造函数-------------------------" << endl;
+  A a(1);
+  cout << endl;
+  cout << endl;
+
+  cout << "-------------------------2.拷贝构造函数-------------------------" << endl;
+  A b(a);
+  A c = b;
+  cout << endl;
+  cout << endl;
+
+  cout << "-------------------------3.拷贝赋值运算符-------------------------" << endl;
+  c = b;
+  cout << endl;
+  cout << endl;
+
+  cout << "-------------------------4.移动构造函数-------------------------" << endl;
+  A d = std::move(c);
+  cout << &d << endl;
+  cout << &c << endl;
+  cout << endl;
+  cout << endl;
+
+  cout << "-------------------------5.构造函数+移动构造函数-------------------------" << endl;
+  A e = A(1);
+  cout << &e << endl;
+  cout << endl;
+  cout << endl;
+
+  cout << "-------------------------6.构造函数+移动构造函数+移动构造函数-------------------------" << endl;
+  A f = GetA();
+  cout << &f << endl;
+  cout << endl;
+  cout << endl;
+
+  cout << "-------------------------7.没有创建新对象，也不更新任何对象，只是将MoveA()的返回值绑定到右值引用g。因此不调用构造函数，也不调用赋值运算符-------------------------" << endl;
+  A &&g = MoveA(a);
+  cout << &g << endl;
+  
+  cout << "-------------------------8.构造函数+移动赋值运算符-------------------------" << endl;
+  d = A(2);
+  cout << &d << endl;
+  return 0; 
 }
 ```
 
