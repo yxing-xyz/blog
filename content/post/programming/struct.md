@@ -66,7 +66,7 @@ struct User {
 fn main() {
     let user = User {
         name: String::from("jack"),
-        age: 32
+        age: 32,
     };
     println!("{} {}", user.name, user.age);
 }
