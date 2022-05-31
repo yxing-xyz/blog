@@ -54,3 +54,6 @@ Remove-Item 文件夹路径 -Recurse -Force -Confirm:$false
 ```ps1
 New-Item -Path C:\LinkDir -ItemType SymbolicLink -Value F:\RealDir
 ```
+
+## Chrome Offline installer
+> https://www.google.com/intl/en/chrome/?standalone=1
