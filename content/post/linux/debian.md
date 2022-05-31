@@ -132,6 +132,8 @@ apt-get install -y nfs-kernel-server &&
 apt-get install -y less &&
 apt-get install -y iproute2 &&
 apt-get install -y bridge-utils
+## 18.04
+apt-get install -y libfreetype6-dev
 ```
 ## Docker里安装sshd
 > ["/bin/sh", "-c", "apt update && apt install -y openssh-server && sed -i 's/[# ]*UsePAM.*/UsePAM no/' /etc/ssh/sshd_config && sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config && service ssh restart && echo root:root | chpasswd"]
