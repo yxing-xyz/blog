@@ -17,6 +17,17 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 sudo ntpdate ntp.aliyun.com
 sudo hwclock -w
 ```
+## find
+### 找可执行文件
+```bash
+find `pwd` -type f -executable -print
+```
+
+## grep
+### 匹配字符串文件
+```bash
+grep -nr "r_secpolicy_t_ex" | grep -v  "匹配到" | grep -v ".o.d:" | awk -F '[/]' '{print $1}' | uniq
+```
 
 ## curl
 
