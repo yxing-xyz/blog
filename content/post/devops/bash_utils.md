@@ -94,3 +94,8 @@ git show-ref --tag | awk '{print ":" $2}' | xargs git push origin
 ```bash
 git tag -l | xargs git tag -d
 ```
+
+### 暂存文件部分内容修改
+```bash
+git add -p 历史已提交文件路径
+```
