@@ -11,6 +11,33 @@ author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
+## Centos 7换源
+```bash
+sed -e 's|^mirrorlist=|#mirrorlist=|g' \
+         -e 's|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.ustc.edu.cn/centos|g' \
+         -i.bak \
+         /etc/yum.repos.d/CentOS-Base.repo
+```
+## Centos 8 Stream换源
+```bash
+sed -e 's|^mirrorlist=|#mirrorlist=|g' \
+         -e 's|^#baseurl=http://mirror.centos.org/$contentdir/$releasever|baseurl=https://mirrors.ustc.edu.cn/centos/8-stream/|g' \
+         -i.bak \
+         /etc/yum.repos.d/CentOS-Linux-AppStream.repo \
+         /etc/yum.repos.d/CentOS-Linux-BaseOS.repo \
+         /etc/yum.repos.d/CentOS-Linux-Extras.repo \
+         /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
+
+# sed -i 's#^mirrorlist=.*infra=$infra#\#&#g' /etc/yum.repos.d/CentOS-Linux-AppStream.repo
+# echo 'baseurl=https://mirrors.aliyun.com/$contentdir/$releasever/AppStream/$basearch/os/' >> /etc/yum.repos.d/CentOS-Linux-AppStream.repo
+
+# sed -i 's#^mirrorlist=.*infra=$infra#\#&#g' /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
+# echo 'baseurl=https://mirrors.aliyun.com/$contentdir/$releasever/BaseOS/$basearch/os/' >> /etc/yum.repos.d/CentOS-Linux-BaseOS.repo
+# sed -i 's#^mirrorlist=.*infra=$infra#\#&#g' /etc/yum.repos.d/CentOS-Linux-Extras.repo
+# echo 'baseurl=https://mirrors.aliyun.com/$contentdir/$releasever/extras/$basearch/os/' >> /etc/yum.repos.d/CentOS-Linux-Extras.repo
+yum clean all
+yum makecache
+```
 ## Centos 常用包
 
 ```bash
@@ -46,4 +73,9 @@ yum install --downloaddir=/tmp/package/ --downloadonly tcpdump
 # 使用yumdownloader     需要先安装yum-utils。
 repotrack tcpdump
 yumdownloader tcpdump
+```
+
+## 容器sshd
+```bash
+> ["/bin/sh", "-c", "yum install -y openssh-server && sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config &&  ssh-keygen -q -t rsa -b 2048 -f /etc/ssh/ssh_host_rsa_key -N '' && ssh-keygen -q -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N '' && ssh-keygen -t dsa -f /etc/ssh/ssh_host_ed25519_key -N '' && /sbin/sshd && echo root:root | chpasswd"]
 ```
