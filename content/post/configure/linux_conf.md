@@ -24,8 +24,8 @@ pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel --neede
 # awesome
 pacman -S awesome --needed --noconfirm --overwrite '*'
 
-# 清除密码 gnome-keyring-daemon -r -d
-pacman -S gnome-keyring --needed --noconfirm --overwrite '*'
+# gnome密码环  密码环管理工具 清除密码 gnome-keyring-daemon -r -d 
+pacman -S gnome-keyring seahorse --needed --noconfirm --overwrite '*'
 
 # 导入CPG key/
 pacman -S archlinux-keyring --needed --noconfirm --overwrite '*'
@@ -72,6 +72,8 @@ pacman -S nmon dstat sysstat --needed --noconfirm --overwrite '*'
 pacman -S glances htop --needed --noconfirm --overwrite '*'
 # 实时cpu监控
 pacman -S s-tui --needed --noconfirm --overwrite '*'
+# 内存
+pacman -S smem --needed --noconfirm --overwrite '*'
 
 
 ##################  net工具 ##############
@@ -91,10 +93,10 @@ pacman -S iptraf-ng wireshark-qt wireshark-gtk ngrep --needed --noconfirm --over
 # sshuttle --dns -vr root@114.215.181.234 192.168.0.0/16 --ssh-cmd 'ssh -i /home/x/workspace/juewei/k8s/cert/品牌中心密钥对.key'
 pacman -S frp localtunnel sshuttle --needed --noconfirm --overwrite '*'
 # 网络管理服务, 界面和插件
+# nmcli dev wifi list
+# nmcli device wifi connect "x" password "qwer1234"
+# nmcli connection import type openvpn file openvpn.ovpn
 pacman -S networkmanager network-manager-applet networkmanager-openvpn networkmanager-strongswan --needed --noconfirm --overwrite '*'
-nmcli dev wifi list
-nmcli device wifi connect "x" password "qwer1234"
-nmcli connection import type openvpn file openvpn.ovpn
 ################## 磁盘和文件系统工具 ###############
 # 进程磁盘读写监控iotop  磁盘和cpu负载iostat
 pacman -S iotop --needed --noconfirm --overwrite '*'
@@ -215,6 +217,8 @@ pacman -S qv2ray v2ray  proxychains --needed --noconfirm --overwrite '*'
 pacman -S librime ibus-rime --needed --noconfirm --overwrite '*'
 # 字体
 pacman -S nerd-fonts-complete otf-font-awesome ttf-dejavu powerline-fonts noto-fonts-cjk --needed --noconfirm --overwrite '*'
+# 主题
+pacman -S lxappearance-gtk3 deepin-gtk-theme gtk-engine-murrine deepin-icon-theme --needed --noconfirm --overwrite '*'
 # wqy
 pacman -S `sudo pacman -Ssq 'wqy-*'` --needed --noconfirm --overwrite '*'
 # adobe
@@ -257,11 +261,16 @@ pacstrap -i /mnt base base-devel linux linux-firmware linux-headers
 genfstab -U -p /mnt >> /mnt/etc/fstab
 # arch-chroot切换
 arch-chroot /mnt /bin/bash
+# amdgpu驱动
+pacman -S xf86-video-amdgpu --needed --noconfirm --overwrite '*'
+
 
 # 构建包,在PKGBUILD目录下执行
 makepkg
 # 安装构建包
 pacman -U ./构建包名
+# 检查文件属性
+pacman -Qkk | grep mime
 ```
 
 ## Linux
