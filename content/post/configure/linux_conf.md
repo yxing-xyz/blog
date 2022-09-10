@@ -127,8 +127,8 @@ pacman -S fzf --needed --noconfirm --overwrite '*'
 pacman -S fd --needed --noconfirm --overwrite '*'
 # 文件内容搜索 rg ag ack
 pacman -S ripgrep the_silver_searcher ack --needed --noconfirm --overwrite '*'
-# 彩色cat、彩色日志、彩色diff
-pacman -S bat ccze diff-so-fancy colordiff --noconfirm --needed --overwrite '*'
+# 彩色ls 彩色cat、彩色日志、彩色diff
+pacman -S lsd bat ccze diff-so-fancy colordiff --noconfirm --needed --overwrite '*'
 #         diff 
 pacman -S git-delta --noconfirm --needed --overwrite '*'
 #         sed
