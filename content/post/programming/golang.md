@@ -88,6 +88,10 @@ func(r *parent) A() {}
 
 - **函数返回值如果只有一个类型,可以只写类型，如果多个类型必须括号包裹起来，如果返回值中有一命名返回值，其余参数必须全部命名**
 
+- **golang结构体方法参数种隐藏了自己,ABI格式结构体方法和函数的函数签名并不一直, 所以go编译器会插入代码包装一个函数来模拟深略自身结构体的调用**
+- 
+- **golang协程栈有初始值, 调用帧深了会扩容, 在函数主体后会插入调用扩容判断函数. 所以函数变量逃逸超出本函数作用域,会放到堆区如指针变量. golang的协程栈其实也是位于堆区**
+
 - **golang的time.parse使用的utc时区，可以指定时区格式化, time.Format默认使用的本地时区**
 ```go
 time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
@@ -278,6 +282,17 @@ C链接动态库并运行
 gcc -o main main.c hello.so
 # 静态库(go的静态库需要连接pthread)
 gcc -o main main.c hello.a -lpthread
+```
+### Go汇编
+```bash
+# 第一种方式
+go tool compile -N -l -S main.go
+
+# 第二种方式
+go tool objdump main.o
+
+# 第三种方式
+go build -gcflags -S main.go
 ```
 
 ### 切片的删除
@@ -529,4 +544,46 @@ func main() {
 
 
 }
+```
+
+### dlv
+```bash
+# 对go源码debug
+go debug ./main.go
+
+# 查看源文件列表
+sources
+
+# 查看函数
+funcs
+
+# 查看端点列表
+bp
+
+# 函数打端点
+b main.main
+
+# 重启进程
+r 
+
+# 走到断点
+c
+
+# 继续下一行
+n
+
+# 显示最上面栈帧列表
+bt
+
+# 查看寄存器
+regs
+
+# 查看栈变量
+locals
+
+# 协程列表
+goroutines
+
+# 切换协程
+goroutine
 ```
