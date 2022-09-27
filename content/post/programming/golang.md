@@ -211,37 +211,51 @@ func main() {
 5. 在满足条件时触发垃圾收集回收内存；
 6. 打印调度信息,归还内存等定时任务.
 
-### golang的CGO和动静态链接
-CGO_ENABLED是控制是否开启C和GO混合编译,如果=0就是关闭,自然全是go代码自然是静态链接
-
-CGO_ENABLED=1,开启C和GO混合编译自然有静态链接和动态链接之分
-
-如果代码有C代码比如(net, os/user)等几个包的cgo代码, 就算C代码不依赖任何库, 默认会动态链接c库,如果加入`-ldflags '-extldflags "-static"'`会进行静态链接C库,
-经测试如果静态链接C的库有的库会报错,可能某些方法只存在C的动态库中
+### GO常用编译参数
+#### 去掉函数信息, 和调试信息
 ```bash
-# 静态链接C库
-go build -ldflags '-linkmode "external" -extldflags "-static"' .
-# 关闭CGO，纯go语言构建
-CGO_ENABLED=0 go build .
-# 官方镜像构建go程序, 也可以用go mod vendor先导入依赖
-sudo nerdctl run -it --rm --env GOPROXY=https://mirrors.cloud.tencent.com/go/ -v /home/x/go/:/go/ -v /home/x/workspace/go/go-demo:/home/app -w /home/app golang:1.17.0-buster bash
+go build -ldflags '-s -w'
 ```
-```ps1
-### CMD
-# set GOARCH=amd64
-# set GOOS=linux
-# set CGO_ENABLE=0
-
-### ps1
-# $env:GOOS="linux"
-# $env:GOARCH="amd64"
-# $env:CGO_ENABLE="0"
+* -s: 去掉符号信息。
+* -w: 去掉DWARF调试信息。
+#### 关闭内联优化
+```bash
+go build -gcflags '-N -l'
 ```
 
+### buildmode
+* -buildmode=default
+* [-buildmode=archive](#go-archive-shared)
+* [-buildmode=shared](#go-archive-shared)
+* [-buildmode=c-archive](#c-archive-shared) 
+* [-buildmode=c-shared](#c-archive-shared)
+* -buildmode=exe
+* -buildmode=pie
+* -buildmode=plugin
+```bash
+go help buildmode
+```
+#### <a id="go-archive-shared">go自身的动静库</a>
+go可以将非main的包编译成go链接需要的动静态库, 然后编译main包的时候可以使用linkshared链接上去, -buildmode=shared暂不支持macOS.
+好处有:
+1. 动态库节省内存
+2. 静态库节省编译速度
 
-### GO编译动态库
-go调用c库是常规操作，可以反过来让c调go的动态库
-动态库代码
+go本身编译就比较快, 且标准库都已经编译成静态库了在go安装目录有.a, 直接链接的, 所以第二点可以忽略. 
+
+节省内存需要将库都拆分力度很细才有价值, 比如libzlog, libgin等才有价值, 包很多就增加了很大工作量, 这样才能进程之间共享. 虽然容器内的动态库如果处于overlayfs驱动中能共享, 但是为了节省这点内存还是不划算, 当然也可以做.下面用标准库
+```bash
+# 将标准库
+go install -buildmode=shared std
+
+# main程序链接
+go build -linkshared .
+```
+
+#### plugin
+go1.18支持编译成plugin本质也是动态库, 通过plugin.Open可以打开然后Lookup找寻函数符号, 实现插件机制等同于c的dlopen
+
+#### <a id="c-archive-shared">GO转c的动静态库</a>
 ```go
 package main // 这个文件一定要在main包下面
 
@@ -260,7 +274,7 @@ func main() {
 # 动态库
 go build -buildmode=c-shared -o hello.so .
 # 静态库
-go build -buildmode=c-archive -o hello.so .
+go build -buildmode=c-archive -o hello.a .
 ```
 C代码
 ```c
@@ -282,6 +296,34 @@ C链接动态库并运行
 gcc -o main main.c hello.so
 # 静态库(go的静态库需要连接pthread)
 gcc -o main main.c hello.a -lpthread
+```
+
+### golang的CGO和动静态链接
+CGO_ENABLED是控制是否开启C和GO混合编译,如果=0就是关闭,自然全是go代码自然是静态链接
+
+CGO_ENABLED=1,开启C和GO混合编译自然有静态链接和动态链接之分
+
+如果代码有C代码比如(net, os/user)等几个包的cgo代码, 就算C代码不依赖任何库, 默认会动态链接c库,如果加入`-ldflags '-extldflags "-static"'`会进行静态链接C库,
+如果静态链接C的库有的库会报错, 可能是某些函数只存在动态库不存在静态库中
+
+```bash
+# 静态链接C库
+go build -ldflags '-linkmode "external" -extldflags "-static"' .
+# 关闭CGO，纯go语言构建
+CGO_ENABLED=0 go build .
+# 官方镜像构建go程序, 也可以用go mod vendor先导入依赖
+sudo nerdctl run -it --rm --env GOPROXY=https://mirrors.cloud.tencent.com/go/ -v /home/x/go/:/go/ -v /home/x/workspace/go/go-demo:/home/app -w /home/app golang:1.17.0-buster bash
+```
+```ps1
+### CMD
+# set GOARCH=amd64
+# set GOOS=linux
+# set CGO_ENABLE=0
+
+### ps1
+# $env:GOOS="linux"
+# $env:GOARCH="amd64"
+# $env:CGO_ENABLE="0"
 ```
 ### Go汇编
 ```bash
