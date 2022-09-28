@@ -75,7 +75,8 @@ pacman -S s-tui --needed --noconfirm --overwrite '*'
 # 内存
 pacman -S smem --needed --noconfirm --overwrite '*'
 
-
+################## 压力 #################
+pacman -S stress --needed --noconfirm
 ##################  net工具 ##############
 # ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中
 pacman -S net-tools dnsutils inetutils iproute2 bridge-utils --needed --noconfirm
