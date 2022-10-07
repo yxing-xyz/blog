@@ -109,6 +109,16 @@ time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
 - **panic 只能协程栈层层返回, 多次panic只有最后一个panic被recover**
 
 ## 复杂难点
+
+### unsafe.Pointer
+1. 任何类型的指针都可以转化成 unsafe.Pointer；
+2. unsafe.Pointer 可以转化成任何类型的指针；
+3. uintptr 可以转换为 unsafe.Pointer；
+4. unsafeP.ointer 可以转换为 uintptr；
+
+unsafe.Pointer起到桥梁作用, uintptr搭配着unsafe.Pointer使用实现指针运,
+值得注意的是一定unsafe.Pointer持有的内存区域会被gc回收, 所以需要保证内存持有变量后续还有被使用
+
 - **select随机选取通道执行一次用来处理通道 io，除了defalt其他都必须读写 chan,空select阻塞协程, for循环select在进入该语句时，会按源码的顺序对每一个 case 子句进行求值.**
 ```go
 	for {
@@ -192,10 +202,10 @@ func main() {
 	time.Sleep(time.Second * 2)
 	fmt.Println(y)
 }
-// 最后打印的永远是0, 默认运行等于GCC -O2级别的优化, 会寄存器级别优化，值会停留在寄存器平不会刷入cpu cache
-// 解决办法: C/CPP的volatile是告诉编译器不要对这个变量的变化实时写入cache,
-// 但是因为L1上还有store buffer所以内存屏障的问题,需要使用封装了汇编指令的函数刷入cpu cache(mutex)
-// golang的方法也是同理, 使用happens-before的几条原则比如互斥锁和通道, 原理我猜测是通道或者互斥锁加入了读写屏障
+// 最后打印的永远是0, 默认运行等于GCC -O2级别的优化, 会寄存器级别优化，通过读取寄存器传值打印永远是0, 并没有从内存读取
+// 解决办法: C/CPP的volatile是告诉编译器不要对这个变量的写入读取实时从内存读取(有cpu缓存)
+// 但是因为L1上还有store buffer所以还有内存屏障的问题, 需要刷入cpu cache
+// golang的方法也是同理, 使用happens-before的几条原则比如互斥锁和通道, 原理通道读取或者互斥锁加入了读写屏障
 ```
 ### GPM模型
 **GPM模型，关于M的数量分析。Go 语言通过 Syscall 和 Rawsyscall 等使用汇编语言编写的方法封装了操作系统提供的所有系统调用**
