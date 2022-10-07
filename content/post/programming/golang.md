@@ -81,11 +81,6 @@ var A int // errro
 
 - **结构体内嵌接口可以实现多态, 为不同数据类型的实体提供统一的接口**
 
-- **golang的time.parse使用的utc时区，可以指定时区格式化, time.Format默认使用的本地时区**
-```go
-time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
-```
-
 - **chan, map, slice变量为nil需要make分配空间才能用, slice可以用apend初始化空间, slice和map能用字面量声明来快速分配空间**
 
 - **new函数会调用runtime.newobject在堆上开辟类型空间置0, 然后取址赋值给变量, 所以变量是一个指针类型永远不为nil, chan, map, slice不能用new初始化, 他们仅仅开辟空间未做初始化**
@@ -102,11 +97,18 @@ time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
 
 - **for循环不支持逗号隔开赋值，只支持平行赋值**
 
+- **循环中break标签和continue标签不一样, break是直接跳出到标签不再进入循环, continue标签是 继续循环**
+
 - **两个接口拥有相同的方法列表，方法次序可以不同，那么他们就是等价可以相互赋值，接口A是接口B的子级，B可以赋值给A, 这就是鸭子类型has-a**
 
 - **给 nil chan 发送接收都会导致阻塞，可以用来阻塞 main 协程**
 
 - **panic 只能协程栈层层返回, 多次panic只有最后一个panic被recover**
+
+- **golang的time.parse使用的utc时区，可以指定时区格式化, time.Format默认使用的本地时区**
+```go
+time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
+```
 
 ## 复杂难点
 
