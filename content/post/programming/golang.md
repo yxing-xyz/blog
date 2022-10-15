@@ -113,8 +113,8 @@ time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
 ```
 ## 复杂难点
 - **手动创建的context.WithCancel需要最后需要手动放掉, 必然上下文协程会停留内存中造成内存泄漏, WithValue底层是空接口参数且用的==判断, 
-- key的类型不应该是字符串类型或者其它内建类型，key的类型应该是自己定义的类型。如type metaDataKey struct{} **
-- 
+	key的类型不应该是字符串类型或者其它内建类型，key的类型应该是自己定义的类型。如type metaDataKey struct{} **
+
 - **select随机选取通道执行一次用来处理通道 io，除了defalt其他都必须读写 chan,空select阻塞协程, for循环select在进入该语句时，会按源码的顺序对每一个 case 子句进行求值.**
 ```go
 	for {
@@ -125,6 +125,7 @@ time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
 		}
 	}
 ```
+- **golang传参值拷贝和c不一样, 比如字符串传参, 会拷贝字符串结构体, 内部引用的原始字符数据也会重新拷贝一次, 独立的字符空间, 并不是两个字符串引用同一块内存地址**
 
 - **golang的不定参数和c不一样, c是caller栈开辟空间传递, go是使用切片传递, 切片的结构体三个属性会被拷贝成函数参数传递进去**
 
@@ -156,8 +157,8 @@ time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
 4. unsafeP.ointer 可以转换为 uintptr；
 
 unsafe.Pointer起到桥梁作用, uintptr搭配着unsafe.Pointer使用实现指针运,
-值得注意的一点是unsafe.Pointer持有的内存区域会被gc回收, 所以需要保证内存持有变量后续还有被使用
-
+值得注意的一点是unsafe.Pointer持有的内存区域会被gc回收, 所以需要保证内存持有变量后续还有被使用, 可以使用runtime.Keepalive保活指针, 
+通常和unsafe.Pointer搭配, 确保unsafe操作在自动gc回收之前
 ### golang中的比较
 - **golang可比较又可以分为两个小类:1. 可比较，包括相等(==)，和不相等(!=). 2.可排序，包括大于(>)，大于等于(>=)，小于(>)，小于等于(<=)**
 
