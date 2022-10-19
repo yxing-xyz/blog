@@ -13,14 +13,14 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 
 ## Arch 软件包
 ```bash
-#!/usr/bin/env bash
+#!/usr/bin/sh
 # set -euxo pipefail
 set -o errexit
 set -o nounset
 set -o pipefail
 ################################
 # 安装图形界面                     剪切板 窗口特效 合并X11配置
-pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel --needed --noconfirm --overwrite '*'
+pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel light --needed --noconfirm --overwrite '*'
 # awesome
 pacman -S awesome --needed --noconfirm --overwrite '*'
 
@@ -31,14 +31,12 @@ pacman -S gnome-keyring seahorse --needed --noconfirm --overwrite '*'
 pacman -S archlinux-keyring --needed --noconfirm --overwrite '*'
 pacman -S archlinuxcn-keyring --needed --noconfirm --overwrite '*'
 # 安装 yay       降级 
-pacman -Syu yay downgrade --needed --noconfirm --overwrite '*'
+pacman -S yay downgrade --needed --noconfirm --overwrite '*'
 
 # 常用开发工具
 pacman -S yasm gcc cmake nginx nodejs npm yarn git tig svn python python-pip go go-tools rust rust-src --needed --noconfirm --overwrite '*'
 # 编辑
 pacman -S emacs vim visual-studio-code-bin intellij-idea-ultimate-edition --needed --noconfirm --overwrite '*'
-# nodejs应用进程管理器
-pacman -S pm2 --needed --noconfirm --overwrite '*'
 # 打印进程调用
 pacman -S strace --needed --noconfirm --overwrite '*'
 # 数据库命令行
@@ -319,6 +317,9 @@ xinput set-prop 15 298 -0.5 # 设置设备属性
 
 # 关闭显示器电源
 xset dpms force off
+
+# 10分钟后关闭显示器电源
+xset dpms 600 600 600
 
 # 电池
 upower -i `upower -e | grep 'BAT'` # 查看电池信息
