@@ -294,6 +294,39 @@ useradd -g wheel yx
 printf "x\nx\n" | passwd x > /dev/null 2>&1
 ## grub
 ```
+## Namespace
+nsenter关联命名空间原理:
+open要进入/proc/${PID}的namespace得到fd, 然后setns传入fd修改当前进程的命名空间, 然后execvp执行一个可执行文件(替换当前进程的代码段)
+
+unshare分离进程原理:
+unshare命令调用unshare函数分离指定命名空间, 然后处理命令行参数比如改变根目录, 改变工作目录目录等, 然后execvp替换当前进程
+
+```bash
+# 使用指定进程pid的namespace执行命令
+nsenter -t 119324 -a /bin/ps -ef
+
+# 创建Net namespace, ifconfig将看不到网卡
+unshare --net bash
+```
+
+## 终端模拟器
+终端模拟器大部分是一个X11的GUI程序, 历史上是一个硬件设备接收文本数据,渲染出来. 有一些终端序列能被特殊解析比如颜色等, 
+现在我们大部分的彩色终端应用程序都会用到libncurses库的, 他会读取进程的TERM变量然后读取/usr/share/terminfo中对应TERM环境变量的终端信息
+容器可能不存在这些文件所以一些如htop等程序会启动报错
+```bash
+# 清空模拟终端
+tput clear
+# 输出终端多少行
+echo $LINES
+# 输出终端多少列
+echo $COLUMNS
+# 查看当前机器支持哪些终端模拟器描述
+toe -a
+# 查看当前终端模拟器, 在本机的terminfo
+infocmp
+# 比较两个终端模拟器终端序号区别
+infocmp xterm-256color st-256color
+```
 ## 录屏
 ```bash
 ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 output.mp4
