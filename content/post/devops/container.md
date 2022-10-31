@@ -1,7 +1,7 @@
 ---
-title: "Docker"
+title: "Container"
 date: 2018-06-21T14:55:46+08:00
-lastmod: 2021-07-22T14:28:00+08:00
+lastmod: 2022-10-31T13:54:00+08:00
 draft: false
 categories:
   - "DevOps"
@@ -10,10 +10,18 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+## ctr
 
-## 安装
+### 基本命令
 
-### Centos
+##### 创建容器
+```bash
+ctr c create -t --mount 'type=bind,src=/data/,dst=/data/,options=rbind:ro' --net-host docker.io/library/busybox:latest busybox
+```
+
+## docker
+
+### centos
 
 ```bash
 # step 1: 安装必要的一些系统工具
@@ -29,7 +37,7 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
-### Ubuntu
+### ubuntu
 
 ```bash
 # step 1: 安装必要的一些系统工具
@@ -48,7 +56,6 @@ sudo systemctl start docker
 sudo systemctl enable docker
 ```
 
-## 配置
 
 ### 配置 docker 镜像
 
@@ -66,26 +73,25 @@ sudo systemctl daemon-reload
 sudo systemctl restart docker
 ```
 
-## 基本命令
+### 基本命令
 
-### 拉取操作系统镜像
-
+#### 拉取操作系统镜像
 ```bash
 docker pull centos # 镜像可以去docker hub中搜索自己需要的
 ```
 
-### 镜像列表
-
+####  镜像列表
 ```bash
 docker images
 ```
-### 创建网络
+
+#### 创建网络
 ```bash
 docker network ls  # 查看现在的网络
 docker network create -d bridge mybridge # 创建自己的bridge
 ```
 
-### 普通模式运行镜像
+#### 普通模式运行镜像
 
 ```bash
 docker run --rm -dit --name pqcloud-web \ # 创建容器名
@@ -95,7 +101,7 @@ docker run --rm -dit --name pqcloud-web \ # 创建容器名
      registry.cn-hangzhou.aliyuncs.com/pqtel/pqcloud-web # 远程拉取地址
 ```
 
-### 容器和宿主机文件拷贝
+#### 容器和宿主机文件拷贝
 
 ```bash
 #从主机复制到容器
@@ -105,7 +111,7 @@ docker cp 宿主机路径 容器ID或Name:容器路径
 docker cp 容器ID或Name:容器路径 宿主机路径
 ```
 
-### 停止、删除容器和镜像
+#### 停止、删除容器和镜像
 
 ```bash
 # 单个删除容器和镜像
@@ -122,13 +128,13 @@ docker stop $(docker ps -aq) & docker rm $(docker ps -aq) & docker image prune -
 docker stop $(docker ps -aq) & docker rm $(docker ps -aq) & docker rmi $(docker images -qf "dangling=true")
 ```
 
-### 进入容器 Shell
+#### 进入容器 Shell
 
 ```bash
 docker exec -it 容器名 /bin/bash # 有些容器没有bash只有sh
 ```
 
-### 所有 docker 打印的日志收集存储到 Elasticsearch
+#### 所有 docker 打印的日志收集存储到 Elasticsearch
 
 ```bash
 docker run -dit \
@@ -145,8 +151,8 @@ docker run -dit \
     registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot
 ```
 
-## 注意点
-### COPY和ADD的联系和区别
+### 注意点
+##### COPY和ADD的联系和区别
 联系:
 
 1. 两者都能将文件和目录拷贝到镜像中
@@ -158,7 +164,7 @@ docker run -dit \
 2. ADD能重URL中拷贝到镜像中但是不推荐，因为会创建更多的镜像层
 
 
-### ENTRYPOINT和CMD的联系和区别
+#### ENTRYPOINT和CMD的联系和区别
 
 区别:
 ENTRYPOINT的作用不同, 如果你希望你的docker镜像只执行一个具体程序,
