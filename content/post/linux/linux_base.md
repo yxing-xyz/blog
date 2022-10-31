@@ -96,6 +96,11 @@ SBIT 权限仅对目录有效，一旦目录设定了 SBIT 权限，则用户在
 // 为了避免进程退出，可以捕获 SIGPIPE 信号，或者忽略它，给他设置 SIG_IGN 信号处理函数。
 signal(SIGPIPE, SIG_IGN);
 ```
+
+### SIGCHLD
+在父进程fork()之前安装SIGCHLD信号处理函数，并在此handler函数中调用waitpid()等待子进程结束，
+这样，内核才能获得子进程退出信息从而释放那个进程描述符, 或者忽略这个信号, 由init进程处理
+注意：当我们在父进程中添加了signal(SIGCHLD,SIG_IGN)时，就不要调用waitpid函数去回收子进程了，否则会报错
 ### SIGSTOP
 暂停进程
 ### SIGCONT
@@ -125,7 +130,7 @@ nohup原理就是屏蔽了这个信号, 但是它没有fork子进程退出父进
 
 ## 守护进程
 具体步骤:
-1. fork子进程, 父进程退出, 因为shell正在wait 父进程
+1. 先屏蔽SIGCHLD信号避免僵尸进程产生, fork子进程, 父进程退出, 因为shell正在wait 父进程.
 2. 子进程执行setsid(), 产生新的sessionid, 防止shell退出(shell是一个session leader)导致整个session进程收到信号退出
 3. 子进程chdir("/"), umask(0), close(0,1,2)等不需要的fd. 防止umount等提示进程占用, umask最大权限, 节省系统fd资源
 ## session
@@ -149,6 +154,13 @@ session可以在任何时候创建，调用setsid函数即可，session中的第
 ### 后台进程组
 非前台进程组即为后台进程组
 
+## 僵尸进程/孤儿进程
+> 僵尸进程：一个子进程在父进程还没有调用wait()方法或者waitpid()方法的情况下退出，这个子进程就是僵尸进程；
+> 孤儿进程：一个父进程退出，它的一个或多个子进程还在运行，子进程将成为孤儿进程，孤儿进程将被init进程所收养；
+僵尸进程将会导致资源浪费，而孤儿进程则不会。
+避免僵尸进程的方法:
+1. fork两次. 让子进程快速结束, 孙子进程被init进程接收, 达到父进程永远在后面结束且执行了waitpid().
+2. 父进程屏蔽SIGCHLD信号由init进程释放进程描述符.
 ## Shell
 ### 管道运算符|
 管道运算符只能传递stdout输出, 如果stderr如果要管道传输需要重定向2>&1
