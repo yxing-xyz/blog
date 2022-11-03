@@ -692,6 +692,25 @@ func main() {
 也就是嵌套defer也是完全符合defer定义, 只有defer函数嵌套的defer执行完才会结束控制权移交给父函数
 
 值得注意的一点是os.Exit后是不会执行defer的
+
+### golang重定向输出
+```go
+package main
+
+import (
+	"os"
+	"syscall"
+)
+
+func main() {
+	f, err := os.OpenFile("/dev/pts/1", os.O_RDWR, 0666)
+	syscall.Dup2(int(f.Fd()), int(os.Stdout.Fd()))
+	if err != nil {
+		panic(err)
+	}
+}
+
+```
 ### dlv
 ```bash
 # 对go源码debug
