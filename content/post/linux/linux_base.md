@@ -98,13 +98,15 @@ signal(SIGPIPE, SIG_IGN);
 ```
 
 ### SIGCHLD
+子进程终止时，或者子进程收到SIGSTOP信号暂停时，或者子进程收到SIGCONT信号后继续运行时，都会发送该信号给父进程。
 在父进程fork()之前安装SIGCHLD信号处理函数，并在此handler函数中调用waitpid()等待子进程结束，
 这样，内核才能获得子进程退出信息从而释放那个进程描述符, 或者忽略这个信号, 由init进程处理
 注意：当我们在父进程中添加了signal(SIGCHLD,SIG_IGN)时，就不要调用waitpid函数去回收子进程了，否则会报错
-### SIGSTOP
-暂停进程
-### SIGCONT
-恢复进程
+
+
+### SIGSTOP/SIGCONT
+暂停进程/恢复进程
+一个进程收到SIGSTOP后会暂停执行，并屏蔽除SIGKILL外所有信号，在收到SIGCOUNT后，才会继续执行
 #### SIGKILL
 杀死进程
 #### SIGTERM

@@ -754,3 +754,122 @@ goroutines
 # 切换协程
 goroutine
 ```
+
+### 通道实现信号量
+```go
+type Semaphore struct {
+    permits int      // 许可数量
+    channel chan int // 通道
+}
+
+/* 创建信号量 */
+func NewSemaphore(permits int) *Semaphore {
+    return &Semaphore{channel: make(chan int, permits), permits: permits}
+}
+
+/* 获取许可 */
+func (s *Semaphore) Acquire() {
+    s.channel <- 0
+}
+
+/* 释放许可 */
+func (s *Semaphore) Release() {
+    <-s.channel
+}
+
+/* 尝试获取许可 */
+func (s *Semaphore) TryAcquire() bool {
+    select {
+    case s.channel <- 0:
+        return true
+    default:
+        return false
+    }
+}
+
+/* 尝试指定时间内获取许可 */
+func (s *Semaphore) TryAcquireOnTime(timeout time.Duration) bool {
+    for {
+        select {
+        case s.channel <- 0:
+            return true
+        case <-time.After(timeout):
+n            return false
+        }
+    }
+}
+
+/* 当前可用的许可数 */
+func (s *Semaphore) AvailablePermits() int {
+    return s.permits - len(s.channel)
+}
+```
+
+
+### 通信和同步
+#### 多进程通信
+1. 信号量: 通常搭配内存使用, 有POSIX和SystemV两种, POSIX又分为有名信号量和匿名信号量
+```c
+// pshared = 0 用于同一多线程的同步；
+// 若pshared > 0 用于多个亲缘进程间的同步（即由fork产生的）
+int sem_init(sem_t *sem, int pshared, unsigned int value);
+```
+2. 套接字: unix套接字和普通套接字
+3. 管道: 只能单向通信, pipe创建匿名管道只在亲缘进程(fork)中使用, mkfifo是创建有名管道能在多进程使用
+4. 共享内存  
+5. 操作系统消息队列
+6. 信号: 唯一一种异步通信机制
+   * signal()：不支持信号传递信息，主要用于非实时信号安装, 由于历史原因，兼容性较差，很少使用。
+   * sigaction():支持信号传递信息，可用于所有信号安装； 
+```c
+#include <stdio.h>
+#include <signal.h>
+#include <unistd.h>
+void handle(int signum)
+{
+    printf("%d\n", signum);
+}
+
+/*
+struct sigaction {
+    // 如果设置了SA_SIGINFO标志位，则会使用sa_sigaction处理函数，否则使用sa_handler处理函数
+    void     (*sa_handler)(int);
+    void     (*sa_sigaction)(int, siginfo_t *, void *);
+    // 定义一组信号，在调用由sa_handler所定义的处理器程序时将阻塞该组信号，不允许它们中断此处理器程序的执行。
+    sigset_t   sa_mask;
+    // SA_NODEFER：捕获该信号时，不会在执行处理器程序时将该信号自动添加到进程掩码中。
+    // SA_ONSTACK：针对此信号调用处理器函数时，使用了由sigaltstack()安装的备选栈。
+    // SA_RESETHAND：当捕获该信号时，会在调用处理器函数之前将信号处置重置为默认值(即SIG_IGN)。
+    // SA_SIGINFO：调用信号处理器程序时携带了额外参数，其中提供了关于信号的深入信息
+    // SA_RESTART：执行信号处理后自动重启动先前中断的系统调用. 收到信号处理完后, 某些系统调用会直接返回比如sleep, pause等, 
+	// accpet有返回值的会继续等待返回不影响业务流程, 所以最好加上这个参数
+    int        sa_flags;
+    void     (*sa_restorer)(void);
+};
+*/
+int main(int argc, char *argv[])
+{
+
+    struct sigaction act;
+    sigemptyset(&act.sa_mask);
+    act.sa_flags = (SA_SIGINFO|SA_RESTART);
+    act.sa_sigaction = handle;
+    sigaction(44, &act, NULL);
+    while(1){
+        pause();
+    }
+    return 0;
+}
+```
+
+#### 多进程同步
+1. 信号量
+
+#### 多线程通信
+所有多进程通信方式, 除了信号, 因为信号会发送给进程的随机一个线程处理, 发送线程可以确定, 不确定哪个线程会处理信号, 所以一般不使用.
+### 多线程同步
+1. 信号量
+2. 互斥锁
+3. 互斥锁+条件变量
+4. 读写锁
+5. 自旋锁
