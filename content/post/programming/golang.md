@@ -505,17 +505,19 @@ func RemoveFromMiddle() {
 	wg.Add(1)
 	wg.Wait()
 
-// 5.sync.cond条件变量
+	// 5.sync.cond条件变量, 用来解锁互斥锁, 等待条件满足重新加锁
+	// 条件变量并不是被用来保护临界区和共享资源的，它是用于协调想要访问共享资源的那些线程的。当共享资源的状态发生变化时，它可以被用来通知被互斥锁阻塞的线程。
+	// 生产者消费者模型:  两端都有睡眠条件, 当一端执行完后需要唤醒对端.
 	var cond = sync.NewCond(new(sync.Mutex))
 	go func(){
 		cond.L.Lock() //获取锁
 		// 只有一个协程执行两者之间代码中,到了cond.wait释放了锁,其他协程都能抢占执行这部分中间代码
 		cond.Wait() //等待通知,里面继续抢互斥锁
-		// 收到通知的程序执行代码,同样只有一个协程能执行这段代码,其他收到通知抢占进入执行
+		// 抢到互斥锁的继续执行
 		cond.L.Unlock() //释放锁
 	}()
-	cond.Signal()    // 唤醒一个cond继续执行
-	cond.Broadcast() // 唤醒所有的阻塞的cond
+	cond.Signal()    // 唤醒一个协程继续执行, 被唤醒的协程会立马执行获取互斥锁
+	cond.Broadcast() // 唤醒所有的阻塞的协程, 依然只有一个协程处于wait函数里能抢夺到互斥锁
 
 // 6.os.Signal
 	sig := make(chan os.Signal, 2)
