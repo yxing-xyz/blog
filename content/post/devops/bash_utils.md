@@ -99,3 +99,8 @@ git tag -l | xargs git tag -d
 ```bash
 git add -p 历史已提交文件路径
 ```
+
+### 只保留最新的提交记录
+```bash
+git fetch --depth 1 origin master
+```
