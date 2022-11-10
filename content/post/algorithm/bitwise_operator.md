@@ -101,6 +101,17 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
    a = (a >> half | a << half);
    PrintfBinary(a);
 ```
+
+### 8. 内存对齐, 清0低位且进位
+清0低位是很容操作的与运算即可, 进位就要先-符号, 减法原理按位取反+1保留进位
+```golang
+// 进位清0最低三位, 内存对齐8字节
+const (
+	maxAlign = 8
+	hchanSize = unsafe.Sizeof(hchan{}) + uintptr(-int(unsafe.Sizeof(hchan{}))&(maxAlign-1))e
+)
+```
+
 ### 四舍五入
 cent单位分， money单位元
 这里可以位与运算实现floor
