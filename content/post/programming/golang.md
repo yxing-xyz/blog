@@ -151,14 +151,9 @@ time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
 
 
 ### unsafe.Pointer
-1. 任何类型的指针都可以转化成 unsafe.Pointer；
-2. unsafe.Pointer 可以转化成任何类型的指针；
-3. uintptr 可以转换为 unsafe.Pointer；
-4. unsafeP.ointer 可以转换为 uintptr；
+任何类型的指针都可以强转成 unsafe.Pointer, 也包括uintptr, uintptr是一种特殊指针, 一般用来指针运算
 
-unsafe.Pointer起到桥梁作用, uintptr搭配着unsafe.Pointer使用实现指针运,
-值得注意的一点是unsafe.Pointer持有的内存区域会被gc回收, 所以需要保证内存持有变量后续还有被使用, 可以使用runtime.Keepalive保活指针, 
-通常和unsafe.Pointer搭配, 确保unsafe操作在自动gc回收之前
+值得注意的一点是uintptr持有的内存区域会被gc回收, 所以需要保证内存持有变量后续还有被使用, 可以使用runtime.Keepalive保活指针
 ### golang中的比较
 - **golang可比较又可以分为两个小类:1. 可比较，包括相等(==)，和不相等(!=). 2.可排序，包括大于(>)，大于等于(>=)，小于(>)，小于等于(<=)**
 
