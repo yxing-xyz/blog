@@ -489,11 +489,12 @@ func RemoveFromMiddle() {
 // 2.空select
 	select{}
 
-// 3.空chan,nil chan
+// 3. nil chan读写阻塞
 	var c = make(chan int)
 	c<- // 空chan直到有输入,同步阻塞
 	var d chan int
 	d<- // nil chan 永远阻塞
+	<-d // nil chan 永远阻塞
 
 // 4.sync.Mutex
 	var m sync.Mutex
@@ -519,7 +520,7 @@ func RemoveFromMiddle() {
 	cond.Signal()    // 唤醒一个协程继续执行, 被唤醒的协程会立马执行获取互斥锁
 	cond.Broadcast() // 唤醒所有的阻塞的协程, 依然只有一个协程处于wait函数里能抢夺到互斥锁
 
-// 6.os.Signal
+// 6.os.Signal, 本质是通道
 	sig := make(chan os.Signal, 2)
     signal.Notify(sig, syscall.SIGTERM, syscall.SIGINT)
     <-sig
