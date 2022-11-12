@@ -562,10 +562,25 @@ func main() {
 }
 ```
 
-### 关闭channel
+### channel
+#### 关闭channel
 接受端和发送端都可以关闭通道,一般来说都是在发送端关闭,因为接收端能读取到通道已经关闭的状态.因为只需要注意:
 1. 通道重复关闭会panic
 2. 通道关闭后,从通道读取会返回false状态
+#### 通道非阻塞读写
+channel源码中有一个block标识标识是否阻塞
+```go
+// 非阻塞发送
+select {
+	case ch <- 10:
+	default:
+}
+// 非阻塞读取
+select {
+	case <-ch:
+	default:
+}
+```
 #### 1个发送者N个接收者,
 N取值1..N, 直接在发送端关闭即可.
 ```golang
