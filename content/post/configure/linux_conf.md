@@ -387,10 +387,3 @@ xrandr --output HDMI-2 --off
 设置指定显示器为主屏幕：xrandr --output eDP-1 --primary
 设置多个显示器之间的相对位置：xrandr --output eDP-1 --left-of HDMI-2
 ```
-## zsh
-```bash
-# 设置oh-my-zsh不读取文件变化信息
-git config --add oh-my-zsh.hide-dirty 1
-# 设置oh-my-zsh不读取任何git信息
-git config --add oh-my-zsh.hide-status 1
-```

@@ -105,3 +105,12 @@ git add -p 历史已提交文件路径
 ```bash
 git fetch --depth 1 origin master
 ```
+
+## zsh
+### 关闭zsh插件读取git信息导致卡吨
+```bash
+# 设置oh-my-zsh不读取文件变化信息
+git config --add oh-my-zsh.hide-dirty 1
+# 设置oh-my-zsh不读取任何git信息
+git config --add oh-my-zsh.hide-status 1
+```

@@ -1,18 +1,45 @@
 ---
-title: "Linux IPtables"
-date: 2021-09-02T16:17:00+08:00
-lastmod: 2021-09-02T16:17:00+08:00
+title: "Network"
+date: 2022-11-13T23:27:00+08:00
+lastmod: 2022-11-13T23:27:00+08:00
 draft: false
 categories:
   - "Linux"
 tags:
   - "Linux"
+  - "Network"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
+# 设备
+## 删除网络设备
+```sh
+ip link del veth0
+```
+## 查看设备驱动信息
+```sh
+## 方法1
+ethtool -i eth0
+
+## 方法2
+ip -d link show eth0
+```
+
+# 查看NAT
+```bash
+sudo conntrack -L -j
+```
+
+# MTU
+```bash
+tracepath baidu.com
+```
+
+
+# iptables
 ![avatar](/img/iptables.png)
-# 五表五链
+## 五表五链
 ```txt
 security表：主要针对的是数据链路层的管理规则组合，只不过它是基于target目标来操作的。
 
