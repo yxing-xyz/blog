@@ -189,17 +189,3 @@ CMD ["executable","param1","param2"]
 
 组合使用:
 组合使用ENTRYPOINT和CMD, ENTRYPOINT指定默认的运行命令, CMD指定默认的运行参数
-
-
-
-## 原理分析
-
-### nerdctl容器通信流程
-client(ctr/nerctrl/crictrl)  => contaierd => containerd-shim-runc-v2 => runc
-其中containerd-shim-runc-v2会将容器spec信息写入到容器runc根目录的config.json, 
-其中hook字段描述容器的生命周期执行时间, 会触发命令的执行, 网络也是这个时候创建的
-
-#### k8s网络命名空间
-k8s中网络命名空间是预创建好, veth一端在容器网络空间设置ip和掩码和路由网关, 另外一端接到主网络空间brige上,  然后配置iptables, 
-pod中的pause容器和业务容器attach网络命名空间.
-
