@@ -71,3 +71,7 @@ postrouting：数据包从本机出去前，对数据包应用的规则，一般
 本机相应数据包：output->postrouting
 ```
 
+# tcpdump在网络协议栈的位置
+> Wire -> NIC -> tcpdump -> netfilter -> applications -> netfilter -> tcpdump -> NIC -> Wire
+因此，使用tcpdump后，可以看到流入网卡的全部数据包，也可以看到流出网卡的所有数据包，但是不一定能看到应用程序返回的数据包。
+
