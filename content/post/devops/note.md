@@ -27,6 +27,8 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 > nginx配置absolute_redirect off会使用Localtion相对路径
 
 # k8s
+> pod中有一个隐藏的pause容器, 它的源码很简单十几行c代码, 主要是监听信号处理, 实际的作用就是当pod是共享PID命名空间的时候, pause作为init进程, 回收子进程退出的资源. 其实没有必要了, 阿里云上的默认PID不共享, 所以没啥意义还浪费资源
+
 > ipvs在udp使用的时候会有一个超时可以用ipvsadm -L --tiemout查看，默认300s， 这个会导致coredns重启300s内会有卡吨现象，因为ipvs未转换vip成实际ip
 
 > k8s是根据request进行伸缩和创建pod，所以request设置太大存在资源浪费，太小容易导致扩容太多个。所以可以关闭伸缩，查看cpu和内存，然后调整request，limit，最后开启伸缩调整伸缩数量
