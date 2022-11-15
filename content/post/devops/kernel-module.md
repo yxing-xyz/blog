@@ -18,6 +18,6 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 也可以利用blacklist来屏蔽模块的自动加载。
 
 ## 如何添加一个自己编译的模块
-1. 将编译好的.ko模块放到目录`/lib/modules/`uname -r`/`
+1. 将编译好的.ko模块放到目录`/lib/modules/$(uname -r)/`
 2. 注意特别重要的一步：在命令行输入命令`depmod`，此命令是用来更新模块启动配置表的，没有`depmod`这个命令，就无法使用modprobe命令来启动模块。
 3. 为`*.modules`文件加可执行权限，我这里这就执行：`chmod 755 helloworld.modules`

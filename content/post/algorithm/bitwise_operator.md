@@ -103,12 +103,14 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ```
 
 ### 8. 内存对齐, 清0低位且进位
-清0低位是很容操作的与运算即可, 进位就要先-符号, 减法原理按位取反+1保留进位
+清0低位是很容操作的与运算即可, 
+进1就要低位加上低位取反+1
 ```golang
 // 进位清0最低三位, 内存对齐8字节
 const (
 	maxAlign = 8
-	hchanSize = unsafe.Sizeof(hchan{}) + uintptr(-int(unsafe.Sizeof(hchan{}))&(maxAlign-1))e
+   // 负号等于按位取反+1保留进位
+	hchanSize = unsafe.Sizeof(hchan{}) + uintptr(-int(unsafe.Sizeof(hchan{}))&(maxAlign-1))
 )
 ```
 

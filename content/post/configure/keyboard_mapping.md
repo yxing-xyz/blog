@@ -13,14 +13,10 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ---
 
 ## Windows
-Download mapkeyboard, modify it by yourself, and then log out or restart it
-下载  mapkeyboard软件修改然后重启机器
-
-
-
+下载mapkeyboard软件修改键映射然后重启机器
 ## Linux
-Linux has TTY terminal and desktop operation modes
-
+1. 被TTY接管键盘模式(桌面)
+2. xorg接管键盘事件(服务器)
 ### TTY
 
 1.修改键位表

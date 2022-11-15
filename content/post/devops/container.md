@@ -19,6 +19,12 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ctr c create -t --mount 'type=bind,src=/data/,dst=/data/,options=rbind:ro' --net-host docker.io/library/busybox:latest busybox
 ```
 
+## runc
+#### 列出启动的所有容器
+```bash
+runc --root /run/containerd/runc/default list
+```
+
 ## docker
 
 ### centos
