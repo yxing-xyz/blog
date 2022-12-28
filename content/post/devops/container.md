@@ -26,6 +26,14 @@ runc --root /run/containerd/runc/default list
 ```
 
 ## docker
+### Mac
+```bash
+brew install --cask docker
+```
+### 进入Mac的docker虚拟机
+```bash
+docker run -it --rm --privileged --pid=host justincormack/nsenter1
+```
 
 ### centos
 
