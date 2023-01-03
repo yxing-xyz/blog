@@ -1,5 +1,5 @@
 ---
-title: "Linux Mirrors"
+title: "Debian"
 date: 2020-12-08T16:28:00+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
@@ -135,5 +135,8 @@ apt-get install -y bridge-utils
 ## 18.04
 apt-get install -y libfreetype6-dev
 ```
+
 ## Docker里安装sshd
-> ["/bin/sh", "-c", "apt update && apt install -y openssh-server && sed -i 's/[# ]*UsePAM.*/UsePAM no/' /etc/ssh/sshd_config && sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config && service ssh restart && echo root:root | chpasswd"]
+```Dockerfile
+["/bin/sh", "-c", "apt update && apt install -y openssh-server && sed -i 's/[# ]*UsePAM.*/UsePAM no/' /etc/ssh/sshd_config && sed -i 's/[# ]*PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config && && service ssh restart && echo root:root | chpasswd"]
+```
