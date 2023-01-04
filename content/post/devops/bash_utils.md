@@ -40,6 +40,22 @@ url='https://test.juewei.com/actuator/health'; code=200; while [ $code -eq 200 ]
 ```bash
 openssl s_client -servername prod.juewei.com -connect www.baidu.com:443  | openssl x509 -noout -dates
 ```
+### 自签名证书
+```bash
+# 1. 生成ca key
+openssl genrsa -out ca.key 2048
+# 2. 生成CA证书请求
+openssl req -new -key ca.key -out ca.csr -subj "/C=CN/ST=Hubei/L=Wuhan/O=yxing.xyz/OU=/CN=yxing.xyz"
+# 3. 生产CA证书
+openssl x509 -req -days 3650 -in ca.csr -signkey ca.key -out ca.crt
+# 4. 生成新的服务器证书请求和key
+openssl req -new -SHA256 -newkey rsa:2048 -nodes -keyout dev.yxing.xyz.key -out dev.yxing.xyz.csr -subj "/C=CN/ST=Hubei/L=Wuhan/O=yxing.xyz/OU=/CN=dev.yxing.xyz"
+# 5. CA签名客户端证书
+openssl x509 -req -in dev.yxing.xyz.csr -out dev.yxing.xyz.crt -CA ca.crt -CAkey ca.key -CAcreateserial -days 360
+```
+
+### 签名
+
 
 ### 更换TLS证书
 ```bash
