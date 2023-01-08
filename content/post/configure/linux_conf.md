@@ -336,6 +336,14 @@ ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -f alsa -ac 2 -i h
 ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -c:v libx264  -qp 0 -preset ultrafast output.mkv
 
 ```
+## 摄像头
+```bash
+# 查看摄像头设备
+v4l2-ctl --list-devices
+
+# 播放摄像头
+mpv av://v4l2:/dev/video0 --profile=low-latency --untimed
+```
 ## Linux Xorg
 ```bash
 # 查看设备的sysfs属性
