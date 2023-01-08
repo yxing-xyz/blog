@@ -854,4 +854,7 @@ int main(int argc, char *argv[])
 3. 互斥锁+条件变量
 4. 读写锁
 5. 自旋锁
-```
+### 关于mod的理解
+> go get 可以在@后面追加branch和commitid/tag, 不建议用tag, tag的命名需要符合规范才能用tag, 万能的方式就是用commitid
+> go mod tidy会将代码中用到的import分类整理到go.mod, 然后将所有库的依赖都生成快照放到go.sum, 所以go.sum一般需要提交的git中,反之上游不兼容改动引起bug
+> go mod tidy有时候会抽风, 比如多个go模块放到一个git版本中, 会导致使用到不同版本, 对于同一个git分支多模块建议get指定版本.
