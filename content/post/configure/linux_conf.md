@@ -119,7 +119,9 @@ pacman -S w3m --needed --noconfirm --overwrite '*'                # lynx, w3m �
 pacman -S poppler poppler-data --needed --noconfirm --overwrite '*'            # PDF阅读
 pacman -S mediainfo --needed --noconfirm --overwrite '*'          # mediainfo 或 perl-image-exiftool ： audio/video
 # nnn
-sudo pacman -S nnn atool libarchive trash-cli rclone fuse2 xdg-utils
+sudo pacman -S nnn atool libarchive trash-cli rclone fustrashe2 xdg-utils
+# trash-cli
+yay -S trash-cli --needed --noconfirm --overwrite '*'
 # 命令模糊搜索 fzf
 pacman -S fzf --needed --noconfirm --overwrite '*'
 # 目录文件搜索 fd
