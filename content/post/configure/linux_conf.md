@@ -158,8 +158,8 @@ pacman -S cmus --needed --noconfirm --overwrite '*'
 pacman -S qrencode --needed --noconfirm --overwrite '*'
 # 局域网的ip二维码上下传文件
 yay -S qrcp --needed --noconfirm --overwrite '*'
-# HTTP代理
-pacman -S squid --needed --noconfirm --overwrite '*'
+# HTTP代理, 梯子客户端
+pacman -S squid v2raya proxychains --needed --noconfirm --overwrite '*'
 # http共享
 sudo npm install -g serve
 # youtube、youku下载工具、BT下载工具
@@ -212,8 +212,6 @@ pacman -S scrot flameshot maim --needed --noconfirm --overwrite '*'
 pacman -S screenkey --needed --noconfirm --overwrite '*'
 # 图像预览
 pacman -S feh --noconfirm --overwrite '*' --needed
-# proxy
-pacman -S qv2ray v2ray  proxychains --needed --noconfirm --overwrite '*'
 # 输入法
 pacman -S librime ibus-rime --needed --noconfirm --overwrite '*'
 # 字体
