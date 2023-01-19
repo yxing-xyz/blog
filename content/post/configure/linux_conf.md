@@ -19,8 +19,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 ################################
-# 安装图形界面                     剪切板 窗口特效 合并X11配置
-pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel light --needed --noconfirm --overwrite '*'
+# 安装图形界面                     剪切板 窗口特效 合并X11配置, xorg-xev查看x的输入事件, setxkbmap设置键盘
+pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel light xorg-xev xorg-setxkbmap --needed --noconfirm --overwrite '*'
 # awesome
 pacman -S awesome --needed --noconfirm --overwrite '*'
 
@@ -208,7 +208,7 @@ pacman -S xorriso mkisolinux --needed --noconfirm --overwrite '*'
 pacman -S rofi --needed --noconfirm --overwrite '*'
 # 截图
 pacman -S scrot flameshot maim --needed --noconfirm --overwrite '*'
-# 显示键盘按键, eudev键盘时间
+# 显示键盘按键, eudev键盘原始事件
 pacman -S screenkey evtest --needed --noconfirm --overwrite '*'
 # 图像预览
 pacman -S feh --noconfirm --overwrite '*' --needed
