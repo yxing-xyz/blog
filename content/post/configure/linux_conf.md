@@ -24,13 +24,13 @@ pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel light -
 # awesome
 pacman -S awesome --needed --noconfirm --overwrite '*'
 
-# gnome密码环  密码环管理工具 清除密码 gnome-keyring-daemon -r -d 
+# gnome密码环  密码环管理工具 清除密码 gnome-keyring-daemon -r -d
 pacman -S gnome-keyring seahorse --needed --noconfirm --overwrite '*'
 
 # 导入CPG key/
 pacman -S archlinux-keyring --needed --noconfirm --overwrite '*'
 pacman -S archlinuxcn-keyring --needed --noconfirm --overwrite '*'
-# 安装 yay       降级 
+# 安装 yay       降级
 pacman -S yay downgrade --needed --noconfirm --overwrite '*'
 
 # 常用开发工具
@@ -130,7 +130,7 @@ pacman -S fd --needed --noconfirm --overwrite '*'
 pacman -S ripgrep the_silver_searcher ack --needed --noconfirm --overwrite '*'
 # 彩色ls 彩色cat、彩色日志、彩色diff
 pacman -S lsd bat ccze diff-so-fancy colordiff --noconfirm --needed --overwrite '*'
-#         diff 
+#         diff
 pacman -S git-delta --noconfirm --needed --overwrite '*'
 #         sed
 pacman -S sd --noconfirm --needed --overwrite '*'
@@ -208,8 +208,8 @@ pacman -S xorriso mkisolinux --needed --noconfirm --overwrite '*'
 pacman -S rofi --needed --noconfirm --overwrite '*'
 # 截图
 pacman -S scrot flameshot maim --needed --noconfirm --overwrite '*'
-# 显示键盘按键
-pacman -S screenkey --needed --noconfirm --overwrite '*'
+# 显示键盘按键, eudev键盘时间
+pacman -S screenkey evtest --needed --noconfirm --overwrite '*'
 # 图像预览
 pacman -S feh --noconfirm --overwrite '*' --needed
 # 输入法
@@ -310,7 +310,7 @@ unshare --uts --pid --mount --fork --mount-proc /bin/bash
 ```
 
 ## 终端模拟器
-终端模拟器大部分是一个X11的GUI程序, 历史上是一个硬件设备接收文本数据,渲染出来. 有一些终端序列能被特殊解析比如颜色等, 
+终端模拟器大部分是一个X11的GUI程序, 历史上是一个硬件设备接收文本数据,渲染出来. 有一些终端序列能被特殊解析比如颜色等,
 现在我们大部分的彩色终端应用程序都会用到libncurses库的, 他会读取进程的TERM变量然后读取/usr/share/terminfo中对应TERM环境变量的终端信息
 容器可能不存在这些文件所以一些如htop等程序会启动报错
 ```bash
