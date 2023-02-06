@@ -14,19 +14,17 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ## Centos 7换源
 ```bash
 sed -e 's|^mirrorlist=|#mirrorlist=|g' \
-         -e 's|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.ustc.edu.cn/centos|g' \
+         -e 's|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.tencent.com/centos|g' \
          -i.bak \
          /etc/yum.repos.d/CentOS-Base.repo
 ```
 ## Centos 8 Stream换源
 ```bash
-sed -e 's|^mirrorlist=|#mirrorlist=|g' \
-         -e 's|^#baseurl=http://mirror.centos.org/$contentdir/$releasever|baseurl=https://mirrors.ustc.edu.cn/centos/8-stream/|g' \
-         -i.bak \
-         /etc/yum.repos.d/CentOS-Linux-AppStream.repo \
-         /etc/yum.repos.d/CentOS-Linux-BaseOS.repo \
-         /etc/yum.repos.d/CentOS-Linux-Extras.repo \
-         /etc/yum.repos.d/CentOS-Linux-PowerTools.repo
+sed -i.bak \
+    -e 's|^mirrorlist=|#mirrorlist=|' \
+    -e 's|^#baseurl=|baseurl=|' \
+    -e 's|http://mirror.centos.org|https://mirrors.tencent.com|' \
+    /etc/yum.repos.d/CentOS-*.repo    #要修改的对象文件
 
 # sed -i 's#^mirrorlist=.*infra=$infra#\#&#g' /etc/yum.repos.d/CentOS-Linux-AppStream.repo
 # echo 'baseurl=https://mirrors.aliyun.com/$contentdir/$releasever/AppStream/$basearch/os/' >> /etc/yum.repos.d/CentOS-Linux-AppStream.repo
