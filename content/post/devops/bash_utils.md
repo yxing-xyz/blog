@@ -40,6 +40,15 @@ url='https://test.juewei.com/actuator/health'; code=200; while [ $code -eq 200 ]
 ```bash
 openssl s_client -servername prod.juewei.com -connect www.baidu.com:443  | openssl x509 -noout -dates
 ```
+### openssl验证证书是否匹配CA根证书
+```bash
+openssl verify -CAfile ca.crt ./server.crt
+```
+### openssl验证证书是否匹配私钥
+```bash
+# 只输出writing RSA key表示匹配
+diff -eq <(openssl x509 -pubkey -noout -in cert.crt) <(openssl rsa -pubout -in cert.key)
+```
 ### 自签名证书
 ```bash
 # 1. 生成ca key
