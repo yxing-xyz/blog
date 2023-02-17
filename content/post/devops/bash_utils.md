@@ -30,7 +30,10 @@ grep -nr "r_secpolicy_t_ex" | grep -v  "匹配到" | grep -v ".o.d:" | awk -F '[
 ```
 
 ## curl
-
+### 双向认证
+```bash
+curl --cacert ./ca.crt  --key ./client.key --cert ./client.crt  https://127.0.0.1:443
+```
 ### http code
 ```bash
 url='https://test.juewei.com/actuator/health'; code=200; while [ $code -eq 200 ]; do code=`curl -I -m 30 -o /dev/null -s -w %{http_code}"\n" $url`; sleep 0.1; done
@@ -38,8 +41,12 @@ url='https://test.juewei.com/actuator/health'; code=200; while [ $code -eq 200 ]
 ## openssl
 ### 查看https的证书信息
 ```bash
+## 第一种方式
 openssl s_client -servername prod.juewei.com -connect www.baidu.com:443  | openssl x509 -noout -dates
+## 第二种
+openssl s_client -connect {HOSTNAME}:{PORT} -showcerts
 ```
+
 ### openssl验证证书是否匹配CA根证书
 ```bash
 openssl verify -CAfile ca.crt ./server.crt
