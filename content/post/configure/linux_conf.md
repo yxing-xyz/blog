@@ -120,8 +120,6 @@ pacman -S poppler poppler-data --needed --noconfirm --overwrite '*'            #
 pacman -S mediainfo --needed --noconfirm --overwrite '*'          # mediainfo 或 perl-image-exiftool ： audio/video
 # nnn
 sudo pacman -S nnn atool libarchive trash-cli rclone fustrashe2 xdg-utils
-# trash-cli
-yay -S trash-cli --needed --noconfirm --overwrite '*'
 # 命令模糊搜索 fzf
 pacman -S fzf --needed --noconfirm --overwrite '*'
 # 目录文件搜索 fd
@@ -145,7 +143,7 @@ pacman -S progress --needed --noconfirm --overwrite '*'
 # 目录树形结构
 pacman -S exa tree --needed --noconfirm --overwrite '*'
 # 回收站
-pacman -S trash-cli --needed --noconfirm --overwrite '*'
+yay -S trash-cli --needed --noconfirm --overwrite '*'
 # 解压软件
 pacman -S p7zip-natspec rar zip unzip-natspec --needed --noconfirm
 # 支持NTFS文件系统
@@ -158,6 +156,10 @@ pacman -S cmus --needed --noconfirm --overwrite '*'
 pacman -S qrencode --needed --noconfirm --overwrite '*'
 # 局域网的ip二维码上下传文件
 yay -S qrcp --needed --noconfirm --overwrite '*'
+# zmode传输文件
+pacman -S lrzsz zssh
+# trzsz
+yay -S trzsz --needed --noconfirm --overwrite '*'
 # HTTP代理, 梯子客户端
 pacman -S squid v2raya proxychains --needed --noconfirm --overwrite '*'
 # http共享
