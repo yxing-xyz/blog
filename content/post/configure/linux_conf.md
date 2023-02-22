@@ -157,9 +157,8 @@ pacman -S qrencode --needed --noconfirm --overwrite '*'
 # 局域网的ip二维码上下传文件
 yay -S qrcp --needed --noconfirm --overwrite '*'
 # zmode传输文件
-pacman -S lrzsz zssh
-# trzsz
-yay -S trzsz --needed --noconfirm --overwrite '*'
+# trzsz lrzsz zssh
+yay -S zenity trzsz --needed --noconfirm --overwrite '*'
 # HTTP代理, 梯子客户端
 pacman -S squid v2raya proxychains --needed --noconfirm --overwrite '*'
 # http共享
