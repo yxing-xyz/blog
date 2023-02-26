@@ -44,4 +44,8 @@ localectl set-keymap us
 ```
 
 ### X11
-在/usr/share/X11/xkb/symbols有个pc文件可以修改映射，网上说可以使用用localectl设置keymap也是us，可惜x11没用这个所以还是直接修改pc文件吧
+在/usr/share/X11/xkb/symbols有个pc文件可以修改映射，网上说可以使用用localectl设置keymap也是us，可惜x11没用这个所以还是直接修改pc文件
+#### 查看keycode
+```bash
+xmodmap -pke
+```
