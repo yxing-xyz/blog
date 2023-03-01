@@ -164,7 +164,15 @@ docker run -dit \
     -h 主机名 \
     registry.cn-hangzhou.aliyuncs.com/acs-sample/log-pilot
 ```
-
+### docker使用上下文
+```bash
+# 创建ssh上下文
+docker context create vm-tencent --docker "host=ssh://vm.devcloud"
+# 删除ssh上下文
+docker context rm -f vm-tencent
+# 使用ssh上下文
+docker context use vm-tencent
+```
 ### 注意点
 ##### COPY和ADD的联系和区别
 联系:
