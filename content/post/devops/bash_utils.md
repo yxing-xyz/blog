@@ -154,3 +154,13 @@ git config --add oh-my-zsh.hide-dirty 1
 # 设置oh-my-zsh不读取任何git信息
 git config --add oh-my-zsh.hide-status 1
 ```
+## tmpfs加速
+```bash
+# 挂载
+mount -t tmpfs -o size=4G tmpfs ./node_modules
+# 拷贝到内存中
+cp -RT ./.vscode/node_modules ./node_modules
+yarn build
+# 接触挂载
+umount ./node_modules
+```
