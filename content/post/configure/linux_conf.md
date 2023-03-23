@@ -396,3 +396,19 @@ xrandr --output HDMI-2 --off
 设置指定显示器为主屏幕：xrandr --output eDP-1 --primary
 设置多个显示器之间的相对位置：xrandr --output eDP-1 --left-of HDMI-2
 ```
+## 网络
+### rfkill
+rfkill是一个内核级别的管理工具，可以打开和关闭设备的蓝牙和wifi。
+```bash
+rfkill list
+```
+
+## udev
+```bash
+### 监听所有活动
+udevadm monitor
+### 重新加载配置
+udevadm control --reload-rules
+### 再次触发udev事件
+udevadm trigger
+```
