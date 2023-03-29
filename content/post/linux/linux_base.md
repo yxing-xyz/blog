@@ -237,3 +237,11 @@ T = stopped by job control signal
 t = stopped by debugger during trace
 Z = zombie
 ```
+
+### mount
+* mount目录自身, 好处:
+1. 它允许为该特定目录树指定某些额外的挂载选项, -o ro设置为只读。
+2. 硬链接无法链接这个目录.
+```bash
+mount --bind /data/test /data/test
+```
