@@ -15,7 +15,7 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ## Debian Mirrors
 将cloud.aliyuncs是阿里云ECS内部加速地址，换成aliyun就是互联网地址
 ```bash
-sed -i 's#\w*\.debian\.org#mirrors\.163\.com#g' /etc/apt/sources.list
+sed -i 's#\w*\.debian\.org#mirrors\.tencent\.com#g' /etc/apt/sources.list
 ```
 ### debian 10 buster
 ```bash
