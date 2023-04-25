@@ -327,6 +327,8 @@ toe -a
 infocmp
 # 比较两个终端模拟器终端序号区别
 infocmp xterm-256color st-256color
+# 打印当前终端序列号
+showkey -a
 ```
 ## 录屏
 ```bash
