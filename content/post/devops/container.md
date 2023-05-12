@@ -105,8 +105,7 @@ docker network ls  # 查看现在的网络
 docker network create -d bridge mybridge # 创建自己的bridge
 ```
 
-#### 普通模式运行镜像
-
+#### 运行容器,后台
 ```bash
 docker run --rm -dit --name pqcloud-web \ # 创建容器名
     -p 8090:8080 \ # 宿主机端口:容器内部端口
@@ -114,6 +113,7 @@ docker run --rm -dit --name pqcloud-web \ # 创建容器名
     -h 01 \ # 容器Hostname
      registry.cn-hangzhou.aliyuncs.com/pqtel/pqcloud-web # 远程拉取地址
 ```
+> ctrl + p + q, 后台快捷键
 
 #### 容器和宿主机文件拷贝
 
