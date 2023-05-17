@@ -414,3 +414,23 @@ udevadm control --reload-rules
 ### 再次触发udev事件
 udevadm trigger
 ```
+
+## zsh
+### bindkey
+```bash
+# 现有键映射名称的列表
+bindkey -l
+# 显示该键映射的全部映射
+bindkey -M emacs
+# 设置zsh的键映射
+bindkey -e emacs
+bindkey -e '^?' delete-char
+# 清空所有键映射
+bindkey -d
+```
+
+### zle
+```bash
+## zle组件调用
+zle backward-delete-char
+```
