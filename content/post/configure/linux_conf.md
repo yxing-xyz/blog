@@ -312,7 +312,8 @@ unshare --uts --pid --mount --fork --mount-proc /bin/bash
 
 ## 终端模拟器
 终端模拟器大部分是一个X11的GUI程序, 历史上是一个硬件设备接收文本数据,渲染出来. 有一些终端序列能被特殊解析比如颜色等,
-现在我们大部分的彩色终端应用程序都会用到libncurses库的, 他会读取进程的TERM变量然后读取/usr/share/terminfo中对应TERM环境变量的终端信息
+现在我们大部分的彩色终端应用程序都会用到libncurses库的, 他会读取进程的TERM变量然后读取/usr/share/terminfo中对应TERM环境变量的终端信息,
+还有一个终端色彩环境变量如COLORTERM=truecolor,如果设置这个变量,终端文本模式会用真彩色渲染到终端模拟器中
 容器可能不存在这些文件所以一些如htop等程序会启动报错
 ```bash
 # 清空模拟终端
