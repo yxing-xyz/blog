@@ -30,6 +30,10 @@ grep -nr "r_secpolicy_t_ex" | grep -v  "匹配到" | grep -v ".o.d:" | awk -F '[
 ```
 
 ## curl
+### http代理
+```bash
+curl -x 127.0.0.1:12333 baidu.com
+```
 ### 双向认证
 ```bash
 curl --cacert ./ca.crt  --key ./client.key --cert ./client.crt  https://127.0.0.1:443
