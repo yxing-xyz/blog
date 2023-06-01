@@ -45,12 +45,10 @@ url='https://test.juewei.com/actuator/health'; code=200; while [ $code -eq 200 ]
 ## openssl
 ### 查看https的证书信息
 ```bash
-## 第一种方式
-openssl s_client -servername prod.juewei.com -connect www.baidu.com:443  | openssl x509 -noout -dates
-## 第二种
+## 第1种, 查看TLS端口证书
 openssl s_client -connect {HOSTNAME}:{PORT} -showcerts
-## 查看证书文件
-gopenssl x509 -in ./blog.yxing.xyz.pem -noout -text
+## 第2种, 查看证书文件
+openssl x509 -in ./blog.yxing.xyz.pem -noout -text
 ```
 
 ### openssl验证证书是否匹配CA根证书
