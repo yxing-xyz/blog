@@ -173,6 +173,18 @@ docker context rm -f vm-tencent
 # 使用ssh上下文
 docker context use vm-tencent
 ```
+
+### Manifest合并多架构镜像
+```bash
+docker manifest rm ccr.ccs.tencentyun.com/yxing-xyz/linux:arch
+docker manifest create ccr.ccs.tencentyun.com/yxing-xyz/linux:arch \
+ccr.ccs.tencentyun.com/yxing-xyz/linux:arch-amd64 \
+ccr.ccs.tencentyun.com/yxing-xyz/linux:arch-arm64
+
+docker manifest push ccr.ccs.tencentyun.com/yxing-xyz/linux:arch
+```
+
+
 ### 注意点
 ##### COPY和ADD的联系和区别
 联系:
