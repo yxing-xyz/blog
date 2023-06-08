@@ -70,7 +70,7 @@ openssl s_client -showcerts -connect baidu.com:443
 ```bash
 # 1. 生成ca key
 openssl genrsa -out ca_key.pem 2048
-p# 2. 生成CA证书请求
+# 2. 生成CA证书请求
 openssl req -new -key ca_key.pem -out ca_csr.pem -subj "/C=CN/ST=Hunan Province/L=Yueyang/O=Yueyang Xing Company Limited/OU=/CN=Xing Root CA"
 # 3. 生产CA证书
 openssl x509 -req -days 3650 -in ca_csr.pem -signkey ca_key.pem -out ca_crt.pem
