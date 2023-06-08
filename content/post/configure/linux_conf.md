@@ -19,8 +19,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 ################################
-# 安装图形界面                     剪切板 窗口特效 合并X11配置, xorg-xev查看x的输入事件, setxkbmap设置键盘
-pacman -S xorg-server xorg-xinit xclip picom xorg-xrdb  xorg-xinput xsel light xorg-xev xorg-setxkbmap --needed --noconfirm --overwrite '*'
+# 安装图形界面                     剪切板 窗口特效 合并X11配置   xorg-xev查看x的输入事件   setxkbmap设置键盘
+pacman -S xorg-server xorg-xinit xclip xsel picom xorg-xrdb  xorg-xinput light xorg-xev xorg-setxkbmap --needed --noconfirm --overwrite '*'
 # awesome
 pacman -S awesome --needed --noconfirm --overwrite '*'
 
@@ -34,9 +34,8 @@ pacman -S archlinuxcn-keyring --needed --noconfirm --overwrite '*'
 pacman -S yay downgrade --needed --noconfirm --overwrite '*'
 
 # 常用开发工具
-pacman -S yasm gcc cmake nginx nodejs npm yarn git tig svn python python-pip go go-tools rust rust-src --needed --noconfirm --overwrite '*'
 # 编辑
-pacman -S emacs vim visual-studio-code-bin intellij-idea-ultimate-edition --needed --noconfirm --overwrite '*'
+pacman -S emacs vim --needed --noconfirm --overwrite '*'
 # 打印进程调用
 pacman -S strace --needed --noconfirm --overwrite '*'
 # 数据库命令行
@@ -110,7 +109,7 @@ pacman -S fio --needed --noconfirm --overwrite '*'
 # shell
 pacman -S zsh --needed --noconfirm --overwrite '*'
 # 终端复用
-pacman -S tmux --needed --noconfirm --overwrite '*'
+pacman -S zellij tmux --needed --noconfirm --overwrite '*'
 # 终端文件管理
 pacman -S ranger vifm nnn mc --needed --noconfirm --overwrite '*' # 终端文件管理
 pacman -S atool --needed --noconfirm --overwrite '*'              # 用于预览各种压缩文件
@@ -156,9 +155,9 @@ pacman -S cmus --needed --noconfirm --overwrite '*'
 pacman -S qrencode --needed --noconfirm --overwrite '*'
 # 局域网的ip二维码上下传文件
 yay -S qrcp --needed --noconfirm --overwrite '*'
-# zmode传输文件
-# trzsz lrzsz zssh
-yay -S zenity trzsz --needed --noconfirm --overwrite '*'
+# 传输文件
+# zenity拉起文件管理  trzsz lrzsz zssh croc中继服务器传输文件
+yay -S zenity trzsz croc --needed --noconfirm --overwrite '*'
 # HTTP代理, 梯子客户端
 pacman -S squid v2raya proxychains --needed --noconfirm --overwrite '*'
 # http共享
