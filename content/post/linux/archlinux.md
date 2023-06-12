@@ -264,6 +264,8 @@ systemctl enable bluetooth.service
 ```
 ## pacman
 ```bash
+# 删除软件包
+pacman -R nvm --noconfirm
 # 构建包,在PKGBUILD目录下执行
 makepkg
 # 安装构建包
