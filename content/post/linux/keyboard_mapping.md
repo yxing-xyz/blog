@@ -4,21 +4,17 @@ date: 2017-11-09T19:54:44+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
 categories:
-  - "Configure"
+  - "Linux"
 tags:
   - "Linux"
-  - "Windows"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
-## Windows
-下载mapkeyboard软件修改键映射然后重启机器
-## Linux
+
 1. 被TTY接管键盘模式(桌面)
 2. xorg接管键盘事件(服务器)
-### TTY
-
+## TTY
 1.修改键位表
 
 ```
@@ -37,15 +33,17 @@ gzip us.map
 ```
 
 2.重新加载
-仅限systemd引导的发行版,其余的如System V或者openrc引导的发行版请自行查询加载键盘代码
-```
-原理就是写入/etc/vconsole.conf文件内容KEYMAP=us
+仅限systemd引导的发行版
+```bash
 localectl set-keymap us
 ```
-
-### X11
-在/usr/share/X11/xkb/symbols有个pc文件可以修改映射，网上说可以使用用localectl设置keymap也是us，可惜x11没用这个所以还是直接修改pc文件
-#### 查看keycode
+或者
+```bash
+echo 'KEYMAP=us' >> /etc/vconsole.conf
+```
+## X11
+在/usr/share/X11/xkb/symbols有个pc文件可以修改映射。
+### 查看keycode
 ```bash
 xmodmap -pke
 ```

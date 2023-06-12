@@ -1,17 +1,27 @@
 ---
-title: "Linux Configuration"
+title: "Archlinux"
 date: 2018-09-01T09:51:36+08:00
-lastmod: 2021-07-22T14:28:00+08:00
+lastmod: 2023-06-12T15:51:00+08:00
 draft: false
 categories:
-  - "Configure"
+  - "Linux"
 tags:
   - "Linux"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-
-## Arch 软件包
+## 安装
+```bash
+# 安装archlinux基本包
+pacstrap -i /mnt base base-devel linux linux-firmware linux-headers
+# 保存新系统分区表到/mnt/etc/fstab
+genfstab -U -p /mnt >> /mnt/etc/fstab
+# arch-chroot切换
+arch-chroot /mnt /bin/bash
+# amdgpu驱动
+pacman -S xf86-video-amdgpu --needed --noconfirm --overwrite '*'
+```
+## 软件包
 ```bash
 #!/usr/bin/sh
 # set -euxo pipefail
@@ -252,185 +262,12 @@ pacman -S bluez bluez-utils pulseaudio-bluetooth --needed --noconfirm --overwrit
 systemctl start bluetooth.service
 systemctl enable bluetooth.service
 ```
-## ArchLinux
+## pacman
 ```bash
-# 安装archlinux基本包
-pacstrap -i /mnt base base-devel linux linux-firmware linux-headers
-# 保存新系统分区表到/mnt/etc/fstab
-genfstab -U -p /mnt >> /mnt/etc/fstab
-# arch-chroot切换
-arch-chroot /mnt /bin/bash
-# amdgpu驱动
-pacman -S xf86-video-amdgpu --needed --noconfirm --overwrite '*'
-
-
 # 构建包,在PKGBUILD目录下执行
 makepkg
 # 安装构建包
 pacman -U ./构建包名
 # 检查文件属性
 pacman -Qkk | grep mime
-```
-
-## Linux
-```bash
-# 时区
-ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-# 设置系统时间同步到bios中
-hwclock --systohc --localtime # hwclock --systohc
-# locale
-echo "zh_CN.UTF-8 UTF-8
-en_US.UTF-8 UTF-8
-" >>/etc/locale.gen
-locale-gen
-localectl set-locale LANG=zh_CN.UTF-8 # echo "LANG=zh_CN.UTF-8" >>/etc/locale.conf
-
-# grub
-grub-install --target=x86_64-efi --boot-directory=/boot/ESP/EFI/ --efi-directory=/boot/ESP --bootloader-id=grub
-grub-mkconfig -o /boot/ESP/EFI/grub/grub.cfg
-
-# 添加用户
-useradd -g wheel yx
-printf "x\nx\n" | passwd x > /dev/null 2>&1
-## grub
-```
-## Namespace
-nsenter关联命名空间原理:
-open要进入/proc/${PID}的namespace得到fd, 然后setns传入fd修改当前进程的命名空间, 然后execvp执行一个可执行文件(替换当前进程的代码段)
-
-unshare分离进程原理:
-unshare命令调用unshare函数分离指定命名空间, 然后处理命令行参数比如改变根目录, 改变工作目录目录等, 然后execvp替换当前进程
-
-```bash
-# 使用指定进程pid的namespace执行命令
-nsenter -t 119324 -a /bin/ps -ef
-
-# 创建namespace, --mount-proc参数是让unshare自动重新mount /proc目录
-unshare --uts --pid --mount --fork --mount-proc /bin/bash
-```
-
-## 终端模拟器
-终端模拟器大部分是一个X11的GUI程序, 历史上是一个硬件设备接收文本数据,渲染出来. 有一些终端序列能被特殊解析比如颜色等,
-现在我们大部分的彩色终端应用程序都会用到libncurses库的, 他会读取进程的TERM变量然后读取/usr/share/terminfo中对应TERM环境变量的终端信息,
-还有一个终端色彩环境变量如COLORTERM=truecolor,如果设置这个变量,终端文本模式会用真彩色渲染到终端模拟器中
-容器可能不存在这些文件所以一些如htop等程序会启动报错
-```bash
-# 清空模拟终端
-tput clear
-# 输出终端多少行
-echo $LINES
-# 输出终端多少列
-echo $COLUMNS
-# 查看当前机器支持哪些终端模拟器描述
-toe -a
-# 查看当前终端模拟器, 在本机的terminfo
-infocmp
-# 比较两个终端模拟器终端序号区别
-infocmp xterm-256color st-256color
-# 打印当前终端序列号
-showkey -a
-```
-## 录屏
-```bash
-ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 output.mp4
-# 录制音频和视频
-ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -f alsa -ac 2 -i hw:0 output.mp4
-# 无损录制
-ffmpeg -video_size 1920x1080 -framerate 30 -f x11grab -i :0.0 -c:v libx264  -qp 0 -preset ultrafast output.mkv
-
-```
-## 摄像头
-```bash
-# 查看摄像头设备
-v4l2-ctl --list-devices
-
-# 播放摄像头
-mpv av://v4l2:/dev/video0 --profile=low-latency --untimed
-```
-## Linux Xorg
-```bash
-# 查看设备的sysfs属性
-udevadm info -q all -a /dev/input/event13
-
-# 输入设备
-xinput # 查看输入设备列表
-xinput disable 15 # 禁用设备
-xinput enable  15 # 启动设备
-xinput list-props 15 # 查看设备属性
-xinput set-prop 15 298 -0.5 # 设置设备属性
-
-# 关闭显示器电源
-xset dpms force off
-
-# 10分钟后关闭显示器电源
-xset dpms 600 600 600
-
-# 电池
-upower -i `upower -e | grep 'BAT'` # 查看电池信息
-acpi -v # 查看电池信息
-acpi -a # 充电状态
-acpi -t # 电池温度
-
-# 设置键盘频率
-xset rate 200 30
-
-# 查看x窗口资源属性
-xprop
-
-# 设置默认浏览器
-xdg-settings set default-web-browser google-chrome.desktop
-```
-
-## 投影
-```bash
-# 第一条命令：查看已连接的可视化设备
-xrandr | grep -v disconnected | grep connected
-
-# 第二条命令：新建分屏（例如：我的主屏幕是eDP-1，新建屏是HDMI-2）--mode 1920x1080
-xrandr --output HDMI-2 --auto --right-of eDP-1
-xrandr --output HDMI-2 --auto --same-as eDP-1
-xrandr --output HDMI-2 --auto --left-of eDP-1
-
-# 第三条命令：关闭分屏
-xrandr --output HDMI-2 --off
-
-使用扩展模式
-设置指定显示器为主屏幕：xrandr --output eDP-1 --primary
-设置多个显示器之间的相对位置：xrandr --output eDP-1 --left-of HDMI-2
-```
-## 网络
-### rfkill
-rfkill是一个内核级别的管理工具，可以打开和关闭设备的蓝牙和wifi。
-```bash
-rfkill list
-```
-
-## udev
-```bash
-### 监听所有活动
-udevadm monitor
-### 重新加载配置
-udevadm control --reload-rules
-### 再次触发udev事件
-udevadm trigger
-```
-
-## zsh
-### bindkey
-```bash
-# 现有键映射名称的列表
-bindkey -l
-# 显示该键映射的全部映射
-bindkey -M emacs
-# 设置zsh的键映射
-bindkey -e emacs
-bindkey -e '^?' delete-char
-# 清空所有键映射
-bindkey -d
-```
-
-### zle
-```bash
-## zle组件调用
-zle backward-delete-char
 ```
