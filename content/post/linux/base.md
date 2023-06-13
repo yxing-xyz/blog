@@ -108,6 +108,15 @@ Z = zombie
 ```bash
 mount --bind /data/test /data/test
 ```
+## expect
+自动化交互式传递参数
+```bash
+expect -c '
+	spawn yay -Syu --needed --noconfirm --overwrite "*"
+	expect "*sudo*"
+	send "x\n"
+	expect eof'
+```
 ## 文件/目录
 特殊权限可以通过数字快捷赋予, 但是只能通过chmod ug-st字符串的方式移除
 
