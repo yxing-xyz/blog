@@ -10,7 +10,9 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-
+1. 安装Gentoo
+2. emerge的使用说明
+<!--more-->
 ## install gentoo
 下载livecd进入, 或者使用docker进入
 ### 1. parted分区

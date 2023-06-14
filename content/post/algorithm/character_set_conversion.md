@@ -1,15 +1,19 @@
 ---
-title: "Character Set Conversion"
+title: "字符集转换"
 date: 2020-05-06T22:17:49+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
 categories:
-  - "Algorithm"
+  - "算法"
 tags:
-  - "Algorithm"
+  - "算法"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+字符集转换
+1. unicod转UTF-8
+2. UTF-8转unicode
+<!--more-->
 
 ## Unicode to UTF8
 

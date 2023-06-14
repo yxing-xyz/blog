@@ -4,12 +4,17 @@ date: 2023-06-12T16:52:00+08:00
 lastmod: 2023-06-12T16:52:00+08:00
 draft: false
 categories:
-  - "command"
+  - "命令行"
 tags:
-  - "command"
+  - "命令行"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. Linux安装GRUB
+2. efibootmgr调整UEFI启动顺序
+3. GRUB手动引导Linux
+4. GRUB手动引导Windows
+<!--more-->
 
 ## grub
 ### linux安装grub

@@ -10,6 +10,11 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+常见发行版更换mirror
+1. Debian
+2. Centos7
+3. Centos8 Stream
+<!--more-->
 
 ## Debian Mirrors
 ```bash

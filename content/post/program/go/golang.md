@@ -4,14 +4,26 @@ date: 2020-08-05T23:08:00+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
 categories:
-  - "Program"
+  - "编程"
 tags:
-  - "Syntax"
-  - "Golang"
+  - "编程"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-
+* 基本难点
+* 复杂难点
+  1. zerobase/unsafe.Pointer
+  2. 比较
+  3. 匿名结构体/接口断言
+  4. 内存屏障
+  5. GPM模型
+  6. 常用编译参数: 去除符号,buildmode, 动静态库, 汇编
+  7. 切片的删除
+  8. GO阻塞方式/定时器
+  9. 关闭通道
+  10. dlv的使用
+  11. 系统特性: 通信和同步
+<!--more-->
 ## 基本难点
 
 - **声明变量 var 可以不用初始化,var 声明初始化可以省略类型,简短声明左边必须有一个未声明变量且右边必须初始化**
@@ -113,6 +125,7 @@ var A int // errro
 ```go
 time.ParseInLocation("2006-01-02 15:04:05", "2017-12-03 22:01:02", time.Local)
 ```
+- **在golang.org/x/sync/semaphore包已经通过通道实现了上层应用使用的信号量(功能含义), golang底层使用的是runtime.semaphore**
 ## 复杂难点
 - **手动创建的context.WithCancel需要最后需要手动放掉, 必然上下文协程会停留内存中造成内存泄漏, WithValue底层是空接口参数且用的==判断,
 key的类型不应该是字符串类型或者其它内建类型，key的类型应该是自己定义的类型。如type metaDataKey struct{}**
@@ -314,7 +327,7 @@ go build -ldflags '-s -w'
 go build -gcflags '-N -l'
 ```
 
-### buildmode
+#### buildmode
 * -buildmode=default
 * [-buildmode=archive](#go-archive-shared)
 * [-buildmode=shared](#go-archive-shared)
@@ -326,7 +339,7 @@ go build -gcflags '-N -l'
 ```bash
 go help buildmode
 ```
-#### <a id="go-archive-shared">go自身的动静库</a>
+##### <a id="go-archive-shared">go自身的动静库</a>
 go可以将非main的包编译成go链接需要的动静态库, 然后编译main包的时候可以使用linkshared链接上去, -buildmode=shared暂不支持macOS.
 好处有:
 1. 动态库节省内存
@@ -344,10 +357,10 @@ go install -buildmode=shared std
 go build -linkshared .
 ```
 
-#### plugin
+##### plugin
 go1.18支持编译成plugin本质也是动态库, 通过plugin.Open可以打开然后Lookup找寻函数符号, 实现插件机制等同于c的dlopen
 
-#### <a id="c-archive-shared">GO转c的动静态库</a>
+##### <a id="c-archive-shared">GO转c的动静态库</a>
 ```go
 package main // 这个文件一定要在main包下面
 
@@ -390,7 +403,7 @@ gcc -o main main.c hello.so
 gcc -o main main.c hello.a -lpthread
 ```
 
-### golang的CGO和动静态链接
+#### golang的CGO和动静态链接
 CGO_ENABLED是控制是否开启C和GO混合编译,如果=0就是关闭,自然全是go代码自然是静态链接
 
 CGO_ENABLED=1,开启C和GO混合编译自然有静态链接和动态链接之分
@@ -417,7 +430,7 @@ sudo nerdctl run -it --rm --env GOPROXY=https://mirrors.cloud.tencent.com/go/ -v
 # $env:GOARCH="amd64"
 # $env:CGO_ENABLE="0"
 ```
-### Go汇编
+#### Go汇编
 ```bash
 # 第一种方式
 go tool compile -N -l -S main.go
@@ -783,10 +796,6 @@ goroutines
 # 切换协程
 goroutine
 ```
-
-### 信号量
-> 在golang.org/x/sync/semaphore包已经通过通道实现了上层应用使用的信号量(功能含义), golang底层使用的是runtime.semaphore
-maxAlign = 8
 ### 通信和同步
 #### 多进程通信
 1. 信号量: 通常搭配内存使用, 有POSIX和SystemV两种, POSIX又分为有名信号量和匿名信号量
@@ -854,7 +863,10 @@ int main(int argc, char *argv[])
 3. 互斥锁+条件变量
 4. 读写锁
 5. 自旋锁
-### 关于mod的理解
-> go get 可以在@后面追加branch和commitid/tag, 不建议用tag, tag的命名需要符合规范才能用tag, 万能的方式就是用commitid
-> go mod tidy会将代码中用到的import分类整理到go.mod, 然后将所有库的依赖都生成快照放到go.sum, 所以go.sum一般需要提交的git中,反之上游不兼容改动引起bug
-> go mod tidy有时候会抽风, 比如多个go模块放到一个git版本中, 会导致使用到不同版本, 对于同一个git分支多模块建议get指定版本.
+### 关于mod
+go get 可以在@后面追加branch和commitid/tag, 不建议用tag, tag的命名需要符合规范才能用tag.
+
+go mod tidy会将代码import中用到的包分类整理到go.mod, 然后将所有库的依赖都生成快照放到go.sum, 所以go.sum一般需要提交的git中
+
+go mod tidy有时候会抽风, 比如多个go模块放到同一个git仓库中, 会导致使用到不同git提交记录节点,
+所以导入同一个git仓库的多个go模块建议get的时候加上commmitid

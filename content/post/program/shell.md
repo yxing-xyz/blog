@@ -4,13 +4,15 @@ date: 2023-06-12T16:08:00+08:00
 lastmod: 2023-06-12T16:08:00+08:00
 draft: false
 categories:
-  - "Program"
+  - "编程"
 tags:
-  - "Syntax"
-  - "Shell"
+  - "编程"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. 管道运算符
+2. job任务
+<!--more-->
 ## 基础
 ### 管道运算符 |
 管道运算符只能传递stdout输出, 如果stderr如果要管道传输需要重定向2>&1

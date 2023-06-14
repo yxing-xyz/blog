@@ -7,10 +7,14 @@ categories:
   - "Linux"
 tags:
   - "Linux"
-  - "Network"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. 设备的查看和删除
+2. 查看NAT/MTU
+3. iptables
+4. tcpdump位于网络协议栈的位置
+  <!--more-->
 
 ## 设备
 ### 删除网络设备

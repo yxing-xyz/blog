@@ -10,6 +10,8 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+常见的信号
+<!--more-->
 ## 信号
 ### SIGPIPE
 对端close socket后收到本机的tcp报文, 会回复一个RST报文, 内核在产生SIGPIPE信号给本机进程退出, 所以tcp程序一般都屏蔽此信号

@@ -6,20 +6,17 @@ draft: false
 categories:
   - "Linux"
 tags:
-  - "Shell"
   - "Linux"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-## zsh
-### 关闭zsh插件读取git信息导致卡吨
-```bash
-# 设置oh-my-zsh不读取文件变化信息
-git config --add oh-my-zsh.hide-dirty 1
-# 设置oh-my-zsh不读取任何git信息
-git config --add oh-my-zsh.hide-status 1
-```
+* zsh
+1. bindkey
+2. zle
+3. git仓库关闭zsh插件读取git信息导致zsh卡顿
+<!--more-->
 
+## zsh
 ### bindkey
 ```bash
 # 现有键映射名称的列表
@@ -37,4 +34,11 @@ bindkey -d
 ```bash
 ## zle组件调用
 zle backward-delete-char
+```
+### git仓库关闭zsh插件读取git信息导致zsh卡顿
+```bash
+# 设置oh-my-zsh不读取文件变化信息
+git config --add oh-my-zsh.hide-dirty 1
+# 设置oh-my-zsh不读取任何git信息
+git config --add oh-my-zsh.hide-status 1
 ```

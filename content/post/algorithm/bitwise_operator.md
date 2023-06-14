@@ -1,15 +1,16 @@
 ---
-title: "Bitwise Operation"
+title: "比特运算"
 date: 2017-11-23T11:28:03+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
 categories:
-  - "Algorithm"
+  - "算法"
 tags:
-  - "Algorithm"
+  - "算法"
 author: "何年重遇天涯"
-contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+比特运算
+<!--more-->
 
 ## 基础
 
@@ -103,7 +104,7 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ```
 
 ### 8. 内存对齐, 清0低位且进位
-清0低位是很容操作的与运算即可, 
+清0低位是很容操作的与运算即可,
 进1就要低位加上低位取反+1
 ```golang
 // 进位清0最低三位, 内存对齐8字节

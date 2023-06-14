@@ -10,6 +10,10 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. Archlinux基本安装
+2. 我的Arclinux的包
+3. pacman使用说明
+<!--more-->
 ## 安装
 ```bash
 # 安装archlinux基本包

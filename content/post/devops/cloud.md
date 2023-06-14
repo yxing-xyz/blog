@@ -4,12 +4,16 @@ date: 2021-07-10T12:32:00+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
 categories:
-  - "DevOps"
+  - "运维"
 tags:
-  - "DevOps"
+  - "运维"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. 阿里云的网络问题总结
+2. 阿里云k8s的一些问题总结
+3. 阿里云ECS发送邮件问题总结
+<!--more-->
 ## 阿里云
 ```txt
 1. 负载均衡四层后端负载访问负载均衡是访问不通
@@ -35,5 +39,5 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 17. 阿里云ack的k8s集群会将SLB的IP会被IPVS解析转发到后端Node节点上也就是SVCIP的作用, 流量不会到负载均衡,
 也就不会触发负载均衡四层协议后端不能同时做客户端和服务端的bug,k8s 1.20.11版本后阿里云的这个特性会收到svc的流量策略影响,如果是cluster那么会同步到所有node设置ipvs后端节点, 如果是local那么只会同步当前有svc后端pod的node.
 意思就是local如果node上有这个pod那么就会直接转发不走负载均衡, 没有pod那么connect refuse, cluster不管三七二十一全都不走负载均衡, 不过阿里云自身新增注解可以设置全都走负载均衡
-18. 阿里云ECS禁用了25端口, 建议用80做SSL端口邮件推送
+1.  阿里云ECS禁用了25端口, 建议用80做SSL端口邮件推送
 ```

@@ -4,12 +4,18 @@ date: 2023-06-12T16:52:00+08:00
 lastmod: 2023-06-12T16:52:00+08:00
 draft: false
 categories:
-  - "command"
+  - "命令行"
 tags:
-  - "command"
+  - "命令行"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. 查看Https的证书信息
+2. 验证证书是否匹配CA证书
+3. 验证证书是否匹配私钥
+4. 连接host地址导出证书
+5. 自签名x509 V1证书
+<!--more-->
 
 ## openssl
 ### 查看https的证书信息
@@ -29,7 +35,7 @@ openssl verify -CAfile ca_crt.pem ./server_cert.pem
 # 只输出writing RSA key表示匹配
 diff -eq <(openssl x509 -pubkey -noout -in cert.pem) <(openssl rsa -pubout -in key.pem)
 ```
-### openssl导出服务器证书
+### 连接host地址导出证书
 ```bash
 openssl s_client -showcerts -connect baidu.com:443
 ```

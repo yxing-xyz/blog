@@ -4,13 +4,14 @@ date: 2021-12-23T14:58:00+08:00
 lastmod: 2021-12-23T14:58:00+08:00
 draft: false
 categories:
-  - "Algorithm"
+  - "算法"
 tags:
-  - "Algorithm"
+  - "算法"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-
+Rabin Karp Search字符串快速搜索算法
+<!--more-->
 ## 算法
 ```cpp
 #include <iostream>

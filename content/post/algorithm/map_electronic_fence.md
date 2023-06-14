@@ -1,16 +1,20 @@
 ---
-title: "Map electronic fence"
+title: "地图围栏算法"
 date: 2020-10-16T15:28:00+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
 categories:
-  - "Algorithm"
+  - "算法"
 tags:
-  - "Algorithm"
+  - "算法"
 author: "何年重遇天涯"
-contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-
+地图算法
+1. 计算两个经纬度之间的距离
+2. 一经纬度垂直两经纬度直线的距离(垂线长度)
+3. 判断一个经纬度是否在多边形内
+<!--more-->
+<!--more-->
 ## 地图围栏算法
 ```php
 <?php

@@ -1,16 +1,17 @@
 ---
-title: "JavaScript Prototype"
+title: "JS原型链"
 date: 2019-10-16T20:39:00+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
 categories:
-  - "Program"
+  - "编程"
 tags:
-  - "JavaScript"
+  - "编程"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-
+原型链
+<!--more-->
 ## 继承
 ### 实现方法一
 

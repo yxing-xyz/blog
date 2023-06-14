@@ -10,6 +10,15 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. 输入设备
+2. 显示器电源
+3. 键盘频率
+4. 查看x窗口属性
+5. 默认应用
+6. 录屏
+7. 摄像头
+8. 投影
+<!--more-->
 
 ## 输入设备
 ```bash
@@ -20,7 +29,7 @@ xinput enable  15 # 启动设备
 xinput list-props 15 # 查看设备属性
 xinput set-prop 15 298 -0.5 # 设置设备属性
 ```
-## 显示器
+## 显示器电源
 ```bash
 # 关闭显示器电源
 xset dpms force off

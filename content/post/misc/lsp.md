@@ -1,17 +1,17 @@
 ---
-title: "LSP"
+title: "Language Server Protoco"
 date: 2023-05-07T21:14:00+08:00
 lastmod: 2023-05-07T21:14:00+08:00
 draft: false
 categories:
-  - "Configure"
+  - "杂项"
 tags:
-  - "Linux"
-  - "Windows"
-  - "Mac"
+  - "杂项"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. C/C++配置LSP
+  <!--more-->
 
 
 ## C/C++

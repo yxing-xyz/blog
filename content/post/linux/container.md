@@ -1,5 +1,5 @@
 ---
-title: "Container"
+title: "容器"
 date: 2018-06-21T14:55:46+08:00
 lastmod: 2023-06-12T15:35:00+08:00
 draft: false
@@ -10,6 +10,9 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. ctr/runc/containerd/docker/podman/k8s
+2. Namespace
+<!--more-->
 ## ctr
 ### 基本命令
 ##### 创建容器

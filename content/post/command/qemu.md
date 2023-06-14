@@ -4,12 +4,17 @@ date: 2023-06-12T16:52:00+08:00
 lastmod: 2023-06-12T16:52:00+08:00
 draft: false
 categories:
-  - "command"
+  - "命令行"
 tags:
-  - "command"
+  - "命令行"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. 创建qcow2磁盘文件
+2. 快照管理
+3. Qemu启动命令
+4. Qemu启动内核+initramfs
+<!--more-->
 
 ### 创建qcow2磁盘文件
 ```bash
@@ -17,7 +22,7 @@ qemu-img create -f qcow2 gentoo.qcow2 100G
 # 复制一块qcow2
 qemu-img create -f qcow2 -F qcow2 -b a.qcow2 b.qcow2
 ```
-### qemu snapshot
+### 快照管理
 ```bash
 ### 快照
 #### 创建快照

@@ -10,8 +10,6 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-
-## capabilities
 在Linux内核2.2之前，为了检查进程权限，将进程区分为两类：特权进程(euid=0)和非特权进程。特权进程(通常为带有suid的程序)可以获取完整的root权限来对系统进行操作。
 
 在linux内核2.2之后引入了capabilities机制，来对root权限进行更加细粒度的划分。如果进程不是特权进程，而且也没有root的有效id，系统就会去检查进程的capabilities，来确认该进程是否有执行特权操作的的权限。
@@ -19,9 +17,12 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 可以通过man capabilities来查看具体的capabilities。
 
 Linux capabilities 分为进程 capabilities 和文件 capabilities。
-对于进程来说，capabilities 是细分到线程的，即每个线程可以有自己的capabilities。对于文件来说，capabilities 保存在文件的扩展属性中。
-linux的线程拥有的capabilities一共有五种。
 
+对于进程来说，capabilities 是细分到线程的，即每个线程可以有自己的capabilities。对于文件来说，capabilities 保存在文件的扩展属性中。
+
+linux的线程拥有的capabilities一共有五种。
+<!--more-->
+## capabilities
 ### 进程capabilities
 * Permitted
 

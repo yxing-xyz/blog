@@ -10,6 +10,10 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+* 终端模拟器是什么
+* 控制终端和进程相关的函数
+* 命令行操作终端模拟器如打印终端序列，获取终端行列
+<!--more-->
 
 ## 终端模拟器
 终端模拟器现在一般都是指unix桌面app,它模拟古老的终端显示器.它将键盘事件转为终端序列通过内核tty模块发送个shell进程,其中控制字符被转义成信号,
@@ -20,6 +24,9 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 现在我们大部分的彩色终端应用程序都会用到libncurses库的, 他会读取进程的TERM变量然后读取/usr/share/terminfo中对应TERM环境变量的终端信息,
 还有一个终端色彩环境变量如COLORTERM=truecolor,如果设置这个变量,终端文本模式会用真彩色渲染到终端模拟器中
 容器可能不存在这些文件所以一些如htop等程序会启动报错
+
+## 编程控制终端
+这些函数被shell使用，从而实现前台进程的和后台进程
 ```c
 // 获取控制终端的前台进程组ID
 pid_t pgrpid = tcgetpgrp(STDIN_FILENO);

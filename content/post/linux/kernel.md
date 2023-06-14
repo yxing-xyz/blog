@@ -10,6 +10,9 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. 内核模块加载
+2. rfkill/udev等工具
+<!--more-->
 ## module
 ### Linux模块加载
 1. 模块保存在`/lib/modules/`下。

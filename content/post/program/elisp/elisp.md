@@ -4,13 +4,13 @@ date: 2021-08-18T21:56:00+08:00
 lastmod: 2021-08-18T21:56:00+08:00
 draft: false
 categories:
-  - "Program"
+  - "编程"
 tags:
-  - "Syntax"
-  - "Elisp"
+  - "编程"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+<!--more-->
 ## 定义变量
 1. 全局变量
 ```lisp

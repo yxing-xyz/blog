@@ -4,13 +4,14 @@ date: 2021-11-14T13:20:00+08:00
 lastmod: 2021-11-14T13:20:00+08:00
 draft: false
 categories:
-  - "Program"
+  - "编程"
 tags:
-  - "Business logic"
+  - "编程"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-
+订单业务的初步理解
+<!--more-->
 # 商品表
 1. 字段设计bit与表示这个商品是否在限制某种用户限制, 用户总库存, 用户年库存, 用户月库存, 用户周库存, 用户日库存
 

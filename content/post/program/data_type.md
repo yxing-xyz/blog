@@ -1,20 +1,21 @@
 ---
-title: "Data Type"
+title: "数据类型"
 date: 2018-06-18T15:20:41+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
 categories:
-  - "Program"
+  - "编程"
 tags:
-  - "Syntax"
-  - "C"
-  - "Golang"
-  - "JavaScript"
-  - "Rust"
+  - "编程"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-
+* 数据类型
+1. C
+2. GO
+3. Lua
+4. JavaScript
+<!--more-->
 ## C
 
 ```
@@ -99,28 +100,4 @@ Number双精度浮点数
 6种为false的情况: 0 NaN '' false null undefined
 
 空数组和空对象是true
-```
-
-## Python
-
-```
-Number(数字): int、float、bool、complex(复数)
-String(字符串)
-Tuple(元组)
-List(列表)
-Set(集合)
-Dictionary(字典)
-```
-
-## Java
-```
-基本数据类型：byte、short、int、long、char、double、boolean
-引用类型：类类型、接口类型、数组、null
-```
-
-## PHP
-```
-标量：整数、浮点数、布尔、字符串
-复合：数组、对象
-特殊：资源、null
 ```

@@ -10,6 +10,10 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+1. 基本命令的使用
+2. 文件系统相关知识点以及相关命令如分区以及扩容
+3. 不常用的命令如wifi、电池、时区
+<!--more-->
 ## whatis
 whatis 命令是用于查询一个命令的功能，并将查询结果打印到终端上。
 
@@ -117,7 +121,8 @@ expect -c '
 	send "x\n"
 	expect eof'
 ```
-## 文件/目录
+## 文件系统
+### 文件和目录
 特殊权限可以通过数字快捷赋予, 但是只能通过chmod ug-st字符串的方式移除
 
 文件类型7种ls -al可以查看, 目录和文件最多255个ASCII字符,因为结构体dirent.d_name里是char [256], 需要\0占用字符串结束符
@@ -134,20 +139,20 @@ linux可执行文件还可以设置capabilities权限
 | l    | 软链接       |
 | p    | 管道文件     |
 | s    | 套接字文件   |
-### 普通权限
+#### 普通权限
 三位标识, 每位由r, w, x组合,共有 6中, 可以用数字标识777 = r+w+x
 
 mask是标识当前进程的默认权限, unmask是屏蔽权限, 创建文件默认的mask是666, 创建的目录的默认的mask是777, unmask默认重父进程继承来, 默认值022,
 
 所以touch默认创建一个644权限, mkdir默认创建一个755权限
-### SetUID
+#### SetUID
 * 只有可执行文件才能设定 SetUID 权限，对目录设定 SUID，是无效的。
 * 用户要对该文件拥有 x（执行）权限。
 * 用户在执行该文件时，会以文件所有者的身份执行。
 * SetUID 权限只在文件执行过程中有效，一旦执行完毕，身份的切换也随之消失。
 * getuid获取的是执行用户的ID
 * geteuid获取的是可执行用户的ID或者文件的拥有者ID(设置了SetUID位)
-### SetGID
+#### SetGID
 文件:
 用户需要对此可执行文件有 x 权限；
 用户在执行具有 SGID 权限的可执行文件时，用户的群组身份会变为文件所属群组；
@@ -157,7 +162,7 @@ SGID 权限赋予用户改变组身份的效果，只在可执行文件运行过
 当一个目录被赋予 SGID 权限后，进入此目录的普通用户，其有效群组会变为该目录的所属组，会就使得用户在创建文件（或目录）时，该文件（或目录）的所属组将不再是用户的所属组，而使用的是目录的所属组。
 也就是说，只有当普通用户对具有 SGID 权限的目录有 rwx 权限时，SGID 的功能才能完全发挥。比如说，如果用户对该目录仅有 r 权限，则用户进入此目录后，
 虽然其有效群组变为此目录的所属组，但由于没有 x 权限，用户无法在目录中创建文件或目录，SGID 权限也就无法发挥它的作用。
-### Stick BIT
+#### Stick BIT
 SBIT 权限仅对目录有效，一旦目录设定了 SBIT 权限，则用户在此目录下创建的文件或目录，就只有自己和 root 才有权利修改或删除该文件。
 ### chattr
 可以锁定文件不能删除,可以写入

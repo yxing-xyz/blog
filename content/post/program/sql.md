@@ -4,13 +4,19 @@ date: 2021-11-26T21:27:00+08:00
 lastmod: 2021-11-26T21:47:00+08:00
 draft: false
 categories:
-  - "Program"
+  - "编程"
 tags:
-  - "Syntax"
-  - "SQL"
+  - "编程"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
+* MySQL
+  1. 预编译批量插入
+  2. 查看所有数据库占用空间
+  3. 查看一个数据库表占用空间
+  4. 支持多行插入
+  5. 修改表
+<!--more-->
 # MySQL
 ## 预编译批量插入
 当预编译批量插入的时候数据量太大MySQL服务器会报错, 可以直接拼values的sql
@@ -26,7 +32,7 @@ SELECT table_schema,
  GROUP BY table_schema
  ORDER BY data_length DESC;
 ```
-## 查询某一个数据库表占用空间
+## 查询一个数据库表占用空间
 ```sql
 SELECT table_name, concat(TRUNCATE(data_length/1024/1024,2),' MB') AS data_size,
 concat(TRUNCATE(index_length/1024/1024,2),' MB') AS index_size

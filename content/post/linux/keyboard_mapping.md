@@ -1,5 +1,5 @@
 ---
-title: "Keyboard Mapping"
+title: "键位映射"
 date: 2017-11-09T19:54:44+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
@@ -10,10 +10,9 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-
-
-1. 被TTY接管键盘模式(桌面)
-2. xorg接管键盘事件(服务器)
+1. TTY接管键盘模式
+2. xorg接管键盘事件
+<!--more-->
 ## TTY
 1.修改键位表
 

@@ -70,10 +70,9 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   github = "yxing-xyz"
   email = "yxig.xyz@gmail.com"
 
-
 [Params.widgets.search]
   cached = false # activate cache if true
   url = "https://google.com/search"
   [Params.widgets.search.input]
     name = "sitesearch"
-    pre = ""
+    pre = "https://yxing-xyz.github.io"
