@@ -52,3 +52,10 @@ func main() {
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 }
 ```
+## 修改表
+```sql
+-- 修改字段长度
+ALTER TABLE `mvad_resource_user_pool` MODIFY COLUMN user_account varchar(128);
+-- 新增复合主键
+ALTER TABLE `mvad_resource_user_pool` DROP PRIMARY KEY,ADD PRIMARY KEY ( `resource_identifier`, `user_account`, `create_time`) USING BTREE;
+```
