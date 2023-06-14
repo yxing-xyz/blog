@@ -4,7 +4,7 @@ date: 2021-11-26T21:27:00+08:00
 lastmod: 2021-11-26T21:47:00+08:00
 draft: false
 categories:
-  - "Programming"
+  - "Program"
 tags:
   - "Syntax"
   - "SQL"

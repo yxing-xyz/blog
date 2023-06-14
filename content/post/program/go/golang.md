@@ -4,7 +4,7 @@ date: 2020-08-05T23:08:00+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
 categories:
-  - "Programming"
+  - "Program"
 tags:
   - "Syntax"
   - "Golang"

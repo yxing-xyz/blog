@@ -5,7 +5,7 @@ date: 2020-10-16T10:16:00+08:00
 lastmod: 2021-07-22T14:28:00+08:00
 draft: false
 categories:
-  - "Programming"
+  - "Program"
 tags:
   - "Redis"
   - "Syntax"

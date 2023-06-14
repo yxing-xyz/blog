@@ -4,7 +4,7 @@ date: 2021-08-18T21:56:00+08:00
 lastmod: 2021-08-18T21:56:00+08:00
 draft: false
 categories:
-  - "Programming"
+  - "Program"
 tags:
   - "Syntax"
   - "Elisp"
@@ -61,10 +61,10 @@ nil ;; 空 只有nil == (), 空表 nil是false
 (setq color-alist '((red . "ff0000")
                     (green . "00ff00")
                     (blue . "0000ff")))
-(car green-item) ;; green 
-(cdr green-item) ;; "00ff00" 
+(car green-item) ;; green
+(cdr green-item) ;; "00ff00"
 (add-to-list 'color-alist '(green . "00ff01")) -> ((green . "00ff01") (red . "ff0000") (green . "00ff00") (blue . "0000ff"))
-(cdr (assoc 'green color-alist));; "00ff01" 
+(cdr (assoc 'green color-alist));; "00ff01"
 ```
 
 ## 控制结构
@@ -95,7 +95,7 @@ nil ;; 空 只有nil == (), 空表 nil是false
 ;; (cond ((test1 body11 body12 ...)
 ;;       (test2 body21 body22 ...)
 ;;       ...
-;;       (t bodyn1 bodyn2 ...)))    
+;;       (t bodyn1 bodyn2 ...)))
 (let ((a4 4))
   (cond ((> a4 3) (message "1") (message ">"))
         ((= a4 3) (message "1") (message "="))
@@ -118,7 +118,7 @@ nil ;; 空 只有nil == (), 空表 nil是false
 ;; 简写作
 ;; (or a b)
 
-;; not 为非： 
+;; not 为非：
 ;; (not expr)
 ```
 

@@ -4,7 +4,7 @@ date: 2021-06-16T19:49:00+08:00
 lastmod: 2023-06-12T17:50:00+08:00
 draft: false
 categories:
-  - "Programming"
+  - "Program"
 tags:
   - "JavaScript"
 author: "何年重遇天涯"

@@ -4,7 +4,7 @@ date: 2023-06-12T16:08:00+08:00
 lastmod: 2023-06-12T16:08:00+08:00
 draft: false
 categories:
-  - "Programming"
+  - "Program"
 tags:
   - "Syntax"
   - "Shell"
