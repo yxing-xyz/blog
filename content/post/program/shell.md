@@ -19,5 +19,7 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 
 ### 任务
 jobs 列出属于当前用户的进程
+
 bg 将进程搬到后台运行（Background）
+
 fg 将进程搬到前台运行（Foreground
