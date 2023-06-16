@@ -85,18 +85,43 @@ ccr.ccs.tencentyun.com/yxing-xyz/linux:arch-arm64
 docker manifest push ccr.ccs.tencentyun.com/yxing-xyz/linux:arch
 ```
 #### buildx
+加入试验特性或者命令行添加环境变量DOCKER_BUILDKIT=1
+```bash
+vim /etc/docker/daemon.json
+#添加配置
+{
+	"experimental": true
+}
+```
+binfmt_misc是Linux内核的一项功能，其使得内核可识别任意类型的可执行文件格式并传递至特定的用户空间应用程序，如模拟器和虚拟机[1]。
+
+*下载linux下qemu二进制翻译器*
+
+`https://github.com/multiarch/qemu-user-static/releases`
+```bash
+# 内核清空binfmt
+docker run --rm --privileged multiarch/qemu-user-static --reset
+# 内核注册binfmt
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+# 创建构建容器
+docker buildx create --name mybuilder
+# buildx使用构建容器
+docker buildx use mybuilder
+# 初始化构建容器
+docker buildx inspect --bootstrap
+```
+构建多架构镜像
+为确保构建容器能拉取到正确平台的基础镜像，可显式在FROM后指定平台参数 TARGETPLATFORM 或 BUILDPLATFORM，由buildx自动传递。
 ```bash
 url="ccr.ccs.tencentyun.com/yxing-xyz/linux:arch"
-
 tee >> Dockerfile <<EOF
-FROM  ${url}as base
+FROM --platform=$TARGETPLATFORM ${url} as base
 RUN pacman -Syu --needed --noconfirm --overwrite '*'
 
 FROM scratch
 COPY --from=base / /
 EOF
-
-docker buildx build -t  ccr.ccs.tencentyun.com/yxing-xyz/linux:arch linux/arm64,linux/amd64 . --push
+DOCKER_BUILDKIT=1 docker buildx build -t ccr.ccs.tencentyun.com/yxing-xyz/linux:arch --platform linux/arm64,linux/amd64 . --push
 ```
 #### COPY和ADD的联系和区别
 联系:
