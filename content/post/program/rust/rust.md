@@ -27,3 +27,4 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 5. 语法支持迭代器模式统一访问方式
 #### 联系
 1. tuple sturct实现go的type新类型， type alias等于go的type别名
+2. loop等于for不带参数

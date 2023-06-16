@@ -1,12 +1,12 @@
 ---
-title: "Linux Shell"
+title: "Shell杂项"
 date: 2021-06-16T20:00:00+08:00
-lastmod: 2021-07-22T14:28:00+08:00
+lastmod: 2023-06-16T14:54:00+08:00
 draft: false
 categories:
-  - "Linux"
+  - "杂项"
 tags:
-  - "Linux"
+  - "杂项"
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
