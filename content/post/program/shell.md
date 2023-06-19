@@ -10,13 +10,14 @@ tags:
 author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
-1. 管道运算符
-2. job任务
+1. env,set,export
+2. -z
+3. 管道运算符
+4. job任务
 <!--more-->
 ## 基础
 
 ## env,set,export
-
 1. env: 程序，子进程继承shell的环境变量，打印进程环境变量
 2. set: set是shell内置的命令，用户显示该shell进程的shell变量以及该shell进程的环境变量
 3. export: 把一个shell变量变作环境变量。export不加参数的时候，显示哪些变量被导出成了用户变量
@@ -30,6 +31,19 @@ shell会临时给该命令(子进程)设置环境变量
 * 在交互式shell中命令前面设置变量是在该子进程的环境变量中设置变量，会影响子进程环境变量(env)，不会影响shell变量集(set)
 * 在交互式shell中export会将变量放到shell环境变量和shell变量集中，会影响子进程环境变量(env), 会影响shell变量集(set)
 * 当shell执行脚本的时候，是新创建一个shell子进程执行脚本,会继承父进程shell的环境变量
+
+## -z
+1. -z
+判断字符串是否存在
+### 判断变量是否存在
+-z判断字符串是否存在, 从而实现检测变量是否存在, 不能直接使用`[ $PATH ]`检测变量是否存在, 因为没办法排除空字符
+
+`+x`是前面的变量存在就进行字符串替换成x
+
+`:+x`是前面的变量存在且不为空字符串就进行字符串替换成x
+```bash
+[ ! -z ${PATH+x} ] && echo 存在
+```
 ### 管道运算符 |
 管道运算符只能传递stdout输出, 如果stderr如果要管道传输需要重定向2>&1
 
