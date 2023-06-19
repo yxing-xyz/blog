@@ -113,7 +113,7 @@ docker buildx inspect --bootstrap
 构建多架构镜像
 为确保构建容器能拉取到正确平台的基础镜像，可显式在FROM后指定平台参数 TARGETPLATFORM 或 BUILDPLATFORM，由buildx自动传递。
 ```bash
-url="ccr.ccs.tencentyun.com/yxing-xyz/linux:arch"
+url="ccr.ccs.tencentyun.com/yxing-xyz/archlinux:latest"
 tee >> Dockerfile <<EOF
 FROM --platform=$TARGETPLATFORM ${url} as base
 RUN pacman -Syu --needed --noconfirm --overwrite '*'
@@ -121,7 +121,7 @@ RUN pacman -Syu --needed --noconfirm --overwrite '*'
 FROM scratch
 COPY --from=base / /
 EOF
-DOCKER_BUILDKIT=1 docker buildx build -t ccr.ccs.tencentyun.com/yxing-xyz/linux:arch --platform linux/arm64,linux/amd64 . --push
+DOCKER_BUILDKIT=1 docker buildx build -t $url --no-cache --platform linux/arm64,linux/amd64 . --push
 ```
 #### COPY和ADD的联系和区别
 联系:
