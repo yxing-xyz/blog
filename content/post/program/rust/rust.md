@@ -36,13 +36,14 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 ## 区别和联系
 ### Go的区别和联系
 #### 区别
-1. Rust末尾需要加上分号, 变量类型前需要有冒号(:)
+1. Rust末尾需要加上分号(;)最后一行语句除外, 变量类型前需要有冒号(:), 函数返回值前有箭头符号(->)
 2. Rust变量屏蔽
 3. Rust全局变量需要static关键字声明且必须初始化, 带有mut可变的全局变量读写还需要加上unsafe关键字
 4. Rust Format格式，Rust支持命名参数
-5. Rust语法支持迭代器模式统一访问方
-6. Rust最后一行语句可以不用写分号(;)
-7. Rust返回值只有一行不用写return
+5. Rust语法支持迭代器模式统一访问方式
+6. Rust无返回值函数(发散函数)的返回值类型是!,如panic!宏以及基于它实现的函数和宏，死循环(loop),进程退出函数，进程exec函数
+7. Rust const修饰函数，该函数是常量函数工作于编译期
+8. Rust定义结构体类型没有type关键字
 #### 联系
 1. tuple sturct实现go的type新类型， type alias等于go的type别名
 2. loop等于for不带参数
