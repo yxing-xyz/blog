@@ -268,6 +268,8 @@ systemctl enable bluetooth.service
 ```
 ## pacman
 ```bash
+# 列出仓库中的所有包
+pacman -Sl extra
 # 列出所有单独指定安装的软件包
 pacman -Qe
 # 删除软件包
