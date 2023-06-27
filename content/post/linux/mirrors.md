@@ -16,18 +16,15 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 3. Centos8 Stream
 <!--more-->
 
-## Debian Mirrors
+## Debian 11
 ```bash
 sed -i 's#\w*\.debian\.org#mirrors\.tencent\.com#g' /etc/apt/sources.list
 ```
-## Centos7换源
+## Debian 12
 ```bash
-sed -e 's|^mirrorlist=|#mirrorlist=|g' \
-         -e 's|^#baseurl=http://mirror.centos.org/centos|baseurl=https://mirrors.tencent.com/centos|g' \
-         -i.bak \
-         /etc/yum.repos.d/CentOS-Base.repo
+sed -i 's#\w*\.debian\.org#mirrors\.tencent\.com#g' /etc/apt/sources.list.d/debian.sources
 ```
-## Centos8 Stream换源
+## Centos
 ```bash
 sed -i.bak \
     -e 's|^mirrorlist=|#mirrorlist=|' \
