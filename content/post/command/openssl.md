@@ -31,9 +31,12 @@ openssl x509 -in ./blog.yxing.xyz.pem -noout -text
 openssl verify -CAfile ca_crt.pem ./server_cert.pem
 ```
 ### openssl验证证书是否匹配私钥
+对比两个命令的输出,公钥一致标识匹配
+
 ```bash
-# 只输出writing RSA key表示匹配
-diff -eq <(openssl x509 -pubkey -noout -in cert.pem) <(openssl rsa -pubout -in key.pem)
+openssl x509 -pubkey -noout -in cert.pem
+openssl rsa -pubout -in key.pem
+
 ```
 ### 连接host地址导出证书
 ```bash
