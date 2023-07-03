@@ -11,10 +11,13 @@ author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
-1. NPM
+1. NPM常用命令
+2. npm-check-updates检查可更新包
 <!--more-->
 ## 常用命令
 ```bash
+# 使用ali镜像
+npm config set registry https://registry.npmmirror.com/
 # 下载项目依赖
 npm install
 # 查看全局包已安装,去除依赖--depth 0
