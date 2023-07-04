@@ -11,6 +11,8 @@ author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 1. 重定向
+2. Nginx配置重定向使用相对路径
+3. HTTP代理
 <!--more-->
 ### 重定向
 * 301 Moved Permanently
@@ -34,3 +36,8 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 302 303 307是临时重定向, 302大多数浏览器等同303, 303告诉浏览器POST请求转GET请求Localtion地址, 区别307是POST不允许变GET请求
 ### Nginx配置重定向使用相对路径
 absolute_redirect off;
+
+### HTTP代理
+客户端知道走了正向代理，不知道是否访问了反向代理,
+1. 正向代理http请求报文等于反向代理，区别就是反向代理请求TCP端口和HTTP报文端口一致,正向代理TCP端口是代理程序监听的端口，报文里是资源服务器端口，http请求可以通过设置正向代理到反向代理服务器来规避DNS解析问题。
+2. 正向代理https请求,会有一个connect请求,服务器响应HTTP/1.1 200 Connection Established,代理服务器收到后和资源服务器建立tcp连接，然后原封不动转发tcp数据，并不知道内容，只知道域名和端口信息.
