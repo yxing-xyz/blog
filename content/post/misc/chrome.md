@@ -17,3 +17,6 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 1. chrome://flags/#block-insecure-private-network-requests配置chrome选项为disable
 2. 访问者资源加响应头  Access-Control-Allow-Private-Network
 ```
+
+## 无痕窗口模式缓存
+无痕窗口模式多个窗口之间会共享缓存,所以需要全部关闭无痕窗口新建才有效。
