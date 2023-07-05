@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>何年重遇天涯</title><link>/blog/</link><description>Recent content on 何年重遇天涯</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 05 Jul 2023 13:00:00 +0800</lastBuildDate><atom:link href="/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>About Me</title><link>/blog/about/</link><pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate><guid>/blog/about/</guid><description>亦余心之所向兮，虽九死其尤未悔。
-Github Gitee 架构心法 以可伸可缩为荣，以不可移植为耻； 以可配置性为荣，以硬性编码为耻； 以系统互备为荣，以单机作战为耻； 以可监可控为荣，以裸奔系统为耻； 以无状态化为荣，以有状态化为耻； 以遵循标准为荣，以搞特殊化为耻； 以可自动化为荣，以人肉操作为耻； 以无人值守为荣，以人工介入为耻。 Thanks for reading!</description></item><item><title>Mac</title><link>/blog/post/misc/mac/</link><pubDate>Wed, 05 Jul 2023 13:00:00 +0800</pubDate><guid>/blog/post/misc/mac/</guid><description>&lt;p>1.关闭密码策略
-2.finder默认显示所有文件
-3.卸载Java
-4.更改自带SSH端口
-5.brew tap
-6.brew package&lt;/p></description></item><item><title>npm</title><link>/blog/post/program/js/npm/</link><pubDate>Sat, 01 Jul 2023 10:42:00 +0800</pubDate><guid>/blog/post/program/js/npm/</guid><description>&lt;ol>
+Github Gitee 架构心法 以可伸可缩为荣，以不可移植为耻； 以可配置性为荣，以硬性编码为耻； 以系统互备为荣，以单机作战为耻； 以可监可控为荣，以裸奔系统为耻； 以无状态化为荣，以有状态化为耻； 以遵循标准为荣，以搞特殊化为耻； 以可自动化为荣，以人肉操作为耻； 以无人值守为荣，以人工介入为耻。 Thanks for reading!</description></item><item><title>Mac</title><link>/blog/post/misc/mac/</link><pubDate>Wed, 05 Jul 2023 13:00:00 +0800</pubDate><guid>/blog/post/misc/mac/</guid><description>&lt;ol>
+&lt;li>关闭密码策略&lt;/li>
+&lt;li>finder默认显示所有文件&lt;/li>
+&lt;li>卸载Java&lt;/li>
+&lt;li>更改自带SSH端口&lt;/li>
+&lt;li>brew tap&lt;/li>
+&lt;li>brew package&lt;/li>
+&lt;/ol></description></item><item><title>npm</title><link>/blog/post/program/js/npm/</link><pubDate>Sat, 01 Jul 2023 10:42:00 +0800</pubDate><guid>/blog/post/program/js/npm/</guid><description>&lt;ol>
 &lt;li>NPM常用命令&lt;/li>
 &lt;li>npm-check-updates检查可更新包&lt;/li>
 &lt;/ol></description></item><item><title>Rust</title><link>/blog/post/program/rust/rust/</link><pubDate>Wed, 14 Jun 2023 17:54:00 +0800</pubDate><guid>/blog/post/program/rust/rust/</guid><description>&lt;ol>
