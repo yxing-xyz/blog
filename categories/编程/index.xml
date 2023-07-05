@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>编程 on 何年重遇天涯</title><link>/blog/categories/%E7%BC%96%E7%A8%8B/</link><description>Recent content in 编程 on 何年重遇天涯</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 01 Jul 2023 10:42:00 +0800</lastBuildDate><atom:link href="/blog/categories/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><item><title>npm</title><link>/blog/post/program/js/npm/</link><pubDate>Sat, 01 Jul 2023 10:42:00 +0800</pubDate><guid>/blog/post/program/js/npm/</guid><description>&lt;ol>
+&lt;li>NPM常用命令&lt;/li>
+&lt;li>npm-check-updates检查可更新包&lt;/li>
+&lt;/ol></description></item><item><title>Rust</title><link>/blog/post/program/rust/rust/</link><pubDate>Wed, 14 Jun 2023 17:54:00 +0800</pubDate><guid>/blog/post/program/rust/rust/</guid><description>&lt;ol>
+&lt;li>Go的区别和联系&lt;/li>
+&lt;/ol></description></item><item><title>Shell</title><link>/blog/post/program/shell/</link><pubDate>Mon, 12 Jun 2023 16:08:00 +0800</pubDate><guid>/blog/post/program/shell/</guid><description>&lt;ol>
+&lt;li>env,set,export&lt;/li>
+&lt;li>-z&lt;/li>
+&lt;li>管道运算符&lt;/li>
+&lt;li>job任务&lt;/li>
+&lt;/ol></description></item><item><title>SQL</title><link>/blog/post/program/sql/</link><pubDate>Fri, 26 Nov 2021 21:27:00 +0800</pubDate><guid>/blog/post/program/sql/</guid><description>&lt;ul>
+&lt;li>MySQL
+&lt;ol>
+&lt;li>预编译批量插入&lt;/li>
+&lt;li>查看所有数据库占用空间&lt;/li>
+&lt;li>查看一个数据库表占用空间&lt;/li>
+&lt;li>支持多行插入&lt;/li>
+&lt;li>修改表&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul></description></item><item><title>HTTP协议</title><link>/blog/post/program/http/</link><pubDate>Sun, 14 Nov 2021 13:20:00 +0800</pubDate><guid>/blog/post/program/http/</guid><description>&lt;ol>
+&lt;li>重定向&lt;/li>
+&lt;li>Nginx配置重定向使用相对路径&lt;/li>
+&lt;li>HTTP代理&lt;/li>
+&lt;/ol></description></item><item><title>订单业务</title><link>/blog/post/program/order/</link><pubDate>Sun, 14 Nov 2021 13:20:00 +0800</pubDate><guid>/blog/post/program/order/</guid><description>&lt;p>订单业务的初步理解&lt;/p></description></item><item><title>Elisp</title><link>/blog/post/program/elisp/elisp/</link><pubDate>Wed, 18 Aug 2021 21:56:00 +0800</pubDate><guid>/blog/post/program/elisp/elisp/</guid><description/></item><item><title>Ajax</title><link>/blog/post/program/js/ajax/</link><pubDate>Wed, 16 Jun 2021 19:49:00 +0800</pubDate><guid>/blog/post/program/js/ajax/</guid><description>&lt;ol>
+&lt;li>简单跨域/复杂跨域&lt;/li>
+&lt;/ol></description></item><item><title>Redis</title><link>/blog/post/program/redis/</link><pubDate>Fri, 16 Oct 2020 10:16:00 +0800</pubDate><guid>/blog/post/program/redis/</guid><description>&lt;ol>
+&lt;li>地图经纬度半径查询&lt;/li>
+&lt;/ol></description></item><item><title>Golang</title><link>/blog/post/program/go/golang/</link><pubDate>Wed, 05 Aug 2020 23:08:00 +0800</pubDate><guid>/blog/post/program/go/golang/</guid><description>&lt;ul>
+&lt;li>基本难点&lt;/li>
+&lt;li>复杂难点
+&lt;ol>
+&lt;li>zerobase/unsafe.Pointer&lt;/li>
+&lt;li>比较&lt;/li>
+&lt;li>匿名结构体/接口断言&lt;/li>
+&lt;li>内存屏障&lt;/li>
+&lt;li>GPM模型&lt;/li>
+&lt;li>常用编译参数: 去除符号,buildmode, 动静态库, 汇编&lt;/li>
+&lt;li>切片的删除&lt;/li>
+&lt;li>GO阻塞方式/定时器&lt;/li>
+&lt;li>关闭通道&lt;/li>
+&lt;li>dlv的使用&lt;/li>
+&lt;li>系统特性: 通信和同步&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul></description></item><item><title>C宏定义</title><link>/blog/post/program/c/c_macro_definition/</link><pubDate>Thu, 14 May 2020 20:06:39 +0800</pubDate><guid>/blog/post/program/c/c_macro_definition/</guid><description>&lt;p>常用的宏操作&lt;/p></description></item><item><title>JS原型链</title><link>/blog/post/program/js/js_prototype/</link><pubDate>Wed, 16 Oct 2019 20:39:00 +0800</pubDate><guid>/blog/post/program/js/js_prototype/</guid><description>&lt;p>原型链&lt;/p></description></item><item><title>数据类型</title><link>/blog/post/program/data_type/</link><pubDate>Mon, 18 Jun 2018 15:20:41 +0800</pubDate><guid>/blog/post/program/data_type/</guid><description>&lt;ul>
+&lt;li>数据类型&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>C&lt;/li>
+&lt;li>GO&lt;/li>
+&lt;li>Lua&lt;/li>
+&lt;li>JavaScript&lt;/li>
+&lt;/ol></description></item></channel></rss>

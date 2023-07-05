@@ -1,0 +1,127 @@
+<!doctype html><html class=no-js lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><title>Elisp - 何年重遇天涯</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:title" content="Elisp"><meta property="og:description" content><meta property="og:type" content="article"><meta property="og:url" content="/blog/post/program/elisp/elisp/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-08-18T21:56:00+08:00"><meta property="article:modified_time" content="2021-08-18T21:56:00+08:00"><meta itemprop=name content="Elisp"><meta itemprop=description content><meta itemprop=datePublished content="2021-08-18T21:56:00+08:00"><meta itemprop=dateModified content="2021-08-18T21:56:00+08:00"><meta itemprop=wordCount content="451"><meta itemprop=keywords content="编程,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Elisp"><meta name=twitter:description content><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/blog/css/style.css><link rel=stylesheet href=/blog/css/custom.css><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class="logo logo--mixed"><a class=logo__link href=/blog title=何年重遇天涯 rel=home><div class="logo__item logo__imagebox"><img class=logo__img src=/blog/img/avatar.jpg></div><div class="logo__item logo__text"><div class=logo__title>何年重遇天涯</div><div class=logo__tagline>亦余心之所向兮，虽九死其尤未悔</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1>Menu</span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/blog/about/><span class=menu__text>About Me</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Elisp</h1><div class="post__meta meta"><div class="meta__item-author meta__item"><svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2.0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class=meta__text>何年重遇天涯</span></div><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2021-08-18T21:56:00+08:00>2021-08-18</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/blog/categories/%E7%BC%96%E7%A8%8B/ rel=category>编程</a></span></div></div></header><div class="post__toc toc"><div class=toc__title>Page content</div><div class=toc__menu><nav id=TableOfContents><ul><li><a href=#定义变量>定义变量</a></li><li><a href=#基本类型>基本类型</a></li><li><a href=#复合类型>复合类型</a></li><li><a href=#控制结构>控制结构</a></li><li><a href=#逻辑语句>逻辑语句</a></li><li><a href=#循环语句>循环语句</a></li><li><a href=#函数>函数</a></li><li><a href=#修饰>修饰</a></li><li><a href=#宏>宏</a></li></ul></nav></div></div><div class="content post__content clearfix"><h2 id=定义变量>定义变量</h2><ol><li>全局变量</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp><span style=display:flex><span>(<span style=color:#66d9ef>setq</span> a1 <span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span>(defvar a1 <span style=color:#ae81ff>3</span> <span style=color:#e6db74>&#34;temp varlue&#34;</span>) <span style=color:#75715e>;; 多了一个变量描述字符串  C-h v能看到描述</span>
+</span></span></code></pre></div><ol start=2><li>局部变量
+let中变量列表的赋值顺序是不定的，因此在第一个例子里 a3 无法使用 a2 的值；而 let* 中后面变量的声明可以使用前面变量的值。</li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp><span style=display:flex><span>(<span style=color:#66d9ef>let</span> ((a2 <span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span>      a3)
+</span></span><span style=display:flex><span>  (<span style=color:#66d9ef>setq</span> a3 <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>  (message <span style=color:#e6db74>&#34;%s %s&#34;</span> a2 a3))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>let*</span> ((a2 <span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span>       (a3 a2))
+</span></span><span style=display:flex><span>  (message <span style=color:#e6db74>&#34;%s %s&#34;</span> a2 a3))
+</span></span></code></pre></div><h2 id=基本类型>基本类型</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp><span style=display:flex><span><span style=color:#ae81ff>3</span> <span style=color:#75715e>;; int</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>3.5</span> <span style=color:#75715e>;; float</span>
+</span></span><span style=display:flex><span><span style=color:#e6db74>&#34;string&#34;</span> <span style=color:#75715e>;; string</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>t</span> <span style=color:#75715e>;; bool</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>nil</span> <span style=color:#75715e>;; 空 只有nil == (), 空表 nil是false</span>
+</span></span></code></pre></div><h2 id=复合类型>复合类型</h2><p>基础的集合结构都由序对进行组成。
+**&rsquo;**这个符号被称为引用符（quote）。它的作用是表示后面的表不立即求值，而把其当作一个字面值处理.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp><span style=display:flex><span><span style=color:#75715e>;; 空表 false</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>&#39;</span>() == (<span style=color:#66d9ef>quote</span> ()) == <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; 类似js的eval然后调用函数</span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>setq</span> testquote <span style=color:#f92672>&#39;</span>(<span style=color:#a6e22e>+</span> <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2</span>))
+</span></span><span style=display:flex><span>(<span style=color:#a6e22e>apply</span> testquote) <span style=color:#75715e>;; 3</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; cons 用于构建序对，car 用于取前面的元素，cdr 用于取后面的元素 (序对与 list 的区别就是 list 的最后一个元素为 nil)</span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>setq</span> three (<span style=color:#a6e22e>cons</span> <span style=color:#ae81ff>1</span> (<span style=color:#a6e22e>cons</span> <span style=color:#ae81ff>2</span> (<span style=color:#a6e22e>cons</span> <span style=color:#ae81ff>3</span> <span style=color:#66d9ef>nil</span>))))
+</span></span><span style=display:flex><span><span style=color:#75715e>;; 等价于</span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>setq</span> three (<span style=color:#a6e22e>list</span> <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>3</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; alist可以做map使用 lua php的关联数组和这个很像</span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>setq</span> color-alist <span style=color:#f92672>&#39;</span>((red <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;ff0000&#34;</span>)
+</span></span><span style=display:flex><span>                    (green <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;00ff00&#34;</span>)
+</span></span><span style=display:flex><span>                    (blue <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;0000ff&#34;</span>)))
+</span></span><span style=display:flex><span>(<span style=color:#a6e22e>car</span> green-item) <span style=color:#75715e>;; green</span>
+</span></span><span style=display:flex><span>(<span style=color:#a6e22e>cdr</span> green-item) <span style=color:#75715e>;; &#34;00ff00&#34;</span>
+</span></span><span style=display:flex><span>(add-to-list <span style=color:#e6db74>&#39;color-alist</span> <span style=color:#f92672>&#39;</span>(green <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;00ff01&#34;</span>)) -&gt; ((green <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;00ff01&#34;</span>) (red <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;ff0000&#34;</span>) (green <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;00ff00&#34;</span>) (blue <span style=color:#f92672>.</span> <span style=color:#e6db74>&#34;0000ff&#34;</span>))
+</span></span><span style=display:flex><span>(<span style=color:#a6e22e>cdr</span> (<span style=color:#a6e22e>assoc</span> <span style=color:#e6db74>&#39;green</span> color-alist))<span style=color:#75715e>;; &#34;00ff01&#34;</span>
+</span></span></code></pre></div><h2 id=控制结构>控制结构</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp><span style=display:flex><span><span style=color:#75715e>;; 顺序</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; (progn expr1 expr2 ...)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; 条件</span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>let</span> ((a2 <span style=color:#ae81ff>3</span>))
+</span></span><span style=display:flex><span>  (<span style=color:#66d9ef>if</span> (<span style=color:#a6e22e>&gt;</span> a2 <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>      (<span style=color:#66d9ef>progn</span>
+</span></span><span style=display:flex><span>        (<span style=color:#66d9ef>setq</span> a2 <span style=color:#ae81ff>2</span>)
+</span></span><span style=display:flex><span>        (message <span style=color:#e6db74>&#34;Right %s&#34;</span> a2))
+</span></span><span style=display:flex><span>    (message <span style=color:#e6db74>&#34;Wrong %s&#34;</span> a2)))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; when 没有else分支的if</span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>let</span> ((a2 <span style=color:#ae81ff>3</span>))
+</span></span><span style=display:flex><span>    (when (<span style=color:#a6e22e>&gt;</span> a2 <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    (message <span style=color:#e6db74>&#34;hello&#34;</span>)))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; unless 没有then分支的if</span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>let</span> ((a2 <span style=color:#ae81ff>3</span>))
+</span></span><span style=display:flex><span>    (unless (<span style=color:#a6e22e>&lt;</span> a2 <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>    (message <span style=color:#e6db74>&#34;hello&#34;</span>)))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; cond 多条件语句 多条件语句，返回值为最后执行的语句。</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; (cond ((test1 body11 body12 ...)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;;       (test2 body21 body22 ...)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;;       ...</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;;       (t bodyn1 bodyn2 ...)))</span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>let</span> ((a4 <span style=color:#ae81ff>4</span>))
+</span></span><span style=display:flex><span>  (cond ((<span style=color:#a6e22e>&gt;</span> a4 <span style=color:#ae81ff>3</span>) (message <span style=color:#e6db74>&#34;1&#34;</span>) (message <span style=color:#e6db74>&#34;&gt;&#34;</span>))
+</span></span><span style=display:flex><span>        ((<span style=color:#a6e22e>=</span> a4 <span style=color:#ae81ff>3</span>) (message <span style=color:#e6db74>&#34;1&#34;</span>) (message <span style=color:#e6db74>&#34;=&#34;</span>))
+</span></span><span style=display:flex><span>        ((<span style=color:#a6e22e>&lt;</span> a4 <span style=color:#ae81ff>3</span>) (message <span style=color:#e6db74>&#34;1&#34;</span>) (message <span style=color:#e6db74>&#34;&lt;&#34;</span>))))
+</span></span></code></pre></div><h2 id=逻辑语句>逻辑语句</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp><span style=display:flex><span><span style=color:#75715e>;; and 会顺序执行表达式，直到遇到 nil。所以返回值为 nil 或者最后一个语句。通常，</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; (if expr1</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;;     (if expr2</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;;        ..</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;;    (if exprn-1 exprn)))</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; 简写作</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; (and expr1 exp2 ...)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; or 会顺序执行表达式，直到遇到一个非 nil。所以返回值为第一个非 nil 的值。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; (if a a b)</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; 简写作</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; (or a b)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; not 为非：</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; (not expr)</span>
+</span></span></code></pre></div><h2 id=循环语句>循环语句</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp><span style=display:flex><span><span style=color:#75715e>;; while 返回值为 nil。</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; (while test</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;;   body1 body2 ...)</span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>let</span> ((<span style=color:#a6e22e>count</span> <span style=color:#ae81ff>3</span>))
+</span></span><span style=display:flex><span>  (while (<span style=color:#a6e22e>&gt;</span> <span style=color:#a6e22e>count</span> <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>    (message <span style=color:#e6db74>&#34;%d&#34;</span> <span style=color:#a6e22e>count</span>)
+</span></span><span style=display:flex><span>    (<span style=color:#66d9ef>setq</span> <span style=color:#a6e22e>count</span> (<span style=color:#a6e22e>1-</span> <span style=color:#a6e22e>count</span>))))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; elisp 提供了更方便的对 list 的遍历方法，返回值为 nil。</span>
+</span></span><span style=display:flex><span>(<span style=color:#66d9ef>let</span> ((templist <span style=color:#f92672>&#39;</span>(<span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>3</span>)))
+</span></span><span style=display:flex><span>  (dolist (var templist)
+</span></span><span style=display:flex><span>    (message <span style=color:#e6db74>&#34;%d&#34;</span> var)))
+</span></span></code></pre></div><h2 id=函数>函数</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp><span style=display:flex><span>(<span style=color:#66d9ef>setq</span> func1 (lambda () (message <span style=color:#e6db74>&#34;hello&#34;</span>)))
+</span></span><span style=display:flex><span>(<span style=color:#a6e22e>funcall</span> func1)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>(defun func1 ()
+</span></span><span style=display:flex><span>  (message <span style=color:#e6db74>&#34;hello&#34;</span>))
+</span></span><span style=display:flex><span>(func1) <span style=color:#75715e>;; -&gt; &#34;hello&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; 一个常见的 defun 是这样的。第一个元素为函数名，后面的列表是参数列表，参数可以使用&amp;rest 和&amp;optional 修饰；下面有一个可选的文档字符串以及一个可选的声明列表，最常见的就是 (interactive)，表示这个函数是一个可交互的函数，即用户可以通过关联快捷键或者 M-x 的方式直接调用该函数。对于不需要名字的函数，可以使用 lambda 表达式：</span>
+</span></span><span style=display:flex><span>(bind-key (kbd <span style=color:#e6db74>&#34;C-c C-1&#34;</span>) (lambda () (interactive) (message <span style=color:#e6db74>&#34;hello&#34;</span>)) global-map)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; &amp;rest: 多个参数 可变参数 类似golang ...</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>;; &amp;optional:可选参数，可填或忽略，默认nil</span>
+</span></span></code></pre></div><h2 id=修饰>修饰</h2><p>类似java的动态代理</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-lisp data-lang=lisp><span style=display:flex><span>(defun example-func (p1 p2 p3)
+</span></span><span style=display:flex><span>  (message <span style=color:#e6db74>&#34;%d %d %d&#34;</span> p1 p2 p3))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>(defun example-advice (oldfunc <span style=color:#66d9ef>&amp;rest</span> args)
+</span></span><span style=display:flex><span>  (setcar (<span style=color:#a6e22e>nthcdr</span> <span style=color:#ae81ff>1</span> args) <span style=color:#ae81ff>0</span>)
+</span></span><span style=display:flex><span>  (<span style=color:#a6e22e>apply</span> oldfunc args))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>(example-func <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e>;; -&gt; &#34;1 2 3&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>(advice-add <span style=color:#e6db74>&#39;example-func</span> <span style=color:#e6db74>:around</span> <span style=color:#e6db74>&#39;example-advice</span>)
+</span></span><span style=display:flex><span>(example-func <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>3</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e>;; -&gt; &#34;1 0 3&#34;</span>
+</span></span></code></pre></div><h2 id=宏>宏</h2></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/blog/tags/%E7%BC%96%E7%A8%8B/ rel=tag>编程</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="何年重遇天涯 avatar" src=/blog/img/avatar.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name>About 何年重遇天涯</span></div><div class=authorbox__description>亦余心之所向兮，虽九死其尤未悔。</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/blog/post/devops/cloud/ rel=prev><span class=pager__subtitle>«&#8201;Previous</span><p class=pager__title>云</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/blog/post/linux/network/ rel=next><span class=pager__subtitle>Next&#8201;»</span><p class=pager__title>Network</p></a></div></nav></div></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2023 何年重遇天涯.
+<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/blog/js/menu.js></script>
+<script src=/blog/js/custom.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script></body></html>

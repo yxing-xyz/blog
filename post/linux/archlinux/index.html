@@ -1,0 +1,276 @@
+<!doctype html><html class=no-js lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><title>Archlinux - 何年重遇天涯</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:title" content="Archlinux"><meta property="og:description" content="
+Archlinux基本安装
+我的Arclinux的包
+pacman使用说明
+"><meta property="og:type" content="article"><meta property="og:url" content="/blog/post/linux/archlinux/"><meta property="article:section" content="post"><meta property="article:published_time" content="2018-09-01T09:51:36+08:00"><meta property="article:modified_time" content="2023-06-12T15:51:00+08:00"><meta itemprop=name content="Archlinux"><meta itemprop=description content="
+Archlinux基本安装
+我的Arclinux的包
+pacman使用说明
+"><meta itemprop=datePublished content="2018-09-01T09:51:36+08:00"><meta itemprop=dateModified content="2023-06-12T15:51:00+08:00"><meta itemprop=wordCount content="1333"><meta itemprop=keywords content="Linux,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Archlinux"><meta name=twitter:description content="
+Archlinux基本安装
+我的Arclinux的包
+pacman使用说明
+"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/blog/css/style.css><link rel=stylesheet href=/blog/css/custom.css><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class="logo logo--mixed"><a class=logo__link href=/blog title=何年重遇天涯 rel=home><div class="logo__item logo__imagebox"><img class=logo__img src=/blog/img/avatar.jpg></div><div class="logo__item logo__text"><div class=logo__title>何年重遇天涯</div><div class=logo__tagline>亦余心之所向兮，虽九死其尤未悔</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1>Menu</span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/blog/about/><span class=menu__text>About Me</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Archlinux</h1><div class="post__meta meta"><div class="meta__item-author meta__item"><svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2.0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class=meta__text>何年重遇天涯</span></div><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2018-09-01T09:51:36+08:00>2018-09-01</time>
+<time class=meta__text datetime=2023-06-12T15:51:00+08:00>(Last Modified: 2023-06-12)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/blog/categories/linux/ rel=category>Linux</a></span></div></div></header><div class="post__toc toc"><div class=toc__title>Page content</div><div class=toc__menu><nav id=TableOfContents><ul><li><a href=#安装>安装</a></li><li><a href=#软件包>软件包</a></li><li><a href=#pacman>pacman</a></li></ul></nav></div></div><div class="content post__content clearfix"><ol><li>Archlinux基本安装</li><li>我的Arclinux的包</li><li>pacman使用说明</li></ol><h2 id=安装>安装</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 安装archlinux基本包</span>
+</span></span><span style=display:flex><span>pacstrap -i /mnt base base-devel linux linux-firmware linux-headers
+</span></span><span style=display:flex><span><span style=color:#75715e># 保存新系统分区表到/mnt/etc/fstab</span>
+</span></span><span style=display:flex><span>genfstab -U -p /mnt &gt;&gt; /mnt/etc/fstab
+</span></span><span style=display:flex><span><span style=color:#75715e># arch-chroot切换</span>
+</span></span><span style=display:flex><span>arch-chroot /mnt /bin/bash
+</span></span><span style=display:flex><span><span style=color:#75715e># amdgpu驱动</span>
+</span></span><span style=display:flex><span>pacman -S xf86-video-amdgpu --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span></code></pre></div><h2 id=软件包>软件包</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/usr/bin/sh
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e># set -euxo pipefail</span>
+</span></span><span style=display:flex><span>set -o errexit
+</span></span><span style=display:flex><span>set -o nounset
+</span></span><span style=display:flex><span>set -o pipefail
+</span></span><span style=display:flex><span><span style=color:#75715e>################################</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 安装图形界面                     剪切板 窗口特效 合并X11配置   xorg-xev查看x的输入事件   setxkbmap设置键盘</span>
+</span></span><span style=display:flex><span>pacman -S xorg-server xorg-xinit xclip xsel picom xorg-xrdb  xorg-xinput light xorg-xev xorg-setxkbmap --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># awesome</span>
+</span></span><span style=display:flex><span>pacman -S awesome --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># gnome密码环  密码环管理工具 清除密码 gnome-keyring-daemon -r -d</span>
+</span></span><span style=display:flex><span>pacman -S gnome-keyring seahorse --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 导入CPG key/</span>
+</span></span><span style=display:flex><span>pacman -S archlinux-keyring --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>pacman -S archlinuxcn-keyring --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 安装 yay       降级</span>
+</span></span><span style=display:flex><span>pacman -S yay downgrade --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 常用开发工具</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 编辑</span>
+</span></span><span style=display:flex><span>pacman -S emacs vim --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 打印进程调用</span>
+</span></span><span style=display:flex><span>pacman -S strace --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 数据库命令行</span>
+</span></span><span style=display:flex><span>yay -S iredis mycli pgcli-git litecli --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 手册</span>
+</span></span><span style=display:flex><span>yay -S cheat-git tldr man-pages man-pages-zh_cn--needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 代码行数统计</span>
+</span></span><span style=display:flex><span>pacman -S cloc --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># shell脚本检查</span>
+</span></span><span style=display:flex><span>pacman -S shellcheck --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># k8s</span>
+</span></span><span style=display:flex><span>pacman -S k9s helm tekton-cli --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>############# 虚拟机相关 ##############</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># rdesktop -f 222.240.148.238:50010 -u administrator -p hngat2015 -a 32 -r clipboard:PRIMARYCLIPBOARD -r disk:h=/home/x</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># x0vncserver -display :0 -passwordfile ~/.vnc/passwd</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># xfreerdp /bpp:32 /gfx +aero +fonts /d:192.168.44.118 /u:x /p:x /v:192.168.44.118</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#         启动vnc服务端 win远程桌面客户端</span>
+</span></span><span style=display:flex><span>pacman -S tigervnc freerdp --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>############## 资源监控 ###############</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 硬件信息lshw lscpu lsblk lspci 模块 lsmod 模块信息modinfo dmi信息解码 smartmontools磁盘信息</span>
+</span></span><span style=display:flex><span>pacman -S lshw hardinfo dmidecode --needed smartmontools --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 系统信息</span>
+</span></span><span style=display:flex><span>pacman -S neofetch --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 实时查看网络、cpu、内存、磁盘等多功能实时监控, sysstat多单功能瞬时查看</span>
+</span></span><span style=display:flex><span>pacman -S nmon dstat sysstat --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 资源监控</span>
+</span></span><span style=display:flex><span>pacman -S glances htop --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 实时cpu监控</span>
+</span></span><span style=display:flex><span>pacman -S s-tui --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 内存</span>
+</span></span><span style=display:flex><span>pacman -S smem --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>################## 压力 #################</span>
+</span></span><span style=display:flex><span>pacman -S stress --needed --noconfirm
+</span></span><span style=display:flex><span><span style=color:#75715e>##################  net工具 ##############</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># ifconfig、route在net-tools包中，nslookup、dig在dnsutils包中，ftp、telnet等在inetutils包中，ip命令在iproute2包中</span>
+</span></span><span style=display:flex><span>pacman -S net-tools dnsutils inetutils iproute2 bridge-utils --needed --noconfirm
+</span></span><span style=display:flex><span><span style=color:#75715e># 网卡网速监控 conntrack-tools:  conntrack -L -j查看连接跟踪, ipvsadm查看ipvs aircrack-ng 网卡混合监听和破解wifi密码</span>
+</span></span><span style=display:flex><span>pacman -S bmon bwm-ng nload iftop conntrack-tools ipvsadm aircrack-ng --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 进程统计网络带宽</span>
+</span></span><span style=display:flex><span>pacman -S nethogs bandwhich --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 查看ip连接 端口扫描namp、端口netcat、端口数据发送端口转发socat、http测试 nmap -Pn -v -A www.baidu.com  -p 0-10000</span>
+</span></span><span style=display:flex><span>pacman -S iptstate nmap openbsd-netcat socat httpie --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 测试本机发送tcp/udp最大带宽 时延 丢包, 路由测试工具mtr</span>
+</span></span><span style=display:flex><span>pacman -S iperf mtr --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 抓包</span>
+</span></span><span style=display:flex><span>pacman -S iptraf-ng wireshark-qt wireshark-gtk ngrep --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 内网穿透</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># sshuttle --dns -vr root@114.215.181.234 192.168.0.0/16 --ssh-cmd &#39;ssh -i /home/x/workspace/juewei/k8s/cert/品牌中心密钥对.key&#39;</span>
+</span></span><span style=display:flex><span>pacman -S frp localtunnel sshuttle --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 网络管理服务, 界面和插件</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># nmcli dev wifi list</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># nmcli device wifi connect &#34;x&#34; password &#34;qwer1234&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># nmcli connection import type openvpn file openvpn.ovpn</span>
+</span></span><span style=display:flex><span>pacman -S networkmanager network-manager-applet networkmanager-openvpn networkmanager-strongswan --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>################## 磁盘和文件系统工具 ###############</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 进程磁盘读写监控iotop  磁盘和cpu负载iostat</span>
+</span></span><span style=display:flex><span>pacman -S iotop --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 查看磁盘使用</span>
+</span></span><span style=display:flex><span>pacman -S ncdu --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 文件系统扩容 resize2fs fsck检查文件系统错误</span>
+</span></span><span style=display:flex><span>pacman -S e2fsprogs --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 文件读写测试</span>
+</span></span><span style=display:flex><span>pacman -S fio --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>################### 终端神器 #####################</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># shell</span>
+</span></span><span style=display:flex><span>pacman -S zsh --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 终端复用</span>
+</span></span><span style=display:flex><span>pacman -S zellij tmux --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 终端文件管理</span>
+</span></span><span style=display:flex><span>pacman -S ranger vifm nnn mc --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span> <span style=color:#75715e># 终端文件管理</span>
+</span></span><span style=display:flex><span>pacman -S atool --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>              <span style=color:#75715e># 用于预览各种压缩文件</span>
+</span></span><span style=display:flex><span>pacman -S highlight --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>          <span style=color:#75715e># 用于在预览代码，支持多色彩高亮显示代码</span>
+</span></span><span style=display:flex><span>pacman -S w3m --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>                <span style=color:#75715e># lynx, w3m 或 elinks：这三个东西都是命令行下的网页浏览器，都用于htm</span>
+</span></span><span style=display:flex><span>pacman -S poppler poppler-data --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>            <span style=color:#75715e># PDF阅读</span>
+</span></span><span style=display:flex><span>pacman -S mediainfo --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>          <span style=color:#75715e># mediainfo 或 perl-image-exiftool ： audio/video</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># nnn</span>
+</span></span><span style=display:flex><span>sudo pacman -S nnn atool libarchive trash-cli rclone fustrashe2 xdg-utils
+</span></span><span style=display:flex><span><span style=color:#75715e># 命令模糊搜索 fzf</span>
+</span></span><span style=display:flex><span>pacman -S fzf --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 目录文件搜索 fd</span>
+</span></span><span style=display:flex><span>pacman -S fd --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 文件内容搜索 rg ag ack</span>
+</span></span><span style=display:flex><span>pacman -S ripgrep the_silver_searcher ack --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 彩色ls 彩色cat、彩色日志、彩色diff</span>
+</span></span><span style=display:flex><span>pacman -S lsd bat ccze diff-so-fancy colordiff --noconfirm --needed --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#         diff</span>
+</span></span><span style=display:flex><span>pacman -S git-delta --noconfirm --needed --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#         sed</span>
+</span></span><span style=display:flex><span>pacman -S sd --noconfirm --needed --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#         shell任务管理器</span>
+</span></span><span style=display:flex><span>pacman -S pueue --noconfirm --needed --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 终端表格、文本三神器</span>
+</span></span><span style=display:flex><span>pacman -S awk sed grep --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># TERM=screen-256color sshpass -p &#39;fm09j#Ojiogj32i&#39; ssh -p 2222 -o ServerAliveInterval=60 root@127.0.0.1</span>
+</span></span><span style=display:flex><span>pacman -S sshpass mosh --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 查看进度</span>
+</span></span><span style=display:flex><span>pacman -S progress --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 目录树形结构</span>
+</span></span><span style=display:flex><span>pacman -S exa tree --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 回收站</span>
+</span></span><span style=display:flex><span>yay -S trash-cli --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 解压软件</span>
+</span></span><span style=display:flex><span>pacman -S p7zip-natspec rar zip unzip-natspec --needed --noconfirm
+</span></span><span style=display:flex><span><span style=color:#75715e># 支持NTFS文件系统</span>
+</span></span><span style=display:flex><span>pacman -S ntfs-3g dosfstools --needed --noconfirm
+</span></span><span style=display:flex><span><span style=color:#75715e># 挂载远程ssh目录</span>
+</span></span><span style=display:flex><span>pacman -S sshfs --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 终端音乐</span>
+</span></span><span style=display:flex><span>pacman -S cmus --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 终端二维码 echo &#34;http://baidu.com&#34; | qrencode -o - -t UTF8</span>
+</span></span><span style=display:flex><span>pacman -S qrencode --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 局域网的ip二维码上下传文件</span>
+</span></span><span style=display:flex><span>yay -S qrcp --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 传输文件</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># zenity拉起文件管理  trzsz lrzsz zssh croc中继服务器传输文件</span>
+</span></span><span style=display:flex><span>yay -S zenity trzsz croc --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># HTTP代理, 梯子客户端</span>
+</span></span><span style=display:flex><span>pacman -S squid v2raya proxychains --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># http共享</span>
+</span></span><span style=display:flex><span>sudo npm install -g serve
+</span></span><span style=display:flex><span><span style=color:#75715e># youtube、youku下载工具、BT下载工具</span>
+</span></span><span style=display:flex><span>pacman -S wget curl axel aria2 transmission-cli you-get youtube-dl --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 翻译</span>
+</span></span><span style=display:flex><span>pacman -S translate-shell  --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 图片处理</span>
+</span></span><span style=display:flex><span>pacman -S  imagemagick --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 终端GIF,终端录屏</span>
+</span></span><span style=display:flex><span>pacman -S asciinema --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 文本转图表</span>
+</span></span><span style=display:flex><span>pacman -S graphviz --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 文档转换</span>
+</span></span><span style=display:flex><span>pacman -S pandoc --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 处理 Excel 或 CSV ，csvkit 提供了 in2csv，csvcut，csvjoin，csvgrep 等方便易用的工具</span>
+</span></span><span style=display:flex><span>yay -S csvkit --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># json文件处理以及格式化显示</span>
+</span></span><span style=display:flex><span>pacman -S jq --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 终端艺术字体</span>
+</span></span><span style=display:flex><span>pacman -S figlet --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 计算工具</span>
+</span></span><span style=display:flex><span>pacman -S datamash --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 监听文件变更运行命令</span>
+</span></span><span style=display:flex><span>pacman -S entr --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 文件传输 rsync</span>
+</span></span><span style=display:flex><span>pacman -S rsync  --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># cpu限速</span>
+</span></span><span style=display:flex><span>pacman -S cpulimit --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 网络限速</span>
+</span></span><span style=display:flex><span>yay -S wondershaper-git --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 邮件伪造</span>
+</span></span><span style=display:flex><span>pacman -S swaks --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 暴力破解工具</span>
+</span></span><span style=display:flex><span>pacman -S hydra hashcat fcrackzip --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 制作ISO镜像</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># xorriso -as mkisofs -R -J -T -v --no-emul-boot --boot-load-size 4 --boot-info-table -V &#34;CentOS&#34; -c isolinux/boot.cat -b isolinux/isolinux.bin -o ./boot.iso ./centos7-cdrom/</span>
+</span></span><span style=display:flex><span>pacman -S xorriso mkisolinux --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>############### GUI  ###########</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 启动工具</span>
+</span></span><span style=display:flex><span>pacman -S rofi --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 截图</span>
+</span></span><span style=display:flex><span>pacman -S scrot flameshot maim --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 显示键盘按键, eudev键盘原始事件</span>
+</span></span><span style=display:flex><span>pacman -S screenkey evtest --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 图像预览</span>
+</span></span><span style=display:flex><span>pacman -S feh --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span> --needed
+</span></span><span style=display:flex><span><span style=color:#75715e># 输入法</span>
+</span></span><span style=display:flex><span>pacman -S librime ibus-rime --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 字体</span>
+</span></span><span style=display:flex><span>pacman -S nerd-fonts-complete otf-font-awesome ttf-dejavu powerline-fonts noto-fonts-cjk --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 主题</span>
+</span></span><span style=display:flex><span>pacman -S lxappearance-gtk3 deepin-gtk-theme gtk-engine-murrine deepin-icon-theme --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># wqy</span>
+</span></span><span style=display:flex><span>pacman -S <span style=color:#e6db74>`</span>sudo pacman -Ssq <span style=color:#e6db74>&#39;wqy-*&#39;</span><span style=color:#e6db74>`</span> --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># adobe</span>
+</span></span><span style=display:flex><span>pacman -S <span style=color:#e6db74>`</span>sudo pacman -Ssq <span style=color:#e6db74>&#39;adobe-source-*&#39;</span><span style=color:#e6db74>`</span> --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 安装浏览器</span>
+</span></span><span style=display:flex><span>pacman -S chromium firefox firefox-i18n-zh-cn pepper-flash --needed --noconfirm
+</span></span><span style=display:flex><span><span style=color:#75715e># Telegram</span>
+</span></span><span style=display:flex><span>pacman -S telegram-desktop --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 影音播放</span>
+</span></span><span style=display:flex><span>pacman -S vlc mpd mpv kodi ffmpeg mplayer smplayer --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 下载</span>
+</span></span><span style=display:flex><span>pacman -S qbittorrent amule --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># FTP</span>
+</span></span><span style=display:flex><span>pacman -S filezilla --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 截图转Latex语法</span>
+</span></span><span style=display:flex><span>yay -S mathpix-snipping-tool --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 图像编辑</span>
+</span></span><span style=display:flex><span>pacman -S krita gimp --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>         <span style=color:#75715e>#图像编辑</span>
+</span></span><span style=display:flex><span>pacman -S inkscape --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>           <span style=color:#75715e>#矢量图形编辑软件</span>
+</span></span><span style=display:flex><span>pacman -S rawtherapee --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>        <span style=color:#75715e>#跨平台图片处理</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 绘图</span>
+</span></span><span style=display:flex><span>pacman -S mypaint --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>            <span style=color:#75715e>#绘画涂鸦软件</span>
+</span></span><span style=display:flex><span>pacman -S blender --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>            <span style=color:#75715e>#3D工具</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 文档查看</span>
+</span></span><span style=display:flex><span>pacman -S evince foxitreader --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span> <span style=color:#75715e># PDF</span>
+</span></span><span style=display:flex><span>pacman -S kchmviewer --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>         <span style=color:#75715e># CHM</span>
+</span></span><span style=display:flex><span>pacman -S calibre --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>            <span style=color:#75715e># 图书转换器</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 开源CAD</span>
+</span></span><span style=display:flex><span>pacman -S kicad --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 蓝牙</span>
+</span></span><span style=display:flex><span>pacman -S bluez bluez-utils pulseaudio-bluetooth --needed --noconfirm --overwrite <span style=color:#e6db74>&#39;*&#39;</span>
+</span></span><span style=display:flex><span>systemctl start bluetooth.service
+</span></span><span style=display:flex><span>systemctl enable bluetooth.service
+</span></span></code></pre></div><h2 id=pacman>pacman</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 列出仓库中的所有包</span>
+</span></span><span style=display:flex><span>pacman -Sl extra
+</span></span><span style=display:flex><span><span style=color:#75715e># 列出所有单独指定安装的软件包</span>
+</span></span><span style=display:flex><span>pacman -Qe
+</span></span><span style=display:flex><span><span style=color:#75715e># 删除软件包</span>
+</span></span><span style=display:flex><span>pacman -R nvm --noconfirm
+</span></span><span style=display:flex><span><span style=color:#75715e># 构建包,在PKGBUILD目录下执行</span>
+</span></span><span style=display:flex><span>makepkg
+</span></span><span style=display:flex><span><span style=color:#75715e># 安装构建包</span>
+</span></span><span style=display:flex><span>pacman -U ./构建包名
+</span></span><span style=display:flex><span><span style=color:#75715e># 检查文件属性</span>
+</span></span><span style=display:flex><span>pacman -Qkk | grep mime
+</span></span></code></pre></div></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/blog/tags/linux/ rel=tag>Linux</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="何年重遇天涯 avatar" src=/blog/img/avatar.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name>About 何年重遇天涯</span></div><div class=authorbox__description>亦余心之所向兮，虽九死其尤未悔。</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/blog/post/linux/xorg/ rel=prev><span class=pager__subtitle>«&#8201;Previous</span><p class=pager__title>Xorg</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/blog/post/program/js/js_prototype/ rel=next><span class=pager__subtitle>Next&#8201;»</span><p class=pager__title>JS原型链</p></a></div></nav></div></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2023 何年重遇天涯.
+<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/blog/js/menu.js></script>
+<script src=/blog/js/custom.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script></body></html>

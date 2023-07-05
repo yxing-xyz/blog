@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>何年重遇天涯</title><link>/blog/</link><description>Recent content on 何年重遇天涯</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 05 Jul 2023 13:00:00 +0800</lastBuildDate><atom:link href="/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>About Me</title><link>/blog/about/</link><pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate><guid>/blog/about/</guid><description>亦余心之所向兮，虽九死其尤未悔。
+Github Gitee 架构心法 以可伸可缩为荣，以不可移植为耻； 以可配置性为荣，以硬性编码为耻； 以系统互备为荣，以单机作战为耻； 以可监可控为荣，以裸奔系统为耻； 以无状态化为荣，以有状态化为耻； 以遵循标准为荣，以搞特殊化为耻； 以可自动化为荣，以人肉操作为耻； 以无人值守为荣，以人工介入为耻。 Thanks for reading!</description></item><item><title>Mac</title><link>/blog/post/misc/mac/</link><pubDate>Wed, 05 Jul 2023 13:00:00 +0800</pubDate><guid>/blog/post/misc/mac/</guid><description>&lt;p>1.关闭密码策略
+2.finder默认显示所有文件
+3.卸载Java
+4.更改自带SSH端口
+5.brew tap
+6.brew package&lt;/p></description></item><item><title>npm</title><link>/blog/post/program/js/npm/</link><pubDate>Sat, 01 Jul 2023 10:42:00 +0800</pubDate><guid>/blog/post/program/js/npm/</guid><description>&lt;ol>
+&lt;li>NPM常用命令&lt;/li>
+&lt;li>npm-check-updates检查可更新包&lt;/li>
+&lt;/ol></description></item><item><title>Rust</title><link>/blog/post/program/rust/rust/</link><pubDate>Wed, 14 Jun 2023 17:54:00 +0800</pubDate><guid>/blog/post/program/rust/rust/</guid><description>&lt;ol>
+&lt;li>Go的区别和联系&lt;/li>
+&lt;/ol></description></item><item><title>Git</title><link>/blog/post/command/git/</link><pubDate>Mon, 12 Jun 2023 16:52:00 +0800</pubDate><guid>/blog/post/command/git/</guid><description>&lt;ol>
+&lt;li>只保留最新的一条提交记录&lt;/li>
+&lt;/ol></description></item><item><title>Grub</title><link>/blog/post/command/grub/</link><pubDate>Mon, 12 Jun 2023 16:52:00 +0800</pubDate><guid>/blog/post/command/grub/</guid><description>&lt;ol>
+&lt;li>Linux安装GRUB&lt;/li>
+&lt;li>efibootmgr调整UEFI启动顺序&lt;/li>
+&lt;li>GRUB手动引导Linux&lt;/li>
+&lt;li>GRUB手动引导Windows&lt;/li>
+&lt;/ol></description></item><item><title>Openssl</title><link>/blog/post/command/openssl/</link><pubDate>Mon, 12 Jun 2023 16:52:00 +0800</pubDate><guid>/blog/post/command/openssl/</guid><description>&lt;ol>
+&lt;li>查看Https的证书信息&lt;/li>
+&lt;li>验证证书是否匹配CA证书&lt;/li>
+&lt;li>验证证书是否匹配私钥&lt;/li>
+&lt;li>连接host地址导出证书&lt;/li>
+&lt;li>自签名x509 V1证书&lt;/li>
+&lt;/ol></description></item><item><title>Qemu</title><link>/blog/post/command/qemu/</link><pubDate>Mon, 12 Jun 2023 16:52:00 +0800</pubDate><guid>/blog/post/command/qemu/</guid><description>&lt;ol>
+&lt;li>创建qcow2磁盘文件&lt;/li>
+&lt;li>快照管理&lt;/li>
+&lt;li>Qemu启动命令&lt;/li>
+&lt;li>Qemu启动内核+initramfs&lt;/li>
+&lt;/ol></description></item><item><title>Shell</title><link>/blog/post/program/shell/</link><pubDate>Mon, 12 Jun 2023 16:08:00 +0800</pubDate><guid>/blog/post/program/shell/</guid><description>&lt;ol>
+&lt;li>env,set,export&lt;/li>
+&lt;li>-z&lt;/li>
+&lt;li>管道运算符&lt;/li>
+&lt;li>job任务&lt;/li>
+&lt;/ol></description></item><item><title>Gentoo</title><link>/blog/post/linux/gentoo/</link><pubDate>Mon, 12 Jun 2023 15:51:00 +0800</pubDate><guid>/blog/post/linux/gentoo/</guid><description>&lt;ol>
+&lt;li>安装Gentoo&lt;/li>
+&lt;li>emerge的使用说明&lt;/li>
+&lt;/ol></description></item><item><title>Language Server Protoco</title><link>/blog/post/misc/lsp/</link><pubDate>Sun, 07 May 2023 21:14:00 +0800</pubDate><guid>/blog/post/misc/lsp/</guid><description>&lt;ol>
+&lt;li>C/C++配置LSP&lt;/li>
+&lt;/ol></description></item><item><title>会话和进程</title><link>/blog/post/linux/sessions_and_processes/</link><pubDate>Wed, 02 Nov 2022 17:33:00 +0800</pubDate><guid>/blog/post/linux/sessions_and_processes/</guid><description>&lt;ol>
+&lt;li>会话session&lt;/li>
+&lt;li>进程组&lt;/li>
+&lt;li>僵尸进程/守护进程&lt;/li>
+&lt;li>会话组和进程组和终端模拟器的关系&lt;/li>
+&lt;/ol></description></item><item><title>终端模拟器</title><link>/blog/post/linux/terminal_emulator/</link><pubDate>Wed, 02 Nov 2022 17:33:00 +0800</pubDate><guid>/blog/post/linux/terminal_emulator/</guid><description>&lt;ul>
+&lt;li>终端模拟器是什么&lt;/li>
+&lt;li>控制终端和进程相关的函数&lt;/li>
+&lt;li>命令行操作终端模拟器如打印终端序列，获取终端行列&lt;/li>
+&lt;/ul></description></item><item><title>Capabilities</title><link>/blog/post/linux/capabilities/</link><pubDate>Wed, 28 Sep 2022 13:49:00 +0800</pubDate><guid>/blog/post/linux/capabilities/</guid><description>&lt;p>在Linux内核2.2之前，为了检查进程权限，将进程区分为两类：特权进程(euid=0)和非特权进程。特权进程(通常为带有suid的程序)可以获取完整的root权限来对系统进行操作。&lt;/p>
+&lt;p>在linux内核2.2之后引入了capabilities机制，来对root权限进行更加细粒度的划分。如果进程不是特权进程，而且也没有root的有效id，系统就会去检查进程的capabilities，来确认该进程是否有执行特权操作的的权限。&lt;/p>
+&lt;p>可以通过man capabilities来查看具体的capabilities。&lt;/p>
+&lt;p>Linux capabilities 分为进程 capabilities 和文件 capabilities。&lt;/p>
+&lt;p>对于进程来说，capabilities 是细分到线程的，即每个线程可以有自己的capabilities。对于文件来说，capabilities 保存在文件的扩展属性中。&lt;/p>
+&lt;p>linux的线程拥有的capabilities一共有五种。&lt;/p></description></item><item><title>蓝牙鼠标</title><link>/blog/post/linux/bluetooth_mouse/</link><pubDate>Tue, 30 Aug 2022 22:24:00 +0800</pubDate><guid>/blog/post/linux/bluetooth_mouse/</guid><description>&lt;ol>
+&lt;li>Linux配置已连接window的蓝牙鼠标&lt;/li>
+&lt;/ol></description></item><item><title>Chrome</title><link>/blog/post/misc/chrome/</link><pubDate>Sun, 01 May 2022 16:55:00 +0800</pubDate><guid>/blog/post/misc/chrome/</guid><description>&lt;ol>
+&lt;li>解决高版本chrome内网页加载内网资源被组织&lt;/li>
+&lt;li>无痕窗口模式缓存问题&lt;/li>
+&lt;/ol></description></item><item><title>Rabin Karp Search</title><link>/blog/post/algorithm/rabin_karp_search/</link><pubDate>Thu, 23 Dec 2021 14:58:00 +0800</pubDate><guid>/blog/post/algorithm/rabin_karp_search/</guid><description>&lt;p>Rabin Karp Search字符串快速搜索算法&lt;/p></description></item><item><title>SQL</title><link>/blog/post/program/sql/</link><pubDate>Fri, 26 Nov 2021 21:27:00 +0800</pubDate><guid>/blog/post/program/sql/</guid><description>&lt;ul>
+&lt;li>MySQL
+&lt;ol>
+&lt;li>预编译批量插入&lt;/li>
+&lt;li>查看所有数据库占用空间&lt;/li>
+&lt;li>查看一个数据库表占用空间&lt;/li>
+&lt;li>支持多行插入&lt;/li>
+&lt;li>修改表&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul></description></item><item><title>HTTP协议</title><link>/blog/post/program/http/</link><pubDate>Sun, 14 Nov 2021 13:20:00 +0800</pubDate><guid>/blog/post/program/http/</guid><description>&lt;ol>
+&lt;li>重定向&lt;/li>
+&lt;li>Nginx配置重定向使用相对路径&lt;/li>
+&lt;li>HTTP代理&lt;/li>
+&lt;/ol></description></item><item><title>订单业务</title><link>/blog/post/program/order/</link><pubDate>Sun, 14 Nov 2021 13:20:00 +0800</pubDate><guid>/blog/post/program/order/</guid><description>&lt;p>订单业务的初步理解&lt;/p></description></item><item><title>时间相关的算法</title><link>/blog/post/algorithm/time/</link><pubDate>Tue, 26 Oct 2021 15:28:00 +0800</pubDate><guid>/blog/post/algorithm/time/</guid><description>&lt;ol>
+&lt;li>时间戳转北京时间且去掉时分秒&lt;/li>
+&lt;/ol></description></item><item><title>Linux Kernel</title><link>/blog/post/linux/kernel/</link><pubDate>Fri, 08 Oct 2021 17:52:00 +0800</pubDate><guid>/blog/post/linux/kernel/</guid><description>&lt;ol>
+&lt;li>内核模块加载&lt;/li>
+&lt;li>rfkill/udev等工具&lt;/li>
+&lt;/ol></description></item><item><title>运维基础</title><link>/blog/post/devops/base/</link><pubDate>Tue, 28 Sep 2021 16:52:00 +0800</pubDate><guid>/blog/post/devops/base/</guid><description>&lt;ol>
+&lt;li>分割日志文件&lt;/li>
+&lt;li>清空为日志文件&lt;/li>
+&lt;li>MySQL备份&lt;/li>
+&lt;/ol></description></item><item><title>Linux基础</title><link>/blog/post/linux/base/</link><pubDate>Fri, 10 Sep 2021 22:27:00 +0800</pubDate><guid>/blog/post/linux/base/</guid><description>&lt;ol>
+&lt;li>基本命令的使用&lt;/li>
+&lt;li>文件系统相关知识点以及相关命令如分区以及扩容&lt;/li>
+&lt;li>不常用的命令如wifi、电池、时区&lt;/li>
+&lt;/ol></description></item><item><title>信号</title><link>/blog/post/linux/signal/</link><pubDate>Fri, 10 Sep 2021 22:27:00 +0800</pubDate><guid>/blog/post/linux/signal/</guid><description>&lt;p>常见的信号&lt;/p></description></item><item><title>Network</title><link>/blog/post/linux/network/</link><pubDate>Thu, 02 Sep 2021 16:17:00 +0800</pubDate><guid>/blog/post/linux/network/</guid><description>&lt;ol>
+&lt;li>设备的查看和删除&lt;/li>
+&lt;li>查看NAT/MTU&lt;/li>
+&lt;li>iptables&lt;/li>
+&lt;li>tcpdump位于网络协议栈的位置&lt;/li>
+&lt;/ol></description></item><item><title>Elisp</title><link>/blog/post/program/elisp/elisp/</link><pubDate>Wed, 18 Aug 2021 21:56:00 +0800</pubDate><guid>/blog/post/program/elisp/elisp/</guid><description/></item><item><title>云</title><link>/blog/post/devops/cloud/</link><pubDate>Sat, 10 Jul 2021 12:32:00 +0800</pubDate><guid>/blog/post/devops/cloud/</guid><description>&lt;ol>
+&lt;li>阿里云的网络问题总结&lt;/li>
+&lt;li>阿里云k8s的一些问题总结&lt;/li>
+&lt;li>阿里云ECS发送邮件问题总结&lt;/li>
+&lt;/ol></description></item><item><title>Shell杂项</title><link>/blog/post/misc/shell/</link><pubDate>Wed, 16 Jun 2021 20:00:00 +0800</pubDate><guid>/blog/post/misc/shell/</guid><description>&lt;ul>
+&lt;li>zsh&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>bindkey&lt;/li>
+&lt;li>zle&lt;/li>
+&lt;li>git仓库关闭zsh插件读取git信息导致zsh卡顿&lt;/li>
+&lt;/ol></description></item><item><title>Ajax</title><link>/blog/post/program/js/ajax/</link><pubDate>Wed, 16 Jun 2021 19:49:00 +0800</pubDate><guid>/blog/post/program/js/ajax/</guid><description>&lt;ol>
+&lt;li>简单跨域/复杂跨域&lt;/li>
+&lt;/ol></description></item><item><title>Curl</title><link>/blog/post/command/curl/</link><pubDate>Tue, 01 Jun 2021 16:52:00 +0800</pubDate><guid>/blog/post/command/curl/</guid><description>&lt;ol>
+&lt;li>请求设置http代理&lt;/li>
+&lt;li>请求双向证书认证&lt;/li>
+&lt;/ol></description></item><item><title>源</title><link>/blog/post/linux/mirrors/</link><pubDate>Tue, 01 Jun 2021 16:52:00 +0800</pubDate><guid>/blog/post/linux/mirrors/</guid><description>&lt;p>常见发行版更换mirror&lt;/p>
+&lt;ol>
+&lt;li>Debian&lt;/li>
+&lt;li>Centos7&lt;/li>
+&lt;li>Centos8 Stream&lt;/li>
+&lt;/ol></description></item><item><title>地图围栏算法</title><link>/blog/post/algorithm/map_electronic_fence/</link><pubDate>Fri, 16 Oct 2020 15:28:00 +0800</pubDate><guid>/blog/post/algorithm/map_electronic_fence/</guid><description>&lt;p>地图算法&lt;/p>
+&lt;ol>
+&lt;li>计算两个经纬度之间的距离&lt;/li>
+&lt;li>一经纬度垂直两经纬度直线的距离(垂线长度)&lt;/li>
+&lt;li>判断一个经纬度是否在多边形内&lt;/li>
+&lt;/ol></description></item><item><title>Redis</title><link>/blog/post/program/redis/</link><pubDate>Fri, 16 Oct 2020 10:16:00 +0800</pubDate><guid>/blog/post/program/redis/</guid><description>&lt;ol>
+&lt;li>地图经纬度半径查询&lt;/li>
+&lt;/ol></description></item><item><title>Golang</title><link>/blog/post/program/go/golang/</link><pubDate>Wed, 05 Aug 2020 23:08:00 +0800</pubDate><guid>/blog/post/program/go/golang/</guid><description>&lt;ul>
+&lt;li>基本难点&lt;/li>
+&lt;li>复杂难点
+&lt;ol>
+&lt;li>zerobase/unsafe.Pointer&lt;/li>
+&lt;li>比较&lt;/li>
+&lt;li>匿名结构体/接口断言&lt;/li>
+&lt;li>内存屏障&lt;/li>
+&lt;li>GPM模型&lt;/li>
+&lt;li>常用编译参数: 去除符号,buildmode, 动静态库, 汇编&lt;/li>
+&lt;li>切片的删除&lt;/li>
+&lt;li>GO阻塞方式/定时器&lt;/li>
+&lt;li>关闭通道&lt;/li>
+&lt;li>dlv的使用&lt;/li>
+&lt;li>系统特性: 通信和同步&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul></description></item><item><title>C宏定义</title><link>/blog/post/program/c/c_macro_definition/</link><pubDate>Thu, 14 May 2020 20:06:39 +0800</pubDate><guid>/blog/post/program/c/c_macro_definition/</guid><description>&lt;p>常用的宏操作&lt;/p></description></item><item><title>字符集转换</title><link>/blog/post/algorithm/character_set_conversion/</link><pubDate>Wed, 06 May 2020 22:17:49 +0800</pubDate><guid>/blog/post/algorithm/character_set_conversion/</guid><description>&lt;p>字符集转换&lt;/p>
+&lt;ol>
+&lt;li>unicod转UTF-8&lt;/li>
+&lt;li>UTF-8转unicode&lt;/li>
+&lt;/ol></description></item><item><title>JS原型链</title><link>/blog/post/program/js/js_prototype/</link><pubDate>Wed, 16 Oct 2019 20:39:00 +0800</pubDate><guid>/blog/post/program/js/js_prototype/</guid><description>&lt;p>原型链&lt;/p></description></item><item><title>Archlinux</title><link>/blog/post/linux/archlinux/</link><pubDate>Sat, 01 Sep 2018 09:51:36 +0800</pubDate><guid>/blog/post/linux/archlinux/</guid><description>&lt;ol>
+&lt;li>Archlinux基本安装&lt;/li>
+&lt;li>我的Arclinux的包&lt;/li>
+&lt;li>pacman使用说明&lt;/li>
+&lt;/ol></description></item><item><title>Xorg</title><link>/blog/post/linux/xorg/</link><pubDate>Sat, 01 Sep 2018 09:51:36 +0800</pubDate><guid>/blog/post/linux/xorg/</guid><description>&lt;ol>
+&lt;li>输入设备&lt;/li>
+&lt;li>显示器电源&lt;/li>
+&lt;li>键盘频率&lt;/li>
+&lt;li>查看x窗口属性&lt;/li>
+&lt;li>默认应用&lt;/li>
+&lt;li>录屏&lt;/li>
+&lt;li>摄像头&lt;/li>
+&lt;li>投影&lt;/li>
+&lt;/ol></description></item><item><title>容器</title><link>/blog/post/linux/container/</link><pubDate>Thu, 21 Jun 2018 14:55:46 +0800</pubDate><guid>/blog/post/linux/container/</guid><description>&lt;ol>
+&lt;li>ctr/runc/containerd/docker/podman/k8s&lt;/li>
+&lt;li>Namespace&lt;/li>
+&lt;/ol></description></item><item><title>数据类型</title><link>/blog/post/program/data_type/</link><pubDate>Mon, 18 Jun 2018 15:20:41 +0800</pubDate><guid>/blog/post/program/data_type/</guid><description>&lt;ul>
+&lt;li>数据类型&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>C&lt;/li>
+&lt;li>GO&lt;/li>
+&lt;li>Lua&lt;/li>
+&lt;li>JavaScript&lt;/li>
+&lt;/ol></description></item><item><title>比特运算</title><link>/blog/post/algorithm/bitwise_operator/</link><pubDate>Thu, 23 Nov 2017 11:28:03 +0800</pubDate><guid>/blog/post/algorithm/bitwise_operator/</guid><description>&lt;p>比特运算&lt;/p></description></item><item><title>键位映射</title><link>/blog/post/linux/keyboard_mapping/</link><pubDate>Thu, 09 Nov 2017 19:54:44 +0800</pubDate><guid>/blog/post/linux/keyboard_mapping/</guid><description>&lt;ol>
+&lt;li>TTY接管键盘模式&lt;/li>
+&lt;li>xorg接管键盘事件&lt;/li>
+&lt;/ol></description></item></channel></rss>

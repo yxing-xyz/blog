@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>命令行 on 何年重遇天涯</title><link>/blog/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/</link><description>Recent content in 命令行 on 何年重遇天涯</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 12 Jun 2023 16:52:00 +0800</lastBuildDate><atom:link href="/blog/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/index.xml" rel="self" type="application/rss+xml"/><item><title>Git</title><link>/blog/post/command/git/</link><pubDate>Mon, 12 Jun 2023 16:52:00 +0800</pubDate><guid>/blog/post/command/git/</guid><description>&lt;ol>
+&lt;li>只保留最新的一条提交记录&lt;/li>
+&lt;/ol></description></item><item><title>Grub</title><link>/blog/post/command/grub/</link><pubDate>Mon, 12 Jun 2023 16:52:00 +0800</pubDate><guid>/blog/post/command/grub/</guid><description>&lt;ol>
+&lt;li>Linux安装GRUB&lt;/li>
+&lt;li>efibootmgr调整UEFI启动顺序&lt;/li>
+&lt;li>GRUB手动引导Linux&lt;/li>
+&lt;li>GRUB手动引导Windows&lt;/li>
+&lt;/ol></description></item><item><title>Openssl</title><link>/blog/post/command/openssl/</link><pubDate>Mon, 12 Jun 2023 16:52:00 +0800</pubDate><guid>/blog/post/command/openssl/</guid><description>&lt;ol>
+&lt;li>查看Https的证书信息&lt;/li>
+&lt;li>验证证书是否匹配CA证书&lt;/li>
+&lt;li>验证证书是否匹配私钥&lt;/li>
+&lt;li>连接host地址导出证书&lt;/li>
+&lt;li>自签名x509 V1证书&lt;/li>
+&lt;/ol></description></item><item><title>Qemu</title><link>/blog/post/command/qemu/</link><pubDate>Mon, 12 Jun 2023 16:52:00 +0800</pubDate><guid>/blog/post/command/qemu/</guid><description>&lt;ol>
+&lt;li>创建qcow2磁盘文件&lt;/li>
+&lt;li>快照管理&lt;/li>
+&lt;li>Qemu启动命令&lt;/li>
+&lt;li>Qemu启动内核+initramfs&lt;/li>
+&lt;/ol></description></item><item><title>Curl</title><link>/blog/post/command/curl/</link><pubDate>Tue, 01 Jun 2021 16:52:00 +0800</pubDate><guid>/blog/post/command/curl/</guid><description>&lt;ol>
+&lt;li>请求设置http代理&lt;/li>
+&lt;li>请求双向证书认证&lt;/li>
+&lt;/ol></description></item></channel></rss>

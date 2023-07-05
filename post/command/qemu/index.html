@@ -1,0 +1,144 @@
+<!doctype html><html class=no-js lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><title>Qemu - 何年重遇天涯</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:title" content="Qemu"><meta property="og:description" content="
+创建qcow2磁盘文件
+快照管理
+Qemu启动命令
+Qemu启动内核+initramfs
+"><meta property="og:type" content="article"><meta property="og:url" content="/blog/post/command/qemu/"><meta property="article:section" content="post"><meta property="article:published_time" content="2023-06-12T16:52:00+08:00"><meta property="article:modified_time" content="2023-06-12T16:52:00+08:00"><meta itemprop=name content="Qemu"><meta itemprop=description content="
+创建qcow2磁盘文件
+快照管理
+Qemu启动命令
+Qemu启动内核+initramfs
+"><meta itemprop=datePublished content="2023-06-12T16:52:00+08:00"><meta itemprop=dateModified content="2023-06-12T16:52:00+08:00"><meta itemprop=wordCount content="382"><meta itemprop=keywords content="命令行,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Qemu"><meta name=twitter:description content="
+创建qcow2磁盘文件
+快照管理
+Qemu启动命令
+Qemu启动内核+initramfs
+"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/blog/css/style.css><link rel=stylesheet href=/blog/css/custom.css><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class="logo logo--mixed"><a class=logo__link href=/blog title=何年重遇天涯 rel=home><div class="logo__item logo__imagebox"><img class=logo__img src=/blog/img/avatar.jpg></div><div class="logo__item logo__text"><div class=logo__title>何年重遇天涯</div><div class=logo__tagline>亦余心之所向兮，虽九死其尤未悔</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1>Menu</span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/blog/about/><span class=menu__text>About Me</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Qemu</h1><div class="post__meta meta"><div class="meta__item-author meta__item"><svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2.0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class=meta__text>何年重遇天涯</span></div><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2023-06-12T16:52:00+08:00>2023-06-12</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/blog/categories/%E5%91%BD%E4%BB%A4%E8%A1%8C/ rel=category>命令行</a></span></div></div></header><div class="post__toc toc"><div class=toc__title>Page content</div><div class=toc__menu><nav id=TableOfContents><ul><li><ul><li><a href=#创建qcow2磁盘文件>创建qcow2磁盘文件</a></li><li><a href=#快照管理>快照管理</a></li></ul></li><li><a href=#qemu启动>Qemu启动</a><ul><li><a href=#docker的qemu启动命令>docker的qemu启动命令</a></li><li><a href=#podman的qemu启动命令>podman的qemu启动命令</a></li><li><a href=#我的qemu启动命令>我的Qemu启动命令</a></li><li><a href=#qemu启动内核>qemu启动内核</a></li></ul></li></ul></nav></div></div><div class="content post__content clearfix"><ol><li>创建qcow2磁盘文件</li><li>快照管理</li><li>Qemu启动命令</li><li>Qemu启动内核+initramfs</li></ol><h3 id=创建qcow2磁盘文件>创建qcow2磁盘文件</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>qemu-img create -f qcow2 gentoo.qcow2 100G
+</span></span><span style=display:flex><span><span style=color:#75715e># 复制一块qcow2</span>
+</span></span><span style=display:flex><span>qemu-img create -f qcow2 -F qcow2 -b a.qcow2 b.qcow2
+</span></span></code></pre></div><h3 id=快照管理>快照管理</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>### 快照</span>
+</span></span><span style=display:flex><span><span style=color:#75715e>#### 创建快照</span>
+</span></span><span style=display:flex><span>qemu-img snapshot -c 2023-03-01 linux.qcow2
+</span></span><span style=display:flex><span><span style=color:#75715e>#### 查看快照</span>
+</span></span><span style=display:flex><span>qemu-img snapshot -l linux.qcow2
+</span></span><span style=display:flex><span><span style=color:#75715e>#### 删除快照</span>
+</span></span><span style=display:flex><span>qemu-img snapshot -d 2023-03-01 ./linux.qcow2
+</span></span><span style=display:flex><span><span style=color:#75715e>#### 使用快照</span>
+</span></span><span style=display:flex><span>qemu-img snapshot -a 2023-03-01 linux.qcow2
+</span></span></code></pre></div><h2 id=qemu启动>Qemu启动</h2><h3 id=docker的qemu启动命令>docker的qemu启动命令</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>/opt/homebrew/bin/qemu-system-aarch64
+</span></span><span style=display:flex><span>-accel hvf
+</span></span><span style=display:flex><span>-cpu host
+</span></span><span style=display:flex><span>-machine virt,highmem<span style=color:#f92672>=</span>off
+</span></span><span style=display:flex><span>-m <span style=color:#ae81ff>16384</span>
+</span></span><span style=display:flex><span>-smp <span style=color:#ae81ff>8</span>
+</span></span><span style=display:flex><span>-kernel /Applications/Docker.app/Contents/Resources/linuxkit/kernel
+</span></span><span style=display:flex><span>-append page_poison<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> vsyscall<span style=color:#f92672>=</span>emulate panic<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> nospec_store_bypass_disable noibrs noibpb no_stf_barrier mitigations<span style=color:#f92672>=</span>off linuxkit.unified_cgroup_hierarchy<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>    vpnkit.connect<span style=color:#f92672>=</span>tcp+bootstrap+client://192.168.65.2:54760/a8f36b5c3f2bb8125044cbdce643cae23bf73557ebc1a3a95ffd87993e1d8516 vpnkit.disable<span style=color:#f92672>=</span>osxfs-data console<span style=color:#f92672>=</span>ttyAMA0
+</span></span><span style=display:flex><span>-initrd /Applications/Docker.app/Contents/Resources/linuxkit/initrd.img
+</span></span><span style=display:flex><span>-serial pipe:/var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/qemu-console1934410198/fifo
+</span></span><span style=display:flex><span>-drive <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>none,file<span style=color:#f92672>=</span>/Users/x/Library/Containers/com.docker.docker/Data/vms/0/data/Docker.raw,format<span style=color:#f92672>=</span>raw,id<span style=color:#f92672>=</span>hd0
+</span></span><span style=display:flex><span>-device virtio-blk-pci,drive<span style=color:#f92672>=</span>hd0,serial<span style=color:#f92672>=</span>dummyserial -netdev socket,id<span style=color:#f92672>=</span>net1,fd<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span> -device virtio-net-device,netdev<span style=color:#f92672>=</span>net1,mac<span style=color:#f92672>=</span>02:50:00:00:00:01
+</span></span><span style=display:flex><span>-vga none
+</span></span><span style=display:flex><span>-nographic
+</span></span><span style=display:flex><span>-monitor none
+</span></span></code></pre></div><h3 id=podman的qemu启动命令>podman的qemu启动命令</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>qemu-system-aarch64 -m <span style=color:#ae81ff>16384</span> -smp <span style=color:#ae81ff>8</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-fw_cfg name<span style=color:#f92672>=</span>opt/com.coreos/config,file<span style=color:#f92672>=</span>/Users/x/.config/containers/podman/machine/qemu/podman-machine-default.ign <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-qmp unix:/var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/podman/qmp_podman-machine-default.sock,server<span style=color:#f92672>=</span>on,wait<span style=color:#f92672>=</span>off <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-netdev socket,id<span style=color:#f92672>=</span>vlan,fd<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-device virtio-net-pci,netdev<span style=color:#f92672>=</span>vlan,mac<span style=color:#f92672>=</span>5a:94:ef:e4:0c:ee <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-device virtio-serial <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-chardev socket,path<span style=color:#f92672>=</span>/var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/podman/podman-machine-default_ready.sock,server<span style=color:#f92672>=</span>on,wait<span style=color:#f92672>=</span>off,id<span style=color:#f92672>=</span>apodman-machine-default_ready <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-device virtserialport,chardev<span style=color:#f92672>=</span>apodman-machine-default_ready,name<span style=color:#f92672>=</span>org.fedoraproject.port.0 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-pidfile /var/folders/hd/sgm8y5kj4g9740whp7b8w37m0000gn/T/podman/podman-machine-default_vm.pid <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-accel hvf -accel tcg -cpu host -M virt,highmem<span style=color:#f92672>=</span>on <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-drive file<span style=color:#f92672>=</span>/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd,if<span style=color:#f92672>=</span>pflash,format<span style=color:#f92672>=</span>raw,readonly<span style=color:#f92672>=</span>on <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-drive file<span style=color:#f92672>=</span>/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_ovmf_vars.fd,if<span style=color:#f92672>=</span>pflash,format<span style=color:#f92672>=</span>raw <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-virtfs local,path<span style=color:#f92672>=</span>/Users,mount_tag<span style=color:#f92672>=</span>vol0,security_model<span style=color:#f92672>=</span>none <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-virtfs local,path<span style=color:#f92672>=</span>/private,mount_tag<span style=color:#f92672>=</span>vol1,security_model<span style=color:#f92672>=</span>none <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-virtfs local,path<span style=color:#f92672>=</span>/var/folders,mount_tag<span style=color:#f92672>=</span>vol2,security_model<span style=color:#f92672>=</span>none <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-drive <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>virtio,file<span style=color:#f92672>=</span>/Users/x/.local/share/containers/podman/machine/qemu/podman-machine-default_fedora-coreos-37.20230322.2.0-qemu.aarch64.qcow2
+</span></span></code></pre></div><h3 id=我的qemu启动命令>我的Qemu启动命令</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>### mac m1 qemu cd启动</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 桥接网卡参数 -nic vmnet-bridged,ifname=en0 \</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># -bios /opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd \</span>
+</span></span><span style=display:flex><span>qemu-system-aarch64 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -machine virt <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -accel hvf <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -accel tcg <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -boot d <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -cpu host <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -smp <span style=color:#ae81ff>8</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -m <span style=color:#ae81ff>16384</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -drive <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>pflash,format<span style=color:#f92672>=</span>raw,file<span style=color:#f92672>=</span>/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -drive <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>pflash,format<span style=color:#f92672>=</span>raw,file<span style=color:#f92672>=</span>/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-arm-vars.fd <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -drive format<span style=color:#f92672>=</span>qcow2,file<span style=color:#f92672>=</span>/Users/x/workspace/demo/gentoo/linux.qcow2 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -cdrom  /Users/x/workspace/demo/gentoo/install-arm64-minimal-20230226T234708Z.iso <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device virtio-gpu <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device usb-ehci <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device usb-kbd <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device usb-mouse <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -nic user,hostfwd<span style=color:#f92672>=</span>tcp::22-:22
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### mac m1 qemu图形化启动</span>
+</span></span><span style=display:flex><span>qemu-system-aarch64 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -machine virt <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -accel hvf <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -accel tcg <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -boot d <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -cpu host <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -smp <span style=color:#ae81ff>8</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -m <span style=color:#ae81ff>16384</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -drive <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>pflash,format<span style=color:#f92672>=</span>raw,file<span style=color:#f92672>=</span>/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -drive <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>pflash,format<span style=color:#f92672>=</span>raw,file<span style=color:#f92672>=</span>/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-arm-vars.fd <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -drive format<span style=color:#f92672>=</span>qcow2,file<span style=color:#f92672>=</span>/Users/x/workspace/demo/gentoo/linux.qcow2 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device virtio-gpu <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device usb-ehci <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device usb-kbd <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device usb-mouse <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -nic user,hostfwd<span style=color:#f92672>=</span>tcp::22-:22
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>### mac m1 qemu禁用图形化和串口模拟器</span>
+</span></span><span style=display:flex><span>qemu-system-aarch64 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -machine virt <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -accel hvf <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -accel tcg <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -boot d <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -cpu host <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -smp <span style=color:#ae81ff>8</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -m <span style=color:#ae81ff>16384</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -drive <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>pflash,format<span style=color:#f92672>=</span>raw,file<span style=color:#f92672>=</span>/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-aarch64-code.fd <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -drive <span style=color:#66d9ef>if</span><span style=color:#f92672>=</span>pflash,format<span style=color:#f92672>=</span>raw,file<span style=color:#f92672>=</span>/opt/homebrew/Cellar/qemu/7.2.1/share/qemu/edk2-arm-vars.fd <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -drive format<span style=color:#f92672>=</span>qcow2,file<span style=color:#f92672>=</span>/Users/x/workspace/demo/gentoo/linux.qcow2 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device virtio-gpu <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device usb-ehci <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device usb-kbd <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -device usb-mouse <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -nic user,hostfwd<span style=color:#f92672>=</span>tcp::22-:22 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>    -display non
+</span></span></code></pre></div><h3 id=qemu启动内核>qemu启动内核</h3><p>编写init程序</p><blockquote><p>gcc -o init init.c -static</p></blockquote><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;unistd.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;linux/reboot.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span><span style=color:#75715e>&lt;sys/reboot.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;unistd.h&gt;</span><span style=color:#75715e>
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(<span style=color:#66d9ef>int</span> argc, <span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>argv[])
+</span></span><span style=display:flex><span>{
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>printf</span>(<span style=color:#e6db74>&#34;this is the init program !</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>sleep</span>(<span style=color:#ae81ff>60</span>);
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>reboot</span>(LINUX_REBOOT_CMD_RESTART);
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 制作initramfs</span>
+</span></span><span style=display:flex><span>./make_initramfs.sh rootfs initramfs.cpio.gz
+</span></span><span style=display:flex><span><span style=color:#75715e># 解压initramfs， initramfs可能被压缩，需要提前解压缩一次</span>
+</span></span><span style=display:flex><span>cpio -idmv &lt; ./initramfs-6.1.12-gentoo.imgv
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>qemu-system-x86_64 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-smp <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-m <span style=color:#ae81ff>512</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-kernel bzImage <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-append <span style=color:#e6db74>&#34;root=/dev/ram0 rootfstype=ramfs rw init=/init&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>-initrd initramfs.cpio.gz
+</span></span></code></pre></div></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/blog/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/ rel=tag>命令行</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="何年重遇天涯 avatar" src=/blog/img/avatar.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name>About 何年重遇天涯</span></div><div class=authorbox__description>亦余心之所向兮，虽九死其尤未悔。</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/blog/post/program/shell/ rel=prev><span class=pager__subtitle>«&#8201;Previous</span><p class=pager__title>Shell</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/blog/post/command/openssl/ rel=next><span class=pager__subtitle>Next&#8201;»</span><p class=pager__title>Openssl</p></a></div></nav></div></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2023 何年重遇天涯.
+<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/blog/js/menu.js></script>
+<script src=/blog/js/custom.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script></body></html>

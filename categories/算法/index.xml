@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>算法 on 何年重遇天涯</title><link>/blog/categories/%E7%AE%97%E6%B3%95/</link><description>Recent content in 算法 on 何年重遇天涯</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 23 Dec 2021 14:58:00 +0800</lastBuildDate><atom:link href="/blog/categories/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml"/><item><title>Rabin Karp Search</title><link>/blog/post/algorithm/rabin_karp_search/</link><pubDate>Thu, 23 Dec 2021 14:58:00 +0800</pubDate><guid>/blog/post/algorithm/rabin_karp_search/</guid><description>&lt;p>Rabin Karp Search字符串快速搜索算法&lt;/p></description></item><item><title>时间相关的算法</title><link>/blog/post/algorithm/time/</link><pubDate>Tue, 26 Oct 2021 15:28:00 +0800</pubDate><guid>/blog/post/algorithm/time/</guid><description>&lt;ol>
+&lt;li>时间戳转北京时间且去掉时分秒&lt;/li>
+&lt;/ol></description></item><item><title>地图围栏算法</title><link>/blog/post/algorithm/map_electronic_fence/</link><pubDate>Fri, 16 Oct 2020 15:28:00 +0800</pubDate><guid>/blog/post/algorithm/map_electronic_fence/</guid><description>&lt;p>地图算法&lt;/p>
+&lt;ol>
+&lt;li>计算两个经纬度之间的距离&lt;/li>
+&lt;li>一经纬度垂直两经纬度直线的距离(垂线长度)&lt;/li>
+&lt;li>判断一个经纬度是否在多边形内&lt;/li>
+&lt;/ol></description></item><item><title>字符集转换</title><link>/blog/post/algorithm/character_set_conversion/</link><pubDate>Wed, 06 May 2020 22:17:49 +0800</pubDate><guid>/blog/post/algorithm/character_set_conversion/</guid><description>&lt;p>字符集转换&lt;/p>
+&lt;ol>
+&lt;li>unicod转UTF-8&lt;/li>
+&lt;li>UTF-8转unicode&lt;/li>
+&lt;/ol></description></item><item><title>比特运算</title><link>/blog/post/algorithm/bitwise_operator/</link><pubDate>Thu, 23 Nov 2017 11:28:03 +0800</pubDate><guid>/blog/post/algorithm/bitwise_operator/</guid><description>&lt;p>比特运算&lt;/p></description></item></channel></rss>

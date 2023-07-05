@@ -1,0 +1,123 @@
+<!doctype html><html class=no-js lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><title>Linux基础 - 何年重遇天涯</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:title" content="Linux基础"><meta property="og:description" content="
+基本命令的使用
+文件系统相关知识点以及相关命令如分区以及扩容
+不常用的命令如wifi、电池、时区
+"><meta property="og:type" content="article"><meta property="og:url" content="/blog/post/linux/base/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-09-10T22:27:00+08:00"><meta property="article:modified_time" content="2023-06-12T17:33:00+08:00"><meta itemprop=name content="Linux基础"><meta itemprop=description content="
+基本命令的使用
+文件系统相关知识点以及相关命令如分区以及扩容
+不常用的命令如wifi、电池、时区
+"><meta itemprop=datePublished content="2021-09-10T22:27:00+08:00"><meta itemprop=dateModified content="2023-06-12T17:33:00+08:00"><meta itemprop=wordCount content="573"><meta itemprop=keywords content="Linux,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Linux基础"><meta name=twitter:description content="
+基本命令的使用
+文件系统相关知识点以及相关命令如分区以及扩容
+不常用的命令如wifi、电池、时区
+"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/blog/css/style.css><link rel=stylesheet href=/blog/css/custom.css><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class="logo logo--mixed"><a class=logo__link href=/blog title=何年重遇天涯 rel=home><div class="logo__item logo__imagebox"><img class=logo__img src=/blog/img/avatar.jpg></div><div class="logo__item logo__text"><div class=logo__title>何年重遇天涯</div><div class=logo__tagline>亦余心之所向兮，虽九死其尤未悔</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1>Menu</span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/blog/about/><span class=menu__text>About Me</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Linux基础</h1><div class="post__meta meta"><div class="meta__item-author meta__item"><svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2.0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class=meta__text>何年重遇天涯</span></div><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2021-09-10T22:27:00+08:00>2021-09-10</time>
+<time class=meta__text datetime=2023-06-12T17:33:00+08:00>(Last Modified: 2023-06-12)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/blog/categories/linux/ rel=category>Linux</a></span></div></div></header><div class="post__toc toc"><div class=toc__title>Page content</div><div class=toc__menu><nav id=TableOfContents><ul><li><a href=#whatis>whatis</a></li><li><a href=#whereis>whereis</a></li><li><a href=#man>man</a><ul><li><a href=#man-的章节号>man 的章节号</a></li></ul></li><li><a href=#su>su</a></li><li><a href=#sudo>sudo</a></li><li><a href=#find>find</a><ul><li><a href=#找可执行文件>找可执行文件</a></li></ul></li><li><a href=#top>top</a><ul><li><a href=#进程的运行状态>进程的运行状态</a></li></ul></li><li><a href=#expect>expect</a></li><li><a href=#文件系统>文件系统</a><ul><li><a href=#文件和目录>文件和目录</a></li><li><a href=#chattr>chattr</a></li><li><a href=#du和df空间不一致>du和df空间不一致</a></li><li><a href=#tmpfs加速>tmpfs加速</a></li><li><a href=#分区扩容>分区扩容</a></li><li><a href=#制作rootfs>制作rootfs</a></li><li><a href=#merge-usr>merge-usr</a></li><li><a href=#parted分区>parted分区</a></li></ul></li><li><a href=#添加用户和修改密码>添加用户和修改密码</a></li><li><a href=#时区>时区</a></li><li><a href=#同步时间>同步时间</a></li><li><a href=#多语言环境>多语言环境</a></li><li><a href=#wifi-wpa_cli>WIFI wpa_cli</a></li><li><a href=#电池>电池</a></li></ul></nav></div></div><div class="content post__content clearfix"><ol><li>基本命令的使用</li><li>文件系统相关知识点以及相关命令如分区以及扩容</li><li>不常用的命令如wifi、电池、时区</li></ol><h2 id=whatis>whatis</h2><p>whatis 命令是用于查询一个命令的功能，并将查询结果打印到终端上。</p><p>whatis 命令在 man -w 显示的文件中查找 command 参数指定的命令、系统调用、库函数或特殊文件名。</p><p>whatis 命令显示手册部分的页眉行，还能能看到该命令的其他章节的内容。</p><p>whatis 命令等同于使用 man -f 命令。</p><h2 id=whereis>whereis</h2><p>whereis 省略参数，则显示所有文件；</p><ul><li>-b 定位可执行文件</li><li>-m 定位帮助文件</li><li>-s 定位源码文件</li><li>-u 搜索默认路径下除可执行文件、源代码、帮助文件意外的其他文件</li><li>-B 指定搜索执行文件路径</li><li>-M 指定搜索帮助文件路径</li><li>-S 指定搜索源代码文件路径</li></ul><h2 id=man>man</h2><ul><li>-a 在所有的 man 帮助手册中搜索</li><li>-f 等价于 whatis 指令，显示给定关键字的简短描述信息；</li><li>-P 指定内容时使用分页程序</li><li>-M 指定 man 手册搜索的路径</li><li>-k 指令/文件：模糊查询，用此参数将列出整个 man page 中个所查内容相关的内容，即它将同时查找指令/文件名，和相应的说明的内容，只要包含有所查找的内容就会被列出。</li></ul><h3 id=man-的章节号>man 的章节号</h3><table><thead><tr><th>章节号</th><th>含义</th></tr></thead><tbody><tr><td>1</td><td>用户在 shell 环境中可以实现的命令或可执行文件</td></tr><tr><td>2</td><td>系统内核可调用的函数和工具</td></tr><tr><td>3</td><td>一些常见的函数与函数库，大部分为 C 的函数库</td></tr><tr><td>4</td><td>一些常见的函数与函数库，大部分为 C 的函数库</td></tr><tr><td>5</td><td>配置文件或者某些文件的格式</td></tr><tr><td>6</td><td>游戏</td></tr><tr><td>7</td><td>惯例与协议，例如 Linux 文件系统、网络协议等</td></tr><tr><td>8</td><td>系统管理员可使用的管理命令</td></tr><tr><td>9</td><td>跟 kernel 有关的文件</td></tr><tr><td>10</td><td>开发者章节</td></tr></tbody></table><h2 id=su>su</h2><p>su 是一种切换身份的命令操作,我猜测是解析参数验证用户名密码执行身份的默认 bash,。</p><p>-i 参数是使 shell 成登录 shell,这样就会切换工作目录到$HOME然后重新导入环境变量,换而言之没有这个选项将不会切换工作目录和环境变量,但是有少部分环境变量仍然覆盖如$HOME.</p><p>su 是 su root 简写,</p><p>su -是 su - root 的简写</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>su
+</span></span><span style=display:flex><span>su root
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>su -
+</span></span><span style=display:flex><span>su - root
+</span></span></code></pre></div><h2 id=sudo>sudo</h2><p>sudo本身并没有超级用户 root 的权限,它是通过本身命令在文件系统中有 SUID 这个值导致谁执行他都有 root 权限,但是它会校验执行 sudo 的用户是否/etc/sudoers 文件中</p><p>sudo最大的优点是使用用户的密码就能拥有root执行权限,最大的缺点就是可以用root执行权限修改掉root密码如sudo passwd root,所以拥有sudo的权限等于root用户了。所以我能想到的优点就是避免了使用root用户不小心删除别人的文件，因为必须第二次执行重新加sudo来执行，给了你思考的时间，让你不至于root一把唆如rm -rf /</p><p>sudo等于su root然后执行命令</p><p>sudo -i等于su root切换成root</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 基本使用</span>
+</span></span><span style=display:flex><span>sudo ls
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 切换root等于su root</span>
+</span></span><span style=display:flex><span>sudo -i
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 有点意思的用法</span>
+</span></span><span style=display:flex><span>sudo su
+</span></span><span style=display:flex><span>sudo su root
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>sudo su -
+</span></span><span style=display:flex><span>sudo su - root
+</span></span></code></pre></div><h2 id=find>find</h2><h3 id=找可执行文件>找可执行文件</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>find <span style=color:#e6db74>`</span>pwd<span style=color:#e6db74>`</span> -type f -executable -print
+</span></span></code></pre></div><h2 id=top>top</h2><h3 id=进程的运行状态>进程的运行状态</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt><span style=display:flex><span>D = uninterruptible sleep
+</span></span><span style=display:flex><span>I = idle
+</span></span><span style=display:flex><span>R = running
+</span></span><span style=display:flex><span>S = sleeping
+</span></span><span style=display:flex><span>T = stopped by job control signal
+</span></span><span style=display:flex><span>t = stopped by debugger during trace
+</span></span><span style=display:flex><span>Z = zombie
+</span></span><span style=display:flex><span>```a
+</span></span><span style=display:flex><span>## mount
+</span></span><span style=display:flex><span>* mount目录自身, 好处:
+</span></span><span style=display:flex><span>1. 它允许为该特定目录树指定某些额外的挂载选项, -o ro设置为只读。
+</span></span><span style=display:flex><span>2. 硬链接无法链接这个目录.
+</span></span><span style=display:flex><span>```bash
+</span></span><span style=display:flex><span>mount --bind /data/test /data/test
+</span></span></code></pre></div><h2 id=expect>expect</h2><p>自动化交互式传递参数</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>expect -c <span style=color:#e6db74>&#39;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>	spawn yay -Syu --needed --noconfirm --overwrite &#34;*&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>	expect &#34;*sudo*&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>	send &#34;x\n&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>	expect eof&#39;</span>
+</span></span></code></pre></div><h2 id=文件系统>文件系统</h2><h3 id=文件和目录>文件和目录</h3><p>特殊权限可以通过数字快捷赋予, 但是只能通过chmod ug-st字符串的方式移除</p><p>文件类型7种ls -al可以查看, 目录和文件最多255个ASCII字符,因为结构体dirent.d_name里是char [256], 需要\0占用字符串结束符</p><p>linux可执行文件还可以设置capabilities权限</p><p>判断一个文件是否硬链接ls -l 第二行数字标识硬链接次数, 目录的可执行权限x标识是否能cd进入到目录</p><table><thead><tr><th>符号</th><th>含义</th></tr></thead><tbody><tr><td>-</td><td>文件/硬链接</td></tr><tr><td>d</td><td>目录</td></tr><tr><td>b</td><td>块设备文件</td></tr><tr><td>c</td><td>字符设备文件</td></tr><tr><td>l</td><td>软链接</td></tr><tr><td>p</td><td>管道文件</td></tr><tr><td>s</td><td>套接字文件</td></tr></tbody></table><h4 id=普通权限>普通权限</h4><p>三位标识, 每位由r, w, x组合,共有 6中, 可以用数字标识777 = r+w+x</p><p>mask是标识当前进程的默认权限, unmask是屏蔽权限, 创建文件默认的mask是666, 创建的目录的默认的mask是777, unmask默认重父进程继承来, 默认值022,</p><p>所以touch默认创建一个644权限, mkdir默认创建一个755权限</p><h4 id=setuid>SetUID</h4><ul><li>只有可执行文件才能设定 SetUID 权限，对目录设定 SUID，是无效的。</li><li>用户要对该文件拥有 x（执行）权限。</li><li>用户在执行该文件时，会以文件所有者的身份执行。</li><li>SetUID 权限只在文件执行过程中有效，一旦执行完毕，身份的切换也随之消失。</li><li>getuid获取的是执行用户的ID</li><li>geteuid获取的是可执行用户的ID或者文件的拥有者ID(设置了SetUID位)</li></ul><h4 id=setgid>SetGID</h4><p>文件:
+用户需要对此可执行文件有 x 权限；
+用户在执行具有 SGID 权限的可执行文件时，用户的群组身份会变为文件所属群组；
+SGID 权限赋予用户改变组身份的效果，只在可执行文件运行过程中有效；</p><p>目录:
+当一个目录被赋予 SGID 权限后，进入此目录的普通用户，其有效群组会变为该目录的所属组，会就使得用户在创建文件（或目录）时，该文件（或目录）的所属组将不再是用户的所属组，而使用的是目录的所属组。
+也就是说，只有当普通用户对具有 SGID 权限的目录有 rwx 权限时，SGID 的功能才能完全发挥。比如说，如果用户对该目录仅有 r 权限，则用户进入此目录后，
+虽然其有效群组变为此目录的所属组，但由于没有 x 权限，用户无法在目录中创建文件或目录，SGID 权限也就无法发挥它的作用。</p><h4 id=stick-bit>Stick BIT</h4><p>SBIT 权限仅对目录有效，一旦目录设定了 SBIT 权限，则用户在此目录下创建的文件或目录，就只有自己和 root 才有权利修改或删除该文件。</p><h3 id=chattr>chattr</h3><p>可以锁定文件不能删除,可以写入</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>chattr +a myfile
+</span></span></code></pre></div><h3 id=du和df空间不一致>du和df空间不一致</h3><ol><li>rm删除文件inode节点被进程打开内核不会释放空间.</li><li>mount挂载非空目录隐藏了原磁盘导致du并没有统计这部分空间</li></ol><h3 id=tmpfs加速>tmpfs加速</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 挂载</span>
+</span></span><span style=display:flex><span>mount -t tmpfs -o size<span style=color:#f92672>=</span>4G tmpfs ./node_modules
+</span></span><span style=display:flex><span><span style=color:#75715e># 拷贝到内存中</span>
+</span></span><span style=display:flex><span>cp -RT ./.vscode/node_modules ./node_modules
+</span></span><span style=display:flex><span>yarn build
+</span></span><span style=display:flex><span><span style=color:#75715e># 接触挂载</span>
+</span></span><span style=display:flex><span>umount ./node_modules
+</span></span></code></pre></div><h3 id=分区扩容>分区扩容</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>growpart /dev/vdb <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>e2fsck -f /dev/vdb1
+</span></span><span style=display:flex><span>resize2fs /dev/vdb1
+</span></span></code></pre></div><h3 id=制作rootfs>制作rootfs</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>mkfs -t ext4 livecd.img
+</span></span><span style=display:flex><span>mount -o loop livecd.img /mnt
+</span></span><span style=display:flex><span>cp -ax /<span style=color:#f92672>{</span>bin,etc,lib,lib64,opt,sbin,usr,var<span style=color:#f92672>}</span> /mnt
+</span></span><span style=display:flex><span>mkdir -p /mnt/<span style=color:#f92672>{</span>proc,sys,dev,run,tmp,home,media<span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 打压缩包</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># tar --xattrs-include=&#39;*.*&#39; --numeric-owner -czvf ./rootfs.targ.gz /mnt</span>
+</span></span></code></pre></div><h3 id=merge-usr>merge-usr</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#ae81ff>\c</span>p -rv --preserve<span style=color:#f92672>=</span>all --remove-destination bin/* usr/bin
+</span></span><span style=display:flex><span><span style=color:#ae81ff>\c</span>p -rv --preserve<span style=color:#f92672>=</span>all --remove-destination lib/* usr/lib
+</span></span><span style=display:flex><span><span style=color:#ae81ff>\c</span>p -rv --preserve<span style=color:#f92672>=</span>all --remove-destination lib64/* usr/lib64
+</span></span><span style=display:flex><span><span style=color:#ae81ff>\c</span>p -rv --preserve<span style=color:#f92672>=</span>all --remove-destination sbin/* usr/bin
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>rm -rf bin lib lib64 sbin
+</span></span><span style=display:flex><span>ln -s usr/bin bin
+</span></span><span style=display:flex><span>ln -s usr/lib lib
+</span></span><span style=display:flex><span>ln -s usr/lib64 lib64
+</span></span><span style=display:flex><span>ln -s usr/bin sbin
+</span></span></code></pre></div><h3 id=parted分区>parted分区</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>##</span>
+</span></span><span style=display:flex><span>paretd
+</span></span><span style=display:flex><span>mklabel gpt
+</span></span><span style=display:flex><span>mkparted ESP 1M 100M
+</span></span><span style=display:flex><span>mkparted Linux 100M 100G
+</span></span><span style=display:flex><span>exit
+</span></span></code></pre></div><h2 id=添加用户和修改密码>添加用户和修改密码</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>useradd -m -G wheel -s /bin/zsh x
+</span></span><span style=display:flex><span>printf <span style=color:#e6db74>&#34;123456\n123456\n&#34;</span> | passwd x &gt; /dev/null 2&gt;&amp;<span style=color:#ae81ff>1</span>
+</span></span></code></pre></div><h2 id=时区>时区</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+</span></span></code></pre></div><h2 id=同步时间>同步时间</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>## 同步时间</span>
+</span></span><span style=display:flex><span>ntpdate ntp.aliyun.com
+</span></span><span style=display:flex><span>hwclock -w
+</span></span><span style=display:flex><span><span style=color:#75715e># 设置系统时间同步到bios中</span>
+</span></span><span style=display:flex><span>hwclock --systohc --localtime <span style=color:#75715e># hwclock --systohc</span>
+</span></span></code></pre></div><h2 id=多语言环境>多语言环境</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>echo <span style=color:#e6db74>&#34;zh_CN.UTF-8 UTF-8
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>en_US.UTF-8 UTF-8
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;</span> &gt;&gt;/etc/locale.gen
+</span></span><span style=display:flex><span>locale-gen
+</span></span><span style=display:flex><span>localectl set-locale LANG<span style=color:#f92672>=</span>zh_CN.UTF-8 <span style=color:#75715e># echo &#34;LANG=zh_CN.UTF-8&#34; &gt;&gt;/etc/locale.conf</span>
+</span></span></code></pre></div><h2 id=wifi-wpa_cli>WIFI wpa_cli</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 创建网络返回网络ID</span>
+</span></span><span style=display:flex><span>wpa_cli -i wlan0 add_network
+</span></span><span style=display:flex><span><span style=color:#75715e># 设置ssid</span>
+</span></span><span style=display:flex><span>wpa_cli -i wlan0 set_network <span style=color:#ae81ff>0</span> ssid <span style=color:#e6db74>&#39;&#34;B701&#34;&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 设置psk</span>
+</span></span><span style=display:flex><span>wpa_cli -i wlan0 set_network <span style=color:#ae81ff>0</span> psk <span style=color:#e6db74>&#39;&#34;nalzj4ka&#34;&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 启用网络</span>
+</span></span><span style=display:flex><span>wpa_cli -i wlan0 enable_network <span style=color:#ae81ff>0</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 保存网络</span>
+</span></span><span style=display:flex><span>wpa_cli -i wlan0 save_config
+</span></span></code></pre></div><h2 id=电池>电池</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 电池</span>
+</span></span><span style=display:flex><span>upower -i <span style=color:#e6db74>`</span>upower -e | grep <span style=color:#e6db74>&#39;BAT&#39;</span><span style=color:#e6db74>`</span> <span style=color:#75715e># 查看电池信息</span>
+</span></span><span style=display:flex><span>acpi -v <span style=color:#75715e># 查看电池信息</span>
+</span></span><span style=display:flex><span>acpi -a <span style=color:#75715e># 充电状态</span>
+</span></span><span style=display:flex><span>acpi -t <span style=color:#75715e># 电池温度</span>
+</span></span></code></pre></div></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/blog/tags/linux/ rel=tag>Linux</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="何年重遇天涯 avatar" src=/blog/img/avatar.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name>About 何年重遇天涯</span></div><div class=authorbox__description>亦余心之所向兮，虽九死其尤未悔。</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/blog/post/linux/signal/ rel=prev><span class=pager__subtitle>«&#8201;Previous</span><p class=pager__title>信号</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/blog/post/devops/base/ rel=next><span class=pager__subtitle>Next&#8201;»</span><p class=pager__title>运维基础</p></a></div></nav></div></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2023 何年重遇天涯.
+<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/blog/js/menu.js></script>
+<script src=/blog/js/custom.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script></body></html>

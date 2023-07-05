@@ -1,0 +1,69 @@
+<!doctype html><html class=no-js lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><title>Network - 何年重遇天涯</title><script>(function(e,t){e[t]=e[t].replace("no-js","js")})(document.documentElement,"className")</script><meta name=description content><meta property="og:title" content="Network"><meta property="og:description" content="
+设备的查看和删除
+查看NAT/MTU
+iptables
+tcpdump位于网络协议栈的位置
+"><meta property="og:type" content="article"><meta property="og:url" content="/blog/post/linux/network/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-09-02T16:17:00+08:00"><meta property="article:modified_time" content="2022-11-13T23:27:00+08:00"><meta itemprop=name content="Network"><meta itemprop=description content="
+设备的查看和删除
+查看NAT/MTU
+iptables
+tcpdump位于网络协议栈的位置
+"><meta itemprop=datePublished content="2021-09-02T16:17:00+08:00"><meta itemprop=dateModified content="2022-11-13T23:27:00+08:00"><meta itemprop=wordCount content="104"><meta itemprop=keywords content="Linux,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Network"><meta name=twitter:description content="
+设备的查看和删除
+查看NAT/MTU
+iptables
+tcpdump位于网络协议栈的位置
+"><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=dns-prefetch href=//fonts.googleapis.com><link rel=dns-prefetch href=//fonts.gstatic.com><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700"><link rel=stylesheet href=/blog/css/style.css><link rel=stylesheet href=/blog/css/custom.css><link rel="shortcut icon" href=/blog/favicon.ico></head><body class=body><div class="container container--outer"><header class=header><div class="container header__container"><div class="logo logo--mixed"><a class=logo__link href=/blog title=何年重遇天涯 rel=home><div class="logo__item logo__imagebox"><img class=logo__img src=/blog/img/avatar.jpg></div><div class="logo__item logo__text"><div class=logo__title>何年重遇天涯</div><div class=logo__tagline>亦余心之所向兮，虽九死其尤未悔</div></div></a></div><nav class=menu><button class=menu__btn aria-haspopup=true aria-expanded=false tabindex=0>
+<span class=menu__btn-title tabindex=-1>Menu</span></button><ul class=menu__list><li class=menu__item><a class=menu__link href=/blog/about/><span class=menu__text>About Me</span></a></li></ul></nav></div></header><div class="wrapper flex"><div class=primary><main class=main role=main><article class=post><header class=post__header><h1 class=post__title>Network</h1><div class="post__meta meta"><div class="meta__item-author meta__item"><svg class="meta__icon icon icon-author" width="16" height="16" viewBox="0 0 12 16"><path d="M6 1c2.2.0 3.5 2 3.5 4.5C9.5 7 8.9 8.2 8 9c2.9.8 4 2.5 4 5v1H0v-1c0-2.5 1.1-4.2 4-5-.9-.8-1.5-2-1.5-3.5C2.5 3 3.8 1 6 1z"/></svg><span class=meta__text>何年重遇天涯</span></div><div class="meta__item-datetime meta__item"><svg class="meta__icon icon icon-time" width="16" height="14" viewBox="0 0 30 28"><path d="M15 0C7 0 1 6 1 14s6 14 14 14 14-6 14-14S23 0 15 0zm0 25C9 25 4 20 4 14S9 3 15 3s11 5 11 11-5 11-11 11zm1-18h-2v8.4l6.8 4.4L22 18l-6-3.8V7z"/></svg><time class=meta__text datetime=2021-09-02T16:17:00+08:00>2021-09-02</time>
+<time class=meta__text datetime=2022-11-13T23:27:00+08:00>(Last Modified: 2022-11-13)</time></div><div class="meta__item-categories meta__item"><svg class="meta__icon icon icon-category" width="16" height="16" viewBox="0 0 16 16"><path d="m7 2 1 2h8v11H0V2z"/></svg><span class=meta__text><a class=meta__link href=/blog/categories/linux/ rel=category>Linux</a></span></div></div></header><div class="post__toc toc"><div class=toc__title>Page content</div><div class=toc__menu><nav id=TableOfContents><ul><li><a href=#设备>设备</a><ul><li><a href=#删除网络设备>删除网络设备</a></li><li><a href=#查看设备驱动信息>查看设备驱动信息</a></li></ul></li><li><a href=#查看nat>查看NAT</a></li><li><a href=#mtu>MTU</a></li><li><a href=#iptables>iptables</a><ul><li><a href=#五表五链>五表五链</a></li><li><a href=#常用操作>常用操作</a></li></ul></li><li><a href=#tcpdump在网络协议栈的位置>tcpdump在网络协议栈的位置</a></li></ul></nav></div></div><div class="content post__content clearfix"><ol><li>设备的查看和删除</li><li>查看NAT/MTU</li><li>iptables</li><li>tcpdump位于网络协议栈的位置</li></ol><h2 id=设备>设备</h2><h3 id=删除网络设备>删除网络设备</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>ip link del veth0
+</span></span></code></pre></div><h3 id=查看设备驱动信息>查看设备驱动信息</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e>## 方法1</span>
+</span></span><span style=display:flex><span>ethtool -i eth0
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## 方法2</span>
+</span></span><span style=display:flex><span>ip -d link show eth0
+</span></span></code></pre></div><h2 id=查看nat>查看NAT</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>sudo conntrack -L -j
+</span></span></code></pre></div><h2 id=mtu>MTU</h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>tracepath baidu.com
+</span></span></code></pre></div><h2 id=iptables>iptables</h2><p><img src=/blog/img/iptables.png alt=iptables></p><h3 id=五表五链>五表五链</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt><span style=display:flex><span>security表：主要针对的是数据链路层的管理规则组合，只不过它是基于target目标来操作的。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>filter表：是netfilter中最重要的表，也是默认的表，主要负责数据包的过滤功能
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>nat表：主要实现网络地址转换的表。可以自由转换数据报文中的ip和port
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>mangle表：主要实现数据包的拆分-修改-封装动作
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>raw表：通过关闭nat表的追踪功能，从而实现加速防火墙过滤的表
+</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-txt data-lang=txt><span style=display:flex><span>prerouting：数据包进行路由决策前应用的规则，一般用于改变数据包的目标地址，不让别人知道我找的是谁（对进入的数据包进行预处理）
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>input：数据包经由路由决策后，进入到本机处理时应用的规则，一般用于本机进程处理的数据包（数据包本机处理）
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>forward：数据包经由路由决策后，本机不做处理，仅仅是转发数据包时应用的规则（数据包本机转发）
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>postrouting：数据包从本机出去前，对数据包应用的规则，一般用于更改数据包的源地址信息，不让给别人知道我是谁（对输出的数据包进行预处理）
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>output：新建数据包经路由决策后，从本机输出时应用的规则，一般用于本机处理后的数据包（数据包本机发出）
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>常见的场景：
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>本机处理数据包：prerouting-&gt;input
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>本机转发数据包：prerouting-&gt;forward-&gt;postrouting
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>本机相应数据包：output-&gt;postrouting
+</span></span></code></pre></div><h3 id=常用操作>常用操作</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 0.放行所有INPUT链流量</span>
+</span></span><span style=display:flex><span>iptables -P INPUT ACCEPT
+</span></span><span style=display:flex><span><span style=color:#75715e># 1.查看表信息</span>
+</span></span><span style=display:flex><span>iptables -t nat -vnL –line-numbers
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 2. 删除链上规则</span>
+</span></span><span style=display:flex><span>iptables -t nat -D OUTPUT <span style=color:#ae81ff>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 3. 新增自定义链</span>
+</span></span><span style=display:flex><span>iptables -t filter -N MY_WEB
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># 4. 删除自定义链, 无引用了且空规则才能被删除</span>
+</span></span><span style=display:flex><span>iptables -X MY_WEB
+</span></span></code></pre></div><h2 id=tcpdump在网络协议栈的位置>tcpdump在网络协议栈的位置</h2><blockquote><p>Wire -> NIC -> tcpdump -> netfilter -> applications -> netfilter -> tcpdump -> NIC -> Wire
+因此，使用tcpdump后，可以看到流入网卡的全部数据包，也可以看到流出网卡的所有数据包，但是不一定能看到应用程序返回的数据包。</p></blockquote></div><footer class=post__footer><div class="post__tags tags clearfix"><svg class="tags__badge icon icon-tag" width="16" height="16" viewBox="0 0 32 32"><path d="M32 19c0 1-1 2-1 2L21 31s-1 1-2 1-2-1-2-1L2 16c-1-1-1.4-2-1.4-2S0 12.5.0 11V3C0 1.5.8.8.8.8S1.5.0 3 0h8c1.5.0 3 .6 3 .6S15 1 16 2l15 15s1 1 1 2zM7 10a3 3 0 100-6 3 3 0 000 6z"/></svg><ul class=tags__list><li class=tags__item><a class="tags__link btn" href=/blog/tags/linux/ rel=tag>Linux</a></li></ul></div></footer></article></main><div class="authorbox clearfix"><figure class=authorbox__avatar><img alt="何年重遇天涯 avatar" src=/blog/img/avatar.jpg class=avatar height=90 width=90></figure><div class=authorbox__header><span class=authorbox__name>About 何年重遇天涯</span></div><div class=authorbox__description>亦余心之所向兮，虽九死其尤未悔。</div></div><nav class="pager flex"><div class="pager__item pager__item--prev"><a class=pager__link href=/blog/post/program/elisp/elisp/ rel=prev><span class=pager__subtitle>«&#8201;Previous</span><p class=pager__title>Elisp</p></a></div><div class="pager__item pager__item--next"><a class=pager__link href=/blog/post/linux/signal/ rel=next><span class=pager__subtitle>Next&#8201;»</span><p class=pager__title>信号</p></a></div></nav></div></div><footer class=footer><div class="container footer__container flex"><div class=footer__copyright>&copy; 2023 何年重遇天涯.
+<span class=footer__copyright-credits>Generated with <a href=https://gohugo.io/ rel="nofollow noopener" target=_blank>Hugo</a> and <a href=https://github.com/Vimux/Mainroad/ rel="nofollow noopener" target=_blank>Mainroad</a> theme.</span></div></div></footer></div><script async defer src=/blog/js/menu.js></script>
+<script src=/blog/js/custom.js></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async></script></body></html>
