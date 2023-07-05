@@ -38,7 +38,7 @@ sudo conntrack -L -j
 tracepath baidu.com
 ```
 ## iptables
-![avatar](/blog/img/iptables.png)
+![iptables](/blog/img/iptables.png)
 ### 五表五链
 ```txt
 security表：主要针对的是数据链路层的管理规则组合，只不过它是基于target目标来操作的。

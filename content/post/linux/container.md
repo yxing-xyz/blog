@@ -195,7 +195,7 @@ podman run -it --name arch-amd64 --net=host --env="DISPLAY" --volume="$HOME/.Xau
 
 * k8s的drain节点是先结束pod然后新建pod,所以如果pod是高可用的分布在不同节点drain没问题,如果节点少,且有资源的pod全位于同一个node上那么drain会中断业务,建议先cordon,然后restart相关资源直到node没有业务pod后才移除node
 
-* pod停止流程![avatar](/blog/img/pod-stop.png)
+* pod停止流程![pod停止流程](/blog/img/pod-stop.png)
 
 * k8s的nginx-ingress是订阅了endpoints然后nginx重新加载后端ip地址, 因为k8s重启更新资源并不保证同步nginx的监听,只保证node更新ipvs端点.所以前端是nginx-ingress,后端的服务最好在prestop里sleep一定时间,保证nginx同步更新端点后再结束pod, 如果是svc的ip调用不需要,因为k8s保证了同步更新
 
