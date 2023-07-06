@@ -11,7 +11,7 @@ author: "何年重遇天涯"
 contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
-1. Go的区别和联系
+1. 指针类型
 <!--more-->
 
 ## 基本难点
@@ -30,20 +30,3 @@ contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki
 | Rc<T>    | 指向类型T的引用计数指针，共享所有权，线程不安全                        |
 | Arc<T>   | 只想类型T的原子型引用计数指针，共享所有权，线程安全                    |
 | Cow<',T> | Copy-on-writer，写时复制指针。可能是借用指针，也可能是具有所有权的指针 |
-
-
-
-## 区别和联系
-### Go的区别和联系
-#### 区别
-1. Rust末尾需要加上分号(;)最后一行语句除外, 变量类型前需要有冒号(:), 函数返回值前有箭头符号(->)
-2. Rust变量屏蔽
-3. Rust全局变量需要static关键字声明且必须初始化, 带有mut可变的全局变量读写还需要加上unsafe关键字
-4. Rust Format格式，Rust支持命名参数
-5. Rust语法支持迭代器模式统一访问方式
-6. Rust无返回值函数(发散函数)的返回值类型是!,如panic!宏以及基于它实现的函数和宏，死循环(loop),进程退出函数，进程exec函数
-7. Rust const修饰函数，该函数是常量函数工作于编译期
-8. Rust定义结构体类型没有type关键字
-#### 联系
-1. tuple sturct实现go的type新类型， type alias等于go的type别名
-2. loop等于for不带参数
