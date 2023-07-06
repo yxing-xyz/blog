@@ -2,7 +2,7 @@
 &lt;li>NPM常用命令&lt;/li>
 &lt;li>npm-check-updates检查可更新包&lt;/li>
 &lt;/ol></description></item><item><title>Rust</title><link>/blog/post/program/rust/rust/</link><pubDate>Wed, 14 Jun 2023 17:54:00 +0800</pubDate><guid>/blog/post/program/rust/rust/</guid><description>&lt;ol>
-&lt;li>Go的区别和联系&lt;/li>
+&lt;li>指针类型&lt;/li>
 &lt;/ol></description></item><item><title>Shell</title><link>/blog/post/program/shell/</link><pubDate>Mon, 12 Jun 2023 16:08:00 +0800</pubDate><guid>/blog/post/program/shell/</guid><description>&lt;ol>
 &lt;li>env,set,export&lt;/li>
 &lt;li>-z&lt;/li>
