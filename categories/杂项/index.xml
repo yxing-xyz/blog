@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>杂项 on 何年重遇天涯</title><link>/blog/categories/%E6%9D%82%E9%A1%B9/</link><description>Recent content in 杂项 on 何年重遇天涯</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 05 Jul 2023 13:00:00 +0800</lastBuildDate><atom:link href="/blog/categories/%E6%9D%82%E9%A1%B9/index.xml" rel="self" type="application/rss+xml"/><item><title>Mac</title><link>/blog/post/misc/mac/</link><pubDate>Wed, 05 Jul 2023 13:00:00 +0800</pubDate><guid>/blog/post/misc/mac/</guid><description>&lt;ol>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>杂项 on 何年重遇天涯</title><link>/categories/%E6%9D%82%E9%A1%B9/</link><description>Recent content in 杂项 on 何年重遇天涯</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 05 Jul 2023 13:00:00 +0800</lastBuildDate><atom:link href="/categories/%E6%9D%82%E9%A1%B9/index.xml" rel="self" type="application/rss+xml"/><item><title>Mac</title><link>/post/misc/mac/</link><pubDate>Wed, 05 Jul 2023 13:00:00 +0800</pubDate><guid>/post/misc/mac/</guid><description>&lt;ol>
 &lt;li>关闭密码策略&lt;/li>
 &lt;li>finder默认显示所有文件&lt;/li>
 &lt;li>卸载Java&lt;/li>
 &lt;li>更改自带SSH端口&lt;/li>
 &lt;li>brew tap&lt;/li>
 &lt;li>brew package&lt;/li>
-&lt;/ol></description></item><item><title>Language Server Protoco</title><link>/blog/post/misc/lsp/</link><pubDate>Sun, 07 May 2023 21:14:00 +0800</pubDate><guid>/blog/post/misc/lsp/</guid><description>&lt;ol>
+&lt;/ol></description></item><item><title>Language Server Protoco</title><link>/post/misc/lsp/</link><pubDate>Sun, 07 May 2023 21:14:00 +0800</pubDate><guid>/post/misc/lsp/</guid><description>&lt;ol>
 &lt;li>C/C++配置LSP&lt;/li>
-&lt;/ol></description></item><item><title>Chrome</title><link>/blog/post/misc/chrome/</link><pubDate>Sun, 01 May 2022 16:55:00 +0800</pubDate><guid>/blog/post/misc/chrome/</guid><description>&lt;ol>
+&lt;/ol></description></item><item><title>Chrome</title><link>/post/misc/chrome/</link><pubDate>Sun, 01 May 2022 16:55:00 +0800</pubDate><guid>/post/misc/chrome/</guid><description>&lt;ol>
 &lt;li>解决高版本chrome内网页加载内网资源被组织&lt;/li>
 &lt;li>无痕窗口模式缓存问题&lt;/li>
-&lt;/ol></description></item><item><title>Shell杂项</title><link>/blog/post/misc/shell/</link><pubDate>Wed, 16 Jun 2021 20:00:00 +0800</pubDate><guid>/blog/post/misc/shell/</guid><description>&lt;ul>
+&lt;/ol></description></item><item><title>Shell杂项</title><link>/post/misc/shell/</link><pubDate>Wed, 16 Jun 2021 20:00:00 +0800</pubDate><guid>/post/misc/shell/</guid><description>&lt;ul>
 &lt;li>zsh&lt;/li>
 &lt;/ul>
 &lt;ol>
