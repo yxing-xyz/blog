@@ -1,4 +1,4 @@
-baseurl = "/blog"
+baseurl = ""
 title = "何年重遇天涯"
 languageCode = "zh-cn"
 paginate = "10" # Number of posts per page
@@ -23,7 +23,7 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   pager = true # Show pager navigation (prev/next links) at the bottom of pages if true
   post_meta = ["author", "date", "categories", "translations"] # Order of post meta information
   mainSections = ["post", "blog", "news"] # Specify section pages to show on home page and the "Recent articles" widget
-  dateformat = "2006-01-02" # Change the format of dates
+  dateformat = "2006-01-02 15:16:17" # Change the format of dates
   mathjax = true # Enable MathJax
   mathjaxPath = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js" # Specify MathJax path
   mathjaxConfig = "TeX-AMS-MML_HTMLorMML" # Specify MathJax config
@@ -75,4 +75,4 @@ googleAnalytics = "" # Enable Google Analytics by entering your tracking id
   url = "https://google.com/search"
   [Params.widgets.search.input]
     name = "sitesearch"
-    pre = "https://yxing-xyz.github.io"
+    pre = "https://yxing.xyz"
