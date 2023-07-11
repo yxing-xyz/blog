@@ -39,5 +39,6 @@ absolute_redirect off;
 
 ### HTTP代理
 客户端知道走了正向代理，不知道是否访问了反向代理,
+CONNECT后续也可以跟着http包文，如websocket请求
 1. 正向代理http请求报文等于反向代理，区别就是反向代理请求TCP端口和HTTP报文端口一致,正向代理TCP端口是代理程序监听的端口，报文里是资源服务器端口，http请求可以通过设置正向代理到反向代理服务器来规避DNS解析问题。
 2. 正向代理https请求,会有一个connect请求,服务器响应HTTP/1.1 200 Connection Established,代理服务器收到后和资源服务器建立tcp连接，然后原封不动转发tcp数据，并不知道内容，只知道域名和端口信息.
