@@ -44,14 +44,14 @@ openssl s_client -showcerts -connect baidu.com:443
 ```
 ### 自签名x509 V1证书
 ```bash
-# 1. 生成ca key
-openssl genrsa -out ca_key.pem 2048
+# 1. 生成CA key
+openssl genrsa -out ca.key 2048
 # 2. 生成CA证书请求
-openssl req -new -key ca_key.pem -out ca_csr.pem -subj "/C=CN/ST=Hunan Province/L=Yueyang/O=Yueyang Xing Company Limited/OU=/CN=Xing Root CA"
-# 3. 生产CA证书
-openssl x509 -req -days 3650 -in ca_csr.pem -signkey ca_key.pem -out ca_crt.pem
-# 4. 生成新的服务器证书请求和key
-openssl req -new -SHA256 -newkey rsa:2048 -nodes -keyout yxing.xyz.key -out yxing.xyz_csr.pem -subj "/C=CN/ST=Hunan Province/L=Yueyang/O=yxing.xyz/OU=/CN=dev.yxing.xyz"
-# 5. CA签名客户端证书
-openssl x509 -req -in yxing.xyz_csr.pem -out yxing.xyz_crt.pem -CA ca_crt.pem -CAkey ca_key.pem -CAcreateserial -days 360
+openssl req -new -key ca.key -out ca.csr -subj "/C=CN/ST=Hunan Province/L=Yueyang/O=yxing.xyz/OU=/CN=yxing.xyz Root CA"
+# 3. 生成CA证书
+openssl x509 -req -days 3650 -in ca.csr -signkey ca.key -out ca.crt
+# 4. 生成服务器证书请求和key
+openssl req -new -SHA256 -newkey rsa:2048 -nodes -keyout wx-test.gateway.qq.com.key -out wx-test.gateway.qq.com.csr -subj "/C=CN/ST=Hunan Province/L=Yueyang/O=yxing.xyz/OU=/CN=wx-test.gateway.qq.com"
+# 5. CA签名证书
+openssl x509 -req -in wx-test.gateway.qq.com.csr -out wx-test.gateway.qq.com.crt -CA ca.crt -CAkey ca.key  -CAcreateserial -days 360
 ```
