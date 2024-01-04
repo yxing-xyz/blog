@@ -1,0 +1,6 @@
+public
+.idea
+
+.vscode/settings.json
+.vscode
+.hugo_build.lock
